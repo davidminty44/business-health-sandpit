@@ -11,12 +11,14 @@
 </head>
 <body>
   <nav class="prototype-bar" aria-label="Choose a Business Health prototype">
-    <div class="prototype-demand-info"><strong>[ Prototype A ] Business Health</strong><span>Ordered by counted Savio demand</span></div>
     <div class="concept-switch" role="group" aria-label="Choose a Business Health concept">
       <button class="concept-option active" type="button" data-concept="dashboard" aria-pressed="true">Dashboard</button>
       <button class="concept-option" type="button" data-concept="demand" aria-pressed="false">Demand-led</button>
     </div>
-    <label class="prototype-demand-toggle"><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
+    <div class="prototype-demand-tools">
+      <div class="prototype-demand-info"><strong>[ Prototype A ] Business Health</strong><span>Ordered by counted Savio demand</span></div>
+      <label class="prototype-demand-toggle"><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
+    </div>
   </nav>
 
   <aside class="sidebar" id="sidebar" aria-label="Main navigation" aria-hidden="true" inert>
