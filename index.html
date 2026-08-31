@@ -11,10 +11,12 @@
 </head>
 <body>
   <nav class="prototype-bar" aria-label="Choose a Business Health prototype">
+    <div class="prototype-demand-info"><strong>[ Prototype A ] Business Health</strong><span>Ordered by counted Savio demand</span></div>
     <div class="concept-switch" role="group" aria-label="Choose a Business Health concept">
       <button class="concept-option active" type="button" data-concept="dashboard" aria-pressed="true">Dashboard</button>
       <button class="concept-option" type="button" data-concept="demand" aria-pressed="false">Demand-led</button>
     </div>
+    <label class="prototype-demand-toggle"><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
   </nav>
 
   <aside class="sidebar" id="sidebar" aria-label="Main navigation" aria-hidden="true" inert>
@@ -175,6 +177,35 @@
             </figure>
           </section>
 
+          <section class="report-section action-section" aria-labelledby="actionTitle">
+            <div class="action-heading">
+              <div><span class="action-eyebrow">Your next moves</span><h2 id="actionTitle">Take action</h2><p>Work through these in order, starting with the opportunity closest to revenue.</p></div>
+              <span class="action-count">3 next steps</span>
+            </div>
+            <article class="primary-action" data-calc-target="stale-quotes">
+              <span class="action-rank primary">1</span>
+              <div class="primary-action-copy">
+                <span class="action-priority">Do this first</span>
+                <div class="calc-label-row"><h3>Follow up 12 quotes</h3><button class="calc-trigger" type="button" aria-label="Show calculation details for Quotes waiting on a reply" aria-expanded="false" aria-controls="calculationPopover" data-calc="stale-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div>
+                <strong class="primary-action-value">$42,600 <span>waiting on a reply</span></strong>
+                <p>These quotes were sent more than 7 days ago.</p>
+              </div>
+              <button class="btn btn-primary callout-link" type="button" data-toast="Opening 12 quotes to follow up.">Follow up 12 quotes</button>
+            </article>
+            <ol class="secondary-actions" start="2">
+              <li class="secondary-action" data-calc-target="unquoted-enquiries">
+                <span class="action-rank">2</span>
+                <div class="secondary-action-copy"><div class="calc-label-row"><h3>Quote 6 enquiries</h3><button class="calc-trigger" type="button" aria-label="Show calculation details for Enquiries with no quote" aria-expanded="false" aria-controls="calculationPopover" data-calc="unquoted-enquiries"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><p>They’re still waiting on a price. Send one before the customer looks elsewhere.</p></div>
+                <button class="text-link callout-link" type="button" data-toast="Opening 6 enquiries to quote.">Create quotes <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+              </li>
+              <li class="secondary-action" data-calc-target="lost-reasons">
+                <span class="action-rank">3</span>
+                <div class="secondary-action-copy"><div class="calc-label-row"><h3>Learn from 8 lost quotes</h3><button class="calc-trigger" type="button" aria-label="Show calculation details for Lost quotes need a reason" aria-expanded="false" aria-controls="calculationPopover" data-calc="lost-reasons"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><p>$28,400 in lost work has no reason recorded.</p></div>
+                <button class="text-link callout-link" type="button" data-toast="Opening 8 lost quotes without a reason.">Add loss reasons <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+              </li>
+            </ol>
+          </section>
+
           <section class="report-section profitability-section" aria-labelledby="profitabilityTitle">
             <div class="section-heading">
               <div class="heading-with-calc">
@@ -224,35 +255,6 @@
               </ol>
               <div class="profitable-jobs-summary"><span>These 3 jobs made $3,369 of the period’s $8,100 gross profit.</span><button class="text-link analyst-link" type="button" data-toast="In product, this opens the Job Financial Report sorted by gross profit.">View all jobs</button></div>
             </div>
-          </section>
-
-          <section class="report-section action-section" aria-labelledby="actionTitle">
-            <div class="action-heading">
-              <div><span class="action-eyebrow">Your next moves</span><h2 id="actionTitle">Take action</h2><p>Work through these in order, starting with the opportunity closest to revenue.</p></div>
-              <span class="action-count">3 next steps</span>
-            </div>
-            <article class="primary-action" data-calc-target="stale-quotes">
-              <span class="action-rank primary">1</span>
-              <div class="primary-action-copy">
-                <span class="action-priority">Do this first</span>
-                <div class="calc-label-row"><h3>Follow up 12 quotes</h3><button class="calc-trigger" type="button" aria-label="Show calculation details for Quotes waiting on a reply" aria-expanded="false" aria-controls="calculationPopover" data-calc="stale-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div>
-                <strong class="primary-action-value">$42,600 <span>waiting on a reply</span></strong>
-                <p>These quotes were sent more than 7 days ago.</p>
-              </div>
-              <button class="btn btn-primary callout-link" type="button" data-toast="Opening 12 quotes to follow up.">Follow up 12 quotes</button>
-            </article>
-            <ol class="secondary-actions" start="2">
-              <li class="secondary-action" data-calc-target="unquoted-enquiries">
-                <span class="action-rank">2</span>
-                <div class="secondary-action-copy"><div class="calc-label-row"><h3>Quote 6 enquiries</h3><button class="calc-trigger" type="button" aria-label="Show calculation details for Enquiries with no quote" aria-expanded="false" aria-controls="calculationPopover" data-calc="unquoted-enquiries"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><p>They’re still waiting on a price. Send one before the customer looks elsewhere.</p></div>
-                <button class="text-link callout-link" type="button" data-toast="Opening 6 enquiries to quote.">Create quotes <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-              </li>
-              <li class="secondary-action" data-calc-target="lost-reasons">
-                <span class="action-rank">3</span>
-                <div class="secondary-action-copy"><div class="calc-label-row"><h3>Learn from 8 lost quotes</h3><button class="calc-trigger" type="button" aria-label="Show calculation details for Lost quotes need a reason" aria-expanded="false" aria-controls="calculationPopover" data-calc="lost-reasons"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><p>$28,400 in lost work has no reason recorded.</p></div>
-                <button class="text-link callout-link" type="button" data-toast="Opening 8 lost quotes without a reason.">Add loss reasons <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-              </li>
-            </ol>
           </section>
 
           <section class="report-section support-section" aria-labelledby="supportTitle">
@@ -308,10 +310,6 @@
           </div>
 
           <div class="concept-panel demand-concept" id="demandConcept" hidden>
-            <section class="demand-banner">
-              <div><span>[ Prototype A ] Business Health</span><p>Every block is sized and ordered by counted Savio demand. No AI insights panel—only 8 requests exist and none are about analysing financials.</p></div>
-              <label><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
-            </section>
             <div class="demand-content">
               <section class="demand-money-grid" aria-label="Money position">
                 <article class="demand-card demand-money-card overdue"><div><span>Overdue</span><em class="demand-tag" hidden>156 in Savio</em></div><strong>$47,820</strong><small>8 invoices</small></article>
@@ -319,7 +317,8 @@
                 <article class="demand-card demand-money-card due"><div><span>Not yet due</span></div><strong>$62,340</strong><small>19 invoices</small></article>
               </section>
 
-              <div class="demand-grid demand-main-grid">
+              <div class="demand-columns">
+                <div class="demand-column">
                 <section class="demand-card demand-chasing" aria-labelledby="demandChasingTitle">
                   <header class="demand-card-head"><div><h2 id="demandChasingTitle">Needs chasing</h2><em class="demand-tag" hidden>156 in Savio</em></div></header>
                   <div class="demand-bucket-label"><i class="fa fa-filter" aria-hidden="true"></i>Filter by days overdue</div>
@@ -342,6 +341,13 @@
                   <div class="demand-card-footer"><button class="text-link" id="demandShowMore" type="button">Show 3 more <i class="fa fa-angle-down" aria-hidden="true"></i></button></div>
                 </section>
 
+                <section class="demand-card demand-booked" aria-labelledby="demandBookedTitle">
+                  <header class="demand-card-head"><div><h2 id="demandBookedTitle">Booked ahead</h2><em class="demand-tag" hidden>81 in Savio</em></div></header>
+                  <div class="demand-booked-body"><strong>$264,500</strong><p>of work already committed over the next 3 months</p><div class="demand-key"><span><i class="scheduled"></i>Scheduled jobs</span><span><i class="quoted"></i>Accepted quotes, not scheduled</span></div><div class="demand-booked-bars"><div><span>Sep</span><i><i class="scheduled" style="width:67.6%"></i><i class="quoted" style="width:32.4%"></i></i><strong>$142,000</strong></div><div><span>Oct</span><i><i class="scheduled" style="width:38.4%"></i><i class="quoted" style="width:23.9%"></i></i><strong>$88,500</strong></div><div><span>Nov</span><i><i class="scheduled" style="width:14.8%"></i><i class="quoted" style="width:9.2%"></i></i><strong>$34,000</strong></div></div><small>Built from work already in Tradify. Nothing here is predicted.</small></div>
+                </section>
+                </div>
+
+                <div class="demand-column">
                 <section class="demand-card demand-performance" aria-labelledby="demandPerformanceTitle">
                   <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Performance</h2><em class="demand-tag" hidden>121 in Savio</em></div><select id="demandPeriod" aria-label="Performance period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
                   <div class="demand-performance-hero"><small id="demandPeriodDates">Gross margin · 02/08/2026 – 01/09/2026</small><div><strong id="demandMargin">35.0%</strong><span class="negative" id="demandMarginDelta"><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 pts</span></div><p id="demandPerformanceSummary">$65,240 on $186,400 invoiced · was 38.2% previous period</p></div>
@@ -351,13 +357,6 @@
                     <div><span>Gross profit</span><strong id="demandProfitValue">$65,240</strong><i><i class="profit" id="demandProfitBar" style="width:35%"></i></i></div>
                     <button class="text-link analyst-link" type="button" data-toast="In product, this opens margin by Job.">Break down by job <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                   </div>
-                </section>
-              </div>
-
-              <div class="demand-grid demand-work-grid">
-                <section class="demand-card demand-booked" aria-labelledby="demandBookedTitle">
-                  <header class="demand-card-head"><div><h2 id="demandBookedTitle">Booked ahead</h2><em class="demand-tag" hidden>81 in Savio</em></div></header>
-                  <div class="demand-booked-body"><strong>$264,500</strong><p>of work already committed over the next 3 months</p><div class="demand-key"><span><i class="scheduled"></i>Scheduled jobs</span><span><i class="quoted"></i>Accepted quotes, not scheduled</span></div><div class="demand-booked-bars"><div><span>Sep</span><i><i class="scheduled" style="width:67.6%"></i><i class="quoted" style="width:32.4%"></i></i><strong>$142,000</strong></div><div><span>Oct</span><i><i class="scheduled" style="width:38.4%"></i><i class="quoted" style="width:23.9%"></i></i><strong>$88,500</strong></div><div><span>Nov</span><i><i class="scheduled" style="width:14.8%"></i><i class="quoted" style="width:9.2%"></i></i><strong>$34,000</strong></div></div><small>Built from work already in Tradify. Nothing here is predicted.</small></div>
                 </section>
 
                 <section class="demand-card demand-ready" aria-labelledby="demandReadyTitle">
@@ -371,6 +370,7 @@
                   </div>
                   <div class="demand-invoice-footer"><span id="demandInvoiceSummary">Select jobs to invoice</span><button class="btn btn-default" id="demandCreateInvoices" type="button" disabled><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Create invoice</span></button></div>
                 </section>
+                </div>
               </div>
 
               <section class="demand-card demand-watch" aria-labelledby="demandWatchTitle">
