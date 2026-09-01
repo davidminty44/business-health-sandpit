@@ -445,8 +445,19 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-performance-bars>div>i>i.profit{background:#33a99e}
 .demand-performance-bars>.text-link{display:flex;align-items:center;gap:3px}
 .demand-booked-body{padding:16px}
-.demand-booked-body>strong{color:#263238;font-size:24px;font-weight:500;line-height:29px}
-.demand-booked-body>p{margin:3px 0 14px;color:#526069;font-size:11px}
+.demand-booked-total>strong{color:#263238;font-size:24px;font-weight:500;line-height:29px}
+.demand-booked-total>p{margin:3px 0 14px;color:#526069;font-size:11px}
+.demand-booked-financials{margin-bottom:14px;padding:12px;border:1px solid #e3e6ea;border-radius:4px;background:#fbfcfc;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px}
+.demand-booked-financials>div:not(.demand-booked-profit-bar){min-width:0;display:flex;flex-direction:column}
+.demand-booked-financials>div:first-child{padding-right:18px;border-right:1px solid #e3e6ea}
+.demand-booked-financials span{color:#748188;font-size:9px;font-weight:500;line-height:14px}
+.demand-booked-financials strong{margin-top:1px;color:#263238;font-size:18px;font-weight:500;line-height:23px}
+.demand-booked-financials .profit>strong{color:#27835e}
+.demand-booked-financials small{color:#526069;font-size:8px;line-height:12px}
+.demand-booked-profit-bar{height:6px;margin-top:6px;border-radius:3px;display:flex;grid-column:1/-1;overflow:hidden}
+.demand-booked-profit-bar span{height:100%;display:block}
+.demand-booked-profit-bar .cost{background:#cacaca}
+.demand-booked-profit-bar .profit{background:#46be8a}
 .demand-key{margin-bottom:12px;display:flex;flex-wrap:wrap;gap:8px 14px}
 .demand-key span{color:#526069;display:flex;align-items:center;gap:5px;font-size:9px;font-weight:500}
 .demand-key i{width:8px;height:8px;border-radius:2px;background:#009ec7;display:block}
@@ -457,7 +468,8 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-booked-bars>div>i{height:19px;display:flex;gap:2px}
 .demand-booked-bars>div>i>i{height:100%;background:#009ec7;display:block}
 .demand-booked-bars>div>i>i.quoted{background:#51c7d5}
-.demand-booked-body>small{margin-top:11px;color:#748188;display:block;font-size:9px;line-height:14px}
+.demand-booked-notes{margin-top:11px;display:flex;flex-direction:column;gap:2px}
+.demand-booked-notes small{color:#748188;font-size:9px;line-height:14px}
 .demand-ready-row{min-height:55px;padding:9px 16px;border-bottom:1px solid #edf1f3;display:flex;align-items:center;gap:10px}
 .demand-ready-row>span{min-width:0;display:flex;flex:1;flex-direction:column}
 .demand-ready-row strong{overflow:hidden;color:#263238;font-size:11px;font-weight:500;line-height:16px;text-overflow:ellipsis;white-space:nowrap}

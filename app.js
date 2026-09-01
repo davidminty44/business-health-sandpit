@@ -106,11 +106,11 @@ const calculationMetadata={
     note:'Draft and cancelled invoices are excluded. This is money owed, not money received.'
   },
   'booked-ahead':{
-    title:'Booked ahead calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Committed work value from scheduled jobs and accepted quotes not yet scheduled.',
-    calculation:'$264,500 = $142,000 in Sep + $88,500 in Oct + $34,000 in Nov.',
-    source:'Scheduled jobs and accepted quote values held in Tradify.',
-    note:'This is committed value, not expected cash. It does not account for remaining work, delays, cancellations or payment timing.'
+    title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Committed work value, estimated delivery cost and potential gross profit from scheduled jobs and accepted quotes.',
+    calculation:'$264,500 committed value = $142,000 in Sep + $88,500 in Oct + $34,000 in Nov. $264,500 − $179,900 estimated cost = $84,600 potential gross profit. $84,600 ÷ $264,500 = 32.0% estimated margin.',
+    source:'Accepted quote values and quoted labour, material, subcontractor and other cost estimates held in Tradify.',
+    note:'Committed value is not expected cash. Cost and profit use quoted estimates, not costs recorded during the job, so actual gross profit may be lower.'
   },
   'demand-performance':{
     title:'Profitability calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
