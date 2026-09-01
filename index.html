@@ -14,9 +14,10 @@
     <div class="concept-switch" role="group" aria-label="Choose a Business Health concept">
       <button class="concept-option active" type="button" data-concept="dashboard" aria-pressed="true">Dashboard</button>
       <button class="concept-option" type="button" data-concept="demand" aria-pressed="false">Demand-led</button>
+      <button class="concept-option" type="button" data-concept="combined" aria-pressed="false">Combined</button>
     </div>
     <div class="prototype-demand-tools">
-      <div class="prototype-demand-info"><strong>[ Prototype A ] Business Health</strong><span>Ordered by counted Savio demand</span></div>
+      <div class="prototype-demand-info"><strong id="prototypeConceptName">[ Prototype A ] Business Health</strong><span id="prototypeConceptDescription">Ordered by counted Savio demand</span></div>
       <label class="prototype-demand-toggle"><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
     </div>
   </nav>
@@ -311,7 +312,7 @@
           <footer class="report-note"><i class="fa fa-info-circle" aria-hidden="true"></i>Updated once a day — today’s changes may not show yet.</footer>
           </div>
 
-          <div class="concept-panel demand-concept" id="demandConcept" hidden>
+          <div class="concept-panel demand-concept" id="demandConcept" data-demand-flow hidden>
             <div class="demand-content">
               <section class="demand-money-grid" aria-label="Money position">
                 <article class="demand-card demand-money-card overdue"><div><span>Overdue</span><em class="demand-tag" hidden>156 in Savio</em></div><strong>$47,820</strong><small>8 invoices</small></article>
@@ -340,7 +341,7 @@
                     <div class="demand-owed-row" data-demand-owed data-bucket="1-30" hidden><div class="demand-owed-copy"><strong>Hallam Bros Builders</strong><div><span>INV&#8209;2988</span><span>12 days overdue</span><span>1 reminder sent</span></div></div><strong class="demand-amount">$3,850</strong><button class="btn btn-default demand-chase-button" type="button" aria-pressed="false"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Chase</span></button></div>
                     <div class="demand-owed-row" data-demand-owed data-bucket="1-30" hidden><div class="demand-owed-copy"><strong>Pinehurst Dental</strong><div><span>INV&#8209;2994</span><span>6 days overdue</span><span class="critical">Never chased</span></div></div><strong class="demand-amount">$650</strong><button class="btn btn-default demand-chase-button" type="button" aria-pressed="false"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Chase</span></button></div>
                   </div>
-                  <div class="demand-card-footer"><button class="text-link" id="demandShowMore" type="button">Show 3 more <i class="fa fa-angle-down" aria-hidden="true"></i></button></div>
+                  <div class="demand-card-footer"><button class="text-link demand-show-more" id="demandShowMore" type="button">Show 3 more <i class="fa fa-angle-down" aria-hidden="true"></i></button></div>
                 </section>
 
                 <section class="demand-card demand-booked" aria-labelledby="demandBookedTitle">
@@ -359,16 +360,16 @@
                     <label><input class="demand-invoice-select" type="checkbox" value="5900"><span><strong>Warehouse LED changeover</strong><small>Northline Logistics · Finished 5 days ago</small></span><b>$5,900</b></label>
                     <button class="text-link analyst-link demand-more-jobs" type="button" data-toast="In product, this reveals 7 more completed jobs worth $9,550.">7 more worth $9,550 <i class="fa fa-angle-down" aria-hidden="true"></i></button>
                   </div>
-                  <div class="demand-invoice-footer"><span id="demandInvoiceSummary">Select jobs to invoice</span><button class="btn btn-default" id="demandCreateInvoices" type="button" disabled><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Create invoice</span></button></div>
+                  <div class="demand-invoice-footer"><span class="demand-invoice-summary" id="demandInvoiceSummary">Select jobs to invoice</span><button class="btn btn-default demand-create-invoices" id="demandCreateInvoices" type="button" disabled><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Create invoice</span></button></div>
                 </section>
 
                 <section class="demand-card demand-performance" aria-labelledby="demandPerformanceTitle">
-                  <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Performance</h2><em class="demand-tag" hidden>121 in Savio</em></div><select id="demandPeriod" aria-label="Performance period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
-                  <div class="demand-performance-hero"><small id="demandPeriodDates">Gross margin · 02/08/2026 – 01/09/2026</small><div><strong id="demandMargin">35.0%</strong><span class="negative" id="demandMarginDelta"><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 pts</span></div><p id="demandPerformanceSummary">$65,240 on $186,400 invoiced · was 38.2% previous period</p></div>
+                  <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Performance</h2><em class="demand-tag" hidden>121 in Savio</em></div><select class="demand-period" id="demandPeriod" aria-label="Performance period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
+                  <div class="demand-performance-hero"><small id="demandPeriodDates" data-demand-period-dates>Gross margin · 02/08/2026 – 01/09/2026</small><div><strong id="demandMargin" data-demand-margin>35.0%</strong><span class="negative" id="demandMarginDelta" data-demand-margin-delta><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 pts</span></div><p id="demandPerformanceSummary" data-demand-performance-summary>$65,240 on $186,400 invoiced · was 38.2% previous period</p></div>
                   <div class="demand-performance-bars">
-                    <div><span>Invoiced</span><strong id="demandRevenueValue">$186,400</strong><i><i class="revenue" id="demandRevenueBar" style="width:100%"></i></i></div>
-                    <div><span>Cost of work</span><strong id="demandCostValue">$121,160</strong><i><i class="cost" id="demandCostBar" style="width:65%"></i></i></div>
-                    <div><span>Gross profit</span><strong id="demandProfitValue">$65,240</strong><i><i class="profit" id="demandProfitBar" style="width:35%"></i></i></div>
+                    <div><span>Invoiced</span><strong id="demandRevenueValue" data-demand-revenue-value>$186,400</strong><i><i class="revenue" id="demandRevenueBar" style="width:100%"></i></i></div>
+                    <div><span>Cost of work</span><strong id="demandCostValue" data-demand-cost-value>$121,160</strong><i><i class="cost" id="demandCostBar" data-demand-cost-bar style="width:65%"></i></i></div>
+                    <div><span>Gross profit</span><strong id="demandProfitValue" data-demand-profit-value>$65,240</strong><i><i class="profit" id="demandProfitBar" data-demand-profit-bar style="width:35%"></i></i></div>
                     <button class="text-link analyst-link" type="button" data-toast="In product, this opens margin by Job.">Break down by job <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                   </div>
                 </section>
@@ -379,6 +380,65 @@
                 <header class="demand-card-head"><div><h2 id="demandWatchTitle">Worth a look</h2><em class="demand-tag" hidden>11 / 13 / 30 in Savio</em></div></header>
                 <div class="demand-watch-grid"><button type="button" data-toast="Opening 3 jobs tracking over quoted cost." class="analyst-link"><i class="fa fa-line-chart red" aria-hidden="true"></i><span><strong>3 jobs tracking over quoted cost</strong><small>$4,180 over, combined</small></span></button><button type="button" data-toast="Opening 2 staff double-bookings." class="analyst-link"><i class="fa fa-users orange" aria-hidden="true"></i><span><strong>2 staff double-booked</strong><small>Thu 03/09 and Mon 07/09</small></span></button><button type="button" data-toast="Opening 4 jobs with no recent update." class="analyst-link"><i class="fa fa-clock-o" aria-hidden="true"></i><span><strong>4 jobs with no update in 7+ days</strong><small>All In Progress</small></span></button></div>
               </section>
+            </div>
+          </div>
+
+          <div class="concept-panel combined-concept" id="combinedConcept" hidden>
+            <div class="combined-content">
+              <section class="demand-card combined-health" aria-labelledby="combinedHealthTitle">
+                <header class="combined-health-head">
+                  <div><span class="combined-eyebrow">Overall financial performance</span><div class="combined-title-line"><h2 id="combinedHealthTitle">How the business is tracking</h2><span class="combined-verdict"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>Needs attention</span></div><p>Cash out is running ahead of cash in, even though jobs are making a gross profit.</p></div>
+                  <span class="combined-period">Last 30 days · as at 1 Sep 2026</span>
+                </header>
+                <div class="combined-kpis">
+                  <article class="combined-kpi revenue"><span>Invoiced</span><strong>$186,400</strong><small>Work billed to customers</small></article>
+                  <article class="combined-kpi margin"><span>Gross margin</span><strong>35.0%</strong><small class="negative"><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 points from last period</small></article>
+                  <article class="combined-kpi net"><span>Net cash</span><strong>-$7,300</strong><small>$24,600 in · $31,900 out</small></article>
+                </div>
+                <div class="combined-health-detail">
+                  <figure class="combined-flow-figure">
+                    <figcaption><div><strong>Cash movement by week</strong><span>Actual payments received and paid</span></div><span class="weekly-status negative"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>Gap widened to $4,000</span></figcaption>
+                    <div class="weekly-lines-chart" aria-describedby="combinedWeeklySummary">
+                      <p class="sr-only" id="combinedWeeklySummary">Weekly cash movement. 6 August: $7,400 in and $6,900 out. 13 August: $6,200 in and $8,200 out. 20 August: $5,800 in and $7,600 out. 27 August: $5,200 in and $9,200 out.</p>
+                      <svg class="weekly-lines-plot" viewBox="0 0 800 220" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line class="weekly-grid-line" x1="42" y1="20" x2="776" y2="20"></line><line class="weekly-grid-line" x1="42" y1="100" x2="776" y2="100"></line><line class="weekly-zero-line" x1="42" y1="180" x2="776" y2="180"></line><polygon class="weekly-gap-surplus" points="90,61.6 134,65.4 90,69.6"></polygon><polygon class="weekly-gap-deficit" points="134,65.4 310,80.8 530,87.2 750,96.8 750,32.8 530,58.4 310,48.8"></polygon><path class="weekly-line money-in" d="M90 61.6 L310 80.8 L530 87.2 L750 96.8"></path><path class="weekly-line money-out" d="M90 69.6 L310 48.8 L530 58.4 L750 32.8"></path></svg>
+                      <span class="weekly-axis-value top">$10k</span><span class="weekly-axis-value middle">$5k</span><span class="weekly-axis-value zero">$0</span>
+                      <span class="weekly-line-point money-in" style="--x:11.25%;--y:28%" aria-hidden="true"></span><span class="weekly-line-point money-out" style="--x:11.25%;--y:31.6%" aria-hidden="true"></span><span class="weekly-line-point money-in" style="--x:38.75%;--y:36.7%" aria-hidden="true"></span><span class="weekly-line-point money-out" style="--x:38.75%;--y:22.2%" aria-hidden="true"></span><span class="weekly-line-point money-in" style="--x:66.25%;--y:39.6%" aria-hidden="true"></span><span class="weekly-line-point money-out" style="--x:66.25%;--y:26.5%" aria-hidden="true"></span><span class="weekly-line-point money-in" style="--x:93.75%;--y:44%" aria-hidden="true"></span><span class="weekly-line-point money-out" style="--x:93.75%;--y:14.9%" aria-hidden="true"></span>
+                      <span class="weekly-end-label money-out">Money out <strong>$9,200</strong></span><span class="weekly-end-label money-in">Money in <strong>$5,200</strong></span><span class="weekly-axis-label" style="--x:11.25%">6 Aug</span><span class="weekly-axis-label" style="--x:38.75%">13 Aug</span><span class="weekly-axis-label" style="--x:66.25%">20 Aug</span><span class="weekly-axis-label" style="--x:93.75%">27 Aug</span>
+                    </div>
+                  </figure>
+                  <aside class="combined-profit-detail" aria-label="Job profitability breakdown">
+                    <div><span>Job profitability</span><strong>$65,240</strong><small>gross profit on $186,400 invoiced</small></div>
+                    <dl><div><dt>Invoiced</dt><dd>$186,400</dd></div><div><dt>Cost of work</dt><dd>$121,160</dd></div><div class="profit"><dt>Gross profit</dt><dd>$65,240</dd></div></dl>
+                    <div class="combined-profit-split" role="img" aria-label="Cost of work 65 percent and gross profit 35 percent"><span style="width:65%"></span><span style="width:35%"></span></div>
+                    <button class="text-link analyst-link" type="button" data-toast="In product, this opens margin by Job.">Break down by job <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                  </aside>
+                </div>
+              </section>
+
+              <section class="combined-section" aria-labelledby="combinedNextTitle">
+                <header class="combined-section-head"><div><span class="combined-eyebrow">Act now</span><h2 id="combinedNextTitle">Your next 3 moves</h2><p>One ranked list across invoicing, collections, and future work.</p></div></header>
+                <article class="combined-priorities demand-card">
+                  <div class="primary-action">
+                    <span class="action-rank primary">1</span>
+                    <div class="primary-action-copy"><span class="action-priority">Closest to cash</span><h3>Invoice 11 completed jobs</h3><strong class="primary-action-value">$38,900 <span>ready to invoice</span></strong><p>Turn finished work into money owed before it gets forgotten.</p></div>
+                    <button class="btn btn-primary combined-deep-link" type="button" data-concept-target="demand" data-target-section="ready">Review completed jobs</button>
+                  </div>
+                  <ol class="secondary-actions" start="2">
+                    <li class="secondary-action"><span class="action-rank">2</span><div class="secondary-action-copy"><h3>Chase the oldest invoices</h3><p><strong>$18,680</strong> has been overdue for more than 60 days.</p></div><button class="text-link combined-deep-link" type="button" data-concept-target="demand" data-demand-target-bucket="60+">Open 60+ days <i class="fa fa-angle-right" aria-hidden="true"></i></button></li>
+                    <li class="secondary-action"><span class="action-rank">3</span><div class="secondary-action-copy"><h3>Follow up 12 quotes</h3><p><strong>$42,600</strong> has been waiting on a reply for more than 7 days.</p></div><button class="text-link combined-deep-link" type="button" data-concept-target="dashboard" data-target-section="quotes">Review quotes <i class="fa fa-angle-right" aria-hidden="true"></i></button></li>
+                  </ol>
+                </article>
+              </section>
+
+              <section class="combined-section" aria-labelledby="combinedAheadTitle">
+                <header class="combined-section-head"><div><span class="combined-eyebrow">Plan next</span><h2 id="combinedAheadTitle">Looking ahead</h2><p>Committed work shows what is coming; the forecast shows what it could mean for cash.</p></div></header>
+                <div class="combined-ahead-grid">
+                  <section class="demand-card combined-pipeline" aria-labelledby="combinedPipelineTitle"><header class="demand-card-head"><div><h3 id="combinedPipelineTitle">Cash pipeline</h3></div><button class="text-link combined-deep-link" type="button" data-concept-target="demand">Open Demand-led <i class="fa fa-angle-right" aria-hidden="true"></i></button></header><div class="combined-pipeline-chips"><button type="button" class="combined-deep-link overdue" data-concept-target="demand" data-demand-target-bucket="all"><span>Overdue</span><strong>$47,820</strong><small>8 invoices</small></button><button type="button" class="combined-deep-link ready" data-concept-target="demand" data-target-section="ready"><span>Ready to invoice</span><strong>$38,900</strong><small>11 completed jobs</small></button><button type="button" class="combined-deep-link" data-concept-target="demand"><span>Not yet due</span><strong>$62,340</strong><small>19 invoices</small></button></div><div class="combined-booked-note"><i class="fa fa-calendar-check-o" aria-hidden="true"></i><span><strong>$264,500 booked</strong> over the next 3 months</span></div></section>
+                  <section class="demand-card combined-outlook" aria-labelledby="combinedOutlookTitle"><header class="demand-card-head"><div><h3 id="combinedOutlookTitle">Cash outlook — next 8 weeks</h3></div><span class="demand-card-total"><strong>$12,600 expected</strong><small>down $18,800</small></span></header><div class="combined-outlook-body"><p>Based on scheduled invoices and bills — not a guarantee.</p><div class="outlook-chart" aria-describedby="combinedCashForecastSummary"><p class="sr-only" id="combinedCashForecastSummary">Cash balance is forecast to fall from $31,400 today to $12,600 in eight weeks.</p><svg class="forecast-plot" viewBox="0 0 420 150" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line class="forecast-reference" x1="24" y1="31" x2="396" y2="31"></line><path class="forecast-path" d="M24 31 L70 25 L116 42 L162 38 L208 62 L254 75 L300 70 L346 103 L396 118"></path></svg><span class="forecast-reference-label">Today’s level</span><span class="forecast-value start">$31,400</span><span class="forecast-value end">$12,600</span><span class="forecast-axis-label start">Today</span><span class="forecast-axis-label middle">Week 4</span><span class="forecast-axis-label end">Week 8</span><span class="forecast-point today" style="--x:5.7%;--y:20.7%" tabindex="0" role="img" aria-label="Today, $31,400" data-tooltip="Today · $31,400"></span><span class="forecast-point" style="--x:49.5%;--y:41.3%" tabindex="0" role="img" aria-label="Week 4 expected balance, $24,800" data-tooltip="Week 4 · $24,800"></span><span class="forecast-point end" style="--x:94.3%;--y:78.7%" tabindex="0" role="img" aria-label="Week 8 expected balance, $12,600" data-tooltip="Week 8 · $12,600"></span></div></div></section>
+                </div>
+              </section>
+
+              <footer class="report-note"><i class="fa fa-info-circle" aria-hidden="true"></i>Updated once a day — today’s changes may not show yet.</footer>
             </div>
           </div>
 
