@@ -337,10 +337,10 @@ const createCashTrendTooltip=hit=>{
   value.textContent=balance?.value||'';
   header.append(heading,value);
   tooltip.append(header);
-  if((title==='Today'||forecast)&&metrics.length){
+  if(metrics.length){
     const caption=document.createElement('span');
     caption.className='cash-trend-tooltip-caption';
-    caption.textContent=forecast?'Invoices due minus outgoings':'Last 7 days';
+    caption.textContent=forecast?'Invoices due minus outgoings':'Payments received minus payments made';
     tooltip.append(caption);
   }
   if(metrics.length){
