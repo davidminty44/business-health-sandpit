@@ -302,13 +302,10 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .cash-trend-summary{display:flex;align-items:flex-end;flex-direction:column;white-space:nowrap}
 .combined-flow-figure figcaption .cash-trend-summary>strong{font-size:16px;line-height:21px}
 .cash-trend-summary span{display:flex;align-items:center;gap:3px;font-weight:500}
-.cash-trend-key{margin:8px 0 -2px 51px;display:flex;gap:16px;color:#748188;font-size:9px;line-height:14px}
+.cash-trend-key{margin:9px 0 -2px;display:flex;gap:16px;color:#748188;font-size:9px;line-height:14px}
 .cash-trend-key span{display:flex;align-items:center;gap:5px}
 .cash-trend-key span:before{width:18px;height:0;border-top:2px solid #008db2;content:""}
 .cash-trend-key .forecast:before{border-color:#008db2;border-top-style:dashed}
-.cash-trend-basis{width:max-content;max-width:calc(100% - 51px);margin:6px 0 -2px 51px;padding:5px 8px;border-radius:3px;background:#eef8fa;color:#526069;display:flex;align-items:flex-start;gap:6px;font-size:9px;line-height:14px}
-.cash-trend-basis .fa{margin-top:1px;color:#008db2;font-size:10px}
-.cash-trend-basis strong{color:#263238;font-weight:600}
 .cash-trend-chart{position:relative;width:100%;height:240px}
 .cash-trend-plot{width:100%;height:100%;display:block;overflow:visible}
 .cash-trend-grid{stroke:#e3e6ea;stroke-width:1;stroke-dasharray:2 4;vector-effect:non-scaling-stroke}
@@ -607,8 +604,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .combined-flow-figure{padding:14px 10px 10px}
   .combined-flow-figure figcaption{flex-direction:column;gap:7px}
   .cash-trend-summary{align-items:flex-start}
-  .cash-trend-key{margin-left:31px}
-  .cash-trend-basis{max-width:calc(100% - 31px);margin-left:31px}
   .cash-trend-chart{height:210px}
   .cash-trend-junction{display:none}
   .cash-trend-tooltip{width:190px}
