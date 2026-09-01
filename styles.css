@@ -538,12 +538,12 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-masthead{min-height:137px;padding:24px 40px;background:#0085ff;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .email-wordmark{display:block;margin-bottom:7px;font-size:14px;font-weight:700;line-height:18px;letter-spacing:1.4px}
 .email-masthead h3{max-width:450px;margin:0;font-size:25px;font-weight:400;line-height:29px;letter-spacing:-.3px}
-.email-masthead p{margin:5px 0 0;color:rgba(255,255,255,.84);font-size:14px;line-height:18px}
+.email-masthead p{margin:5px 0 0;color:#fff;font-size:14px;line-height:18px}
 .email-masthead-icon{width:54px;height:54px;border:2px solid rgba(255,255,255,.8);border-radius:50%;display:grid;place-items:center;flex:0 0 54px;font-size:25px;line-height:50px}
 .email-preview-content{padding:24px 40px 40px}
 .email-preview-content strong{font-weight:700}
-.email-greeting{margin:0 0 8px;color:#263238;font-size:17px;line-height:20px}
-.email-range{margin:0 0 24px;color:#97a3aa;font-size:15px;line-height:18px}
+.email-greeting{margin:0 0 8px;color:#263238;font-size:17px;line-height:22px}
+.email-range{margin:0 0 24px;color:#97a3aa;font-size:15px;line-height:24px}
 .email-pulse{margin:0;color:#263238;font-size:17px;line-height:22px}
 .email-snapshot{margin:28px 0 0;padding:18px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 .email-snapshot>div{min-width:0;padding:0 16px;border-right:1px solid #d8d8d8}
