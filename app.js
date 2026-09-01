@@ -395,7 +395,6 @@ const renderCalculationPopover=metadata=>{
   body.className='calculation-popover-body';
   body.append(
     createCalculationDetail('Definition',metadata.definition),
-    createCalculationDetail('Calculation',metadata.calculation),
     createCalculationDetail('Source',metadata.source)
   );
   if(metadata.note){
