@@ -422,8 +422,6 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-owed-copy>div>span{color:#748188;font-size:9px;font-weight:500;line-height:13px}
 .demand-owed-copy>div>span.warning{color:#c4711f}
 .demand-owed-copy>div>span.critical{color:#d64b49}
-.demand-owed-copy>div>span.demand-unbilled{color:#a6701a;display:inline-flex;align-items:center;gap:3px}
-.demand-unbilled .fa{width:10px;height:10px;font-size:9px;line-height:10px}
 .demand-amount{color:#263238;font-size:12px;font-weight:500;text-align:right}
 .demand-card-footer{padding:9px 16px}
 .demand-card-footer .text-link,.demand-more-jobs{display:flex;align-items:center;gap:4px}

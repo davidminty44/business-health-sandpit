@@ -94,7 +94,7 @@ const calculationMetadata={
   'ready-to-invoice':{
     title:'Ready to invoice calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Completed jobs with recorded value that has not yet been invoiced.',
-    calculation:'$38,900 across 11 jobs. The 4 shown total $29,350; 7 more jobs total $9,550.',
+    calculation:'$38,900 across 11 jobs. The 3 shown total $23,450; 8 more jobs total $15,450.',
     source:'Completed jobs, accepted quote value, charge-up lines and existing invoice links in Tradify.',
     note:'This is a prototype readiness rule. A completed job may still need review before an invoice is created, and invoices are created one at a time.'
   },
