@@ -681,4 +681,5 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .demand-buckets span i{display:none}
 }
 @media(max-width:370px){.report-selector-label{display:none}}
+@media(max-width:360px){.cash-trend-hit{width:26px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important}}
