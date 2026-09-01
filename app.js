@@ -84,27 +84,6 @@ const calculationMetadata={
     source:'Same basis as the Job Financial Report: tax-exclusive lines from non-cancelled invoices, timesheet or scheduled labour cost, job products and miscellaneous costs.',
     note:'The period selects jobs, not transactions. All recorded costs and non-cancelled invoice lines for each selected job are included, regardless of their dates. Multi-job invoices can be counted against more than one job.'
   },
-  'stale-quotes':{
-    title:'Quotes waiting on a reply calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Latest open quote versions, still unexpired, last manually sent more than 7 days ago.',
-    calculation:'12 qualifying quotes. Their customer totals add up to $42,600.',
-    source:'Tradify Quotes: Approved status, expiry date, last manually sent date and Total.',
-    note:'Cancelled, declined, expired and draft quotes are excluded.'
-  },
-  'unquoted-enquiries':{
-    title:'Enquiries with no quote calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'To-Do enquiries with no Quote Created event whose source details identify that enquiry.',
-    calculation:'6 To-Do enquiries have no matching source link on a created Quote event.',
-    source:'Enquiry state plus source details stored on the created Quote’s event history.',
-    note:'Source linkage is optional and may be missing, causing previously quoted enquiries to appear here. This needs a new aggregate endpoint.'
-  },
-  'lost-reasons':{
-    title:'Lost quote reasons calculation',category:'New tracking needed',categoryType:'tracking',icon:'fa-pencil-square-o',
-    definition:'Latest Quote versions dated in the selected period that are currently Declined and have no recorded loss reason.',
-    calculation:'8 currently Declined Quotes dated in the period total $28,400.',
-    source:'Quote date, current Declined status and customer total from Tradify.',
-    note:'Tradify does not capture loss reasons today, so every declined quote currently has no structured reason.'
-  },
   'winning-work':{
     title:'Winning work calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Quote outcomes, open quote value and accepted quote value attached to active jobs.',
@@ -642,24 +621,21 @@ demandFlows.forEach(flow=>{
   renderDemandInvoiceSelection(flow);
 });
 document.querySelectorAll('.combined-deep-link').forEach(link=>link.addEventListener('click',()=>{
-  const targetConcept=link.dataset.conceptTarget;
-  if(targetConcept==='demand'&&link.dataset.demandTargetBucket){
+  if(link.dataset.demandTargetBucket){
     demandConcept.dataset.demandBucket=link.dataset.demandTargetBucket;
     demandConcept.dataset.demandRowsExpanded='false';
     renderDemandRows(demandConcept);
   }
-  setConcept(targetConcept,true,true);
-  const target=targetConcept==='dashboard'
-    ?document.querySelector('.action-section')
-    :link.dataset.targetSection==='ready'
-      ?demandConcept.querySelector('.demand-ready')
-      :link.dataset.demandTargetBucket
-        ?demandConcept.querySelector('.demand-chasing')
-        :demandConcept.querySelector('.demand-money-grid');
+  setConcept(link.dataset.conceptTarget,true,true);
+  const target=link.dataset.targetSection==='ready'
+    ?demandConcept.querySelector('.demand-ready')
+    :link.dataset.demandTargetBucket
+      ?demandConcept.querySelector('.demand-chasing')
+      :demandConcept.querySelector('.demand-money-grid');
   window.requestAnimationFrame(()=>target?.scrollIntoView({block:'start'}));
 }));
 
-document.querySelectorAll('.callout-link,.analyst-link').forEach(link=>link.addEventListener('click',()=>showToast(link.dataset.toast)));
+document.querySelectorAll('.analyst-link').forEach(link=>link.addEventListener('click',()=>showToast(link.dataset.toast)));
 
 document.querySelectorAll('.report-nav-item:not(.selected)').forEach(button=>{
   button.addEventListener('click',()=>showToast(`${button.dataset.report} isn’t part of this preview.`));
