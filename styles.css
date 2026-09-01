@@ -369,9 +369,9 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .combined-booked-note strong{color:#263238;font-weight:600}
 .combined-outlook-body{padding:12px 16px 14px}
 .combined-outlook-body>p{margin:0 0 3px;color:#757575;font-size:9px;line-height:14px}
-.demand-concept{margin:0 -30px -24px;background:#eee;color:#263238}
+.demand-concept{margin:0 -30px -24px;background:#fff;color:#263238}
 .demand-concept[hidden],.demand-owed-row[hidden]{display:none}
-.demand-content{width:100%;min-width:0;max-width:1280px;margin:0 auto;padding:20px 30px 24px;display:flex;flex-direction:column;gap:15px}
+.demand-content{width:100%;min-width:0;max-width:none;margin:0;padding:15px;display:flex;flex-direction:column;gap:15px}
 .demand-card{min-width:0;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
 .demand-cash-flow-grid{width:100%;min-width:0;padding:20px;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .demand-outlook-figure{border-color:#99d8e9;background:#e5f5f9;box-shadow:inset 3px 0 0 #009ec7}
