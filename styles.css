@@ -368,7 +368,7 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .combined-booked-note strong{color:#263238;font-weight:600}
 .combined-outlook-body{padding:12px 16px 14px}
 .combined-outlook-body>p{margin:0 0 3px;color:#748188;font-size:9px;line-height:14px}
-.demand-concept{margin:0 -30px -24px;background:#f3f7f9;color:#263238}
+.demand-concept{margin:0 -30px -24px;background:#eee;color:#263238}
 .demand-concept[hidden],.demand-owed-row[hidden]{display:none}
 .demand-content{width:100%;min-width:0;max-width:1280px;margin:0 auto;padding:20px 30px 24px;display:flex;flex-direction:column;gap:15px}
 .demand-card{min-width:0;border:1px solid #e3e6ea;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
