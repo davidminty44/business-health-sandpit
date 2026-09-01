@@ -652,7 +652,10 @@ demandFlows.forEach(flow=>{
     renderDemandRows(flow);
   });
   const periodSelect=flow.querySelector('.demand-period');
-  if(periodSelect)periodSelect.addEventListener('change',()=>renderDemandPerformance(flow));
+  if(periodSelect)periodSelect.addEventListener('change',()=>{
+    renderDemandPerformance(flow);
+    if(activeCalculationTrigger?.dataset.calc==='demand-performance')closeCalculationPopover(false);
+  });
   renderDemandRows(flow);
   renderDemandPerformance(flow);
 });
