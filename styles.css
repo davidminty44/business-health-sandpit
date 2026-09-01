@@ -404,7 +404,7 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-buckets span i.amber{background:#e88a2e}
 .demand-buckets span i.red{background:#eb5055}
 .demand-buckets strong{margin-top:4px;color:#263238;display:block;font-size:15px;font-weight:500}
-.demand-owed-row{min-height:62px;padding:10px 16px;border-bottom:1px solid #edf1f3;display:grid;grid-template-columns:minmax(0,1fr) 70px auto;align-items:center;gap:12px}
+.demand-owed-row{min-height:62px;padding:10px 16px;border-bottom:1px solid #edf1f3;display:grid;grid-template-columns:minmax(0,1fr) 70px;align-items:center;gap:12px}
 .demand-owed-copy{min-width:0}
 .demand-owed-copy>strong{color:#263238;display:block;font-size:11px;font-weight:500;line-height:16px}
 .demand-owed-copy>div{margin-top:2px;display:flex;flex-wrap:wrap;gap:4px 8px}
@@ -414,8 +414,6 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-owed-copy>div>span.demand-unbilled{color:#a6701a;display:inline-flex;align-items:center;gap:3px}
 .demand-unbilled .fa{width:10px;height:10px;font-size:9px;line-height:10px}
 .demand-amount{color:#263238;font-size:12px;font-weight:500;text-align:right}
-.demand-chase-button{min-width:72px}
-.demand-chase-button.sent{border-color:#33a99e;color:#278b82}
 .demand-card-footer{padding:9px 16px}
 .demand-card-footer .text-link,.demand-more-jobs{display:flex;align-items:center;gap:4px}
 .demand-performance-hero{padding:17px 16px 8px}
@@ -635,7 +633,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .demand-buckets>button[aria-pressed="true"]{border-bottom:2px solid #009ec7}
   .demand-buckets strong{font-size:13px}
   .demand-owed-row{padding:11px 12px;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px}
-  .demand-chase-button{min-width:0;grid-column:1/-1;justify-self:start}
   .demand-performance-hero,.demand-performance-bars,.demand-booked-body{padding-right:12px;padding-left:12px}
   .demand-ready-list>label{padding-right:12px;padding-left:12px}
   .demand-invoice-footer{align-items:flex-start;flex-direction:column}

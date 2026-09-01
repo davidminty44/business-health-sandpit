@@ -642,16 +642,6 @@ demandFlows.forEach(flow=>{
   renderDemandPerformance(flow);
   renderDemandInvoiceSelection(flow);
 });
-document.querySelectorAll('.demand-chase-button').forEach(button=>button.addEventListener('click',()=>{
-  if(button.getAttribute('aria-pressed')==='true')return;
-  button.setAttribute('aria-pressed','true');
-  button.classList.add('sent');
-  button.querySelector('.fa').className='fa fa-check';
-  button.querySelector('span').textContent='Sent';
-  const customer=button.closest('.demand-owed-row').querySelector('.demand-owed-copy>strong').textContent;
-  showToast(`Reminder sent to ${customer}.`);
-}));
-
 document.querySelectorAll('.combined-deep-link').forEach(link=>link.addEventListener('click',()=>{
   const targetConcept=link.dataset.conceptTarget;
   if(targetConcept==='demand'&&link.dataset.demandTargetBucket){
