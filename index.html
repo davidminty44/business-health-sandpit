@@ -10,18 +10,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="prototype-bar" aria-label="Choose a Business Analysis prototype">
-    <div class="concept-switch" role="group" aria-label="Choose a Business Analysis concept">
-      <button class="concept-option active" type="button" data-concept="dashboard" aria-pressed="true">Dashboard</button>
-      <button class="concept-option" type="button" data-concept="demand" aria-pressed="false">Demand-led</button>
-      <button class="concept-option" type="button" data-concept="combined" aria-pressed="false">Combined</button>
-    </div>
-    <div class="prototype-demand-tools">
-      <div class="prototype-demand-info"><strong id="prototypeConceptName">[ Prototype A ] Business Analysis</strong><span id="prototypeConceptDescription">Ordered by counted Savio demand</span></div>
-      <label class="prototype-demand-toggle"><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
-    </div>
-  </nav>
-
   <aside class="sidebar" id="sidebar" aria-label="Main navigation" aria-hidden="true" inert>
     <button class="account-identity" type="button">
       <span class="account-avatar">DF</span>
@@ -109,7 +97,6 @@
           <header class="report-header">
             <div class="report-heading">
               <h1 id="reportTitle" tabindex="-1">Business Analysis</h1>
-              <p class="report-subtitle" id="reportSubtitle">Money in, money out, and what’s left over — as at 31 Aug 2026, 9:00am.</p>
             </div>
             <div class="report-actions">
               <button class="btn btn-default" id="calculationToggle" type="button" aria-label="Show calculations" aria-pressed="false"><i class="fa fa-info-circle" aria-hidden="true"></i><span id="calculationToggleLabel">Show calculations</span></button>
@@ -117,7 +104,7 @@
             </div>
           </header>
 
-          <div class="concept-panel" id="dashboardConcept">
+          <div class="concept-panel" id="dashboardConcept" hidden>
           <section class="period-panel" aria-label="Report period">
             <div class="period-strip">
               <div class="period-links" role="group" aria-label="Select report period">
@@ -283,7 +270,7 @@
           <footer class="report-note"><i class="fa fa-info-circle" aria-hidden="true"></i>Updated once a day — today’s changes may not show yet.</footer>
           </div>
 
-          <div class="concept-panel demand-concept" id="demandConcept" data-demand-flow hidden>
+          <div class="concept-panel demand-concept" id="demandConcept" data-demand-flow>
             <div class="demand-content">
               <section class="demand-cash-flow-grid" aria-label="Cash flow summary">
                 <article class="actual-figure money-in-figure" data-calc-target="money-in">
@@ -310,7 +297,7 @@
               <div class="demand-columns">
                 <div class="demand-column">
                 <section class="demand-card demand-chasing" data-calc-target="overdue-invoices" aria-labelledby="demandChasingTitle">
-                  <header class="demand-card-head"><div><h2 id="demandChasingTitle">Invoices to chase</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Invoices to chase" aria-expanded="false" aria-controls="calculationPopover" data-calc="overdue-invoices"><i class="fa fa-info-circle" aria-hidden="true"></i></button><em class="demand-tag" hidden>156 in Savio</em></div><span class="demand-card-total"><strong>$47,820 total</strong></span></header>
+                  <header class="demand-card-head"><div><h2 id="demandChasingTitle">Invoices to chase</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Invoices to chase" aria-expanded="false" aria-controls="calculationPopover" data-calc="overdue-invoices"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$47,820 total</strong></span></header>
                   <div class="demand-owed-list">
                     <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2841."><span class="demand-owed-copy"><strong>INV&#8209;2841 - Kingsford Property Group</strong><span><span>68 days overdue</span><span>3 reminders sent</span></span></span><strong class="demand-amount">$12,400</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
                     <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2867."><span class="demand-owed-copy"><strong>INV&#8209;2867 - Bellhaven Constructions</strong><span><span>61 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$6,280</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
@@ -324,7 +311,7 @@
                 </section>
 
                 <section class="demand-card demand-booked" data-calc-target="booked-ahead" aria-labelledby="demandBookedTitle">
-                  <header class="demand-card-head"><div><h2 id="demandBookedTitle">Booked ahead</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Booked ahead" aria-expanded="false" aria-controls="calculationPopover" data-calc="booked-ahead"><i class="fa fa-info-circle" aria-hidden="true"></i></button><em class="demand-tag" hidden>81 in Savio</em></div></header>
+                  <header class="demand-card-head"><div><h2 id="demandBookedTitle">Booked ahead</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Booked ahead" aria-expanded="false" aria-controls="calculationPopover" data-calc="booked-ahead"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div></header>
                   <div class="demand-booked-body">
                     <div class="demand-booked-total"><strong>$264,500</strong><p>of work already committed over the next 3 months</p></div>
                     <div class="demand-booked-financials">
@@ -341,7 +328,7 @@
 
                 <div class="demand-column">
                 <section class="demand-card demand-ready" data-calc-target="ready-to-invoice" aria-labelledby="demandReadyTitle">
-                  <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Ready to invoice" aria-expanded="false" aria-controls="calculationPopover" data-calc="ready-to-invoice"><i class="fa fa-info-circle" aria-hidden="true"></i></button><em class="demand-tag" hidden>32 in Savio</em></div><span class="demand-card-total"><strong>$38,900 total</strong></span></header>
+                  <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Ready to invoice" aria-expanded="false" aria-controls="calculationPopover" data-calc="ready-to-invoice"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$38,900 total</strong></span></header>
                   <div class="demand-ready-list">
                     <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens Switchboard upgrade — Unit 4."><span><strong>Switchboard upgrade — Unit 4</strong><small>Kingsford Property Group · Finished 11 days ago</small></span><b>$9,800</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
                     <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens Annual RCD testing."><span><strong>Annual RCD testing</strong><small>Waverley Aquatic Centre · Finished 8 days ago</small></span><b>$7,450</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
@@ -350,7 +337,7 @@
                 </section>
 
                 <section class="demand-card demand-performance" data-calc-target="demand-performance" aria-labelledby="demandPerformanceTitle">
-                  <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Profitability</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Profitability" aria-expanded="false" aria-controls="calculationPopover" data-calc="demand-performance"><i class="fa fa-info-circle" aria-hidden="true"></i></button><em class="demand-tag" hidden>121 in Savio</em></div><select class="form-control demand-period" id="demandPeriod" aria-label="Profitability period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
+                  <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Profitability</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Profitability" aria-expanded="false" aria-controls="calculationPopover" data-calc="demand-performance"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><select class="form-control demand-period" id="demandPeriod" aria-label="Profitability period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
                   <div class="demand-performance-hero"><small>Gross margin</small><div><strong id="demandMargin" data-demand-margin>35.0%</strong><span class="negative" id="demandMarginDelta" data-demand-margin-delta><span class="demand-margin-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 pts</span><small>vs prior 30 days</small></span></div></div>
                   <div class="demand-performance-bars">
                     <div><span>Invoiced</span><strong id="demandRevenueValue" data-demand-revenue-value>$186,400</strong><i><i class="revenue" id="demandRevenueBar" style="width:100%"></i></i></div>

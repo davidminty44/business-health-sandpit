@@ -1,7 +1,6 @@
 const sidebar=document.querySelector('#sidebar');
 const menuButton=document.querySelector('#menuButton');
 const navScrim=document.querySelector('#navScrim');
-const prototypeBar=document.querySelector('.prototype-bar');
 const mobileMedia=window.matchMedia('(max-width:800px)');
 const appShell=document.querySelector('#appShell');
 const mainContent=document.querySelector('main');
@@ -37,17 +36,7 @@ const calculationTriggers=Array.from(document.querySelectorAll('.calc-trigger'))
 const calculationMedia=window.matchMedia('(max-width:800px)');
 const calculationStorageKey='tradify.reports.businessHealth.showCalculations';
 const calculationKeyStorageKey='tradify.reports.businessHealth.calculationKeySeen';
-const conceptStorageKey='tradify.reports.businessHealth.concept';
-const conceptButtons=Array.from(document.querySelectorAll('.concept-option'));
-const dashboardConcept=document.querySelector('#dashboardConcept');
-const demandConcept=document.querySelector('#demandConcept');
-const combinedConcept=document.querySelector('#combinedConcept');
 const demandFlows=Array.from(document.querySelectorAll('[data-demand-flow]'));
-const demandMappingToggle=document.querySelector('#demandMappingToggle');
-const demandTags=Array.from(document.querySelectorAll('.demand-tag'));
-const prototypeConceptName=document.querySelector('#prototypeConceptName');
-const prototypeConceptDescription=document.querySelector('#prototypeConceptDescription');
-const reportSubtitle=document.querySelector('#reportSubtitle');
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
@@ -177,12 +166,10 @@ const syncNavigation=()=>{
     sidebar.inert=!open;
     sidebar.setAttribute('aria-hidden',String(!open));
     mainContent.inert=open;
-    prototypeBar.inert=open;
   }else{
     sidebar.inert=false;
     sidebar.removeAttribute('aria-hidden');
     mainContent.inert=false;
-    prototypeBar.inert=false;
   }
 };
 
@@ -201,49 +188,6 @@ const showToast=message=>{
   toastTimer=window.setTimeout(()=>{
     toast.hidden=true;
   },4200);
-};
-
-const setConcept=(concept,announce=false,persist=false)=>{
-  const activeConcept=['dashboard','demand','combined'].includes(concept)?concept:'dashboard';
-  const flowActive=activeConcept!=='dashboard';
-  dashboardConcept.hidden=activeConcept!=='dashboard';
-  demandConcept.hidden=activeConcept!=='demand';
-  combinedConcept.hidden=activeConcept!=='combined';
-  document.body.classList.toggle('flow-active',flowActive);
-  document.body.classList.toggle('combined-active',activeConcept==='combined');
-  const subtitles={
-    dashboard:'Money in, money out, and what’s left over — as at 31 Aug 2026, 9:00am.',
-    demand:'',
-    combined:'Financial performance and the work that can improve it — last 30 days, as at 1 Sep 2026.'
-  };
-  reportSubtitle.textContent=subtitles[activeConcept];
-  reportSubtitle.hidden=!subtitles[activeConcept];
-  if(activeConcept==='combined'){
-    prototypeConceptName.textContent='[ Prototype B ] Business Analysis';
-    prototypeConceptDescription.textContent='Integrated overview with deep dives';
-  }else{
-    prototypeConceptName.textContent='[ Prototype A ] Business Analysis';
-    prototypeConceptDescription.textContent='Ordered by counted Savio demand';
-  }
-  conceptButtons.forEach(button=>{
-    const active=button.dataset.concept===activeConcept;
-    button.classList.toggle('active',active);
-    button.setAttribute('aria-pressed',String(active));
-  });
-  scheduleButton.removeAttribute('aria-disabled');
-  scheduleButton.removeAttribute('title');
-  scheduleButtonLabel.textContent=scheduled?`Scheduled ${savedSchedule.frequency.toLowerCase()}`:'Schedule report';
-  if(flowActive)closeCalculationPopover(false);
-  if(persist){
-    try{window.localStorage.setItem(conceptStorageKey,activeConcept)}catch(error){}
-    const url=new URL(window.location.href);
-    url.searchParams.set('concept',activeConcept);
-    window.history.replaceState(null,'',url);
-  }
-  if(announce){
-    const announcements={dashboard:'Dashboard concept shown.',demand:'Demand-led concept shown.',combined:'Combined concept shown.'};
-    calculationAnnouncement.textContent=announcements[activeConcept];
-  }
 };
 
 const demandPerformancePeriods={
@@ -397,7 +341,6 @@ const setCalculationSheetInert=inert=>{
   calculationSheetOwnsInert=inert;
   appShell.inert=inert;
   productFooter.inert=inert;
-  prototypeBar.inert=inert;
   if(inert)sidebar.inert=true;else syncNavigation();
 };
 
@@ -549,7 +492,6 @@ const openModal=(modal,initialFocus)=>{
   document.body.classList.add('modal-open');
   appShell.inert=true;
   productFooter.inert=true;
-  prototypeBar.inert=true;
   sidebar.inert=true;
   window.requestAnimationFrame(()=>initialFocus.focus());
 };
@@ -564,7 +506,6 @@ const closeModal=()=>{
   document.body.classList.remove('modal-open');
   appShell.inert=false;
   productFooter.inert=false;
-  prototypeBar.inert=false;
   syncNavigation();
   if(lastFocusedElement&&document.contains(lastFocusedElement)){
     lastFocusedElement.focus();
@@ -635,7 +576,6 @@ calculationToggle.addEventListener('click',()=>{
   }
 });
 calculationTriggers.forEach(trigger=>trigger.addEventListener('click',()=>openCalculationPopover(trigger)));
-conceptButtons.forEach(button=>button.addEventListener('click',()=>setConcept(button.dataset.concept,true,true)));
 calculationBackdrop.addEventListener('click',()=>closeCalculationPopover(true));
 calculationMedia.addEventListener('change',()=>{
   if(!activeCalculationTrigger){
@@ -697,7 +637,6 @@ document.querySelectorAll('.period-link').forEach(button=>{
   });
 });
 
-demandMappingToggle.addEventListener('change',()=>demandTags.forEach(tag=>{tag.hidden=!demandMappingToggle.checked}));
 demandFlows.forEach(flow=>{
   const periodSelect=flow.querySelector('.demand-period');
   if(periodSelect)periodSelect.addEventListener('change',()=>{
@@ -817,12 +756,6 @@ let calculationsInitiallyVisible=false;
 try{
   calculationsInitiallyVisible=window.localStorage.getItem(calculationStorageKey)==='true';
 }catch(error){}
-const requestedConcept=new URLSearchParams(window.location.search).get('concept');
-let storedConcept;
-try{storedConcept=window.localStorage.getItem(conceptStorageKey)}catch(error){}
-const validConcepts=['dashboard','demand','combined'];
-const initialConcept=validConcepts.includes(requestedConcept)?requestedConcept:validConcepts.includes(storedConcept)?storedConcept:'dashboard';
 setupCashTrendInteractions();
 setCalculationVisibility(calculationsInitiallyVisible);
-setConcept(initialConcept);
 syncNavigation();
