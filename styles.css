@@ -404,6 +404,12 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .demand-column{min-width:0;display:flex;flex-direction:column;gap:16px}
 .demand-card-head{min-height:58px;padding:14px 18px;border-bottom:1px solid #e3e6ea;background:#fbfcfc;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.demand-chasing{border-color:#f2c9cb}
+.demand-chasing>.demand-card-head{background:#fff7f7;box-shadow:inset 4px 0 0 #eb5055}
+.demand-chasing .demand-card-total strong{color:#d64348}
+.demand-ready{border-color:#bfe5d3}
+.demand-ready>.demand-card-head{background:#f5fbf8;box-shadow:inset 3px 0 0 #46be8a}
+.demand-ready .demand-card-total strong{color:#27835e}
 .demand-card-head h2,.demand-card-head h3{margin:0;color:#263238;font-size:16px;font-weight:500;line-height:22px}
 .demand-card-total{display:flex;align-items:flex-end;flex-direction:column;white-space:nowrap}
 .demand-card-total strong{color:#263238;font-size:13px;font-weight:600;line-height:17px}
