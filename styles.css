@@ -466,9 +466,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-ready-row strong{overflow:hidden;color:#424242;font-size:14px;font-weight:500;line-height:20px;text-overflow:ellipsis;white-space:nowrap}
 .demand-ready-row small{color:#757575;font-size:12px;font-weight:300;line-height:18px}
 .demand-ready-row>b{color:#424242;font-size:14px;font-weight:500;line-height:20px;text-align:right}
-.collectable-figure .outlook-change{color:#006f8b}
-.attention-card .demand-card-total strong,.attention-card .demand-ready-row>b{color:#9a6a12}
-.payment-speed-card .demand-performance-bars>div>i>i.late{background:#eb5055}
 .win-rate-figure{border-color:#bfe5d3;background:#f5fbf8;box-shadow:inset 3px 0 0 #46be8a}
 .win-rate-figure>strong,.fresh-quote-figure>strong{color:#318561}
 .quiet-quote-figure{border-color:#f0d5a8;background:#fffaf1;box-shadow:inset 3px 0 0 #e6a23c}

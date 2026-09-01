@@ -42,22 +42,22 @@ const healthViewPanels=Array.from(document.querySelectorAll('.health-view-panel'
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
-    definition:'Customer invoice payments recorded during the selected week.',
-    calculation:'Seven customer payments recorded from 25–31 August total $18,400.',
+    definition:'Payments recorded against customer invoices in the selected period.',
+    calculation:'August money in: $7,400 + $6,200 + $5,800 + $5,200 = $24,600, grouped by payment date. July money in: $33,000. Change: $24,600 − $33,000 = -$8,400, shown as down $8,400 from last month.',
     source:'Invoice payments recorded in Tradify.',
     note:'Includes payments added when invoices are marked as paid. It is not matched to a bank statement and excludes credit notes.'
   },
   'money-out':{
     title:'Money out calculation',category:'Accounting data required',categoryType:'accounting',icon:'fa-share-alt',
-    definition:'Supplier payments, payroll, expenses and fees that settled during the selected week.',
-    calculation:'Bills and wages paid from 25–31 August total $12,100.',
-    source:'Requires settled transactions from connected accounting or bank data.',
-    note:'Supplier bills in Tradify do not currently record the amount paid or payment date.'
+    definition:'Payments to suppliers, payroll, expenses and fees that settled in the selected period.',
+    calculation:'August money out: $6,900 + $8,200 + $7,600 + $9,200 = $31,900. July money out: $27,600. Change: $31,900 − $27,600 = +$4,300, shown as up $4,300 from last month.',
+    source:'Not available from Tradify today. This needs a new import of settled transactions from accounting or bank data.',
+    note:'Supplier bills in Tradify are only Draft or Approved; they do not record amount paid or payment date.'
   },
   'net-cash':{
     title:'Net cash calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Money left after money out is taken from money in for the selected week.',
-    calculation:'$18,400 money in − $12,100 money out = +$6,300. The previous week was +$2,900, so net cash improved by $3,400.',
+    definition:'Money left after money out is taken from money in.',
+    calculation:'$24,600 − $31,900 = -$7,300.',
     source:'Combines Tradify invoice payments with connected accounting or bank outgoings.',
     note:'Net cash cannot be produced from Tradify alone until money-out data is available.'
   },
@@ -75,40 +75,19 @@ const calculationMetadata={
     source:'Same basis as the Job Financial Report: tax-exclusive lines from non-cancelled invoices, timesheet or scheduled labour cost, job products and miscellaneous costs.',
     note:'The period selects jobs, not transactions. All recorded costs and non-cancelled invoice lines for each selected job are included, regardless of their dates. Multi-job invoices can be counted against more than one job.'
   },
-  'get-paid-total':{
-    title:'Finished work to collect calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Money owed on overdue invoices plus completed work that is ready to invoice.',
-    calculation:'$12,480 overdue + $9,200 ready to invoice = $21,680 of finished work to collect.',
-    source:'Tradify customer invoices, completed jobs, quoted values and recorded charge-up lines.',
-    note:'The ready-to-invoice amount is an estimate until each completed job is reviewed and invoiced.'
-  },
   'overdue-invoices':{
     title:'Invoices to chase calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Outstanding customer invoice balances whose due date is before the report date.',
-    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. $4,850 + $3,200 + $1,950 + $1,240 + $790 + $450 = $12,480 across 6 invoices. Days overdue = report date − invoice due date.',
+    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. Total: $12,400 + $6,280 + $8,950 + $5,950 + $5,140 + $4,600 + $3,850 + $650 = $47,820 across 8 invoices. The 3 oldest invoices shown total $27,630; the other 5 total $20,190. Days overdue = report date − invoice due date. Reminders sent = recorded reminder events for that invoice.',
     source:'Tradify customer invoices: customer total, due date, status, applied credits, recorded payments and reminder events.',
     note:'Draft, cancelled and fully paid invoices are excluded. Payments not yet recorded in Tradify will still appear outstanding.'
   },
   'ready-to-invoice':{
     title:'Ready to invoice calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Completed jobs with billable value that has not yet been allocated to a non-cancelled invoice.',
-    calculation:'$3,400 + $2,600 + $1,850 + $1,350 = $9,200 across 4 completed jobs.',
+    calculation:'Ready value for each job = recorded billable value − value already invoiced. The 3 shown jobs total $9,800 + $7,450 + $6,200 = $23,450. The other 8 jobs total $15,450. Overall: $23,450 + $15,450 = $38,900 across 11 jobs. Days finished = report date − job completion date.',
     source:'Tradify completed jobs, accepted fixed-price quote values or recorded charge-up lines, completion dates and existing invoice links.',
-    note:'This is a prototype readiness rule. A completed job may still need review before invoicing.'
-  },
-  'jobs-over-cost':{
-    title:'Jobs over quoted cost calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Completed jobs where recorded labour and material costs are higher than the costs allowed for in the accepted quote.',
-    calculation:'$1,950 + $1,400 + $800 = $4,150 over quoted cost across 3 jobs.',
-    source:'Accepted quote cost estimates compared with recorded timesheets, materials and miscellaneous job costs.',
-    note:'Review unbilled variations and missing quote allowances before sending the final invoice.'
-  },
-  'payment-speed':{
-    title:'Payment speed calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'The average number of days between an invoice date and its recorded payment date.',
-    calculation:'Paid invoices in the last 30 days took 19 days on average, compared with 23 days last month. 71% were paid on or before their due date.',
-    source:'Tradify invoice dates, due dates and recorded customer payment dates.',
-    note:'Part-paid and unpaid invoices are excluded from average payment time until fully paid.'
+    note:'This is a prototype readiness rule. Fixed-price and charge-up values must be treated as alternative billing methods, not added together. A completed job may still need review before invoicing.'
   },
   'quote-win-rate':{
     title:'Quote win rate calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
@@ -153,6 +132,13 @@ const calculationMetadata={
     note:'Open and decided figures are different populations and should not be added together.'
   },
   'booked-ahead':{
+    title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Committed work value, estimated delivery cost and potential gross profit from scheduled jobs and accepted quotes.',
+    calculation:'$264,500 committed value = $142,000 in Sep + $88,500 in Oct + $34,000 in Nov. $264,500 − $179,900 estimated cost = $84,600 potential gross profit. $84,600 ÷ $264,500 = 32.0% estimated margin.',
+    source:'Accepted quote values and quoted labour, material, subcontractor and other cost estimates held in Tradify.',
+    note:'Committed value is not expected cash. Cost and profit use quoted estimates, not costs recorded during the job, so actual gross profit may be lower.'
+  },
+  'winning-booked-ahead':{
     title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Committed work value, estimated delivery cost and potential gross profit from scheduled jobs and accepted quotes.',
     calculation:'$88,400 committed value = $42,500 in Sep + $29,600 in Oct + $16,300 in Nov. $88,400 − $55,700 estimated cost = $32,700 potential gross profit. $32,700 ÷ $88,400 = 37.0% estimated margin.',
@@ -477,8 +463,6 @@ const renderCalculationPopover=metadata=>{
 };
 
 const openCalculationPopover=trigger=>{
-  window.clearTimeout(toastTimer);
-  toast.hidden=true;
   if(activeCalculationTrigger===trigger){
     closeCalculationPopover(true);
     return;
@@ -592,8 +576,8 @@ const openScheduleModal=()=>{
 };
 
 const renderEmailPreviewContent=(reportPeriod,periodPhrase)=>{
-  const highlights=[['Net cash','+$6,300'],['To collect','$21,680'],['Quote win rate','56%']];
-  const attentionLines=['Chase 6 overdue invoices worth $12,480','Invoice 4 completed jobs worth $9,200','Follow up 3 quiet quotes worth $18,900'];
+  const highlights=[['Net cash','-$7,300'],['Profit margin','19%'],['Quote win rate','24%']];
+  const attentionLines=['Follow up 12 quotes worth $42,600','Create quotes for 6 enquiries','Add loss reasons to 8 lost quotes worth $28,400'];
   emailHighlights.forEach((item,index)=>{
     item.querySelector('span').textContent=highlights[index][0];
     item.querySelector('strong').textContent=highlights[index][1];
@@ -601,8 +585,8 @@ const renderEmailPreviewContent=(reportPeriod,periodPhrase)=>{
   emailAttention.querySelector('strong').textContent='Take action';
   Array.from(emailAttention.querySelectorAll('span')).forEach((item,index)=>{item.textContent=attentionLines[index]});
   emailPreviewSubject.textContent=`Your Business Analysis report — ${reportPeriod}`;
-  emailPreviewIntro.textContent=`Here’s how Sparked Electrical tracked ${periodPhrase}.`;
-  emailContext.textContent='$88,400 of work is already booked over the next 3 months.';
+  emailPreviewIntro.textContent=`Here’s how money moved through Fandango Plumbing ${periodPhrase}.`;
+  emailContext.textContent='2.5 weeks of work booked.';
 };
 
 const openEmailPreviewModal=()=>{
