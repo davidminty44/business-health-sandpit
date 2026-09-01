@@ -41,6 +41,10 @@
     </nav>
   </aside>
   <div class="nav-scrim" id="navScrim"></div>
+  <div class="health-view-tabs" role="tablist" aria-label="Prototype view">
+    <button class="health-view-tab active" id="gettingPaidTab" type="button" role="tab" aria-selected="true" aria-controls="gettingPaidPanel">Getting paid</button>
+    <button class="health-view-tab" id="winningWorkTab" type="button" role="tab" aria-selected="false" aria-controls="winningWorkPanel" tabindex="-1">Winning work</button>
+  </div>
 
   <div class="app-shell" id="appShell">
     <header class="mobile-header">
@@ -272,11 +276,6 @@
 
           <div class="concept-panel demand-concept" id="demandConcept" data-demand-flow>
             <div class="demand-content">
-              <div class="health-view-tabs" role="tablist" aria-label="Business health area">
-                <button class="health-view-tab active" id="gettingPaidTab" type="button" role="tab" aria-selected="true" aria-controls="gettingPaidPanel"><i class="fa fa-file-text-o" aria-hidden="true"></i><span><strong>Getting paid</strong><small>$47,820 overdue</small></span></button>
-                <button class="health-view-tab" id="winningWorkTab" type="button" role="tab" aria-selected="false" aria-controls="winningWorkPanel" tabindex="-1"><i class="fa fa-line-chart" aria-hidden="true"></i><span><strong>Winning work</strong><small>$34,500 in open quotes</small></span></button>
-              </div>
-
               <section class="health-view-panel" id="gettingPaidPanel" role="tabpanel" aria-labelledby="gettingPaidTab" tabindex="0">
                 <section class="demand-cash-flow-grid" aria-label="Cash flow summary">
                   <article class="actual-figure money-in-figure" data-calc-target="money-in">
