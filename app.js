@@ -113,7 +113,7 @@ const calculationMetadata={
     note:'This is committed value, not expected cash. It does not account for remaining work, delays, cancellations or payment timing.'
   },
   'demand-performance':{
-    title:'Performance calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    title:'Profitability calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Gross profit and margin on work invoiced in the selected period.',
     calculation:'$186,400 invoiced − $121,160 cost of work = $65,240 gross profit. $65,240 ÷ $186,400 = 35.0%.',
     source:'Invoice lines linked to jobs, plus recorded labour, material and miscellaneous job costs.',
