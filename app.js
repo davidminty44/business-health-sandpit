@@ -227,10 +227,11 @@ const setConcept=(concept,announce=false,persist=false)=>{
   document.body.classList.toggle('combined-active',activeConcept==='combined');
   const subtitles={
     dashboard:'Money in, money out, and what’s left over — as at 31 Aug 2026, 9:00am.',
-    demand:'Demand-led sample — last 30 days, as at 1 Sep 2026, 9:18am.',
+    demand:'',
     combined:'Financial performance and the work that can improve it — last 30 days, as at 1 Sep 2026.'
   };
   reportSubtitle.textContent=subtitles[activeConcept];
+  reportSubtitle.hidden=!subtitles[activeConcept];
   if(activeConcept==='combined'){
     prototypeConceptName.textContent='[ Prototype B ] Business Analysis';
     prototypeConceptDescription.textContent='Integrated overview with deep dives';
