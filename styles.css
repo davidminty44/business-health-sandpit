@@ -539,7 +539,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 @media(max-width:1050px){
   .reports-list{width:210px;flex-basis:210px}
   .demand-columns,.combined-health-detail,.combined-ahead-grid{grid-template-columns:1fr}
-  .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .report-header{display:block}
   .report-actions{margin-top:14px;flex-wrap:wrap}
   .actuals-summary{grid-template-columns:1fr 1fr}
@@ -548,6 +547,14 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   #dashboardConcept .support-card{padding:0 0 18px}
   #dashboardConcept .support-card:last-child{padding:18px 0 0;border-top:1px solid #edf0f2;border-left:0}
   .card-heading{min-height:0;margin-bottom:13px}
+}
+@media(max-width:1050px) and (min-width:801px){
+  .demand-cash-flow-grid{gap:8px}
+  .demand-cash-flow-grid .actual-figure{padding:12px 10px}
+  .demand-cash-flow-grid .actual-figure>strong{font-size:23px;line-height:29px}
+  .demand-cash-flow-grid .net-figure>strong{font-size:27px;line-height:32px}
+  .demand-cash-flow-grid .kpi-delta,.demand-cash-flow-grid .outlook-change{align-items:flex-start;font-size:9px;white-space:normal}
+  .demand-cash-flow-grid .kpi-delta .fa,.demand-cash-flow-grid .outlook-change .fa{margin-top:2px}
 }
 @media(max-width:800px){
   body{--prototype-bar-height:50px}
@@ -579,6 +586,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   #dashboardConcept>.period-panel{margin:0 -12px;padding:0 16px}
   .demand-concept,.combined-concept{margin:0 -16px -18px}
   .demand-content,.combined-content{padding:12px}
+  .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .combined-content{gap:18px}
   .demand-card{border-radius:7px}
   .reports-list{position:static;width:auto;margin-bottom:10px;padding:11px 12px;display:flex;align-items:center;gap:10px}
