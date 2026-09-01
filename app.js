@@ -52,14 +52,14 @@ const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
     definition:'Payments recorded against customer invoices in the selected period.',
-    calculation:'$24,600 = $7,400 + $6,200 + $5,800 + $5,200, grouped by payment date. Previous period: $33,000. Change: $24,600 − $33,000 = -$8,400.',
+    calculation:'August money in: $7,400 + $6,200 + $5,800 + $5,200 = $24,600, grouped by payment date. July money in: $33,000. Change: $24,600 − $33,000 = -$8,400, shown as down $8,400 from last month.',
     source:'Invoice payments recorded in Tradify.',
     note:'Includes payments added when invoices are marked as paid. It is not matched to a bank statement and excludes credit notes.'
   },
   'money-out':{
     title:'Money out calculation',category:'Accounting data required',categoryType:'accounting',icon:'fa-share-alt',
     definition:'Payments to suppliers, payroll, expenses and fees that settled in the selected period.',
-    calculation:'Prototype example: $31,900 = $6,900 + $8,200 + $7,600 + $9,200. Previous period: $27,600. Change: $31,900 − $27,600 = +$4,300.',
+    calculation:'August money out: $6,900 + $8,200 + $7,600 + $9,200 = $31,900. July money out: $27,600. Change: $31,900 − $27,600 = +$4,300, shown as up $4,300 from last month.',
     source:'Not available from Tradify today. This needs a new import of settled transactions from accounting or bank data.',
     note:'Supplier bills in Tradify are only Draft or Approved; they do not record amount paid or payment date.'
   },
@@ -85,25 +85,18 @@ const calculationMetadata={
     note:'The period selects jobs, not transactions. All recorded costs and non-cancelled invoice lines for each selected job are included, regardless of their dates. Multi-job invoices can be counted against more than one job.'
   },
   'overdue-invoices':{
-    title:'Overdue invoices calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Outstanding customer invoice balances with a due date before 1 Sep 2026.',
-    calculation:'$47,820 = $14,240 overdue 1–30 days + $14,900 overdue 31–60 days + $18,680 overdue 60+ days. 8 invoices qualify.',
-    source:'Tradify customer invoices: due date, status, total, credits and payments recorded.',
+    title:'Invoices to chase calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Outstanding customer invoice balances whose due date is before the report date.',
+    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. 1–30 days: $5,140 + $4,600 + $3,850 + $650 = $14,240. 31–60 days: $8,950 + $5,950 = $14,900. 60+ days: $12,400 + $6,280 = $18,680. Total: $14,240 + $14,900 + $18,680 = $47,820 across 8 invoices. Days overdue = report date − invoice due date. Reminders sent = recorded reminder events for that invoice.',
+    source:'Tradify customer invoices: customer total, due date, status, applied credits, recorded payments and reminder events.',
     note:'Draft, cancelled and fully paid invoices are excluded. Payments not yet recorded in Tradify will still appear outstanding.'
   },
   'ready-to-invoice':{
     title:'Ready to invoice calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
-    definition:'Completed jobs with recorded value that has not yet been invoiced.',
-    calculation:'$38,900 across 11 jobs. The 3 shown total $23,450; 8 more jobs total $15,450.',
-    source:'Completed jobs, accepted quote value, charge-up lines and existing invoice links in Tradify.',
-    note:'This is a prototype readiness rule. A completed job may still need review before an invoice is created, and invoices are created one at a time.'
-  },
-  'not-yet-due':{
-    title:'Not yet due calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Outstanding issued customer invoices whose due date is 1 Sep 2026 or later.',
-    calculation:'19 unpaid invoices have outstanding balances totalling $62,340.',
-    source:'Tradify customer invoices: due date, status, total, credits and payments recorded.',
-    note:'Draft and cancelled invoices are excluded. This is money owed, not money received.'
+    definition:'Completed jobs with billable value that has not yet been allocated to a non-cancelled invoice.',
+    calculation:'Ready value for each job = recorded billable value − value already invoiced. The 3 shown jobs total $9,800 + $7,450 + $6,200 = $23,450. The other 8 jobs total $15,450. Overall: $23,450 + $15,450 = $38,900 across 11 jobs. Days finished = report date − job completion date.',
+    source:'Tradify completed jobs, accepted fixed-price quote values or recorded charge-up lines, completion dates and existing invoice links.',
+    note:'This is a prototype readiness rule. Fixed-price and charge-up values must be treated as alternative billing methods, not added together. A completed job may still need review before invoicing.'
   },
   'booked-ahead':{
     title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
@@ -126,13 +119,6 @@ const calculationMetadata={
     source:'Tradify invoices and job costs, combined with accounting or bank transaction data for money out.',
     note:'Invoiced revenue and cash received are different measures. An invoice only affects cash when the customer pays it.'
   },
-  'cash-pipeline':{
-    title:'Cash pipeline calculation',category:'Mixed measures',categoryType:'assumption',icon:'fa-exclamation-circle',
-    definition:'Money already invoiced, work ready to invoice, and committed work shown together as separate pipeline stages.',
-    calculation:'$47,820 overdue + $62,340 not yet due are issued invoices. $38,900 is completed work not yet invoiced. $264,500 is committed work over the next 3 months.',
-    source:'Tradify invoices, completed jobs, scheduled jobs and accepted quotes.',
-    note:'Do not add these values into one cash total. They represent different stages and will convert to cash at different times.'
-  },
   'winning-work':{
     title:'Winning work calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Quote outcomes, open quote value and accepted quote value attached to active jobs.',
@@ -150,7 +136,7 @@ const calculationMetadata={
   'cash-outlook':{
     title:'Cash outlook calculation',category:'Accounting data required',categoryType:'accounting',icon:'fa-share-alt',
     definition:'Expected cash balance after known money due in and expected money due out over 8 weeks.',
-    calculation:'$31,400 today. Forecast balances by week: $32,600, $29,200, $30,000, $24,800, $22,000, $22,900, $15,700 and $12,600. Overall change: $12,600 − $31,400 = -$18,800.',
+    calculation:'Each weekly balance = previous balance + invoices expected due − expected bills, payroll and expenses. Start: $31,400. Week 1: $31,400 + $1,200 = $32,600. Week 2: $32,600 − $3,400 = $29,200. Week 3: $29,200 + $800 = $30,000. Week 4: $30,000 − $5,200 = $24,800. Week 5: $24,800 − $2,800 = $22,000. Week 6: $22,000 + $900 = $22,900. Week 7: $22,900 − $7,200 = $15,700. Week 8: $15,700 − $3,100 = $12,600. Overall change: $12,600 − $31,400 = -$18,800.',
     source:'Unpaid invoice due dates from Tradify, plus starting balance, supplier payments, payroll and expenses from new accounting or bank data.',
     note:'Every point after today is projected. This is a forecast, not a guarantee. Tradify supplier bills have due dates but no actual payment records.'
   },
@@ -294,7 +280,7 @@ const renderDemandPerformance=flow=>{
   const margin=profit/period.revenue*100;
   const delta=margin-period.previous;
   const down=delta<0;
-  calculationMetadata['demand-performance'].calculation=`${formatDemandMoney(period.revenue)} invoiced − ${formatDemandMoney(period.cost)} cost of work = ${formatDemandMoney(profit)} gross profit. ${formatDemandMoney(profit)} ÷ ${formatDemandMoney(period.revenue)} = ${margin.toFixed(1)}%. Previous period: ${period.previous.toFixed(1)}%.`;
+  calculationMetadata['demand-performance'].calculation=`Gross profit: ${formatDemandMoney(period.revenue)} invoiced − ${formatDemandMoney(period.cost)} cost of work = ${formatDemandMoney(profit)}. Gross margin: ${formatDemandMoney(profit)} ÷ ${formatDemandMoney(period.revenue)} = ${margin.toFixed(1)}%. Margin change: ${margin.toFixed(1)}% − ${period.previous.toFixed(1)}% = ${delta>=0?'+':''}${delta.toFixed(1)} percentage points.`;
   flow.querySelector('[data-demand-margin]').textContent=`${margin.toFixed(1)}%`;
   const deltaElement=flow.querySelector('[data-demand-margin-delta]');
   deltaElement.classList.toggle('negative',down);
@@ -483,6 +469,7 @@ const renderCalculationPopover=metadata=>{
   const body=document.createElement('div');
   body.className='calculation-popover-body';
   body.append(
+    createCalculationDetail('How it’s calculated',metadata.calculation,'calculation'),
     createCalculationDetail('Definition',metadata.definition),
     createCalculationDetail('Source',metadata.source)
   );
