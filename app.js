@@ -311,6 +311,8 @@ const parseCashTrendMetric=part=>{
   const definitions=[
     {prefix:'Last week in ',label:'In',tone:'in'},
     {prefix:'Balance ',label:'Balance',tone:'balance'},
+    {prefix:'Previous ',label:'Previous',tone:'balance'},
+    {prefix:'Change ',label:'Change',tone:'net'},
     {prefix:'In ',label:'In',tone:'in'},
     {prefix:'Out ',label:'Out',tone:'out'},
     {prefix:'Net ',label:'Net',tone:'net'}
@@ -335,10 +337,10 @@ const createCashTrendTooltip=hit=>{
   value.textContent=balance?.value||'';
   header.append(heading,value);
   tooltip.append(header);
-  if(title==='Today'&&metrics.length){
+  if((title==='Today'||forecast)&&metrics.length){
     const caption=document.createElement('span');
     caption.className='cash-trend-tooltip-caption';
-    caption.textContent='Last 7 days';
+    caption.textContent=forecast?'Invoices due minus outgoings':'Last 7 days';
     tooltip.append(caption);
   }
   if(metrics.length){
