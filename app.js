@@ -250,18 +250,6 @@ const renderDemandPerformance=flow=>{
   flow.querySelector('[data-demand-cost-bar]').style.width=`${period.cost/period.revenue*100}%`;
   flow.querySelector('[data-demand-profit-bar]').style.width=`${profit/period.revenue*100}%`;
 };
-const renderDemandInvoiceSelection=flow=>{
-  const selected=flow.querySelector('.demand-invoice-select:checked');
-  const summary=flow.querySelector('.demand-invoice-summary');
-  const createInvoice=flow.querySelector('.demand-create-invoices');
-  if(!summary||!createInvoice)return;
-  summary.parentElement.classList.toggle('active',Boolean(selected));
-  summary.textContent=selected?`Selected · ${formatDemandMoney(Number(selected.value))}`:'Select a job to invoice';
-  createInvoice.disabled=!selected;
-  createInvoice.classList.toggle('btn-primary',Boolean(selected));
-  createInvoice.classList.toggle('btn-default',!selected);
-};
-
 const positionCalculationPopover=()=>{
   if(!activeCalculationTrigger||calculationPopover.hidden){
     return;
@@ -608,17 +596,8 @@ demandFlows.forEach(flow=>{
   });
   const periodSelect=flow.querySelector('.demand-period');
   if(periodSelect)periodSelect.addEventListener('change',()=>renderDemandPerformance(flow));
-  flow.querySelectorAll('.demand-invoice-select').forEach(input=>input.addEventListener('change',()=>renderDemandInvoiceSelection(flow)));
-  const createInvoice=flow.querySelector('.demand-create-invoices');
-  if(createInvoice)createInvoice.addEventListener('click',()=>{
-    const selected=flow.querySelector('.demand-invoice-select:checked');
-    if(!selected)return;
-    const job=selected.closest('label').querySelector('strong').textContent;
-    showToast(`Opening a new invoice for ${job}.`);
-  });
   renderDemandRows(flow);
   renderDemandPerformance(flow);
-  renderDemandInvoiceSelection(flow);
 });
 document.querySelectorAll('.combined-deep-link').forEach(link=>link.addEventListener('click',()=>{
   if(link.dataset.demandTargetBucket){
