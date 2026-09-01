@@ -8,8 +8,6 @@ const productFooter=document.querySelector('#productFooter');
 const scheduleModal=document.querySelector('#scheduleModal');
 const emailPreviewModal=document.querySelector('#emailPreviewModal');
 const modalBackdrop=document.querySelector('#modalBackdrop');
-const scheduleButton=document.querySelector('#scheduleButton');
-const scheduleButtonLabel=document.querySelector('#scheduleButtonLabel');
 const emailPreviewButton=document.querySelector('#emailPreviewButton');
 const emailPreviewShortcut=document.querySelector('#emailPreviewShortcut');
 const modalClose=document.querySelector('#modalClose');
@@ -23,15 +21,8 @@ const toastMessage=document.querySelector('#toastMessage');
 const appliedPeriod=document.querySelector('#appliedPeriod');
 const recipientField=document.querySelector('#recipientField');
 const recipientError=document.querySelector('#recipientError');
-const emailPreviewFooter=document.querySelector('#emailPreviewFooter');
 const emailPreviewRecipients=document.querySelector('#emailPreviewRecipients');
-const emailPreviewSubject=document.querySelector('#emailPreviewSubject');
-const emailPreviewIntro=document.querySelector('#emailPreviewIntro');
-const emailHighlights=Array.from(document.querySelectorAll('.email-highlights>div'));
-const emailAttention=document.querySelector('.email-attention');
-const emailContext=document.querySelector('.email-context');
 const calculationToggle=document.querySelector('#calculationToggle');
-const calculationToggleLabel=document.querySelector('#calculationToggleLabel');
 const calculationAnnouncement=document.querySelector('#calculationAnnouncement');
 const calculationTriggers=Array.from(document.querySelectorAll('.calc-trigger'));
 const calculationMedia=window.matchMedia('(max-width:800px)');
@@ -500,7 +491,7 @@ const setCalculationVisibility=(visible,persist=false,announce=false)=>{
   document.body.classList.toggle('calculations-visible',visible);
   calculationToggle.setAttribute('aria-pressed',String(visible));
   calculationToggle.setAttribute('aria-label',visible?'Hide calculations':'Show calculations');
-  calculationToggleLabel.textContent=visible?'Hide calculations':'Show calculations';
+  calculationToggle.classList.toggle('active',visible);
   if(persist){
     try{
       window.localStorage.setItem(calculationStorageKey,String(visible));
@@ -565,38 +556,8 @@ const closeModal=()=>{
   }
 };
 
-const openScheduleModal=()=>{
-  emailPreviewOpenedDirectly=false;
-  draftRecipients=[...savedRecipients];
-  document.querySelector('#frequency').value=savedSchedule.frequency;
-  document.querySelector('#sendDay').value=savedSchedule.day;
-  const reportPeriod=document.querySelector('#reportPeriod');
-  reportPeriod.value=savedSchedule.period;
-  reportPeriod.disabled=false;
-  renderRecipients();
-  stopSchedule.hidden=!scheduled;
-  openModal(scheduleModal,modalClose);
-};
-
-const renderEmailPreviewContent=(reportPeriod,periodPhrase)=>{
-  const highlights=[['Net cash','-$7,300'],['Profit margin','19%'],['Quote win rate','24%']];
-  const attentionLines=['Follow up 12 quotes worth $42,600','Create quotes for 6 enquiries','Add loss reasons to 8 lost quotes worth $28,400'];
-  emailHighlights.forEach((item,index)=>{
-    item.querySelector('span').textContent=highlights[index][0];
-    item.querySelector('strong').textContent=highlights[index][1];
-  });
-  emailAttention.querySelector('strong').textContent='Take action';
-  Array.from(emailAttention.querySelectorAll('span')).forEach((item,index)=>{item.textContent=attentionLines[index]});
-  emailPreviewSubject.textContent=`Your Business Analysis report — ${reportPeriod}`;
-  emailPreviewIntro.textContent=`Here’s how money moved through Fandango Plumbing ${periodPhrase}.`;
-  emailContext.textContent='2.5 weeks of work booked.';
-};
-
-const renderEmailPreview=(reportPeriod,recipients)=>{
-  const periodPhrase=reportPeriod==='Last 7 days'?'over the last 7 days':reportPeriod.toLowerCase();
+const renderEmailPreview=recipients=>{
   emailPreviewRecipients.textContent=recipients.join(', ');
-  renderEmailPreviewContent(reportPeriod,periodPhrase);
-  emailPreviewFooter.textContent=scheduled?'You’re receiving this scheduled report from Tradify.':'This is a preview of the report you’ll get by email once scheduled.';
 };
 
 const openEmailPreviewModal=()=>{
@@ -606,17 +567,17 @@ const openEmailPreviewModal=()=>{
     return;
   }
   emailPreviewOpenedDirectly=false;
-  renderEmailPreview(document.querySelector('#reportPeriod').value,draftRecipients);
+  renderEmailPreview(draftRecipients);
   scheduleModal.hidden=true;
   activeModal=emailPreviewModal;
   emailPreviewModal.hidden=false;
-  lastFocusedElement=scheduleButton;
+  lastFocusedElement=emailPreviewButton;
   window.requestAnimationFrame(()=>emailPreviewClose.focus());
 };
 
 const openEmailPreviewShortcut=()=>{
   emailPreviewOpenedDirectly=true;
-  renderEmailPreview(savedSchedule.period,savedRecipients);
+  renderEmailPreview(savedRecipients);
   openModal(emailPreviewModal,emailPreviewClose);
 };
 
@@ -761,7 +722,6 @@ document.querySelector('#reportSelector').addEventListener('change',event=>{
   }
 });
 
-scheduleButton.addEventListener('click',openScheduleModal);
 emailPreviewButton.addEventListener('click',openEmailPreviewModal);
 emailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
 modalClose.addEventListener('click',closeModal);
@@ -783,17 +743,14 @@ scheduleForm.addEventListener('submit',event=>{
   if(!draftRecipients.length){renderRecipients();recipientField.focus();return}
   savedRecipients=[...draftRecipients];
   savedSchedule={frequency:document.querySelector('#frequency').value,day:document.querySelector('#sendDay').value,period:document.querySelector('#reportPeriod').value};
-  const frequency=savedSchedule.frequency.toLowerCase();
   const sendDay=savedSchedule.day;
   scheduled=true;
-  scheduleButtonLabel.textContent=`Scheduled ${frequency}`;
   closeModal();
   showToast(`Report scheduled. Your first email will be sent ${sendDay}.`);
 });
 
 stopSchedule.addEventListener('click',()=>{
   scheduled=false;
-  scheduleButtonLabel.textContent='Schedule report';
   closeModal();
   showToast('Report unscheduled.');
 });

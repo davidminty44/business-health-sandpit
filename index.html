@@ -47,6 +47,7 @@
       <button class="health-view-tab" id="winningWorkTab" type="button" role="tab" aria-selected="false" aria-controls="winningWorkPanel" tabindex="-1">Winning work</button>
     </div>
     <span class="health-view-divider" aria-hidden="true"></span>
+    <button class="health-view-tab health-view-action" id="calculationToggle" type="button" aria-label="Show calculations" aria-pressed="false"><span id="calculationToggleLabel">Calculations</span></button>
     <button class="health-view-tab health-view-action" id="emailPreviewShortcut" type="button" aria-haspopup="dialog" aria-controls="emailPreviewModal">Email</button>
   </div>
 
@@ -105,10 +106,6 @@
           <header class="report-header">
             <div class="report-heading">
               <h1 id="reportTitle" tabindex="-1">Business Analysis</h1>
-            </div>
-            <div class="report-actions">
-              <button class="btn btn-default" id="calculationToggle" type="button" aria-label="Show calculations" aria-pressed="false"><i class="fa fa-info-circle" aria-hidden="true"></i><span id="calculationToggleLabel">Show calculations</span></button>
-              <button class="btn btn-primary" id="scheduleButton" type="button" hidden><i class="fa fa-clock-o" aria-hidden="true"></i><span id="scheduleButtonLabel">Schedule report</span></button>
             </div>
           </header>
 
@@ -553,34 +550,77 @@
       <div class="modal-content">
         <div class="modal-header">
           <button class="modal-close" id="emailPreviewClose" type="button" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <h2 id="emailPreviewModalTitle">Email preview</h2>
+          <h2 id="emailPreviewModalTitle">Weekly email preview</h2>
         </div>
         <div class="modal-body email-preview-body">
           <dl class="email-metadata">
-            <div><dt>Subject</dt><dd id="emailPreviewSubject">Your Business Analysis report — Last 7 days</dd></div>
-            <div><dt>From</dt><dd>Tradify</dd></div>
+            <div><dt>Subject</dt><dd id="emailPreviewSubject">$21,680 is sitting on the table — your week at a glance</dd></div>
+            <div><dt>Preview</dt><dd>6 invoices overdue and 4 jobs ready to bill · 8 quotes still open · takes 5 min to clear</dd></div>
+            <div><dt>From</dt><dd>Tradify Business Health · reports@tradify.com</dd></div>
             <div><dt>To</dt><dd id="emailPreviewRecipients">Office team, office@example.com</dd></div>
           </dl>
-          <div class="email-preview-card">
+          <article class="email-preview-card" aria-label="Weekly business health email">
+            <header class="email-masthead">
+              <div>
+                <span class="email-wordmark">TRADIFY</span>
+                <h3>Weekly business health</h3>
+                <p>Sparked Electrical · 25–31 August 2026</p>
+              </div>
+              <i class="fa fa-line-chart email-masthead-icon" aria-hidden="true"></i>
+            </header>
             <div class="email-preview-content">
-              <h3>Business Analysis</h3>
-              <p class="email-intro" id="emailPreviewIntro">Here’s how money moved through Fandango Plumbing over the last 7 days.</p>
-              <div class="email-highlights">
-                <div><span>Net cash</span><strong>-$7,300</strong></div>
-                <div><span>Profit margin</span><strong>19%</strong></div>
-                <div><span>Quote win rate</span><strong>24%</strong></div>
+              <p class="email-greeting">Morning, Dave.</p>
+              <p class="email-range">Week of Mon 25 – Sun 31 Aug 2026 · Sparked Electrical</p>
+              <p class="email-pulse">You had a solid week — <strong>+$6,300</strong> cash in the door. But <strong>$21,680</strong> of finished work still isn't paid or billed.</p>
+              <dl class="email-snapshot" aria-label="Weekly cash snapshot">
+                <div><dt>Money in</dt><dd><strong>$18,400</strong><span>7 payments</span></dd></div>
+                <div><dt>Money out</dt><dd><strong>$12,100</strong><span>Bills &amp; wages</span></dd></div>
+                <div><dt>Net this week</dt><dd><strong>+$6,300</strong><span>Up from +$2,900</span></dd></div>
+              </dl>
+              <section class="email-attention-section" aria-labelledby="emailAttentionTitle">
+                <h4 id="emailAttentionTitle">Two things worth your attention</h4>
+                <p>The rest looked healthy this week — details in the full report.</p>
+                <section class="email-priority" aria-labelledby="emailGetPaidTitle">
+                  <header><h5 id="emailGetPaidTitle">Get paid</h5><span>$21,680 owed to you</span></header>
+                  <strong class="email-priority-value">$21,680</strong>
+                  <dl class="email-priority-split">
+                    <div><dt>Overdue</dt><dd><strong>$12,480</strong><span>6 invoices · oldest 41 days</span></dd></div>
+                    <div><dt>Ready to invoice</dt><dd><strong>$9,200</strong><span>4 completed jobs</span></dd></div>
+                  </dl>
+                  <p>This is finished work you've already paid materials and wages for. Chasing the overdue invoices and billing the 4 completed jobs is the fastest cash you'll get this week.</p>
+                  <a class="email-primary-action" href="https://davidminty44.github.io/business-health-sandpit/?concept=demand">Review &amp; chase in Tradify</a>
+                </section>
+                <section class="email-priority" aria-labelledby="emailWinWorkTitle">
+                  <header><h5 id="emailWinWorkTitle">Win work</h5><span>56% win rate · up 8 pts</span></header>
+                  <strong class="email-priority-value">$34,500 in open quotes</strong>
+                  <dl class="email-priority-split">
+                    <div><dt>Gone quiet (14+ days)</dt><dd><strong>$18,900</strong><span>3 quotes, no reply</span></dd></div>
+                    <div><dt>Still fresh</dt><dd><strong>$15,600</strong><span>5 quotes sent this week</span></dd></div>
+                  </dl>
+                  <p>Your win rate is up, so the pipeline's healthy — but 3 quotes worth $18,900 have gone silent. A quick nudge is the cheapest work you can win right now.</p>
+                  <a class="email-primary-action" href="https://davidminty44.github.io/business-health-sandpit/?concept=demand&amp;area=winning">Follow up 3 quiet quotes</a>
+                </section>
+              </section>
+              <section class="email-worth" aria-labelledby="emailWorthTitle">
+                <h4 id="emailWorthTitle">Worth a look</h4>
+                <ul>
+                  <li><i class="fa fa-line-chart" aria-hidden="true"></i><span><strong>3 jobs tracking over quoted cost</strong><small>$4,150 over budget combined — check before you invoice</small></span></li>
+                  <li><i class="fa fa-clock-o" aria-hidden="true"></i><span><strong>2 quotes expire in the next 7 days</strong><small>$6,800 — resend or extend before they lapse</small></span></li>
+                  <li><i class="fa fa-wrench" aria-hidden="true"></i><span><strong>2 in-progress jobs with no update in 7+ days</strong><small>Worth a status check with the team</small></span></li>
+                </ul>
+              </section>
+              <div class="email-full-report">
+                <a class="email-primary-action" id="openFullReport" href="https://davidminty44.github.io/business-health-sandpit/?concept=demand">Open full report</a>
+                <p>See the week's money in vs out, every open quote, and job-level detail.</p>
               </div>
-              <div class="email-attention">
-                <strong>Take action</strong>
-                <span>Follow up 12 quotes worth $42,600</span>
-                <span>Create quotes for 6 enquiries</span>
-                <span>Add loss reasons to 8 lost quotes worth $28,400</span>
-              </div>
-              <p class="email-context">2.5 weeks of work booked.</p>
-              <a class="btn btn-primary email-report-link" id="openFullReport" href="#">Open full report</a>
             </div>
-            <p class="email-preview-footer" id="emailPreviewFooter">This is a preview of the report you’ll get by email once scheduled.</p>
-          </div>
+            <footer class="email-preview-footer">
+              <p>You're getting this <strong>weekly</strong>, every Monday morning. <a href="#">Switch to monthly</a> · <a href="#">Report settings</a></p>
+              <p>Sparked Electrical · Tradify · <a href="#">Unsubscribe</a></p>
+              <div><span>TRADIFY</span><strong>Sparked Electrical</strong></div>
+            </footer>
+          </article>
+          <p class="email-preview-caption">Mockup — sample data for a small electrical business. Not a real send.</p>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" id="closeEmailPreview" type="button">Close</button>
