@@ -345,10 +345,6 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .combined-profit-split span:last-child{background:#33a99e}
 .combined-section{display:flex;flex-direction:column;gap:10px}
 .combined-section-head{padding:0 2px}
-.combined-priorities{padding:12px 14px 14px;border-color:#c6e0e7;background:#f3f9fb;box-shadow:inset 4px 0 0 #009ec7,0 1px 2px rgba(38,50,56,.08)}
-.combined-priorities .primary-action{box-shadow:inset 3px 0 0 #009ec7,0 1px 2px rgba(38,50,56,.04)}
-.combined-priorities .secondary-actions{margin-top:8px}
-.combined-priorities .secondary-action-copy strong{color:#263238;font-weight:600}
 .combined-ahead-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch}
 .combined-pipeline{display:flex;flex-direction:column}
 .combined-pipeline-chips{padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
@@ -616,7 +612,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .combined-flow-figure .weekly-lines-chart{height:180px}
   .combined-profit-detail{padding:15px 14px}
   .combined-section-head{padding:0}
-  .combined-priorities{padding:8px}
   .combined-ahead-grid{gap:12px}
   .combined-pipeline-chips{padding:12px 28px 12px 12px;display:flex;overflow-x:auto;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 22px),transparent 100%)}
   .combined-pipeline-chips>button{flex:0 0 145px;scroll-snap-align:start}
