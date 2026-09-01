@@ -84,6 +84,55 @@ const calculationMetadata={
     source:'Same basis as the Job Financial Report: tax-exclusive lines from non-cancelled invoices, timesheet or scheduled labour cost, job products and miscellaneous costs.',
     note:'The period selects jobs, not transactions. All recorded costs and non-cancelled invoice lines for each selected job are included, regardless of their dates. Multi-job invoices can be counted against more than one job.'
   },
+  'overdue-invoices':{
+    title:'Overdue invoices calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Outstanding customer invoice balances with a due date before 1 Sep 2026.',
+    calculation:'$47,820 = $14,240 overdue 1–30 days + $14,900 overdue 31–60 days + $18,680 overdue 60+ days. 8 invoices qualify.',
+    source:'Tradify customer invoices: due date, status, total, credits and payments recorded.',
+    note:'Draft, cancelled and fully paid invoices are excluded. Payments not yet recorded in Tradify will still appear outstanding.'
+  },
+  'ready-to-invoice':{
+    title:'Ready to invoice calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Completed jobs with recorded value that has not yet been invoiced.',
+    calculation:'$38,900 across 11 jobs. The 4 shown total $29,350; 7 more jobs total $9,550.',
+    source:'Completed jobs, accepted quote value, charge-up lines and existing invoice links in Tradify.',
+    note:'This is a prototype readiness rule. A completed job may still need review before an invoice is created, and invoices are created one at a time.'
+  },
+  'not-yet-due':{
+    title:'Not yet due calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Outstanding issued customer invoices whose due date is 1 Sep 2026 or later.',
+    calculation:'19 unpaid invoices have outstanding balances totalling $62,340.',
+    source:'Tradify customer invoices: due date, status, total, credits and payments recorded.',
+    note:'Draft and cancelled invoices are excluded. This is money owed, not money received.'
+  },
+  'booked-ahead':{
+    title:'Booked ahead calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Committed work value from scheduled jobs and accepted quotes not yet scheduled.',
+    calculation:'$264,500 = $142,000 in Sep + $88,500 in Oct + $34,000 in Nov.',
+    source:'Scheduled jobs and accepted quote values held in Tradify.',
+    note:'This is committed value, not expected cash. It does not account for remaining work, delays, cancellations or payment timing.'
+  },
+  'demand-performance':{
+    title:'Performance calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Gross profit and margin on work invoiced in the selected period.',
+    calculation:'$186,400 invoiced − $121,160 cost of work = $65,240 gross profit. $65,240 ÷ $186,400 = 35.0%.',
+    source:'Invoice lines linked to jobs, plus recorded labour, material and miscellaneous job costs.',
+    note:'This is gross margin before business overheads, tax and owner drawings. Missing job costs will overstate profit.'
+  },
+  'combined-financial':{
+    title:'Overall financial performance',category:'Combined calculation',categoryType:'calculated',icon:'fa-superscript',
+    definition:'A combined view of invoiced work, job margin and actual cash movement over the last 30 days.',
+    calculation:'$186,400 invoiced produced $65,240 gross profit at 35.0% margin. Cash received was $24,600 and cash paid was $31,900, leaving net cash of -$7,300.',
+    source:'Tradify invoices and job costs, combined with accounting or bank transaction data for money out.',
+    note:'Invoiced revenue and cash received are different measures. An invoice only affects cash when the customer pays it.'
+  },
+  'cash-pipeline':{
+    title:'Cash pipeline calculation',category:'Mixed measures',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Money already invoiced, work ready to invoice, and committed work shown together as separate pipeline stages.',
+    calculation:'$47,820 overdue + $62,340 not yet due are issued invoices. $38,900 is completed work not yet invoiced. $264,500 is committed work over the next 3 months.',
+    source:'Tradify invoices, completed jobs, scheduled jobs and accepted quotes.',
+    note:'Do not add these values into one cash total. They represent different stages and will convert to cash at different times.'
+  },
   'winning-work':{
     title:'Winning work calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Quote outcomes, open quote value and accepted quote value attached to active jobs.',
@@ -104,6 +153,13 @@ const calculationMetadata={
     calculation:'$31,400 today. Forecast balances by week: $32,600, $29,200, $30,000, $24,800, $22,000, $22,900, $15,700 and $12,600. Overall change: $12,600 − $31,400 = -$18,800.',
     source:'Unpaid invoice due dates from Tradify, plus starting balance, supplier payments, payroll and expenses from new accounting or bank data.',
     note:'Every point after today is projected. This is a forecast, not a guarantee. Tradify supplier bills have due dates but no actual payment records.'
+  },
+  'cash-trend':{
+    title:'Cash balance trend calculation',category:'Accounting data required',categoryType:'accounting',icon:'fa-share-alt',
+    definition:'One continuous cash balance, reconstructed from actual weekly cash movement through today and then extended with the 8-week forecast.',
+    calculation:'Actual weekly net movement was +$500, -$2,000, -$1,800 and -$4,000. Working backwards from today’s $31,400 balance gives $38,700 opening, then weekly closing balances of $39,200, $37,200, $35,400 and $31,400. Forecast balances are $32,600, $29,200, $30,000, $24,800, $22,000, $22,900, $15,700 and $12,600.',
+    source:'Actual customer receipts and settled outgoings, plus today’s starting balance and scheduled invoice and bill dates.',
+    note:'The solid line is actual; the dashed line is forecast. The calculation assumes today’s balance reconciles to the closing balance produced by the actual transactions. Forecast values are not a guarantee.'
   }
 };
 const calculationBackdrop=document.createElement('div');
@@ -237,6 +293,7 @@ const renderDemandPerformance=flow=>{
   const margin=profit/period.revenue*100;
   const delta=margin-period.previous;
   const down=delta<0;
+  calculationMetadata['demand-performance'].calculation=`${formatDemandMoney(period.revenue)} invoiced − ${formatDemandMoney(period.cost)} cost of work = ${formatDemandMoney(profit)} gross profit. ${formatDemandMoney(profit)} ÷ ${formatDemandMoney(period.revenue)} = ${margin.toFixed(1)}%. Previous period: ${period.previous.toFixed(1)}%.`;
   flow.querySelector('[data-demand-period-dates]').textContent=`Gross margin · ${period.dates}`;
   flow.querySelector('[data-demand-margin]').textContent=`${margin.toFixed(1)}%`;
   const deltaElement=flow.querySelector('[data-demand-margin-delta]');
