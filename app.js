@@ -11,6 +11,7 @@ const modalBackdrop=document.querySelector('#modalBackdrop');
 const scheduleButton=document.querySelector('#scheduleButton');
 const scheduleButtonLabel=document.querySelector('#scheduleButtonLabel');
 const emailPreviewButton=document.querySelector('#emailPreviewButton');
+const emailPreviewShortcut=document.querySelector('#emailPreviewShortcut');
 const modalClose=document.querySelector('#modalClose');
 const emailPreviewClose=document.querySelector('#emailPreviewClose');
 const closeEmailPreview=document.querySelector('#closeEmailPreview');
@@ -37,7 +38,7 @@ const calculationMedia=window.matchMedia('(max-width:800px)');
 const calculationStorageKey='tradify.reports.businessHealth.showCalculations';
 const calculationKeyStorageKey='tradify.reports.businessHealth.calculationKeySeen';
 const demandFlows=Array.from(document.querySelectorAll('[data-demand-flow]'));
-const healthViewTabs=Array.from(document.querySelectorAll('.health-view-tab'));
+const healthViewTabs=Array.from(document.querySelectorAll('.health-view-tab[role="tab"]'));
 const healthViewPanels=Array.from(document.querySelectorAll('.health-view-panel'));
 const calculationMetadata={
   'money-in':{
@@ -206,6 +207,7 @@ let scheduled=false;
 let savedSchedule={frequency:'Weekly',day:'Monday',period:'Last 7 days'};
 let activeModal=null;
 let lastFocusedElement=null;
+let emailPreviewOpenedDirectly=false;
 let activeCalculationTrigger=null;
 let calculationCloseButton=null;
 let calculationSheetOwnsInert=false;
@@ -564,6 +566,7 @@ const closeModal=()=>{
 };
 
 const openScheduleModal=()=>{
+  emailPreviewOpenedDirectly=false;
   draftRecipients=[...savedRecipients];
   document.querySelector('#frequency').value=savedSchedule.frequency;
   document.querySelector('#sendDay').value=savedSchedule.day;
@@ -589,17 +592,21 @@ const renderEmailPreviewContent=(reportPeriod,periodPhrase)=>{
   emailContext.textContent='2.5 weeks of work booked.';
 };
 
+const renderEmailPreview=(reportPeriod,recipients)=>{
+  const periodPhrase=reportPeriod==='Last 7 days'?'over the last 7 days':reportPeriod.toLowerCase();
+  emailPreviewRecipients.textContent=recipients.join(', ');
+  renderEmailPreviewContent(reportPeriod,periodPhrase);
+  emailPreviewFooter.textContent=scheduled?'You’re receiving this scheduled report from Tradify.':'This is a preview of the report you’ll get by email once scheduled.';
+};
+
 const openEmailPreviewModal=()=>{
   if(!draftRecipients.length){
     renderRecipients();
     recipientField.focus();
     return;
   }
-  const reportPeriod=document.querySelector('#reportPeriod').value;
-  const periodPhrase=reportPeriod==='Last 7 days'?'over the last 7 days':reportPeriod.toLowerCase();
-  emailPreviewRecipients.textContent=draftRecipients.join(', ');
-  renderEmailPreviewContent(reportPeriod,periodPhrase);
-  emailPreviewFooter.textContent=scheduled?'You’re receiving this scheduled report from Tradify.':'This is a preview of the report you’ll get by email once scheduled.';
+  emailPreviewOpenedDirectly=false;
+  renderEmailPreview(document.querySelector('#reportPeriod').value,draftRecipients);
   scheduleModal.hidden=true;
   activeModal=emailPreviewModal;
   emailPreviewModal.hidden=false;
@@ -607,7 +614,18 @@ const openEmailPreviewModal=()=>{
   window.requestAnimationFrame(()=>emailPreviewClose.focus());
 };
 
+const openEmailPreviewShortcut=()=>{
+  emailPreviewOpenedDirectly=true;
+  renderEmailPreview(savedSchedule.period,savedRecipients);
+  openModal(emailPreviewModal,emailPreviewClose);
+};
+
 const returnToScheduleModal=()=>{
+  if(emailPreviewOpenedDirectly){
+    emailPreviewOpenedDirectly=false;
+    closeModal();
+    return;
+  }
   emailPreviewModal.hidden=true;
   scheduleModal.hidden=false;
   activeModal=scheduleModal;
@@ -745,6 +763,7 @@ document.querySelector('#reportSelector').addEventListener('change',event=>{
 
 scheduleButton.addEventListener('click',openScheduleModal);
 emailPreviewButton.addEventListener('click',openEmailPreviewModal);
+emailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
 modalClose.addEventListener('click',closeModal);
 cancelSchedule.addEventListener('click',closeModal);
 emailPreviewClose.addEventListener('click',returnToScheduleModal);

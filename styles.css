@@ -372,11 +372,13 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-concept{margin:0 -30px -24px;background:#fff;color:#263238}
 .demand-concept[hidden],.demand-owed-row[hidden]{display:none}
 .demand-content{width:100%;min-width:0;max-width:none;margin:0;padding:15px;display:flex;flex-direction:column;gap:15px}
-.health-view-tabs{position:fixed;z-index:240;top:0;left:50%;width:auto;padding:3px;border:1px solid #526069;border-top:0;border-radius:0 0 5px 5px;background:#263238;box-shadow:0 2px 6px rgba(38,50,56,.24);display:flex;gap:2px;transform:translateX(-50%)}
+.health-view-tabs{position:fixed;z-index:240;top:0;left:50%;width:auto;padding:3px;border:1px solid #526069;border-top:0;border-radius:0 0 5px 5px;background:#263238;box-shadow:0 2px 6px rgba(38,50,56,.24);display:flex;align-items:stretch;gap:2px;transform:translateX(-50%)}
+.health-view-tablist{display:flex;gap:2px}
 .health-view-tab{min-height:28px;padding:3px 12px;border:0;border-radius:3px;background:transparent;color:#c4cdd2;font-size:11px;font-weight:400;line-height:18px;white-space:nowrap;cursor:pointer}
 .health-view-tab:hover{background:#405058;color:#fff}
 .health-view-tab.active{background:#fff;color:#263238}
 .health-view-tab:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.health-view-divider{width:1px;margin:4px 2px;background:#526069}
 .health-view-panel{min-width:0;display:flex;flex-direction:column;gap:15px}
 .health-view-panel[hidden]{display:none}
 .health-view-context{min-height:54px;padding:12px 16px;border-left:3px solid #009ec7;border-radius:3px;background:#f1f8fa;display:flex;align-items:center;justify-content:space-between;gap:20px}
