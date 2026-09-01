@@ -307,6 +307,94 @@ const renderDemandPerformance=flow=>{
   flow.querySelector('[data-demand-cost-bar]').style.width=`${period.cost/period.revenue*100}%`;
   flow.querySelector('[data-demand-profit-bar]').style.width=`${profit/period.revenue*100}%`;
 };
+const parseCashTrendMetric=part=>{
+  const definitions=[
+    {prefix:'Last week in ',label:'In',tone:'in'},
+    {prefix:'Balance ',label:'Balance',tone:'balance'},
+    {prefix:'In ',label:'In',tone:'in'},
+    {prefix:'Out ',label:'Out',tone:'out'},
+    {prefix:'Net ',label:'Net',tone:'net'}
+  ];
+  const definition=definitions.find(item=>part.startsWith(item.prefix));
+  if(definition)return {...definition,value:part.slice(definition.prefix.length)};
+  return {label:'Balance',tone:'balance',value:part};
+};
+const createCashTrendTooltip=hit=>{
+  const [title,...parts]=hit.dataset.tooltip.split(' · ');
+  const metrics=parts.map(parseCashTrendMetric);
+  const balance=metrics.shift();
+  const tooltip=document.createElement('span');
+  const forecast=title.toLowerCase().includes('forecast');
+  tooltip.className=`cash-trend-tooltip ${forecast?'forecast':'actual'}${metrics.length?'':' compact'}`;
+  tooltip.setAttribute('aria-hidden','true');
+  const header=document.createElement('span');
+  header.className='cash-trend-tooltip-header';
+  const heading=document.createElement('span');
+  heading.textContent=title;
+  const value=document.createElement('strong');
+  value.textContent=balance?.value||'';
+  header.append(heading,value);
+  tooltip.append(header);
+  if(title==='Today'&&metrics.length){
+    const caption=document.createElement('span');
+    caption.className='cash-trend-tooltip-caption';
+    caption.textContent='Last 7 days';
+    tooltip.append(caption);
+  }
+  if(metrics.length){
+    const metricsElement=document.createElement('span');
+    metricsElement.className='cash-trend-tooltip-metrics';
+    metrics.forEach(metric=>{
+      const item=document.createElement('span');
+      item.className=`cash-trend-tooltip-metric ${metric.tone}${metric.value.startsWith('+')?' positive-value':metric.value.startsWith('−')? ' negative-value':''}`;
+      const label=document.createElement('small');
+      label.textContent=metric.label;
+      const metricValue=document.createElement('strong');
+      metricValue.textContent=metric.value;
+      item.append(label,metricValue);
+      metricsElement.append(item);
+    });
+    tooltip.append(metricsElement);
+  }
+  return tooltip;
+};
+const setupCashTrendInteractions=()=>{
+  document.querySelectorAll('.cash-trend-chart').forEach(chart=>{
+    const guide=document.createElement('span');
+    guide.className='cash-trend-guide';
+    guide.setAttribute('aria-hidden','true');
+    chart.append(guide);
+    chart.querySelectorAll('.cash-trend-hit').forEach(hit=>{
+      const tooltip=createCashTrendTooltip(hit);
+      hit.append(tooltip);
+      const show=()=>{
+        chart.style.setProperty('--guide-x',hit.style.getPropertyValue('--x'));
+        guide.hidden=hit.dataset.tooltip.startsWith('Today');
+        chart.classList.add('is-hovering');
+        hit.classList.toggle('tooltip-below',Number.parseFloat(hit.style.getPropertyValue('--y'))<36);
+        tooltip.style.removeProperty('--tooltip-shift');
+        window.requestAnimationFrame(()=>{
+          const chartRect=chart.getBoundingClientRect();
+          const tooltipRect=tooltip.getBoundingClientRect();
+          const padding=8;
+          let shift=0;
+          if(tooltipRect.left<chartRect.left+padding)shift=chartRect.left+padding-tooltipRect.left;
+          if(tooltipRect.right>chartRect.right-padding)shift=chartRect.right-padding-tooltipRect.right;
+          tooltip.style.setProperty('--tooltip-shift',`${Math.round(shift)}px`);
+        });
+      };
+      const hide=()=>{
+        chart.classList.remove('is-hovering');
+        guide.hidden=false;
+      };
+      hit.addEventListener('pointerenter',show);
+      hit.addEventListener('pointerleave',()=>{if(document.activeElement!==hit)hide()});
+      hit.addEventListener('focus',show);
+      hit.addEventListener('blur',hide);
+    });
+  });
+};
+
 const positionCalculationPopover=()=>{
   if(!activeCalculationTrigger||calculationPopover.hidden){
     return;
@@ -788,6 +876,7 @@ let storedConcept;
 try{storedConcept=window.localStorage.getItem(conceptStorageKey)}catch(error){}
 const validConcepts=['dashboard','demand','combined'];
 const initialConcept=validConcepts.includes(requestedConcept)?requestedConcept:validConcepts.includes(storedConcept)?storedConcept:'dashboard';
+setupCashTrendInteractions();
 setCalculationVisibility(calculationsInitiallyVisible);
 setConcept(initialConcept);
 syncNavigation();
