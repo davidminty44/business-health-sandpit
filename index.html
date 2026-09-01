@@ -354,13 +354,13 @@
                 <section class="demand-card demand-ready" aria-labelledby="demandReadyTitle">
                   <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><em class="demand-tag" hidden>32 in Savio</em></div><span class="demand-card-total"><strong>$38,900 total</strong><small>11 jobs</small></span></header>
                   <div class="demand-ready-list">
-                    <label><input class="demand-invoice-select" type="checkbox" value="9800"><span><strong>Switchboard upgrade — Unit 4</strong><small>Kingsford Property Group · Finished 11 days ago</small></span><b>$9,800</b></label>
-                    <label><input class="demand-invoice-select" type="checkbox" value="7450"><span><strong>Annual RCD testing</strong><small>Waverley Aquatic Centre · Finished 8 days ago</small></span><b>$7,450</b></label>
-                    <label><input class="demand-invoice-select" type="checkbox" value="6200"><span><strong>Rough-in stage 2</strong><small>Hallam Bros Builders · Finished 14 days ago</small></span><b>$6,200</b></label>
-                    <label><input class="demand-invoice-select" type="checkbox" value="5900"><span><strong>Warehouse LED changeover</strong><small>Northline Logistics · Finished 5 days ago</small></span><b>$5,900</b></label>
+                    <label><input class="demand-invoice-select" type="radio" name="invoice-job" value="9800"><span><strong>Switchboard upgrade — Unit 4</strong><small>Kingsford Property Group · Finished 11 days ago</small></span><b>$9,800</b></label>
+                    <label><input class="demand-invoice-select" type="radio" name="invoice-job" value="7450"><span><strong>Annual RCD testing</strong><small>Waverley Aquatic Centre · Finished 8 days ago</small></span><b>$7,450</b></label>
+                    <label><input class="demand-invoice-select" type="radio" name="invoice-job" value="6200"><span><strong>Rough-in stage 2</strong><small>Hallam Bros Builders · Finished 14 days ago</small></span><b>$6,200</b></label>
+                    <label><input class="demand-invoice-select" type="radio" name="invoice-job" value="5900"><span><strong>Warehouse LED changeover</strong><small>Northline Logistics · Finished 5 days ago</small></span><b>$5,900</b></label>
                     <button class="text-link analyst-link demand-more-jobs" type="button" data-toast="In product, this reveals 7 more completed jobs worth $9,550.">7 more worth $9,550 <i class="fa fa-angle-down" aria-hidden="true"></i></button>
                   </div>
-                  <div class="demand-invoice-footer"><span class="demand-invoice-summary" id="demandInvoiceSummary">Select jobs to invoice</span><button class="btn btn-default demand-create-invoices" id="demandCreateInvoices" type="button" disabled><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Create invoice</span></button></div>
+                  <div class="demand-invoice-footer"><span class="demand-invoice-summary" id="demandInvoiceSummary">Select a job to invoice</span><button class="btn btn-default demand-create-invoices" id="demandCreateInvoices" type="button" disabled><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Create invoice</span></button></div>
                 </section>
 
                 <section class="demand-card demand-performance" aria-labelledby="demandPerformanceTitle">
@@ -420,8 +420,8 @@
                 <article class="combined-priorities demand-card">
                   <div class="primary-action">
                     <span class="action-rank primary">1</span>
-                    <div class="primary-action-copy"><span class="action-priority">Closest to cash</span><h3>Invoice 11 completed jobs</h3><strong class="primary-action-value">$38,900 <span>ready to invoice</span></strong><p>Turn finished work into money owed before it gets forgotten.</p></div>
-                    <button class="btn btn-primary combined-deep-link" type="button" data-concept-target="demand" data-target-section="ready">Review completed jobs</button>
+                    <div class="primary-action-copy"><span class="action-priority">Closest to cash</span><h3>Invoice the next completed job</h3><strong class="primary-action-value">$38,900 <span>across 11 jobs</span></strong><p>Start with the oldest finished job, then work through the list one at a time.</p></div>
+                    <button class="btn btn-primary combined-deep-link" type="button" data-concept-target="demand" data-target-section="ready">Choose a job</button>
                   </div>
                   <ol class="secondary-actions" start="2">
                     <li class="secondary-action"><span class="action-rank">2</span><div class="secondary-action-copy"><h3>Chase the oldest invoices</h3><p><strong>$18,680</strong> has been overdue for more than 60 days.</p></div><button class="text-link combined-deep-link" type="button" data-concept-target="demand" data-demand-target-bucket="60+">Open 60+ days <i class="fa fa-angle-right" aria-hidden="true"></i></button></li>

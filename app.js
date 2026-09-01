@@ -272,18 +272,15 @@ const renderDemandPerformance=flow=>{
   flow.querySelector('[data-demand-profit-bar]').style.width=`${profit/period.revenue*100}%`;
 };
 const renderDemandInvoiceSelection=flow=>{
-  const selections=Array.from(flow.querySelectorAll('.demand-invoice-select'));
+  const selected=flow.querySelector('.demand-invoice-select:checked');
   const summary=flow.querySelector('.demand-invoice-summary');
-  const createInvoices=flow.querySelector('.demand-create-invoices');
-  if(!summary||!createInvoices)return;
-  const selected=selections.filter(input=>input.checked);
-  const total=selected.reduce((sum,input)=>sum+Number(input.value),0);
-  summary.parentElement.classList.toggle('active',selected.length>0);
-  summary.textContent=selected.length?`${selected.length} selected · ${formatDemandMoney(total)}`:'Select jobs to invoice';
-  createInvoices.disabled=selected.length===0;
-  createInvoices.classList.toggle('btn-primary',selected.length>0);
-  createInvoices.classList.toggle('btn-default',selected.length===0);
-  createInvoices.querySelector('span').textContent=selected.length>1?`Create ${selected.length} invoices`:'Create invoice';
+  const createInvoice=flow.querySelector('.demand-create-invoices');
+  if(!summary||!createInvoice)return;
+  summary.parentElement.classList.toggle('active',Boolean(selected));
+  summary.textContent=selected?`Selected · ${formatDemandMoney(Number(selected.value))}`:'Select a job to invoice';
+  createInvoice.disabled=!selected;
+  createInvoice.classList.toggle('btn-primary',Boolean(selected));
+  createInvoice.classList.toggle('btn-default',!selected);
 };
 
 const positionCalculationPopover=()=>{
@@ -633,10 +630,12 @@ demandFlows.forEach(flow=>{
   const periodSelect=flow.querySelector('.demand-period');
   if(periodSelect)periodSelect.addEventListener('change',()=>renderDemandPerformance(flow));
   flow.querySelectorAll('.demand-invoice-select').forEach(input=>input.addEventListener('change',()=>renderDemandInvoiceSelection(flow)));
-  const createInvoices=flow.querySelector('.demand-create-invoices');
-  if(createInvoices)createInvoices.addEventListener('click',()=>{
-    const selected=Array.from(flow.querySelectorAll('.demand-invoice-select')).filter(input=>input.checked).length;
-    if(selected)showToast(`Creating ${selected} invoice${selected===1?'':'s'}.`);
+  const createInvoice=flow.querySelector('.demand-create-invoices');
+  if(createInvoice)createInvoice.addEventListener('click',()=>{
+    const selected=flow.querySelector('.demand-invoice-select:checked');
+    if(!selected)return;
+    const job=selected.closest('label').querySelector('strong').textContent;
+    showToast(`Opening a new invoice for ${job}.`);
   });
   renderDemandRows(flow);
   renderDemandPerformance(flow);
