@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263238">
-  <title>Business Health | Tradify Reports</title>
+  <title>Business Analysis | Tradify Reports</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="prototype-bar" aria-label="Choose a Business Health prototype">
-    <div class="concept-switch" role="group" aria-label="Choose a Business Health concept">
+  <nav class="prototype-bar" aria-label="Choose a Business Analysis prototype">
+    <div class="concept-switch" role="group" aria-label="Choose a Business Analysis concept">
       <button class="concept-option active" type="button" data-concept="dashboard" aria-pressed="true">Dashboard</button>
       <button class="concept-option" type="button" data-concept="demand" aria-pressed="false">Demand-led</button>
       <button class="concept-option" type="button" data-concept="combined" aria-pressed="false">Combined</button>
     </div>
     <div class="prototype-demand-tools">
-      <div class="prototype-demand-info"><strong id="prototypeConceptName">[ Prototype A ] Business Health</strong><span id="prototypeConceptDescription">Ordered by counted Savio demand</span></div>
+      <div class="prototype-demand-info"><strong id="prototypeConceptName">[ Prototype A ] Business Analysis</strong><span id="prototypeConceptDescription">Ordered by counted Savio demand</span></div>
       <label class="prototype-demand-toggle"><input id="demandMappingToggle" type="checkbox">Show demand mapping</label>
     </div>
   </nav>
@@ -69,7 +69,7 @@
         <aside class="reports-list" aria-label="Available reports">
           <label class="report-selector-label" for="reportSelector">Choose a report</label>
           <select class="form-control report-selector" id="reportSelector">
-            <option value="business">Business Health</option>
+            <option value="business">Business Analysis</option>
             <option value="job">Job Financial Report</option>
             <option value="productivity">Productivity Report</option>
             <option value="timesheet">Timesheet Report</option>
@@ -77,9 +77,9 @@
             <option value="contact">Contact Tracing Report</option>
           </select>
           <nav class="report-nav">
-            <button class="report-nav-item selected" type="button" aria-current="page" data-report="Business Health">
+            <button class="report-nav-item selected" type="button" aria-current="page" data-report="Business Analysis">
               <span class="report-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
-              <span class="report-name">Business Health</span>
+              <span class="report-name">Business Analysis</span>
               <span class="new-badge">NEW</span>
             </button>
             <button class="report-nav-item" type="button" data-report="Job Financial Report">
@@ -108,7 +108,7 @@
         <article class="reports-view" aria-labelledby="reportTitle">
           <header class="report-header">
             <div class="report-heading">
-              <h1 id="reportTitle" tabindex="-1">Business Health</h1>
+              <h1 id="reportTitle" tabindex="-1">Business Analysis</h1>
               <p class="report-subtitle" id="reportSubtitle">Money in, money out, and what’s left over — as at 31 Aug 2026, 9:00am.</p>
             </div>
             <div class="report-actions">
@@ -440,7 +440,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button class="modal-close" id="modalClose" type="button" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <h2 id="scheduleModalTitle">Schedule Business Health</h2>
+          <h2 id="scheduleModalTitle">Schedule Business Analysis</h2>
           <p>Choose when this report is emailed.</p>
         </div>
         <form id="scheduleForm">
@@ -500,13 +500,13 @@
         </div>
         <div class="modal-body email-preview-body">
           <dl class="email-metadata">
-            <div><dt>Subject</dt><dd id="emailPreviewSubject">Your Business Health report — Last 7 days</dd></div>
+            <div><dt>Subject</dt><dd id="emailPreviewSubject">Your Business Analysis report — Last 7 days</dd></div>
             <div><dt>From</dt><dd>Tradify</dd></div>
             <div><dt>To</dt><dd id="emailPreviewRecipients">Office team, office@example.com</dd></div>
           </dl>
           <div class="email-preview-card">
             <div class="email-preview-content">
-              <h3>Business Health</h3>
+              <h3>Business Analysis</h3>
               <p class="email-intro" id="emailPreviewIntro">Here’s how money moved through Fandango Plumbing over the last 7 days.</p>
               <div class="email-highlights">
                 <div><span>Net cash</span><strong>-$7,300</strong></div>

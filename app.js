@@ -197,10 +197,10 @@ const setConcept=(concept,announce=false,persist=false)=>{
   };
   reportSubtitle.textContent=subtitles[activeConcept];
   if(activeConcept==='combined'){
-    prototypeConceptName.textContent='[ Prototype B ] Business Health';
+    prototypeConceptName.textContent='[ Prototype B ] Business Analysis';
     prototypeConceptDescription.textContent='Integrated overview with deep dives';
   }else{
-    prototypeConceptName.textContent='[ Prototype A ] Business Health';
+    prototypeConceptName.textContent='[ Prototype A ] Business Analysis';
     prototypeConceptDescription.textContent='Ordered by counted Savio demand';
   }
   conceptButtons.forEach(button=>{
@@ -508,7 +508,7 @@ const renderEmailPreviewContent=(reportPeriod,periodPhrase)=>{
   });
   emailAttention.querySelector('strong').textContent='Take action';
   Array.from(emailAttention.querySelectorAll('span')).forEach((item,index)=>{item.textContent=attentionLines[index]});
-  emailPreviewSubject.textContent=`Your Business Health report — ${reportPeriod}`;
+  emailPreviewSubject.textContent=`Your Business Analysis report — ${reportPeriod}`;
   emailPreviewIntro.textContent=`Here’s how money moved through Fandango Plumbing ${periodPhrase}.`;
   emailContext.textContent='2.5 weeks of work booked.';
 };
