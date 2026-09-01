@@ -247,10 +247,10 @@ const setConcept=(concept,announce=false,persist=false)=>{
 };
 
 const demandPerformancePeriods={
-  '30d':{dates:'02/08/2026 – 01/09/2026',revenue:186400,cost:121160,previous:38.2},
-  aug:{dates:'01/08/2026 – 31/08/2026',revenue:194900,cost:124800,previous:36.1},
-  q:{dates:'01/07/2026 – 01/09/2026',revenue:371200,cost:232900,previous:37.4},
-  fy:{dates:'01/07/2026 – 01/09/2026',revenue:371200,cost:232900,previous:35.8}
+  '30d':{dates:'02/08/2026 – 01/09/2026',revenue:186400,cost:121160,previous:38.2,comparison:'vs prior 30 days'},
+  aug:{dates:'01/08/2026 – 31/08/2026',revenue:194900,cost:124800,previous:36.1,comparison:'vs July'},
+  q:{dates:'01/07/2026 – 01/09/2026',revenue:371200,cost:232900,previous:37.4,comparison:'vs last quarter to date'},
+  fy:{dates:'01/07/2026 – 01/09/2026',revenue:371200,cost:232900,previous:35.8,comparison:'vs last year to date'}
 };
 const formatDemandMoney=value=>`$${value.toLocaleString('en-AU')}`;
 const demandRowLimit=3;
@@ -265,12 +265,12 @@ const renderDemandPerformance=flow=>{
   const margin=profit/period.revenue*100;
   const delta=margin-period.previous;
   const down=delta<0;
-  calculationMetadata['demand-performance'].calculation=`Gross profit: ${formatDemandMoney(period.revenue)} invoiced − ${formatDemandMoney(period.cost)} cost of work = ${formatDemandMoney(profit)}. Gross margin: ${formatDemandMoney(profit)} ÷ ${formatDemandMoney(period.revenue)} = ${margin.toFixed(1)}%. Margin change: ${margin.toFixed(1)}% − ${period.previous.toFixed(1)}% = ${delta>=0?'+':''}${delta.toFixed(1)} percentage points.`;
+  calculationMetadata['demand-performance'].calculation=`Gross profit: ${formatDemandMoney(period.revenue)} invoiced − ${formatDemandMoney(period.cost)} cost of work = ${formatDemandMoney(profit)}. Gross margin: ${formatDemandMoney(profit)} ÷ ${formatDemandMoney(period.revenue)} = ${margin.toFixed(1)}%. Previous comparison (${period.comparison.slice(3)}): ${period.previous.toFixed(1)}%. Margin change: ${margin.toFixed(1)}% − ${period.previous.toFixed(1)}% = ${delta>=0?'+':''}${delta.toFixed(1)} percentage points.`;
   flow.querySelector('[data-demand-margin]').textContent=`${margin.toFixed(1)}%`;
   const deltaElement=flow.querySelector('[data-demand-margin-delta]');
   deltaElement.classList.toggle('negative',down);
   deltaElement.classList.toggle('positive',!down);
-  deltaElement.innerHTML=`<i class="fa fa-arrow-${down?'down':'up'}" aria-hidden="true"></i>${Math.abs(delta).toFixed(1)} pts`;
+  deltaElement.innerHTML=`<span class="demand-margin-change"><i class="fa fa-arrow-${down?'down':'up'}" aria-hidden="true"></i>${Math.abs(delta).toFixed(1)} pts</span><small>${period.comparison}</small>`;
   flow.querySelector('[data-demand-revenue-value]').textContent=formatDemandMoney(period.revenue);
   flow.querySelector('[data-demand-cost-value]').textContent=formatDemandMoney(period.cost);
   flow.querySelector('[data-demand-profit-value]').textContent=formatDemandMoney(profit);
