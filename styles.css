@@ -439,7 +439,6 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-performance-hero>div{margin-top:7px;display:flex;align-items:baseline;gap:10px}
 .demand-performance-hero>div>strong{color:#263238;font-size:34px;font-weight:500;line-height:38px}
 .demand-performance-hero>div>span{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:500}
-.demand-performance-hero p{margin:2px 0 0;color:#526069;font-size:11px;line-height:16px}
 .demand-performance-bars{padding:11px 16px 16px}
 .demand-performance-bars>div{margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:4px 10px}
 .demand-performance-bars span,.demand-performance-bars strong{font-size:11px;font-weight:400}

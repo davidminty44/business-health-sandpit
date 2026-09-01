@@ -295,13 +295,11 @@ const renderDemandPerformance=flow=>{
   const delta=margin-period.previous;
   const down=delta<0;
   calculationMetadata['demand-performance'].calculation=`${formatDemandMoney(period.revenue)} invoiced − ${formatDemandMoney(period.cost)} cost of work = ${formatDemandMoney(profit)} gross profit. ${formatDemandMoney(profit)} ÷ ${formatDemandMoney(period.revenue)} = ${margin.toFixed(1)}%. Previous period: ${period.previous.toFixed(1)}%.`;
-  flow.querySelector('[data-demand-period-dates]').textContent=`Gross margin · ${period.dates}`;
   flow.querySelector('[data-demand-margin]').textContent=`${margin.toFixed(1)}%`;
   const deltaElement=flow.querySelector('[data-demand-margin-delta]');
   deltaElement.classList.toggle('negative',down);
   deltaElement.classList.toggle('positive',!down);
   deltaElement.innerHTML=`<i class="fa fa-arrow-${down?'down':'up'}" aria-hidden="true"></i>${Math.abs(delta).toFixed(1)} pts`;
-  flow.querySelector('[data-demand-performance-summary]').textContent=`${formatDemandMoney(profit)} on ${formatDemandMoney(period.revenue)} invoiced · was ${period.previous.toFixed(1)}% previous period`;
   flow.querySelector('[data-demand-revenue-value]').textContent=formatDemandMoney(period.revenue);
   flow.querySelector('[data-demand-cost-value]').textContent=formatDemandMoney(period.cost);
   flow.querySelector('[data-demand-profit-value]').textContent=formatDemandMoney(profit);
