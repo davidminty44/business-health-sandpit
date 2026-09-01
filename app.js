@@ -268,12 +268,12 @@ const demandPerformancePeriods={
 const formatDemandMoney=value=>`$${value.toLocaleString('en-AU')}`;
 const demandRowLimit=3;
 const renderDemandRows=flow=>{
-  const activeBucket=flow.dataset.demandBucket||'all';
+  const activeBucket=flow.dataset.demandBucket||'1-30';
   const rowsExpanded=flow.dataset.demandRowsExpanded==='true';
   const rows=Array.from(flow.querySelectorAll('[data-demand-owed]'));
   const buttons=Array.from(flow.querySelectorAll('[data-demand-bucket]'));
   const showMore=flow.querySelector('.demand-show-more');
-  const matches=rows.filter(row=>activeBucket==='all'||row.dataset.bucket===activeBucket);
+  const matches=rows.filter(row=>row.dataset.bucket===activeBucket);
   rows.forEach(row=>{
     const index=matches.indexOf(row);
     row.hidden=index===-1||(!rowsExpanded&&index>=demandRowLimit);
@@ -728,7 +728,7 @@ document.querySelectorAll('.period-link').forEach(button=>{
 
 demandMappingToggle.addEventListener('change',()=>demandTags.forEach(tag=>{tag.hidden=!demandMappingToggle.checked}));
 demandFlows.forEach(flow=>{
-  flow.dataset.demandBucket='all';
+  flow.dataset.demandBucket='1-30';
   flow.dataset.demandRowsExpanded='false';
   flow.querySelectorAll('[data-demand-bucket]').forEach(button=>button.addEventListener('click',()=>{
     flow.dataset.demandBucket=button.dataset.demandBucket;
