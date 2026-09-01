@@ -396,7 +396,9 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-column{min-width:0;display:flex;flex-direction:column;gap:15px}
 .demand-card-head{min-height:46px;padding:0 16px;border-bottom:1px solid #e0e0e0;background:#fafafa;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .demand-chasing .demand-card-total strong{color:#a5383c}
+.demand-chasing .demand-owed-copy>strong{color:#009ec7;font-weight:400}
 .demand-ready .demand-card-total strong{color:#318561}
+.demand-ready .demand-ready-row strong{color:#009ec7;font-weight:400}
 .demand-card-head h2,.demand-card-head h3{margin:0;color:#212121;font-size:16px;font-weight:400;line-height:20px}
 .demand-card-total{display:flex;align-items:flex-end;flex-direction:column;white-space:nowrap}
 .demand-card-total strong{color:#424242;font-size:14px;font-weight:500;line-height:20px}
