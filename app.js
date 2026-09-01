@@ -231,6 +231,7 @@ const demandPerformancePeriods={
   fy:{dates:'01/07/2026 – 01/09/2026',revenue:371200,cost:232900,previous:35.8}
 };
 const formatDemandMoney=value=>`$${value.toLocaleString('en-AU')}`;
+const demandRowLimit=3;
 const renderDemandRows=flow=>{
   const activeBucket=flow.dataset.demandBucket||'all';
   const rowsExpanded=flow.dataset.demandRowsExpanded==='true';
@@ -240,9 +241,9 @@ const renderDemandRows=flow=>{
   const matches=rows.filter(row=>activeBucket==='all'||row.dataset.bucket===activeBucket);
   rows.forEach(row=>{
     const index=matches.indexOf(row);
-    row.hidden=index===-1||(!rowsExpanded&&index>=5);
+    row.hidden=index===-1||(!rowsExpanded&&index>=demandRowLimit);
   });
-  const hiddenCount=Math.max(0,matches.length-(rowsExpanded?matches.length:5));
+  const hiddenCount=Math.max(0,matches.length-(rowsExpanded?matches.length:demandRowLimit));
   if(showMore){
     showMore.parentElement.hidden=hiddenCount===0;
     showMore.innerHTML=`Show ${hiddenCount} more <i class="fa fa-angle-down" aria-hidden="true"></i>`;
