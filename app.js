@@ -87,7 +87,7 @@ const calculationMetadata={
   'overdue-invoices':{
     title:'Invoices to chase calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Outstanding customer invoice balances whose due date is before the report date.',
-    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. 1–30 days: $5,140 + $4,600 + $3,850 + $650 = $14,240. 31–60 days: $8,950 + $5,950 = $14,900. 60+ days: $12,400 + $6,280 = $18,680. Total: $14,240 + $14,900 + $18,680 = $47,820 across 8 invoices. Days overdue = report date − invoice due date. Reminders sent = recorded reminder events for that invoice.',
+    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. Total: $12,400 + $6,280 + $8,950 + $5,950 + $5,140 + $4,600 + $3,850 + $650 = $47,820 across 8 invoices. The 3 oldest invoices shown total $27,630; the other 5 total $20,190. Days overdue = report date − invoice due date. Reminders sent = recorded reminder events for that invoice.',
     source:'Tradify customer invoices: customer total, due date, status, applied credits, recorded payments and reminder events.',
     note:'Draft, cancelled and fully paid invoices are excluded. Payments not yet recorded in Tradify will still appear outstanding.'
   },
@@ -255,22 +255,7 @@ const demandPerformancePeriods={
 const formatDemandMoney=value=>`$${value.toLocaleString('en-AU')}`;
 const demandRowLimit=3;
 const renderDemandRows=flow=>{
-  const activeBucket=flow.dataset.demandBucket||'1-30';
-  const rowsExpanded=flow.dataset.demandRowsExpanded==='true';
-  const rows=Array.from(flow.querySelectorAll('[data-demand-owed]'));
-  const buttons=Array.from(flow.querySelectorAll('[data-demand-bucket]'));
-  const showMore=flow.querySelector('.demand-show-more');
-  const matches=rows.filter(row=>row.dataset.bucket===activeBucket);
-  rows.forEach(row=>{
-    const index=matches.indexOf(row);
-    row.hidden=index===-1||(!rowsExpanded&&index>=demandRowLimit);
-  });
-  const hiddenCount=Math.max(0,matches.length-(rowsExpanded?matches.length:demandRowLimit));
-  if(showMore){
-    showMore.parentElement.hidden=hiddenCount===0;
-    showMore.innerHTML=`Show ${hiddenCount} more <i class="fa fa-angle-down" aria-hidden="true"></i>`;
-  }
-  buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.demandBucket===activeBucket)));
+  flow.querySelectorAll('[data-demand-owed]').forEach((row,index)=>{row.hidden=index>=demandRowLimit});
 };
 const renderDemandPerformance=flow=>{
   const periodSelect=flow.querySelector('.demand-period');
@@ -714,18 +699,6 @@ document.querySelectorAll('.period-link').forEach(button=>{
 
 demandMappingToggle.addEventListener('change',()=>demandTags.forEach(tag=>{tag.hidden=!demandMappingToggle.checked}));
 demandFlows.forEach(flow=>{
-  flow.dataset.demandBucket='1-30';
-  flow.dataset.demandRowsExpanded='false';
-  flow.querySelectorAll('[data-demand-bucket]').forEach(button=>button.addEventListener('click',()=>{
-    flow.dataset.demandBucket=button.dataset.demandBucket;
-    flow.dataset.demandRowsExpanded='false';
-    renderDemandRows(flow);
-  }));
-  const showMore=flow.querySelector('.demand-show-more');
-  if(showMore)showMore.addEventListener('click',()=>{
-    flow.dataset.demandRowsExpanded='true';
-    renderDemandRows(flow);
-  });
   const periodSelect=flow.querySelector('.demand-period');
   if(periodSelect)periodSelect.addEventListener('change',()=>{
     renderDemandPerformance(flow);
@@ -734,21 +707,6 @@ demandFlows.forEach(flow=>{
   renderDemandRows(flow);
   renderDemandPerformance(flow);
 });
-document.querySelectorAll('.combined-deep-link').forEach(link=>link.addEventListener('click',()=>{
-  if(link.dataset.demandTargetBucket){
-    demandConcept.dataset.demandBucket=link.dataset.demandTargetBucket;
-    demandConcept.dataset.demandRowsExpanded='false';
-    renderDemandRows(demandConcept);
-  }
-  setConcept(link.dataset.conceptTarget,true,true);
-  const target=link.dataset.targetSection==='ready'
-    ?demandConcept.querySelector('.demand-ready')
-    :link.dataset.demandTargetBucket
-      ?demandConcept.querySelector('.demand-chasing')
-      :demandConcept.querySelector('.demand-money-grid');
-  window.requestAnimationFrame(()=>target?.scrollIntoView({block:'start'}));
-}));
-
 document.querySelectorAll('.analyst-link').forEach(link=>link.addEventListener('click',()=>showToast(link.dataset.toast)));
 
 document.querySelectorAll('.report-nav-item:not(.selected)').forEach(button=>{
