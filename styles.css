@@ -385,7 +385,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .health-view-context>span{color:#757575;font-size:12px;line-height:18px;white-space:nowrap}
 .card-guidance{margin:0;padding:11px 16px;border-bottom:1px solid #e0e0e0;background:#fff;color:#757575;font-size:12px;line-height:18px}
 .demand-card{min-width:0;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
-.demand-cash-flow-grid{width:100%;min-width:0;padding:20px;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.demand-cash-flow-grid{width:100%;min-width:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .demand-outlook-figure{border-color:#99d8e9;background:#e5f5f9;box-shadow:inset 3px 0 0 #009ec7}
 .demand-outlook-figure>strong{color:#006f8b}
 .demand-outlook-figure .kpi-label{align-items:center;flex-wrap:wrap}
@@ -591,7 +591,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   #dashboardConcept>.period-panel{margin:0 -12px;padding:0 16px}
   .demand-concept,.combined-concept{margin:0 -16px -18px}
   .demand-content,.combined-content{padding:12px}
-  .demand-cash-flow-grid{padding:18px 16px;border-radius:7px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .combined-content{gap:18px}
   .demand-card{border-radius:7px}
   .reports-list{position:static;width:auto;margin-bottom:10px;padding:11px 12px;display:flex;align-items:center;gap:10px}
