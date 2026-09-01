@@ -37,6 +37,8 @@ const calculationMedia=window.matchMedia('(max-width:800px)');
 const calculationStorageKey='tradify.reports.businessHealth.showCalculations';
 const calculationKeyStorageKey='tradify.reports.businessHealth.calculationKeySeen';
 const demandFlows=Array.from(document.querySelectorAll('[data-demand-flow]'));
+const healthViewTabs=Array.from(document.querySelectorAll('.health-view-tab'));
+const healthViewPanels=Array.from(document.querySelectorAll('.health-view-panel'));
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
@@ -87,10 +89,59 @@ const calculationMetadata={
     source:'Tradify completed jobs, accepted fixed-price quote values or recorded charge-up lines, completion dates and existing invoice links.',
     note:'This is a prototype readiness rule. Fixed-price and charge-up values must be treated as alternative billing methods, not added together. A completed job may still need review before invoicing.'
   },
+  'quote-win-rate':{
+    title:'Quote win rate calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'The share of decided quotes that customers accepted in the selected period.',
+    calculation:'9 accepted ÷ (9 accepted + 7 declined) = 56.25%, shown as 56%. Last month was 48%, so the win rate is up 8 points.',
+    source:'Latest Tradify quote versions marked Accepted or Declined.',
+    note:'Draft, open, expired and cancelled quotes are excluded until the customer decides.'
+  },
+  'open-quotes':{
+    title:'Open quotes calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
+    definition:'The ex-tax value of sent, unexpired quotes still awaiting a customer decision.',
+    calculation:'3 quiet quotes worth $18,900 + 5 fresh quotes worth $15,600 = $34,500 across 8 open quotes.',
+    source:'Current open, unexpired Tradify quotes that have been sent to customers.',
+    note:'Draft quotes and quotes already accepted, declined, cancelled or expired are excluded.'
+  },
+  'quiet-quotes':{
+    title:'Quotes to follow up calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Open quotes sent at least 14 days ago with no recorded customer decision.',
+    calculation:'$9,200 + $6,100 + $3,600 = $18,900 across 3 quotes quiet for 14 days or more.',
+    source:'Tradify quote sent dates, current statuses and recorded reminder activity.',
+    note:'Fourteen days is a prototype follow-up threshold. A customer may have replied outside Tradify.'
+  },
+  'fresh-quotes':{
+    title:'New quotes calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
+    definition:'Open quotes sent during the selected week.',
+    calculation:'Five quotes sent from 25–31 August total $15,600.',
+    source:'Tradify quote sent dates, values and current statuses.',
+    note:'A quote remains in this figure while it is open, even if the customer has replied outside Tradify.'
+  },
+  'enquiries-to-quote':{
+    title:'Enquiries to quote calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Open enquiries that do not yet have a draft or sent quote.',
+    calculation:'Four open enquiries have no quote attached. The three oldest are shown.',
+    source:'Tradify enquiry status and linked quote records.',
+    note:'An enquiry may not need a quote, so review its status before creating one.'
+  },
+  'quote-pipeline':{
+    title:'Quote pipeline calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Current open quote value alongside quote decisions made in the last 30 days.',
+    calculation:'Open: 8 quotes worth $34,500, split into $15,600 fresh and $18,900 quiet. Decisions in the last 30 days: 9 accepted worth $42,700 and 7 declined worth $30,900.',
+    source:'Tradify quote values, sent dates and current statuses.',
+    note:'Open and decided figures are different populations and should not be added together.'
+  },
   'booked-ahead':{
     title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Committed work value, estimated delivery cost and potential gross profit from scheduled jobs and accepted quotes.',
     calculation:'$264,500 committed value = $142,000 in Sep + $88,500 in Oct + $34,000 in Nov. $264,500 − $179,900 estimated cost = $84,600 potential gross profit. $84,600 ÷ $264,500 = 32.0% estimated margin.',
+    source:'Accepted quote values and quoted labour, material, subcontractor and other cost estimates held in Tradify.',
+    note:'Committed value is not expected cash. Cost and profit use quoted estimates, not costs recorded during the job, so actual gross profit may be lower.'
+  },
+  'winning-booked-ahead':{
+    title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
+    definition:'Committed work value, estimated delivery cost and potential gross profit from scheduled jobs and accepted quotes.',
+    calculation:'$88,400 committed value = $42,500 in Sep + $29,600 in Oct + $16,300 in Nov. $88,400 − $55,700 estimated cost = $32,700 potential gross profit. $32,700 ÷ $88,400 = 37.0% estimated margin.',
     source:'Accepted quote values and quoted labour, material, subcontractor and other cost estimates held in Tradify.',
     note:'Committed value is not expected cash. Cost and profit use quoted estimates, not costs recorded during the job, so actual gross profit may be lower.'
   },
@@ -636,6 +687,38 @@ document.querySelectorAll('.period-link').forEach(button=>{
     appliedPeriod.textContent=summaries[button.dataset.period];
   });
 });
+
+const activateHealthView=(tab,updateUrl=true)=>{
+  closeCalculationPopover(false);
+  healthViewTabs.forEach(item=>{
+    const active=item===tab;
+    item.classList.toggle('active',active);
+    item.setAttribute('aria-selected',String(active));
+    item.tabIndex=active?0:-1;
+  });
+  healthViewPanels.forEach(panel=>{panel.hidden=panel.id!==tab.getAttribute('aria-controls')});
+  if(updateUrl){
+    const url=new URL(window.location.href);
+    if(tab.id==='winningWorkTab')url.searchParams.set('area','winning');else url.searchParams.delete('area');
+    window.history.replaceState({},'',url);
+  }
+};
+healthViewTabs.forEach((tab,index)=>{
+  tab.addEventListener('click',()=>activateHealthView(tab));
+  tab.addEventListener('keydown',event=>{
+    let targetIndex=index;
+    if(event.key==='ArrowRight')targetIndex=(index+1)%healthViewTabs.length;
+    else if(event.key==='ArrowLeft')targetIndex=(index-1+healthViewTabs.length)%healthViewTabs.length;
+    else if(event.key==='Home')targetIndex=0;
+    else if(event.key==='End')targetIndex=healthViewTabs.length-1;
+    else return;
+    event.preventDefault();
+    activateHealthView(healthViewTabs[targetIndex]);
+    healthViewTabs[targetIndex].focus();
+  });
+});
+const requestedHealthArea=new URLSearchParams(window.location.search).get('area');
+if(requestedHealthArea==='winning'&&healthViewTabs[1])activateHealthView(healthViewTabs[1],false);
 
 demandFlows.forEach(flow=>{
   const periodSelect=flow.querySelector('.demand-period');

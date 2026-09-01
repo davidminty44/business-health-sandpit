@@ -372,8 +372,20 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-concept{margin:0 -30px -24px;background:#fff;color:#263238}
 .demand-concept[hidden],.demand-owed-row[hidden]{display:none}
 .demand-content{width:100%;min-width:0;max-width:none;margin:0;padding:15px;display:flex;flex-direction:column;gap:15px}
+.health-view-tabs{position:fixed;z-index:240;top:0;left:50%;width:auto;padding:3px;border:1px solid #526069;border-top:0;border-radius:0 0 5px 5px;background:#263238;box-shadow:0 2px 6px rgba(38,50,56,.24);display:flex;gap:2px;transform:translateX(-50%)}
+.health-view-tab{min-height:28px;padding:3px 12px;border:0;border-radius:3px;background:transparent;color:#c4cdd2;font-size:11px;font-weight:400;line-height:18px;white-space:nowrap;cursor:pointer}
+.health-view-tab:hover{background:#405058;color:#fff}
+.health-view-tab.active{background:#fff;color:#263238}
+.health-view-tab:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.health-view-panel{min-width:0;display:flex;flex-direction:column;gap:15px}
+.health-view-panel[hidden]{display:none}
+.health-view-context{min-height:54px;padding:12px 16px;border-left:3px solid #009ec7;border-radius:3px;background:#f1f8fa;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.health-view-context p{margin:0;color:#526069;font-size:13px;line-height:20px}
+.health-view-context p strong{color:#263238;font-weight:500}
+.health-view-context>span{color:#757575;font-size:12px;line-height:18px;white-space:nowrap}
+.card-guidance{margin:0;padding:11px 16px;border-bottom:1px solid #e0e0e0;background:#fff;color:#757575;font-size:12px;line-height:18px}
 .demand-card{min-width:0;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
-.demand-cash-flow-grid{width:100%;min-width:0;padding:20px;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.demand-cash-flow-grid{width:100%;min-width:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .demand-outlook-figure{border-color:#99d8e9;background:#e5f5f9;box-shadow:inset 3px 0 0 #009ec7}
 .demand-outlook-figure>strong{color:#006f8b}
 .demand-outlook-figure .kpi-label{align-items:center;flex-wrap:wrap}
@@ -384,7 +396,9 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-column{min-width:0;display:flex;flex-direction:column;gap:15px}
 .demand-card-head{min-height:46px;padding:0 16px;border-bottom:1px solid #e0e0e0;background:#fafafa;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .demand-chasing .demand-card-total strong{color:#a5383c}
+.demand-chasing .demand-owed-copy>strong{color:#009ec7;font-weight:400}
 .demand-ready .demand-card-total strong{color:#318561}
+.demand-ready .demand-ready-row strong{color:#009ec7;font-weight:400}
 .demand-card-head h2,.demand-card-head h3{margin:0;color:#212121;font-size:16px;font-weight:400;line-height:20px}
 .demand-card-total{display:flex;align-items:flex-end;flex-direction:column;white-space:nowrap}
 .demand-card-total strong{color:#424242;font-size:14px;font-weight:500;line-height:20px}
@@ -449,6 +463,33 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-ready-row strong{overflow:hidden;color:#424242;font-size:14px;font-weight:500;line-height:20px;text-overflow:ellipsis;white-space:nowrap}
 .demand-ready-row small{color:#757575;font-size:12px;font-weight:300;line-height:18px}
 .demand-ready-row>b{color:#424242;font-size:14px;font-weight:500;line-height:20px;text-align:right}
+.win-rate-figure{border-color:#bfe5d3;background:#f5fbf8;box-shadow:inset 3px 0 0 #46be8a}
+.win-rate-figure>strong,.fresh-quote-figure>strong{color:#318561}
+.quiet-quote-figure{border-color:#f0d5a8;background:#fffaf1;box-shadow:inset 3px 0 0 #e6a23c}
+.quiet-quote-figure>strong{color:#9a6a12}
+.fresh-quote-figure{border-color:#bfe5d3;background:#f5fbf8}
+.quiet-quotes-card .demand-card-total strong{color:#9a6a12}
+.enquiry-card .demand-card-total strong{color:#006f8b}
+.enquiry-card .demand-ready-row>b{color:#009ec7;font-size:12px;white-space:nowrap}
+.pipeline-body{padding:16px}
+.pipeline-total{margin-bottom:13px;display:flex;align-items:baseline;gap:8px}
+.pipeline-total strong{color:#212121;font-size:30px;font-weight:400;line-height:36px}
+.pipeline-total span{color:#757575;font-size:12px;line-height:18px}
+.pipeline-split{height:9px;border-radius:5px;background:#eee;display:flex;overflow:hidden}
+.pipeline-split span{height:100%;display:block}
+.pipeline-split .fresh{background:#46be8a}
+.pipeline-split .quiet{background:#e6a23c}
+.pipeline-key{margin:7px 0 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pipeline-key>span{color:#757575;display:flex;align-items:center;gap:5px;font-size:12px;line-height:18px}
+.pipeline-key i{width:8px;height:8px;border-radius:50%;display:block}
+.pipeline-key i.fresh{background:#46be8a}
+.pipeline-key i.quiet{background:#e6a23c}
+.pipeline-key strong{color:#424242;font-weight:500}
+.pipeline-outcomes{border:1px solid #e0e0e0;border-radius:4px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
+.pipeline-outcomes>div{min-width:0;padding:10px;border-right:1px solid #e0e0e0;display:flex;flex-direction:column}
+.pipeline-outcomes>div:last-child{border-right:0}
+.pipeline-outcomes span,.pipeline-outcomes small{color:#757575;font-size:11px;line-height:16px}
+.pipeline-outcomes strong{margin:2px 0;color:#263238;font-size:20px;font-weight:400;line-height:24px}
 .modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(38,50,56,.58)}
 .modal{position:fixed;inset:0;z-index:105;overflow-x:hidden;overflow-y:auto}
 .modal[hidden],.modal-backdrop[hidden],.toast[hidden]{display:none}
@@ -510,6 +551,9 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 @media(max-width:1280px){
   .actuals-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+@media(max-width:1180px){
+  .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media(max-width:1050px){
   .reports-list{width:210px;flex-basis:210px}
   .demand-columns,.combined-health-detail,.combined-ahead-grid{grid-template-columns:1fr}
@@ -525,6 +569,8 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .card-heading{min-height:0;margin-bottom:13px}
 }
 @media(max-width:800px){
+  .health-view-tabs{right:8px;left:auto;transform:none}
+  .health-view-tab{padding-right:9px;padding-left:9px}
   .sidebar{top:0;width:200px;transform:translateX(-102%);transition:transform .2s ease-out}
   .sidebar.open{transform:translateX(0)}
   .sidebar nav a{height:40px;padding:10px 20px;font-size:14px;line-height:20px}
@@ -545,7 +591,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   #dashboardConcept>.period-panel{margin:0 -12px;padding:0 16px}
   .demand-concept,.combined-concept{margin:0 -16px -18px}
   .demand-content,.combined-content{padding:12px}
-  .demand-cash-flow-grid{padding:18px 16px;border-radius:7px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .combined-content{gap:18px}
   .demand-card{border-radius:7px}
   .reports-list{position:static;width:auto;margin-bottom:10px;padding:11px 12px;display:flex;align-items:center;gap:10px}
@@ -570,6 +616,10 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 @media(max-width:560px){
   .report-subtitle{max-width:330px}
   .demand-content{padding:12px;gap:12px}
+  .report-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .report-actions .btn{min-width:0;padding-right:10px;padding-left:10px;white-space:normal}
+  .health-view-context{padding:11px 13px;align-items:flex-start;flex-direction:column;gap:4px}
+  .health-view-context>span{white-space:normal}
   .demand-cash-flow-grid{gap:8px}
   .demand-cash-flow-grid .kpi-delta{align-items:flex-start}
   .demand-cash-flow-grid .kpi-delta .fa{margin-top:2px}

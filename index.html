@@ -41,6 +41,10 @@
     </nav>
   </aside>
   <div class="nav-scrim" id="navScrim"></div>
+  <div class="health-view-tabs" role="tablist" aria-label="Prototype view">
+    <button class="health-view-tab active" id="gettingPaidTab" type="button" role="tab" aria-selected="true" aria-controls="gettingPaidPanel">Getting paid</button>
+    <button class="health-view-tab" id="winningWorkTab" type="button" role="tab" aria-selected="false" aria-controls="winningWorkPanel" tabindex="-1">Winning work</button>
+  </div>
 
   <div class="app-shell" id="appShell">
     <header class="mobile-header">
@@ -272,83 +276,161 @@
 
           <div class="concept-panel demand-concept" id="demandConcept" data-demand-flow>
             <div class="demand-content">
-              <section class="demand-cash-flow-grid" aria-label="Cash flow summary">
-                <article class="actual-figure money-in-figure" data-calc-target="money-in">
-                  <span class="kpi-label"><span>Money in</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money in" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-in"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                  <strong>$24,600</strong>
-                  <span class="kpi-delta negative"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $8,400 from last month</span>
-                </article>
-                <article class="actual-figure money-out-figure" data-calc-target="money-out">
-                  <span class="kpi-label"><span>Money out</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money out" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-out"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                  <strong>$31,900</strong>
-                  <span class="kpi-delta negative"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up $4,300 from last month</span>
-                </article>
-                <article class="actual-figure net-figure negative" data-calc-target="net-cash">
-                  <span class="kpi-label"><span>Net cash</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Net cash" aria-expanded="false" aria-controls="calculationPopover" data-calc="net-cash"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                  <strong>-$7,300</strong>
-                </article>
-                <article class="actual-figure demand-outlook-figure" data-calc-target="cash-outlook">
-                  <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Cash flow outlook" aria-expanded="false" aria-controls="calculationPopover" data-calc="cash-outlook"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                  <strong>$12,600</strong>
-                  <span class="outlook-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
-                </article>
+              <section class="health-view-panel" id="gettingPaidPanel" role="tabpanel" aria-labelledby="gettingPaidTab" tabindex="0">
+                <section class="demand-cash-flow-grid" aria-label="Cash flow summary">
+                  <article class="actual-figure money-in-figure" data-calc-target="money-in">
+                    <span class="kpi-label"><span>Money in</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money in" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-in"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$24,600</strong>
+                    <span class="kpi-delta negative"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $8,400 from last month</span>
+                  </article>
+                  <article class="actual-figure money-out-figure" data-calc-target="money-out">
+                    <span class="kpi-label"><span>Money out</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money out" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-out"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$31,900</strong>
+                    <span class="kpi-delta negative"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up $4,300 from last month</span>
+                  </article>
+                  <article class="actual-figure net-figure negative" data-calc-target="net-cash">
+                    <span class="kpi-label"><span>Net cash</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Net cash" aria-expanded="false" aria-controls="calculationPopover" data-calc="net-cash"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>-$7,300</strong>
+                  </article>
+                  <article class="actual-figure demand-outlook-figure" data-calc-target="cash-outlook">
+                    <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Cash flow outlook" aria-expanded="false" aria-controls="calculationPopover" data-calc="cash-outlook"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$12,600</strong>
+                    <span class="outlook-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
+                  </article>
+                </section>
+
+                <div class="demand-columns">
+                  <div class="demand-column">
+                    <section class="demand-card demand-chasing" data-calc-target="overdue-invoices" aria-labelledby="demandChasingTitle">
+                      <header class="demand-card-head"><div><h2 id="demandChasingTitle">Invoices to chase</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Invoices to chase" aria-expanded="false" aria-controls="calculationPopover" data-calc="overdue-invoices"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$47,820 total</strong></span></header>
+                      <div class="demand-owed-list">
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2841."><span class="demand-owed-copy"><strong>INV&#8209;2841 - Kingsford Property Group</strong><span><span>68 days overdue</span><span>3 reminders sent</span></span></span><strong class="demand-amount">$12,400</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2867."><span class="demand-owed-copy"><strong>INV&#8209;2867 - Bellhaven Constructions</strong><span><span>61 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$6,280</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2903."><span class="demand-owed-copy"><strong>INV&#8209;2903 - Marrickville Council</strong><span><span>44 days overdue</span><span>1 reminder sent</span></span></span><strong class="demand-amount">$8,950</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2918." hidden><span class="demand-owed-copy"><strong>INV&#8209;2918 - Sandringham Body Corporate</strong><span><span>38 days overdue</span><span>2 reminders sent</span></span></span><strong class="demand-amount">$5,950</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2955." hidden><span class="demand-owed-copy"><strong>INV&#8209;2955 - Northline Logistics</strong><span><span>22 days overdue</span><span>1 reminder sent</span></span></span><strong class="demand-amount">$5,140</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2971." hidden><span class="demand-owed-copy"><strong>INV&#8209;2971 - Everton Retail Fitouts</strong><span><span>18 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$4,600</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2988." hidden><span class="demand-owed-copy"><strong>INV&#8209;2988 - Hallam Bros Builders</strong><span><span>12 days overdue</span><span>1 reminder sent</span></span></span><strong class="demand-amount">$3,850</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2994." hidden><span class="demand-owed-copy"><strong>INV&#8209;2994 - Pinehurst Dental</strong><span><span>6 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$650</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                      </div>
+                    </section>
+
+                    <section class="demand-card demand-booked" data-calc-target="booked-ahead" aria-labelledby="demandBookedTitle">
+                      <header class="demand-card-head"><div><h2 id="demandBookedTitle">Booked ahead</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Booked ahead" aria-expanded="false" aria-controls="calculationPopover" data-calc="booked-ahead"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div></header>
+                      <div class="demand-booked-body">
+                        <div class="demand-booked-total"><strong>$264,500</strong><p>of work already committed over the next 3 months</p></div>
+                        <div class="demand-booked-financials">
+                          <div><span>Estimated cost</span><strong>$179,900</strong></div>
+                          <div class="profit"><span>Potential gross profit</span><strong>$84,600</strong><small>32% estimated margin</small></div>
+                          <div class="demand-booked-profit-bar" role="img" aria-label="Estimated cost 179,900 dollars, 68 percent, and potential gross profit 84,600 dollars, 32 percent"><span class="cost" style="width:68%"></span><span class="profit" style="width:32%"></span></div>
+                        </div>
+                        <div class="demand-key"><span><i class="scheduled"></i>Scheduled jobs</span><span><i class="quoted"></i>Accepted quotes, not scheduled</span></div>
+                        <div class="demand-booked-bars"><div><span>Sep</span><i><i class="scheduled" style="width:67.6%"></i><i class="quoted" style="width:32.4%"></i></i><strong>$142,000</strong></div><div><span>Oct</span><i><i class="scheduled" style="width:38.4%"></i><i class="quoted" style="width:23.9%"></i></i><strong>$88,500</strong></div><div><span>Nov</span><i><i class="scheduled" style="width:14.8%"></i><i class="quoted" style="width:9.2%"></i></i><strong>$34,000</strong></div></div>
+                        <div class="demand-booked-notes"><small>Committed value is built from work already in Tradify.</small><small>Cost and profit are estimates from quoted costs — not money earned yet.</small></div>
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="demand-column">
+                    <section class="demand-card demand-ready" data-calc-target="ready-to-invoice" aria-labelledby="demandReadyTitle">
+                      <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Ready to invoice" aria-expanded="false" aria-controls="calculationPopover" data-calc="ready-to-invoice"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$38,900 total</strong></span></header>
+                      <div class="demand-ready-list">
+                        <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2237."><span><strong>JB2237 - Kingsford Property Group</strong><small>Finished 11 days ago</small></span><b>$9,800</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2240."><span><strong>JB2240 - Waverley Aquatic Centre</strong><small>Finished 8 days ago</small></span><b>$7,450</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2234."><span><strong>JB2234 - Hallam Bros Builders</strong><small>Finished 14 days ago</small></span><b>$6,200</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                      </div>
+                    </section>
+
+                    <section class="demand-card demand-performance" data-calc-target="demand-performance" aria-labelledby="demandPerformanceTitle">
+                      <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Profitability</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Profitability" aria-expanded="false" aria-controls="calculationPopover" data-calc="demand-performance"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><select class="form-control demand-period" id="demandPeriod" aria-label="Profitability period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
+                      <div class="demand-performance-hero"><small>Gross margin</small><div><strong id="demandMargin" data-demand-margin>35.0%</strong><span class="negative" id="demandMarginDelta" data-demand-margin-delta><span class="demand-margin-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 pts</span><small>vs prior 30 days</small></span></div></div>
+                      <div class="demand-performance-bars">
+                        <div><span>Invoiced</span><strong id="demandRevenueValue" data-demand-revenue-value>$186,400</strong><i><i class="revenue" id="demandRevenueBar" style="width:100%"></i></i></div>
+                        <div><span>Cost of work</span><strong id="demandCostValue" data-demand-cost-value>$121,160</strong><i><i class="cost" id="demandCostBar" data-demand-cost-bar style="width:65%"></i></i></div>
+                        <div><span>Gross profit</span><strong id="demandProfitValue" data-demand-profit-value>$65,240</strong><i><i class="profit" id="demandProfitBar" data-demand-profit-bar style="width:35%"></i></i></div>
+                        <button class="text-link analyst-link" type="button" data-toast="In product, this opens margin by Job.">Break down by job <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                      </div>
+                    </section>
+                  </div>
+                </div>
               </section>
 
-              <div class="demand-columns">
-                <div class="demand-column">
-                <section class="demand-card demand-chasing" data-calc-target="overdue-invoices" aria-labelledby="demandChasingTitle">
-                  <header class="demand-card-head"><div><h2 id="demandChasingTitle">Invoices to chase</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Invoices to chase" aria-expanded="false" aria-controls="calculationPopover" data-calc="overdue-invoices"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$47,820 total</strong></span></header>
-                  <div class="demand-owed-list">
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2841."><span class="demand-owed-copy"><strong>INV&#8209;2841 - Kingsford Property Group</strong><span><span>68 days overdue</span><span>3 reminders sent</span></span></span><strong class="demand-amount">$12,400</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2867."><span class="demand-owed-copy"><strong>INV&#8209;2867 - Bellhaven Constructions</strong><span><span>61 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$6,280</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2903."><span class="demand-owed-copy"><strong>INV&#8209;2903 - Marrickville Council</strong><span><span>44 days overdue</span><span>1 reminder sent</span></span></span><strong class="demand-amount">$8,950</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2918." hidden><span class="demand-owed-copy"><strong>INV&#8209;2918 - Sandringham Body Corporate</strong><span><span>38 days overdue</span><span>2 reminders sent</span></span></span><strong class="demand-amount">$5,950</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2955." hidden><span class="demand-owed-copy"><strong>INV&#8209;2955 - Northline Logistics</strong><span><span>22 days overdue</span><span>1 reminder sent</span></span></span><strong class="demand-amount">$5,140</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2971." hidden><span class="demand-owed-copy"><strong>INV&#8209;2971 - Everton Retail Fitouts</strong><span><span>18 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$4,600</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2988." hidden><span class="demand-owed-copy"><strong>INV&#8209;2988 - Hallam Bros Builders</strong><span><span>12 days overdue</span><span>1 reminder sent</span></span></span><strong class="demand-amount">$3,850</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2994." hidden><span class="demand-owed-copy"><strong>INV&#8209;2994 - Pinehurst Dental</strong><span><span>6 days overdue</span><span>Never chased</span></span></span><strong class="demand-amount">$650</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                  </div>
+              <section class="health-view-panel" id="winningWorkPanel" role="tabpanel" aria-labelledby="winningWorkTab" tabindex="0" hidden>
+                <div class="health-view-context"><p><strong>$18,900 in quotes has gone quiet.</strong> Your win rate is improving, so a quick follow-up is the cheapest work you can win right now.</p><span>Week of 25–31 Aug 2026</span></div>
+                <section class="demand-cash-flow-grid win-work-kpis" aria-label="Winning work summary">
+                  <article class="actual-figure win-rate-figure" data-calc-target="quote-win-rate">
+                    <span class="kpi-label"><span>Quote win rate</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Quote win rate" aria-expanded="false" aria-controls="calculationPopover" data-calc="quote-win-rate"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>56%</strong>
+                    <span class="kpi-delta positive"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up 8 points</span>
+                  </article>
+                  <article class="actual-figure" data-calc-target="open-quotes">
+                    <span class="kpi-label"><span>Open quotes</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Open quotes" aria-expanded="false" aria-controls="calculationPopover" data-calc="open-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$34,500</strong>
+                    <span class="kpi-delta">8 awaiting a decision</span>
+                  </article>
+                  <article class="actual-figure quiet-quote-figure" data-calc-target="quiet-quotes">
+                    <span class="kpi-label"><span>Gone quiet</span><em class="demand-forecast-badge">14+ days</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Quotes gone quiet" aria-expanded="false" aria-controls="calculationPopover" data-calc="quiet-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$18,900</strong>
+                    <span class="kpi-delta negative"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>3 need follow-up</span>
+                  </article>
+                  <article class="actual-figure fresh-quote-figure" data-calc-target="fresh-quotes">
+                    <span class="kpi-label"><span>New quotes</span><button class="calc-trigger" type="button" aria-label="Show calculation details for New quotes" aria-expanded="false" aria-controls="calculationPopover" data-calc="fresh-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$15,600</strong>
+                    <span class="kpi-delta positive"><i class="fa fa-arrow-up" aria-hidden="true"></i>5 sent this week</span>
+                  </article>
                 </section>
 
-                <section class="demand-card demand-booked" data-calc-target="booked-ahead" aria-labelledby="demandBookedTitle">
-                  <header class="demand-card-head"><div><h2 id="demandBookedTitle">Booked ahead</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Booked ahead" aria-expanded="false" aria-controls="calculationPopover" data-calc="booked-ahead"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div></header>
-                  <div class="demand-booked-body">
-                    <div class="demand-booked-total"><strong>$264,500</strong><p>of work already committed over the next 3 months</p></div>
-                    <div class="demand-booked-financials">
-                      <div><span>Estimated cost</span><strong>$179,900</strong></div>
-                      <div class="profit"><span>Potential gross profit</span><strong>$84,600</strong><small>32% estimated margin</small></div>
-                      <div class="demand-booked-profit-bar" role="img" aria-label="Estimated cost 179,900 dollars, 68 percent, and potential gross profit 84,600 dollars, 32 percent"><span class="cost" style="width:68%"></span><span class="profit" style="width:32%"></span></div>
-                    </div>
-                    <div class="demand-key"><span><i class="scheduled"></i>Scheduled jobs</span><span><i class="quoted"></i>Accepted quotes, not scheduled</span></div>
-                    <div class="demand-booked-bars"><div><span>Sep</span><i><i class="scheduled" style="width:67.6%"></i><i class="quoted" style="width:32.4%"></i></i><strong>$142,000</strong></div><div><span>Oct</span><i><i class="scheduled" style="width:38.4%"></i><i class="quoted" style="width:23.9%"></i></i><strong>$88,500</strong></div><div><span>Nov</span><i><i class="scheduled" style="width:14.8%"></i><i class="quoted" style="width:9.2%"></i></i><strong>$34,000</strong></div></div>
-                    <div class="demand-booked-notes"><small>Committed value is built from work already in Tradify.</small><small>Cost and profit are estimates from quoted costs — not money earned yet.</small></div>
+                <div class="demand-columns">
+                  <div class="demand-column">
+                    <section class="demand-card quiet-quotes-card" data-calc-target="quiet-quotes" aria-labelledby="quietQuotesTitle">
+                      <header class="demand-card-head"><div><h2 id="quietQuotesTitle">Quotes to follow up</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Quotes to follow up" aria-expanded="false" aria-controls="calculationPopover" data-calc="quiet-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$18,900 total</strong><small>3 quotes</small></span></header>
+                      <p class="card-guidance">These quotes haven't had a reply in two weeks or more. A quick follow-up can bring them back.</p>
+                      <div class="demand-owed-list">
+                        <button class="demand-owed-row analyst-link" type="button" data-toast="In product, this opens quote Q-1042."><span class="demand-owed-copy"><strong>Q&#8209;1042 · Riverside Café fit-out</strong><span><span>Quiet for 16 days</span><span>Never followed up</span></span></span><strong class="demand-amount">$9,200</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-toast="In product, this opens quote Q-1038."><span class="demand-owed-copy"><strong>Q&#8209;1038 · Hendricks home rewire</strong><span><span>Quiet for 19 days</span><span>1 follow-up sent</span></span></span><strong class="demand-amount">$6,100</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-owed-row analyst-link" type="button" data-toast="In product, this opens quote Q-1029."><span class="demand-owed-copy"><strong>Q&#8209;1029 · Marlow unit block wiring</strong><span><span>Quiet for 21 days</span><span>Never followed up</span></span></span><strong class="demand-amount">$3,600</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                      </div>
+                    </section>
+
+                    <section class="demand-card quote-pipeline-card" data-calc-target="quote-pipeline" aria-labelledby="quotePipelineTitle">
+                      <header class="demand-card-head"><div><h2 id="quotePipelineTitle">Quote pipeline</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Quote pipeline" aria-expanded="false" aria-controls="calculationPopover" data-calc="quote-pipeline"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><small>Last 30 days</small></span></header>
+                      <div class="pipeline-body">
+                        <div class="pipeline-total"><strong>$34,500</strong><span>currently awaiting a decision</span></div>
+                        <div class="pipeline-split" role="img" aria-label="Open quotes: 15,600 dollars fresh and 18,900 dollars quiet"><span class="fresh" style="width:45.2%"></span><span class="quiet" style="width:54.8%"></span></div>
+                        <div class="pipeline-key"><span><i class="fresh"></i>Fresh <strong>$15,600</strong></span><span><i class="quiet"></i>Quiet <strong>$18,900</strong></span></div>
+                        <div class="pipeline-outcomes"><div><span>Accepted</span><strong>9</strong><small>$42,700</small></div><div><span>Declined</span><strong>7</strong><small>$30,900</small></div><div><span>Still open</span><strong>8</strong><small>$34,500</small></div></div>
+                      </div>
+                    </section>
                   </div>
-                </section>
+
+                  <div class="demand-column">
+                    <section class="demand-card enquiry-card" data-calc-target="enquiries-to-quote" aria-labelledby="enquiriesTitle">
+                      <header class="demand-card-head"><div><h2 id="enquiriesTitle">Enquiries to quote</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Enquiries to quote" aria-expanded="false" aria-controls="calculationPopover" data-calc="enquiries-to-quote"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>4 waiting</strong></span></header>
+                      <p class="card-guidance">New enquiries waiting on a quote. The sooner it's sent, the more likely you'll win it.</p>
+                      <div class="demand-ready-list">
+                        <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens Alan Whitfield's enquiry."><span><strong>Alan Whitfield</strong><small>Switchboard upgrade · Received yesterday</small></span><b>Create quote</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens Southside Dental's enquiry."><span><strong>Southside Dental</strong><small>Office fit-out wiring · Received 2 days ago</small></span><b>Create quote</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                        <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens Nadia Cross's enquiry."><span><strong>Nadia Cross</strong><small>EV charger install · Received 3 days ago</small></span><b>Create quote</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
+                      </div>
+                    </section>
+
+                    <section class="demand-card demand-booked" data-calc-target="winning-booked-ahead" aria-labelledby="winningBookedTitle">
+                      <header class="demand-card-head"><div><h2 id="winningBookedTitle">Booked ahead</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Booked ahead" aria-expanded="false" aria-controls="calculationPopover" data-calc="winning-booked-ahead"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div></header>
+                      <div class="demand-booked-body">
+                        <div class="demand-booked-total"><strong>$88,400</strong><p>of work already committed over the next 3 months</p></div>
+                        <div class="demand-booked-financials">
+                          <div><span>Estimated cost</span><strong>$55,700</strong></div>
+                          <div class="profit"><span>Potential gross profit</span><strong>$32,700</strong><small>37% estimated margin</small></div>
+                          <div class="demand-booked-profit-bar" role="img" aria-label="Estimated cost 55,700 dollars, 63 percent, and potential gross profit 32,700 dollars, 37 percent"><span class="cost" style="width:63%"></span><span class="profit" style="width:37%"></span></div>
+                        </div>
+                        <div class="demand-key"><span><i class="scheduled"></i>Scheduled jobs</span><span><i class="quoted"></i>Accepted quotes, not scheduled</span></div>
+                        <div class="demand-booked-bars"><div><span>Sep</span><i><i class="scheduled" style="width:68%"></i><i class="quoted" style="width:32%"></i></i><strong>$42,500</strong></div><div><span>Oct</span><i><i class="scheduled" style="width:42%"></i><i class="quoted" style="width:28%"></i></i><strong>$29,600</strong></div><div><span>Nov</span><i><i class="scheduled" style="width:22%"></i><i class="quoted" style="width:16%"></i></i><strong>$16,300</strong></div></div>
+                        <div class="demand-booked-notes"><small>Committed value is built from scheduled jobs and accepted quotes in Tradify.</small><small>Cost and profit are estimates from quoted costs — not money earned yet.</small></div>
+                      </div>
+                    </section>
+                  </div>
                 </div>
-
-                <div class="demand-column">
-                <section class="demand-card demand-ready" data-calc-target="ready-to-invoice" aria-labelledby="demandReadyTitle">
-                  <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Ready to invoice" aria-expanded="false" aria-controls="calculationPopover" data-calc="ready-to-invoice"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$38,900 total</strong></span></header>
-                  <div class="demand-ready-list">
-                    <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2237."><span><strong>JB2237 - Kingsford Property Group</strong><small>Finished 11 days ago</small></span><b>$9,800</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2240."><span><strong>JB2240 - Waverley Aquatic Centre</strong><small>Finished 8 days ago</small></span><b>$7,450</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                    <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2234."><span><strong>JB2234 - Hallam Bros Builders</strong><small>Finished 14 days ago</small></span><b>$6,200</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
-                  </div>
-                </section>
-
-                <section class="demand-card demand-performance" data-calc-target="demand-performance" aria-labelledby="demandPerformanceTitle">
-                  <header class="demand-card-head"><div><h2 id="demandPerformanceTitle">Profitability</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Profitability" aria-expanded="false" aria-controls="calculationPopover" data-calc="demand-performance"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><select class="form-control demand-period" id="demandPeriod" aria-label="Profitability period"><option value="30d">Last 30 days</option><option value="aug">August</option><option value="q">This quarter</option><option value="fy">FY to date</option></select></header>
-                  <div class="demand-performance-hero"><small>Gross margin</small><div><strong id="demandMargin" data-demand-margin>35.0%</strong><span class="negative" id="demandMarginDelta" data-demand-margin-delta><span class="demand-margin-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>3.2 pts</span><small>vs prior 30 days</small></span></div></div>
-                  <div class="demand-performance-bars">
-                    <div><span>Invoiced</span><strong id="demandRevenueValue" data-demand-revenue-value>$186,400</strong><i><i class="revenue" id="demandRevenueBar" style="width:100%"></i></i></div>
-                    <div><span>Cost of work</span><strong id="demandCostValue" data-demand-cost-value>$121,160</strong><i><i class="cost" id="demandCostBar" data-demand-cost-bar style="width:65%"></i></i></div>
-                    <div><span>Gross profit</span><strong id="demandProfitValue" data-demand-profit-value>$65,240</strong><i><i class="profit" id="demandProfitBar" data-demand-profit-bar style="width:35%"></i></i></div>
-                    <button class="text-link analyst-link" type="button" data-toast="In product, this opens margin by Job.">Break down by job <i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                  </div>
-                </section>
-                </div>
-              </div>
-
+              </section>
             </div>
           </div>
 
