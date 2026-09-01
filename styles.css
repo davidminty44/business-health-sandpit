@@ -412,7 +412,7 @@ h1{margin-bottom:3px;color:#263238;font-size:24px;font-weight:400;line-height:32
 .demand-ready .demand-card-total strong{color:#27835e}
 .demand-card-head h2,.demand-card-head h3{margin:0;color:#263238;font-size:16px;font-weight:500;line-height:22px}
 .demand-card-total{display:flex;align-items:flex-end;flex-direction:column;white-space:nowrap}
-.demand-card-total strong{color:#263238;font-size:13px;font-weight:600;line-height:17px}
+.demand-card-total strong{color:#263238;font-size:16px;font-weight:500;line-height:22px}
 .demand-card-total small{color:#748188;font-size:9px;font-weight:500;line-height:13px}
 .demand-card-head>.text-link{display:flex;align-items:center;gap:3px;white-space:nowrap}
 .demand-card-head select{height:32px;padding:0 8px;border:1px solid #cacaca;border-radius:4px;background:#fff;color:#263238;font:inherit;font-size:11px;cursor:pointer}
