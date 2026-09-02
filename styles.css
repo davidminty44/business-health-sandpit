@@ -194,7 +194,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .winning-primary small .fa{width:10px;height:10px;font-size:9px;line-height:10px}
 .quote-pipeline{margin:0 0 10px;color:#526069;font-size:11px;line-height:16px}
 .quote-pipeline strong{color:#263238;font-weight:500}
-.work-bar{height:14px;border-radius:3px;display:flex;overflow:hidden}
+.work-bar{height:14px;border-radius:2px;display:flex;overflow:hidden}
 .work-bar span{height:100%;display:block}
 .work-scheduled{background:#fd8b00}
 .work-progress{background:#46be8a}
@@ -348,7 +348,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .combined-profit-detail dt,.combined-profit-detail dd{margin:0;color:#526069;font-size:10px}
 .combined-profit-detail dd{color:#263238;font-weight:500}
 .combined-profit-detail dl>.profit dt,.combined-profit-detail dl>.profit dd{color:#318561}
-.combined-profit-split{height:8px;margin-bottom:15px;border-radius:4px;display:flex;overflow:hidden}
+.combined-profit-split{height:8px;margin-bottom:15px;border-radius:2px;display:flex;overflow:hidden}
 .combined-profit-split span:first-child{background:#d2d3d4}
 .combined-profit-split span:last-child{background:#33a99e}
 .combined-section{display:flex;flex-direction:column;gap:10px}
@@ -474,8 +474,8 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-performance-bars>div{margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:4px 10px}
 .demand-performance-bars span,.demand-performance-bars strong{font-size:14px;font-weight:300;line-height:22px}
 .demand-performance-bars strong{color:#424242;font-weight:400}
-.demand-performance-bars>div>i{height:7px;border-radius:4px;background:#eee;display:block;grid-column:1/-1;overflow:hidden}
-.demand-performance-bars>div>i>i{height:100%;border-radius:4px;background:#97a3aa;display:block}
+.demand-performance-bars>div>i{height:7px;border-radius:2px;background:#eee;display:block;grid-column:1/-1;overflow:hidden}
+.demand-performance-bars>div>i>i{height:100%;border-radius:2px;background:#97a3aa;display:block}
 .demand-performance-bars>div>i>i.cost{background:#d2d3d4}
 .demand-performance-bars>div>i>i.profit{background:#46be8a}
 .demand-performance-bars>.text-link{display:flex;align-items:center;gap:3px}
@@ -489,7 +489,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-booked-financials strong{margin-top:1px;color:#424242;font-size:16px;font-weight:400;line-height:22px}
 .demand-booked-financials .profit>strong{color:#318561}
 .demand-booked-financials small{color:#757575;font-size:12px;line-height:18px}
-.demand-booked-profit-bar{height:6px;margin-top:6px;border-radius:3px;display:flex;grid-column:1/-1;overflow:hidden}
+.demand-booked-profit-bar{height:6px;margin-top:6px;border-radius:2px;display:flex;grid-column:1/-1;overflow:hidden}
 .demand-booked-profit-bar span{height:100%;display:block}
 .demand-booked-profit-bar .cost{background:#d2d3d4}
 .demand-booked-profit-bar .profit{background:#46be8a}
@@ -501,7 +501,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-booked-bars span,.demand-booked-bars strong{color:#424242;font-size:12px;font-weight:300;line-height:18px}
 .demand-booked-bars strong{font-size:14px;font-weight:400;text-align:right}
 .demand-booked-bars>div>i{height:19px;display:flex;gap:2px}
-.demand-booked-bars>div>i>i{height:100%;background:#fd8b00;display:block}
+.demand-booked-bars>div>i>i{height:100%;border-radius:2px;background:#fd8b00;display:block}
 .demand-booked-bars>div>i>i.quoted{background:#feae4d}
 .demand-booked-notes{margin-top:11px;display:flex;flex-direction:column;gap:2px}
 .demand-booked-notes small{color:#757575;font-size:12px;line-height:18px}
@@ -523,7 +523,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .pipeline-total{margin-bottom:13px;display:flex;align-items:baseline;gap:8px}
 .pipeline-total strong{color:#212121;font-size:30px;font-weight:400;line-height:36px}
 .pipeline-total span{color:#757575;font-size:12px;line-height:18px}
-.pipeline-split{height:9px;border-radius:5px;background:#eee;display:flex;overflow:hidden}
+.pipeline-split{height:9px;border-radius:2px;background:#eee;display:flex;overflow:hidden}
 .pipeline-split span{height:100%;display:block}
 .pipeline-split .fresh{background:#46be8a}
 .pipeline-split .quiet{background:#e6a23c}
