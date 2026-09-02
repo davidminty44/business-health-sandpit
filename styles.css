@@ -855,8 +855,8 @@ body.report-chat-open{overflow:hidden}
   .card-heading{min-height:0;margin-bottom:13px}
 }
 @media(max-width:800px){
-  .health-view-tabs{right:8px;left:50px;width:auto;max-width:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));transform:none}
-  .ai-analysis-unavailable .health-view-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .health-view-tabs{right:8px;left:50px;width:auto;max-width:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));transform:none}
+  .ai-analysis-unavailable .health-view-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
   .health-view-tablist{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
   .health-view-tab{min-width:0;padding-right:6px;padding-left:6px;line-height:15px;text-align:center;white-space:normal}
   .health-view-divider{display:none}

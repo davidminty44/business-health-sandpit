@@ -804,6 +804,17 @@ healthViewTabs.forEach((tab,index)=>{
     healthViewTabs[targetIndex].focus();
   });
 });
+[['#reportOneShortcut','1'],['#reportTwoShortcut','2']].forEach(([selector,variant])=>{
+  document.querySelector(selector).addEventListener('click',()=>{
+    const url=new URL(window.location.href);
+    url.searchParams.set('concept','report');
+    url.searchParams.set('variant',variant);
+    url.searchParams.delete('area');
+    url.searchParams.delete('page');
+    url.searchParams.delete('snapshot');
+    window.location.assign(url);
+  });
+});
 const requestedHealthArea=new URLSearchParams(window.location.search).get('area');
 const requestedHealthTab=requestedHealthArea==='winning'?document.querySelector('#winningWorkTab'):requestedHealthArea==='hybrid'?document.querySelector('#hybridTab'):null;
 if(requestedHealthTab)activateHealthView(requestedHealthTab,false);
