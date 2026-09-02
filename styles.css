@@ -710,12 +710,10 @@ body[data-concept="report"] .health-view-tabs{display:none}
 .report-archive-actions label{margin:0;color:#526069;font-size:11px;font-weight:500;white-space:nowrap}
 .report-archive-actions .form-control{height:36px}
 .report-archive-actions .tradify-ai-icon{width:14px;height:14px;flex-basis:14px}
-.report-reader{width:100%;display:flex;flex-direction:column;gap:12px}
-.report-reader .report-page-tabs{order:2;margin:0}
-.report-document-page,.report-analysis-card{min-height:620px;border:1px solid #d2d3d4;border-radius:2px;background:#fff;box-shadow:0 4px 14px rgba(38,50,56,.09)}
-.report-health.report-document-page{order:1;padding:0;display:flex;flex-direction:column;overflow:hidden}
-.report-health.report-document-page[hidden]{display:none}
-.report-analysis-page{order:1}
+.report-reader{width:100%;border:1px solid #d2d3d4;border-radius:2px;background:#fff;box-shadow:0 4px 14px rgba(38,50,56,.09);display:flex;flex-direction:column;overflow:hidden}
+.report-document-page,.report-analysis-card{min-height:0;border:0;border-radius:0;background:#fff;box-shadow:none}
+.report-health.report-document-page{padding:0;display:flex;flex-direction:column;overflow:hidden}
+.report-analysis-page{border-top:1px solid #d2d3d4}
 .report-document-header{position:relative;padding:24px 26px 20px;border-top:5px solid #009ec7;border-bottom:1px solid #e0e0e0}
 .report-document-brand{color:#006f8b;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;line-height:17px}
 .report-generated-meta{position:absolute;top:24px;right:26px;color:#757575;font-size:10px;line-height:16px}
@@ -733,10 +731,11 @@ body[data-concept="report"] .health-view-tabs{display:none}
 .report-document-footer>span,.report-page-count{color:#757575;font-size:11px;line-height:17px}
 .report-document-footer>div{display:flex;gap:7px}
 .report-analysis-card{display:flex;flex-direction:column;overflow:hidden}
-.report-analysis-header{padding:23px 26px 20px;border-top:5px solid #009ec7}
+.report-analysis-header{padding:23px 26px 20px;border-top:0}
+.report-section-label{margin-bottom:9px;display:flex;align-items:center;gap:8px;color:#006f8b}
+.report-section-label>span{width:22px;height:22px;border-radius:50%;background:#009ec7;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:600}
+.report-section-label>strong{font-size:12px;font-weight:600;line-height:18px}
 .report-analysis-grid{padding:24px 26px;flex:1}
-.report-analysis-footer{padding:12px 26px}
-.report-page-count{display:block}
 .report-ask-link{padding:0;border:0;background:transparent;color:#006f8b;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:500;line-height:17px;cursor:pointer}
 .report-ask-link:hover{text-decoration:underline}
 .report-ask-link .tradify-ai-icon{width:13px;height:13px;flex-basis:13px}

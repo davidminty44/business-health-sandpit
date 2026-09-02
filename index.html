@@ -557,9 +557,9 @@
             <div class="monthly-report" data-report-variant-panel="1">
               <header class="report-archive-bar">
                 <div class="report-archive-copy">
-                  <span>Business Analysis archive</span>
+                  <span>Business Analysis</span>
                   <h2>Monthly reports</h2>
-                  <p>Open a generated snapshot to see what the business looked like at that point in time.</p>
+                  <p>A fixed record of the business at the end of each month.</p>
                 </div>
                 <div class="report-archive-actions">
                   <label for="reportArchiveSelect">Viewing report</label>
@@ -574,24 +574,17 @@
               </header>
 
               <div class="report-reader">
-                <nav class="report-page-tabs" role="tablist" aria-label="Pages in this report">
-                  <button class="active" id="reportSnapshotTab" type="button" role="tab" aria-selected="true" aria-controls="reportSnapshotPage" data-report-page="snapshot"><span>1</span>Snapshot</button>
-                  <button id="reportCashTab" type="button" role="tab" aria-selected="false" aria-controls="reportCashPage" data-report-page="cash" tabindex="-1"><span>2</span>Get paid</button>
-                  <button id="reportProfitTab" type="button" role="tab" aria-selected="false" aria-controls="reportProfitPage" data-report-page="profit" tabindex="-1"><span>3</span>Protect profit</button>
-                  <button id="reportWorkTab" type="button" role="tab" aria-selected="false" aria-controls="reportWorkPage" data-report-page="work" tabindex="-1"><span>4</span>Future work</button>
-                </nav>
-
-              <section class="report-health report-document-page" id="reportSnapshotPage" role="tabpanel" tabindex="-1" aria-labelledby="reportSnapshotTab" data-report-panel="snapshot">
+              <section class="report-health report-document-page" id="reportSnapshot">
                 <header class="report-document-header">
                   <span class="report-document-brand"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
-                  <span class="report-generated-meta" id="reportGeneratedMeta">Generated 1 Sep 2026 · Emailed to Office team</span>
-                  <h2><span id="reportSnapshotTitle">August 2026</span> business snapshot</h2>
-                  <p id="reportPeriodSummary">August 2026 report · compared with July 2026 and August 2025</p>
+                  <span class="report-generated-meta" id="reportGeneratedMeta">Fixed snapshot · Generated 1 Sep 2026 · Emailed to Office team</span>
+                  <h2><span id="reportSnapshotTitle">August 2026</span> snapshot</h2>
+                  <p id="reportPeriodSummary">Compared with July 2026 and August 2025</p>
                 </header>
                 <div class="report-health-heading">
                   <div>
                     <span>Executive summary</span>
-                    <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention this month</span></h2>
+                    <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention</span></h2>
                   </div>
                 </div>
                 <div class="report-metrics" aria-label="Monthly headline metrics">
@@ -622,15 +615,14 @@
                 <article class="report-executive-summary">
                   <span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
                   <h3 data-report-summary-headline>Cash needs attention first.</h3>
-                  <p data-report-summary-body>Cash collection is the first priority. The pages that follow explain what is held up, which job reduced margin, and which quotes need attention.</p>
+                  <p data-report-summary-body>Getting paid comes first. Below: what’s holding up cash, which job cut into profit, and which quotes need a follow-up.</p>
                 </article>
-                <footer class="report-document-footer"><span>Page 1 of 4</span><div><button class="btn btn-default" type="button" disabled><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-go="cash">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div></footer>
               </section>
 
-              <section class="report-analysis-page" id="reportCashPage" role="tabpanel" tabindex="-1" aria-labelledby="reportCashTab" data-report-panel="cash" hidden>
+              <section class="report-analysis-page" id="reportCashSection" data-report-section="cash">
                 <article class="report-analysis-card">
                   <header class="report-analysis-header">
-                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Get paid</span></div>
+                    <div class="report-section-label"><span>1</span><strong>Get paid</strong></div>
                     <h2 data-focus-headline>Cash is tight. Chasing finished work fixes it fastest.</h2>
                     <p data-focus-body>Net cash is -$7,300 this month, and money in is down while money out is up. The fastest way back isn't new sales — it's collecting work you've already done.</p>
                   </header>
@@ -638,49 +630,34 @@
                     <section aria-labelledby="reportCashEvidenceTitle"><h3 id="reportCashEvidenceTitle">Why this matters</h3><div class="report-evidence-list" data-focus-evidence></div></section>
                     <section aria-labelledby="reportCashActionsTitle"><h3 id="reportCashActionsTitle">What to do next</h3><ol class="report-action-list" data-focus-actions></ol></section>
                   </div>
-                  <footer class="report-analysis-footer">
-                    <span class="report-page-count">Page 2 of 4</span>
-                    <button class="report-ask-link" type="button" data-report-ask="cash"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this page</button>
-                    <div><button class="btn btn-default" type="button" data-report-go="snapshot"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-go="profit">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
-                  </footer>
                 </article>
               </section>
 
-              <section class="report-analysis-page" id="reportProfitPage" role="tabpanel" tabindex="-1" aria-labelledby="reportProfitTab" data-report-panel="profit" hidden>
+              <section class="report-analysis-page" id="reportProfitSection" data-report-section="profit">
                 <article class="report-analysis-card">
                   <header class="report-analysis-header">
-                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Protect profit</span></div>
+                    <div class="report-section-label"><span>2</span><strong>Protect profit</strong></div>
                     <h2 data-focus-headline>Profit margin is 19% this month — one job is dragging it down.</h2>
                     <p data-focus-body>Revenue was $42,800 and job costs were $34,700, leaving $8,100 gross profit. The lowest-margin job needs a closer look.</p>
                   </header>
                   <div class="report-analysis-grid">
-                    <section aria-labelledby="reportProfitEvidenceTitle"><h3 id="reportProfitEvidenceTitle">Why this changed</h3><div class="report-evidence-list" data-focus-evidence></div></section>
+                    <section aria-labelledby="reportProfitEvidenceTitle"><h3 id="reportProfitEvidenceTitle">What changed</h3><div class="report-evidence-list" data-focus-evidence></div></section>
                     <section aria-labelledby="reportProfitActionsTitle"><h3 id="reportProfitActionsTitle">What to do next</h3><ol class="report-action-list" data-focus-actions></ol></section>
                   </div>
-                  <footer class="report-analysis-footer">
-                    <span class="report-page-count">Page 3 of 4</span>
-                    <button class="report-ask-link" type="button" data-report-ask="profit"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this page</button>
-                    <div><button class="btn btn-default" type="button" data-report-go="cash"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-go="work">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
-                  </footer>
                 </article>
               </section>
 
-              <section class="report-analysis-page" id="reportWorkPage" role="tabpanel" tabindex="-1" aria-labelledby="reportWorkTab" data-report-panel="work" hidden>
+              <section class="report-analysis-page" id="reportWorkSection" data-report-section="work">
                 <article class="report-analysis-card">
                   <header class="report-analysis-header">
-                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Future work</span></div>
+                    <div class="report-section-label"><span>3</span><strong>Future work</strong></div>
                     <h2 data-focus-headline>Quote win rate is 56% — keep the pipeline moving.</h2>
                     <p data-focus-body>You're winning more than half of decided quotes, but $18,900 of open quotes have gone quiet for 14 days or more.</p>
                   </header>
                   <div class="report-analysis-grid">
-                    <section aria-labelledby="reportWorkEvidenceTitle"><h3 id="reportWorkEvidenceTitle">Why this matters</h3><div class="report-evidence-list" data-focus-evidence></div></section>
+                    <section aria-labelledby="reportWorkEvidenceTitle"><h3 id="reportWorkEvidenceTitle">What’s outstanding</h3><div class="report-evidence-list" data-focus-evidence></div></section>
                     <section aria-labelledby="reportWorkActionsTitle"><h3 id="reportWorkActionsTitle">What to do next</h3><ol class="report-action-list" data-focus-actions></ol></section>
                   </div>
-                  <footer class="report-analysis-footer">
-                    <span class="report-page-count">Page 4 of 4</span>
-                    <button class="report-ask-link" type="button" data-report-ask="work"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this page</button>
-                    <div><button class="btn btn-default" type="button" data-report-go="profit"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-default" type="button" disabled>Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
-                  </footer>
                 </article>
               </section>
 
@@ -690,10 +667,10 @@
               <button class="report-chat-backdrop" type="button" data-report-chat-close aria-label="Close chat" hidden></button>
               <aside class="report-chat-drawer" id="reportChatDrawer" role="dialog" aria-modal="true" aria-labelledby="reportChatTitle" hidden>
                 <article class="report-chat-card">
-                  <header class="report-chat-header"><span class="report-chat-icon"><span class="tradify-ai-icon" aria-hidden="true"></span></span><div><h2 id="reportChatTitle">Ask about this report</h2><p>Get a quick answer about any number in this snapshot.</p></div><button class="modal-close" type="button" data-report-chat-close aria-label="Close chat"><i class="fa fa-times" aria-hidden="true"></i></button></header>
-                  <div class="report-chat-context" id="reportChatContext"><i class="fa fa-lock" aria-hidden="true"></i><span>Grounded in the August 2026 report</span></div>
+                  <header class="report-chat-header"><span class="report-chat-icon"><span class="tradify-ai-icon" aria-hidden="true"></span></span><div><h2 id="reportChatTitle">Ask about this report</h2><p>Ask about any number in this snapshot.</p></div><button class="modal-close" type="button" data-report-chat-close aria-label="Close chat"><i class="fa fa-times" aria-hidden="true"></i></button></header>
+                  <div class="report-chat-context" id="reportChatContext"><i class="fa fa-lock" aria-hidden="true"></i><span>Based on the August 2026 report</span></div>
                   <div class="report-chat-thread" id="reportChatThread" aria-live="polite">
-                    <article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>Ask me what changed, why it mattered, or what the report recommends doing next.</p></div></article>
+                    <article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>Ask what changed, why it mattered, or what to do next.</p></div></article>
                   </div>
                   <div class="report-chat-suggestions" id="reportChatSuggestions">
                     <button type="button" data-report-question="What changed most in this report?">What changed most?</button>
