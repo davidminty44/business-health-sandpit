@@ -708,11 +708,14 @@
             <div class="report-two" data-report-variant-panel="2" hidden>
               <header class="report2-archive">
                 <div><span>Monthly briefings</span><h2 id="report2ArchiveTitle">August 2026 briefing</h2><p>A short written summary of the business, prepared once a month.</p></div>
-                <nav class="report2-months" aria-label="Choose a briefing">
-                  <button class="active negative" type="button" data-report2-snapshot="aug-2026"><strong>Aug 2026</strong><span><i></i>Needs attention</span></button>
-                  <button class="positive" type="button" data-report2-snapshot="jul-2026"><strong>Jul 2026</strong><span><i></i>Steady</span></button>
-                  <button class="positive" type="button" data-report2-snapshot="jun-2026"><strong>Jun 2026</strong><span><i></i>Steady</span></button>
-                </nav>
+                <div class="report2-archive-actions">
+                  <label for="report2ArchiveSelect">Viewing briefing</label>
+                  <select class="form-control" id="report2ArchiveSelect">
+                    <option value="aug-2026">August 2026</option>
+                    <option value="jul-2026">July 2026</option>
+                    <option value="jun-2026">June 2026</option>
+                  </select>
+                </div>
               </header>
 
               <div class="report2-layout">

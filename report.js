@@ -63,6 +63,7 @@
   const variantTabs=Array.from(document.querySelectorAll('[data-report-variant]'));
   const variantPanels=Array.from(document.querySelectorAll('[data-report-variant-panel]'));
   const report2ArchiveTitle=document.querySelector('#report2ArchiveTitle');
+  const report2ArchiveSelect=document.querySelector('#report2ArchiveSelect');
   const report2Title=document.querySelector('#report2Title');
   const report2GeneratedMeta=document.querySelector('#report2GeneratedMeta');
   const report2Period=document.querySelector('#report2Period');
@@ -137,13 +138,13 @@
   const renderReport2=()=>{
     const month=reportMonths[monthIndex];
     report2ArchiveTitle.textContent=`${month.label} briefing`;
+    report2ArchiveSelect.value=month.slug;
     report2Title.textContent=`${month.label} briefing`;
     report2GeneratedMeta.textContent=`Prepared ${month.asAt} · Sent to Office team`;
     report2Period.textContent=`Compared with ${month.previous} and ${month.year}`;
     report2HealthTitle.classList.toggle('healthy',month.healthy);
     report2HealthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
     report2HealthTitle.querySelector('[data-report2-health]').textContent=`${month.status} this month`;
-    document.querySelectorAll('[data-report2-snapshot]').forEach(button=>button.classList.toggle('active',button.dataset.report2Snapshot===month.slug));
     ['moneyIn','moneyOut','netCash'].forEach(key=>{
       document.querySelector(`[data-report2-value="${key}"]`).textContent=money(month[key]);
       const monthCopy=deltaCopy(key,month[key],month[`${key}Month`],shortMonth(month.previous));
@@ -421,12 +422,12 @@
       activateVariant(variantTabs[target].dataset.reportVariant,true);
     });
   });
-  document.querySelectorAll('[data-report2-snapshot]').forEach(button=>button.addEventListener('click',()=>{
-    monthIndex=reportMonths.findIndex(month=>month.slug===button.dataset.report2Snapshot);
+  report2ArchiveSelect.addEventListener('change',()=>{
+    monthIndex=reportMonths.findIndex(month=>month.slug===report2ArchiveSelect.value);
     activePage='snapshot';
     resetReport2Chat();
     renderSnapshot();
-  }));
+  });
   document.querySelectorAll('[data-report2-open]').forEach(button=>button.addEventListener('click',()=>{
     const section=document.querySelector(`[data-report2-section="${button.dataset.report2Open}"]`);
     section.open=true;
