@@ -434,7 +434,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .health-view-context p{margin:0;color:#526069;font-size:13px;line-height:20px}
 .health-view-context p strong{color:#263238;font-weight:500}
 .health-view-context>span{color:#757575;font-size:12px;line-height:18px;white-space:nowrap}
-.card-guidance{margin:0;padding:11px 16px;border-bottom:1px solid #e0e0e0;background:#fff;color:#757575;font-size:12px;line-height:18px}
 .demand-card{min-width:0;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
 .demand-cash-flow-grid{width:100%;min-width:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .demand-outlook-figure{border-color:#99d8e9;background:#e5f5f9;box-shadow:inset 3px 0 0 #009ec7}
