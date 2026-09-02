@@ -41,7 +41,6 @@ const aiAnswerQuestion=document.querySelector('#aiAnswerQuestion');
 const aiAnswerText=document.querySelector('#aiAnswerText');
 const aiAnswerSource=document.querySelector('#aiAnswerSource');
 const aiAnswerSourceAction=document.querySelector('#aiAnswerSourceAction');
-const aiPriorityLinks=Array.from(document.querySelectorAll('.ai-priority-link'));
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
@@ -667,7 +666,6 @@ const focusAiAnswerSource=()=>{
 aiAnalysisTrigger.addEventListener('click',()=>setAiAnalysisVisibility(aiInlineAnalysis.hidden));
 aiAnswerSourceAction.addEventListener('click',focusAiAnswerSource);
 aiAskToggle.addEventListener('click',()=>setAiAskVisibility(aiAskPanel.hidden,true));
-aiPriorityLinks.forEach(link=>link.addEventListener('click',()=>focusAiTarget(link.dataset.aiTarget)));
 document.querySelectorAll('[data-ai-question]').forEach(button=>button.addEventListener('click',()=>showAiAnswer(button.dataset.aiQuestion)));
 aiQuestionForm.addEventListener('submit',event=>{
   event.preventDefault();
