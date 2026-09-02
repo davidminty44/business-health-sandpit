@@ -31,16 +31,29 @@
     }
   ];
   const focusKeys=['cash','profit','work'];
-  const pages=['cash','profit','work','chat'];
+  const pages=['snapshot','cash','profit','work'];
+  const summaryBodies={
+    'aug-2026':'Cash collection is the first priority. The pages that follow explain what is held up, which job reduced margin, and which quotes need attention.',
+    'jul-2026':'Cash finished positive and margin held up. The pages that follow show what still needs collecting, where profit came from, and which quotes need a decision.',
+    'jun-2026':'Cash stayed just above break-even. The pages that follow explain the collection risk, rising material costs, and how to protect the next month of work.'
+  };
+  const chatSuggestions={
+    report:[['What changed most in this report?','What changed most?'],['What should I do first?','What should I do first?'],['Which job needs attention?','Which job needs attention?'],['Which work should I follow up?','Which work should I follow up?']],
+    cash:[['What should I collect first?','What should I collect first?'],['Which invoice should I chase first?','Which invoice first?'],['How can I improve cash fastest?','How can I improve cash?']],
+    profit:[['Why was profit margin low?','Why was margin low?'],['Which job needs attention?','Which job needs attention?'],['What should I check first?','What should I check first?']],
+    work:[['Which quotes needed a follow-up?','Which quotes needed follow-up?'],['Which enquiry should I quote first?','Which enquiry first?'],['What should I do first?','What should I do first?']]
+  };
   const money=value=>`${value<0?'-':''}$${Math.abs(value).toLocaleString('en-AU')}`;
+  const shortMonth=label=>{const parts=label.split(' ');return `${parts[0].slice(0,3)} ${parts[1]}`};
   const reportPanel=document.querySelector('#reportConcept');
-  const monthLabel=document.querySelector('#reportMonthLabel');
+  const archiveSelect=document.querySelector('#reportArchiveSelect');
   const snapshotTitle=document.querySelector('#reportSnapshotTitle');
+  const generatedMeta=document.querySelector('#reportGeneratedMeta');
   const periodSummary=document.querySelector('#reportPeriodSummary');
-  const previousMonth=document.querySelector('#reportPreviousMonth');
-  const nextMonth=document.querySelector('#reportNextMonth');
   const healthTitle=document.querySelector('#reportHealthTitle');
   const healthStatus=document.querySelector('#reportHealthStatus');
+  const chatDrawer=document.querySelector('#reportChatDrawer');
+  const chatBackdrop=document.querySelector('.report-chat-backdrop');
   const chatContext=document.querySelector('#reportChatContext span');
   const chatThread=document.querySelector('#reportChatThread');
   const chatForm=document.querySelector('#reportChatForm');
@@ -48,11 +61,11 @@
   const pageTabs=Array.from(document.querySelectorAll('[data-report-page]'));
   const pagePanels=Array.from(document.querySelectorAll('[data-report-panel]'));
   const query=new URLSearchParams(window.location.search);
-  const requestedMonth=query.get('month');
-  let monthIndex=Math.max(0,reportMonths.findIndex(month=>month.slug===requestedMonth));
-  let comparison=query.get('compare')==='year'?'year':'month';
-  let activePage=pages.includes(query.get('page'))?query.get('page'):'cash';
+  const requestedSnapshot=query.get('snapshot')||query.get('month');
+  let monthIndex=Math.max(0,reportMonths.findIndex(month=>month.slug===requestedSnapshot));
+  let activePage=pages.includes(query.get('page'))?query.get('page'):'snapshot';
   let activeFocus='cash';
+  let lastChatTrigger=null;
   let toastTimer;
 
   const reportToast=message=>{
@@ -66,33 +79,33 @@
   const setUrl=()=>{
     const url=new URL(window.location.href);
     url.searchParams.set('concept','report');
-    url.searchParams.set('month',reportMonths[monthIndex].slug);
-    url.searchParams.set('compare',comparison);
+    url.searchParams.set('snapshot',reportMonths[monthIndex].slug);
     url.searchParams.set('page',activePage);
+    url.searchParams.delete('month');
+    url.searchParams.delete('compare');
     window.history.replaceState({},'',url);
   };
 
-  const deltaCopy=(key,current,reference)=>{
+  const deltaCopy=(key,current,reference,label)=>{
     const difference=current-reference;
     const increased=difference>0;
     const neutral=difference===0;
     const good=key==='moneyOut'?!increased:increased;
-    const yearParts=reportMonths[monthIndex].year.split(' ');
-    const basis=comparison==='year'?`vs ${yearParts[0].slice(0,3)} ${yearParts[1]}`:'from last month';
-    if(neutral)return {className:'',icon:'fa-minus',text:`No change ${basis}`};
-    return {className:good?'positive':'negative',icon:`fa-arrow-${increased?'up':'down'}`,text:`${increased?'Up':'Down'} ${money(Math.abs(difference))} ${basis}`};
+    if(neutral)return {className:'',icon:'fa-minus',text:`No change vs ${label}`};
+    return {className:good?'positive':'negative',icon:`fa-arrow-${increased?'up':'down'}`,text:`${increased?'Up':'Down'} ${money(Math.abs(difference))} vs ${label}`};
   };
 
-  const renderMetric=(key,referenceKey)=>{
+  const renderDelta=(element,copy)=>{
+    element.classList.remove('positive','negative');
+    if(copy.className)element.classList.add(copy.className);
+    element.innerHTML=`<i class="fa ${copy.icon}" aria-hidden="true"></i>${copy.text}`;
+  };
+
+  const renderMetric=key=>{
     const month=reportMonths[monthIndex];
-    const element=reportPanel.querySelector(`[data-report-value="${key}"]`);
-    const delta=reportPanel.querySelector(`[data-report-delta="${key}"]`);
-    const reference=month[`${key}${comparison==='year'?'Year':'Month'}`];
-    const copy=deltaCopy(key,month[key],reference);
-    element.textContent=money(month[key]);
-    delta.classList.remove('positive','negative');
-    if(copy.className)delta.classList.add(copy.className);
-    delta.innerHTML=`<i class="fa ${copy.icon}" aria-hidden="true"></i>${copy.text}`;
+    reportPanel.querySelector(`[data-report-value="${key}"]`).textContent=money(month[key]);
+    renderDelta(reportPanel.querySelector(`[data-report-delta-month="${key}"]`),deltaCopy(key,month[key],month[`${key}Month`],shortMonth(month.previous)));
+    renderDelta(reportPanel.querySelector(`[data-report-delta-year="${key}"]`),deltaCopy(key,month[key],month[`${key}Year`],shortMonth(month.year)));
   };
 
   const renderFocus=()=>{
@@ -107,26 +120,18 @@
     });
   };
 
-  const renderCalculations=()=>{
+  const renderSnapshot=()=>{
     const month=reportMonths[monthIndex];
-    calculationMetadata['money-in'].calculation=`${month.label} money in: ${money(month.moneyIn)}. ${month.previous}: ${money(month.moneyInMonth)}.`;
-    calculationMetadata['money-out'].calculation=`${month.label} money out: ${money(month.moneyOut)}. ${month.previous}: ${money(month.moneyOutMonth)}.`;
-    calculationMetadata['net-cash'].calculation=`${money(month.moneyIn)} − ${money(month.moneyOut)} = ${money(month.netCash)}.`;
-    calculationMetadata['cash-outlook'].calculation=`Starting from the current balance, the expected balance after 8 weeks is ${money(month.outlook)}, a change of ${money(month.outlookChange)}.`;
-  };
-
-  const renderMonth=announce=>{
-    const month=reportMonths[monthIndex];
-    const comparisonLabel=comparison==='year'?month.year:month.previous;
+    archiveSelect.value=month.slug;
     snapshotTitle.textContent=month.label;
-    monthLabel.textContent=month.label;
-    periodSummary.textContent=`Showing ${month.label}, compared with ${comparisonLabel}`;
-    healthStatus.textContent=month.status;
+    generatedMeta.textContent=`Generated ${month.asAt} · Emailed to Office team`;
+    periodSummary.textContent=`${month.label} report · compared with ${month.previous} and ${month.year}`;
+    healthStatus.textContent=`${month.status} this month`;
     healthTitle.classList.toggle('healthy',month.healthy);
     healthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
-    chatContext.textContent=`Looking at ${month.label}`;
-    previousMonth.disabled=monthIndex===reportMonths.length-1;
-    nextMonth.disabled=monthIndex===0;
+    reportPanel.querySelector('[data-report-summary-headline]').textContent=month.focus.cash.headline;
+    reportPanel.querySelector('[data-report-summary-body]').textContent=summaryBodies[month.slug];
+    chatContext.textContent=`Grounded in the ${month.label} report`;
     renderMetric('moneyIn');
     renderMetric('moneyOut');
     renderMetric('netCash');
@@ -138,11 +143,9 @@
     outlookChange.classList.toggle('negative',outlookDown);
     outlookChange.classList.toggle('positive',!outlookDown);
     outlookChange.innerHTML=`<i class="fa fa-arrow-${outlookDown?'down':'up'}" aria-hidden="true"></i>${outlookDown?'Down':'Up'} ${money(Math.abs(month.outlookChange))} over 8 weeks`;
-    reportPanel.querySelector('.report-note').innerHTML=`<i class="fa fa-info-circle" aria-hidden="true"></i>Figures are based on information recorded in Tradify and connected accounting data as at ${month.asAt}.`;
+    reportPanel.querySelector('.report-note').innerHTML=`<i class="fa fa-lock" aria-hidden="true"></i>This report uses Tradify and connected accounting data recorded up to ${month.asAt}. It won't change after that.`;
     renderFocus();
-    renderCalculations();
     setUrl();
-    if(announce)appendSystem(`Now looking at ${month.label}`);
   };
 
   const activatePage=(page,focus=true)=>{
@@ -160,6 +163,47 @@
     if(tabList.scrollWidth>tabList.clientWidth)tabList.scrollTo({left:selectedTab.offsetLeft-(tabList.clientWidth-selectedTab.offsetWidth)/2,behavior:'smooth'});
     setUrl();
     if(focus)reportPanel.querySelector(`[data-report-panel="${page}"]`).focus({preventScroll:true});
+  };
+
+  const inertStates=new Map();
+  const setReportContentInert=inert=>{
+    const targets=document.querySelectorAll('.sidebar,.mobile-header,.reports-list,.breadcrumb,.report-header,.report-archive-bar,.report-reader,#reportConcept>.monthly-report>.report-note');
+    targets.forEach(target=>{
+      if(inert){inertStates.set(target,target.inert);target.inert=true}
+      else target.inert=inertStates.get(target)??false;
+    });
+    if(!inert)inertStates.clear();
+  };
+
+  const renderChatSuggestions=context=>{
+    const buttons=Array.from(document.querySelectorAll('[data-report-question]'));
+    const suggestions=chatSuggestions[context]||chatSuggestions.report;
+    buttons.forEach((button,index)=>{
+      const suggestion=suggestions[index];
+      button.hidden=!suggestion;
+      if(suggestion){button.dataset.reportQuestion=suggestion[0];button.textContent=suggestion[1]}
+    });
+  };
+
+  const openChat=(trigger,focusKey)=>{
+    if(focusKey)activeFocus=focusKey;
+    lastChatTrigger=trigger;
+    renderChatSuggestions(focusKey||'report');
+    chatDrawer.hidden=false;
+    chatBackdrop.hidden=false;
+    setReportContentInert(true);
+    document.body.classList.add('report-chat-open');
+    if(focusKey)appendSystem(`Asking about page ${pages.indexOf(focusKey)+1}: ${reportMonths[monthIndex].focus[focusKey].headline}`);
+    chatInput.focus();
+  };
+
+  const closeChat=()=>{
+    if(chatDrawer.hidden)return;
+    chatDrawer.hidden=true;
+    chatBackdrop.hidden=true;
+    setReportContentInert(false);
+    document.body.classList.remove('report-chat-open');
+    lastChatTrigger?.focus();
   };
 
   const appendSystem=text=>{
@@ -205,28 +249,25 @@
   const answerFor=question=>{
     const month=reportMonths[monthIndex];
     const normalised=question.toLowerCase();
-    if(normalised.includes('money out')){
-      const reference=month[comparison==='year'?'moneyOutYear':'moneyOutMonth'];
-      return {text:`Money out was ${money(month.moneyOut)} in ${month.label}. ${deltaCopy('moneyOut',month.moneyOut,reference).text}. Check connected accounting categories to see which bills, wages or expenses changed.`,source:`Money out · ${money(month.moneyOut)}`};
-    }
-    if(normalised.includes('invoice')||normalised.includes('chase'))return {text:`Start here: ${month.focus.cash.evidence[1][1]}. ${month.focus.cash.evidence[1][2]}.`,source:month.focus.cash.evidence[1][1]};
+    if(normalised.includes('changed most')||normalised.includes('do first'))return {text:`${month.focus.cash.headline} ${month.focus.cash.actions[0]}`,source:month.focus.cash.evidence[0][1]};
+    if(normalised.includes('money out'))return {text:`The ${month.label} report recorded ${money(month.moneyOut)} going out, ${deltaCopy('moneyOut',month.moneyOut,month.moneyOutMonth,shortMonth(month.previous)).text.toLowerCase()}. Check the connected accounting categories to see which bills, wages or expenses changed.`,source:`Money out · ${money(month.moneyOut)}`};
+    if(normalised.includes('invoice')||normalised.includes('chase')||normalised.includes('collect'))return {text:`The report recommends starting here: ${month.focus.cash.evidence[1][1]}. ${month.focus.cash.evidence[1][2]}.`,source:month.focus.cash.evidence[1][1]};
     if(normalised.includes('margin')||normalised.includes('profit')||normalised.includes('job'))return {text:`${month.focus.profit.headline} ${month.focus.profit.evidence[2][1]} — ${month.focus.profit.evidence[2][2]}.`,source:month.focus.profit.evidence[2][1]};
-    if(normalised.includes('quote')||normalised.includes('follow')||normalised.includes('work'))return {text:`${month.focus.work.body} ${month.focus.work.actions[0]}`,source:month.focus.work.evidence[0][1]};
-    if(normalised.includes('fast')||normalised.includes('cash'))return {text:`${month.focus.cash.body} Start by: ${month.focus.cash.actions[0]}`,source:`Net cash · ${money(month.netCash)}`};
+    if(normalised.includes('quote')||normalised.includes('enquiry')||normalised.includes('follow')||normalised.includes('work'))return {text:`${month.focus.work.body} ${month.focus.work.actions[0]}`,source:month.focus.work.evidence[0][1]};
+    if(normalised.includes('fast')||normalised.includes('cash'))return {text:`${month.focus.cash.body} The report's first recommendation is to ${month.focus.cash.actions[0].charAt(0).toLowerCase()}${month.focus.cash.actions[0].slice(1)}`,source:`Net cash · ${money(month.netCash)}`};
     const focus=month.focus[activeFocus];
-    return {text:`${focus.body} The best next step is to ${focus.actions[0].charAt(0).toLowerCase()}${focus.actions[0].slice(1)}`,source:focus.evidence[0][1]};
+    return {text:`${focus.body} The report recommends that you ${focus.actions[0].charAt(0).toLowerCase()}${focus.actions[0].slice(1)}`,source:focus.evidence[0][1]};
   };
 
   const askQuestion=question=>{
     const clean=question.trim();
     if(!clean)return;
-    activatePage('chat',false);
     appendMessage('user',clean);
     chatInput.value='';
     chatInput.disabled=true;
-    const thinking=appendMessage('assistant','Looking at the numbers…');
+    const checking=appendMessage('assistant','Checking this report…');
     window.setTimeout(()=>{
-      thinking.remove();
+      checking.remove();
       const answer=answerFor(clean);
       appendMessage('assistant',answer.text,answer.source);
       chatInput.disabled=false;
@@ -234,17 +275,14 @@
     },450);
   };
 
-  previousMonth.addEventListener('click',()=>{if(monthIndex<reportMonths.length-1){monthIndex+=1;renderMonth(true)}});
-  nextMonth.addEventListener('click',()=>{if(monthIndex>0){monthIndex-=1;renderMonth(true)}});
-  document.querySelectorAll('[data-report-comparison]').forEach(button=>button.addEventListener('click',()=>{
-    comparison=button.dataset.reportComparison;
-    document.querySelectorAll('[data-report-comparison]').forEach(item=>{
-      const selected=item===button;
-      item.classList.toggle('active',selected);
-      item.setAttribute('aria-pressed',String(selected));
-    });
-    renderMonth(false);
-  }));
+  archiveSelect.addEventListener('change',()=>{
+    monthIndex=reportMonths.findIndex(month=>month.slug===archiveSelect.value);
+    closeChat();
+    activePage='snapshot';
+    renderSnapshot();
+    activatePage('snapshot',false);
+  });
+  document.querySelector('#reportDownload').addEventListener('click',()=>reportToast(`${reportMonths[monthIndex].label} Business Analysis PDF would download here.`));
   pageTabs.forEach((tab,index)=>{
     tab.addEventListener('click',()=>activatePage(tab.dataset.reportPage,false));
     tab.addEventListener('keydown',event=>{
@@ -256,23 +294,30 @@
     });
   });
   document.querySelectorAll('[data-report-go]').forEach(button=>button.addEventListener('click',()=>activatePage(button.dataset.reportGo)));
-  document.querySelectorAll('[data-report-ask]').forEach(button=>button.addEventListener('click',()=>{
-    activeFocus=button.dataset.reportAsk;
-    activatePage('chat',false);
-    appendSystem(`Asking about: ${reportMonths[monthIndex].focus[activeFocus].headline}`);
-    chatInput.focus();
-  }));
+  document.querySelectorAll('[data-report-chat-open]').forEach(button=>button.addEventListener('click',()=>openChat(button)));
+  document.querySelectorAll('[data-report-ask]').forEach(button=>button.addEventListener('click',()=>openChat(button,button.dataset.reportAsk)));
+  document.querySelectorAll('[data-report-chat-close]').forEach(button=>button.addEventListener('click',closeChat));
   reportPanel.addEventListener('click',event=>{
     const source=event.target.closest('[data-report-source]');
     if(source)reportToast(`In product, this opens ${source.dataset.reportSource}.`);
   });
   document.querySelectorAll('[data-report-question]').forEach(button=>button.addEventListener('click',()=>askQuestion(button.dataset.reportQuestion)));
   chatForm.addEventListener('submit',event=>{event.preventDefault();askQuestion(chatInput.value)});
-  document.querySelectorAll('[data-report-comparison]').forEach(button=>{
-    const selected=button.dataset.reportComparison===comparison;
-    button.classList.toggle('active',selected);
-    button.setAttribute('aria-pressed',String(selected));
+  document.addEventListener('keydown',event=>{
+    if(chatDrawer.hidden)return;
+    if(event.key==='Escape'){
+      event.preventDefault();
+      closeChat();
+      return;
+    }
+    if(event.key==='Tab'){
+      const focusable=Array.from(chatDrawer.querySelectorAll('button,input')).filter(element=>!element.disabled);
+      const first=focusable[0];
+      const last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+    }
   });
-  renderMonth(false);
+  renderSnapshot();
   activatePage(activePage,false);
 })();

@@ -546,69 +546,82 @@
 
           <div class="concept-panel report-concept" id="reportConcept" hidden>
             <div class="monthly-report">
-              <header class="monthly-report-controls">
-                <div class="monthly-report-intro">
-                  <span>Monthly business snapshot</span>
-                  <h2 id="reportSnapshotTitle">August 2026</h2>
-                  <p>See how the business performed, what changed, and where to focus next.</p>
+              <header class="report-archive-bar">
+                <div class="report-archive-copy">
+                  <span>Business Analysis archive</span>
+                  <h2>Monthly reports</h2>
+                  <p>Open a generated snapshot to see what the business looked like at that point in time.</p>
                 </div>
-                <div class="monthly-period-picker">
-                  <div class="month-stepper" aria-label="Report month">
-                    <button id="reportPreviousMonth" type="button" aria-label="Show previous month"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-                    <strong id="reportMonthLabel">August 2026</strong>
-                    <button id="reportNextMonth" type="button" aria-label="Show next month" disabled><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                  </div>
-                  <div class="comparison-switch" role="group" aria-label="Comparison period">
-                    <button class="active" type="button" data-report-comparison="month" aria-pressed="true">vs last month</button>
-                    <button type="button" data-report-comparison="year" aria-pressed="false">vs last year</button>
-                  </div>
+                <div class="report-archive-actions">
+                  <label for="reportArchiveSelect">Viewing report</label>
+                  <select class="form-control" id="reportArchiveSelect">
+                    <option value="aug-2026">August 2026 · Needs attention</option>
+                    <option value="jul-2026">July 2026 · Steady</option>
+                    <option value="jun-2026">June 2026 · Steady</option>
+                  </select>
+                  <button class="btn btn-default" id="reportDownload" type="button"><i class="fa fa-download" aria-hidden="true"></i>PDF</button>
+                  <button class="btn btn-primary" type="button" data-report-chat-open><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this report</button>
                 </div>
-                <p class="report-period-summary" id="reportPeriodSummary">Showing August 2026, compared with July 2026</p>
               </header>
 
-              <section class="report-health" aria-labelledby="reportHealthTitle">
+              <div class="report-reader">
+                <nav class="report-page-tabs" role="tablist" aria-label="Pages in this report">
+                  <button class="active" id="reportSnapshotTab" type="button" role="tab" aria-selected="true" aria-controls="reportSnapshotPage" data-report-page="snapshot"><span>1</span>Snapshot</button>
+                  <button id="reportCashTab" type="button" role="tab" aria-selected="false" aria-controls="reportCashPage" data-report-page="cash" tabindex="-1"><span>2</span>Get paid</button>
+                  <button id="reportProfitTab" type="button" role="tab" aria-selected="false" aria-controls="reportProfitPage" data-report-page="profit" tabindex="-1"><span>3</span>Protect profit</button>
+                  <button id="reportWorkTab" type="button" role="tab" aria-selected="false" aria-controls="reportWorkPage" data-report-page="work" tabindex="-1"><span>4</span>Future work</button>
+                </nav>
+
+              <section class="report-health report-document-page" id="reportSnapshotPage" role="tabpanel" tabindex="-1" aria-labelledby="reportSnapshotTab" data-report-panel="snapshot">
+                <header class="report-document-header">
+                  <span class="report-document-brand"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
+                  <span class="report-generated-meta" id="reportGeneratedMeta">Generated 1 Sep 2026 · Emailed to Office team</span>
+                  <h2><span id="reportSnapshotTitle">August 2026</span> business snapshot</h2>
+                  <p id="reportPeriodSummary">August 2026 report · compared with July 2026 and August 2025</p>
+                </header>
                 <div class="report-health-heading">
                   <div>
-                    <span>Business health status</span>
-                    <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention</span></h2>
+                    <span>Executive summary</span>
+                    <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention this month</span></h2>
                   </div>
-                  <button class="btn btn-primary report-chat-trigger" type="button" data-report-go="chat"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask Business Analysis</button>
                 </div>
                 <div class="report-metrics" aria-label="Monthly headline metrics">
-                  <article class="actual-figure money-in-figure" data-calc-target="money-in">
-                    <span class="kpi-label"><span>Money in</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money in" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-in"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                  <article class="actual-figure money-in-figure">
+                    <span class="kpi-label">Money in</span>
                     <strong data-report-value="moneyIn">$24,600</strong>
-                    <span class="kpi-delta negative" data-report-delta="moneyIn"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $8,400 from last month</span>
+                    <span class="kpi-delta negative" data-report-delta-month="moneyIn"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $8,400 vs Jul 2026</span>
+                    <span class="kpi-delta negative report-year-delta" data-report-delta-year="moneyIn"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $3,500 vs Aug 2025</span>
                   </article>
-                  <article class="actual-figure money-out-figure" data-calc-target="money-out">
-                    <span class="kpi-label"><span>Money out</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money out" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-out"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                  <article class="actual-figure money-out-figure">
+                    <span class="kpi-label">Money out</span>
                     <strong data-report-value="moneyOut">$31,900</strong>
-                    <span class="kpi-delta negative" data-report-delta="moneyOut"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up $4,300 from last month</span>
+                    <span class="kpi-delta negative" data-report-delta-month="moneyOut"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up $4,300 vs Jul 2026</span>
+                    <span class="kpi-delta negative report-year-delta" data-report-delta-year="moneyOut"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up $2,500 vs Aug 2025</span>
                   </article>
-                  <article class="actual-figure net-figure negative" data-report-net-card data-calc-target="net-cash">
-                    <span class="kpi-label"><span>Net cash</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Net cash" aria-expanded="false" aria-controls="calculationPopover" data-calc="net-cash"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                  <article class="actual-figure net-figure negative" data-report-net-card>
+                    <span class="kpi-label">Net cash</span>
                     <strong data-report-value="netCash">-$7,300</strong>
-                    <span class="kpi-delta negative" data-report-delta="netCash"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $12,700 from last month</span>
+                    <span class="kpi-delta negative" data-report-delta-month="netCash"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $12,700 vs Jul 2026</span>
+                    <span class="kpi-delta negative report-year-delta" data-report-delta-year="netCash"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $6,000 vs Aug 2025</span>
                   </article>
-                  <article class="actual-figure demand-outlook-figure" data-calc-target="cash-outlook">
-                    <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Cash flow outlook" aria-expanded="false" aria-controls="calculationPopover" data-calc="cash-outlook"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                  <article class="actual-figure demand-outlook-figure">
+                    <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em></span>
                     <div class="demand-outlook-value"><strong data-report-value="outlook">$12,600</strong></div>
                     <span class="outlook-change" data-report-outlook-change><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
                   </article>
                 </div>
+                <article class="report-executive-summary">
+                  <span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
+                  <h3 data-report-summary-headline>Cash needs attention first.</h3>
+                  <p data-report-summary-body>Cash collection is the first priority. The pages that follow explain what is held up, which job reduced margin, and which quotes need attention.</p>
+                </article>
+                <footer class="report-document-footer"><span>Page 1 of 4</span><div><button class="btn btn-default" type="button" disabled><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-go="cash">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div></footer>
               </section>
 
-              <nav class="report-page-tabs" role="tablist" aria-label="Business Analysis pages">
-                <button class="active" id="reportCashTab" type="button" role="tab" aria-selected="true" aria-controls="reportCashPage" data-report-page="cash"><span>1</span>Get paid</button>
-                <button id="reportProfitTab" type="button" role="tab" aria-selected="false" aria-controls="reportProfitPage" data-report-page="profit" tabindex="-1"><span>2</span>Protect profit</button>
-                <button id="reportWorkTab" type="button" role="tab" aria-selected="false" aria-controls="reportWorkPage" data-report-page="work" tabindex="-1"><span>3</span>Future work</button>
-                <button id="reportChatTab" type="button" role="tab" aria-selected="false" aria-controls="reportChatPage" data-report-page="chat" tabindex="-1"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask AI</button>
-              </nav>
-
-              <section class="report-analysis-page" id="reportCashPage" role="tabpanel" tabindex="-1" aria-labelledby="reportCashTab" data-report-panel="cash">
+              <section class="report-analysis-page" id="reportCashPage" role="tabpanel" tabindex="-1" aria-labelledby="reportCashTab" data-report-panel="cash" hidden>
                 <article class="report-analysis-card">
                   <header class="report-analysis-header">
-                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Focus 1 of 3</span></div>
+                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Get paid</span></div>
                     <h2 data-focus-headline>Cash is tight. Chasing finished work fixes it fastest.</h2>
                     <p data-focus-body>Net cash is -$7,300 this month, and money in is down while money out is up. The fastest way back isn't new sales — it's collecting work you've already done.</p>
                   </header>
@@ -617,8 +630,9 @@
                     <section aria-labelledby="reportCashActionsTitle"><h3 id="reportCashActionsTitle">What to do next</h3><ol class="report-action-list" data-focus-actions></ol></section>
                   </div>
                   <footer class="report-analysis-footer">
-                    <span class="report-page-count">Page 1 of 3</span>
-                    <div><button class="btn btn-default" type="button" disabled><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-ask="cash"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this</button><button class="btn btn-default" type="button" data-report-go="profit">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
+                    <span class="report-page-count">Page 2 of 4</span>
+                    <button class="report-ask-link" type="button" data-report-ask="cash"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this page</button>
+                    <div><button class="btn btn-default" type="button" data-report-go="snapshot"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-go="profit">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
                   </footer>
                 </article>
               </section>
@@ -626,7 +640,7 @@
               <section class="report-analysis-page" id="reportProfitPage" role="tabpanel" tabindex="-1" aria-labelledby="reportProfitTab" data-report-panel="profit" hidden>
                 <article class="report-analysis-card">
                   <header class="report-analysis-header">
-                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Focus 2 of 3</span></div>
+                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Protect profit</span></div>
                     <h2 data-focus-headline>Profit margin is 19% this month — one job is dragging it down.</h2>
                     <p data-focus-body>Revenue was $42,800 and job costs were $34,700, leaving $8,100 gross profit. The lowest-margin job needs a closer look.</p>
                   </header>
@@ -635,8 +649,9 @@
                     <section aria-labelledby="reportProfitActionsTitle"><h3 id="reportProfitActionsTitle">What to do next</h3><ol class="report-action-list" data-focus-actions></ol></section>
                   </div>
                   <footer class="report-analysis-footer">
-                    <span class="report-page-count">Page 2 of 3</span>
-                    <div><button class="btn btn-default" type="button" data-report-go="cash"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-ask="profit"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this</button><button class="btn btn-default" type="button" data-report-go="work">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
+                    <span class="report-page-count">Page 3 of 4</span>
+                    <button class="report-ask-link" type="button" data-report-ask="profit"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this page</button>
+                    <div><button class="btn btn-default" type="button" data-report-go="cash"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-go="work">Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
                   </footer>
                 </article>
               </section>
@@ -644,7 +659,7 @@
               <section class="report-analysis-page" id="reportWorkPage" role="tabpanel" tabindex="-1" aria-labelledby="reportWorkTab" data-report-panel="work" hidden>
                 <article class="report-analysis-card">
                   <header class="report-analysis-header">
-                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Focus 3 of 3</span></div>
+                    <div class="report-analysis-meta"><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><span>Future work</span></div>
                     <h2 data-focus-headline>Quote win rate is 56% — keep the pipeline moving.</h2>
                     <p data-focus-body>You're winning more than half of decided quotes, but $18,900 of open quotes have gone quiet for 14 days or more.</p>
                   </header>
@@ -653,34 +668,37 @@
                     <section aria-labelledby="reportWorkActionsTitle"><h3 id="reportWorkActionsTitle">What to do next</h3><ol class="report-action-list" data-focus-actions></ol></section>
                   </div>
                   <footer class="report-analysis-footer">
-                    <span class="report-page-count">Page 3 of 3</span>
-                    <div><button class="btn btn-default" type="button" data-report-go="profit"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-primary" type="button" data-report-ask="work"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this</button><button class="btn btn-default" type="button" disabled>Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
+                    <span class="report-page-count">Page 4 of 4</span>
+                    <button class="report-ask-link" type="button" data-report-ask="work"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about this page</button>
+                    <div><button class="btn btn-default" type="button" data-report-go="profit"><i class="fa fa-angle-left" aria-hidden="true"></i>Previous</button><button class="btn btn-default" type="button" disabled>Next<i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
                   </footer>
                 </article>
               </section>
 
-              <section class="report-analysis-page" id="reportChatPage" role="tabpanel" tabindex="-1" aria-labelledby="reportChatTab" data-report-panel="chat" hidden>
+              </div>
+
+              <footer class="report-note"><i class="fa fa-lock" aria-hidden="true"></i>This report uses Tradify and connected accounting data recorded up to 1 Sep 2026. It won't change after that.</footer>
+              <button class="report-chat-backdrop" type="button" data-report-chat-close aria-label="Close chat" hidden></button>
+              <aside class="report-chat-drawer" id="reportChatDrawer" role="dialog" aria-modal="true" aria-labelledby="reportChatTitle" hidden>
                 <article class="report-chat-card">
-                  <header class="report-chat-header"><span class="report-chat-icon"><span class="tradify-ai-icon" aria-hidden="true"></span></span><div><h2>Ask about your business</h2><p>Drill into any number in this monthly report.</p></div></header>
-                  <div class="report-chat-context" id="reportChatContext"><i class="fa fa-calendar" aria-hidden="true"></i><span>Looking at August 2026</span></div>
+                  <header class="report-chat-header"><span class="report-chat-icon"><span class="tradify-ai-icon" aria-hidden="true"></span></span><div><h2 id="reportChatTitle">Ask about this report</h2><p>Get a quick answer about any number in this snapshot.</p></div><button class="modal-close" type="button" data-report-chat-close aria-label="Close chat"><i class="fa fa-times" aria-hidden="true"></i></button></header>
+                  <div class="report-chat-context" id="reportChatContext"><i class="fa fa-lock" aria-hidden="true"></i><span>Grounded in the August 2026 report</span></div>
                   <div class="report-chat-thread" id="reportChatThread" aria-live="polite">
-                    <article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>Ask me what changed, why it matters, or what to do next.</p></div></article>
+                    <article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>Ask me what changed, why it mattered, or what the report recommends doing next.</p></div></article>
                   </div>
                   <div class="report-chat-suggestions" id="reportChatSuggestions">
-                    <button type="button" data-report-question="Why is money out up this month?">Why is money out up?</button>
-                    <button type="button" data-report-question="Which invoice should I chase first?">Which invoice first?</button>
-                    <button type="button" data-report-question="Why did my profit margin drop?">Why did margin drop?</button>
-                    <button type="button" data-report-question="Which quotes need a follow-up?">Which quotes need follow-up?</button>
+                    <button type="button" data-report-question="What changed most in this report?">What changed most?</button>
+                    <button type="button" data-report-question="What should I do first?">What should I do first?</button>
+                    <button type="button" data-report-question="Which job needs attention?">Which job needs attention?</button>
+                    <button type="button" data-report-question="Which work should I follow up?">Which work should I follow up?</button>
                   </div>
                   <form class="report-chat-form" id="reportChatForm">
-                    <label class="sr-only" for="reportChatInput">Ask about your business numbers</label>
-                    <input class="form-control" id="reportChatInput" type="text" autocomplete="off" placeholder="Ask about your numbers…">
+                    <label class="sr-only" for="reportChatInput">Ask about this report</label>
+                    <input class="form-control" id="reportChatInput" type="text" autocomplete="off" placeholder="Ask about this report…">
                     <button class="btn btn-primary" type="submit" aria-label="Send question"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                   </form>
                 </article>
-              </section>
-
-              <footer class="report-note"><i class="fa fa-info-circle" aria-hidden="true"></i>Figures are based on information recorded in Tradify and connected accounting data as at 1 Sep 2026.</footer>
+              </aside>
             </div>
           </div>
 
