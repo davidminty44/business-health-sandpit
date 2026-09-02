@@ -155,6 +155,13 @@ const calculationMetadata={
     source:'Invoice lines linked to jobs, plus recorded labour, material and miscellaneous job costs.',
     note:'This is gross margin before business overheads, tax and owner drawings. Missing job costs will overstate profit.'
   },
+  'hybrid-performance':{
+    title:'Profitability calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'Gross profit and margin on work invoiced in the last 30 days.',
+    calculation:'$186,400 invoiced − $121,160 cost of work = $65,240 gross profit. $65,240 ÷ $186,400 = 35.0%.',
+    source:'Invoice lines linked to jobs, plus recorded labour, material and miscellaneous job costs.',
+    note:'This is gross margin before business overheads, tax and owner drawings. Missing job costs will overstate profit.'
+  },
   'combined-financial':{
     title:'Overall financial performance',category:'Combined calculation',categoryType:'calculated',icon:'fa-superscript',
     definition:'A combined view of invoiced work, job margin and actual cash movement over the last 30 days.',
@@ -762,7 +769,9 @@ const activateHealthView=(tab,updateUrl=true)=>{
   if(!supportsAiAnalysis)setAiAnalysisVisibility(false);
   if(updateUrl){
     const url=new URL(window.location.href);
-    if(tab.id==='winningWorkTab')url.searchParams.set('area','winning');else url.searchParams.delete('area');
+    if(tab.id==='winningWorkTab')url.searchParams.set('area','winning');
+    else if(tab.id==='hybridTab')url.searchParams.set('area','hybrid');
+    else url.searchParams.delete('area');
     window.history.replaceState({},'',url);
   }
 };
@@ -781,7 +790,8 @@ healthViewTabs.forEach((tab,index)=>{
   });
 });
 const requestedHealthArea=new URLSearchParams(window.location.search).get('area');
-if(requestedHealthArea==='winning'&&healthViewTabs[1])activateHealthView(healthViewTabs[1],false);
+const requestedHealthTab=requestedHealthArea==='winning'?document.querySelector('#winningWorkTab'):requestedHealthArea==='hybrid'?document.querySelector('#hybridTab'):null;
+if(requestedHealthTab)activateHealthView(requestedHealthTab,false);
 
 demandFlows.forEach(flow=>{
   const periodSelect=flow.querySelector('.demand-period');

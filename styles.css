@@ -422,9 +422,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .ai-inline-ask{position:absolute;z-index:12;top:54px;right:10px;width:min(460px,calc(100% - 20px));max-height:calc(100vh - 110px);padding:14px;border:1px solid #d2d3d4;border-radius:5px;background:#fff;box-shadow:0 8px 22px rgba(38,50,56,.2);overflow-y:auto}
 .ai-inline-ask[hidden]{display:none}
 .ai-ask-title{margin-bottom:9px;color:#263238;display:block;font-size:14px;font-weight:500;line-height:20px}
-.ai-kpi-badge{display:none}
-.ai-analysis-active .demand-outlook-figure .outlook-change{display:none}
-.ai-analysis-active .demand-outlook-figure .ai-kpi-badge{padding:2px 5px;display:inline-flex;font-size:9px;line-height:12px}
 .ai-question-suggestions{display:flex;flex-wrap:wrap;gap:6px}
 .ai-question-suggestions button{padding:5px 8px;border:1px solid #d2d3d4;border-radius:12px;background:#fff;color:#526069;font-size:11px;line-height:16px;cursor:pointer}
 .ai-question-suggestions button:hover{border-color:#009ec7;color:#006f8b}
@@ -455,7 +452,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-forecast-badge{padding:1px 5px;border:1px solid #99d8e9;border-radius:3px;background:#fff;color:#006f8b;font-size:10px;font-style:normal;font-weight:400;line-height:14px;white-space:nowrap}
 .demand-outlook-figure .outlook-change{margin-top:0}
 .demand-card-head>div{display:flex;align-items:center;gap:7px}
-.demand-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;align-items:start}
+.demand-columns,.hybrid-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;align-items:start}
 .demand-column{min-width:0;display:flex;flex-direction:column;gap:15px}
 .demand-card-head{min-height:46px;padding:0 16px;border-bottom:1px solid #e0e0e0;background:#fafafa;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .demand-chasing .demand-card-total strong{color:#a5383c}
@@ -648,7 +645,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 }
 @media(max-width:1050px){
   .reports-list{width:210px;flex-basis:210px}
-  .demand-columns,.combined-health-detail,.combined-ahead-grid{grid-template-columns:1fr}
+  .demand-columns,.hybrid-row,.combined-health-detail,.combined-ahead-grid{grid-template-columns:1fr}
   #gettingPaidPanel .demand-column{display:contents}
   #gettingPaidPanel .demand-chasing{order:1}
   #gettingPaidPanel .demand-ready{order:2}
@@ -668,7 +665,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 @media(max-width:800px){
   .health-view-tabs{right:8px;left:50px;width:auto;max-width:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));transform:none}
   .ai-analysis-unavailable .health-view-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .health-view-tablist{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
+  .health-view-tablist{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
   .health-view-tab{min-width:0;padding-right:6px;padding-left:6px;line-height:15px;text-align:center;white-space:normal}
   .health-view-divider{display:none}
   .sidebar{top:0;width:200px;transform:translateX(-102%);transition:transform .2s ease-out}
@@ -752,7 +749,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .combined-pipeline-chips{padding:12px 28px 12px 12px;display:flex;overflow-x:auto;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 22px),transparent 100%)}
   .combined-pipeline-chips>button{flex:0 0 145px;scroll-snap-align:start}
   .combined-booked-note{align-items:flex-start}
-  .demand-columns,.demand-column{gap:12px}
+  .demand-columns,.demand-column,.hybrid-row{gap:12px}
   .demand-card-head{padding:11px 12px}
   .demand-owed-row{padding:11px 12px;grid-template-columns:minmax(0,1fr) auto 16px;align-items:start;gap:8px}
   .demand-performance-hero,.demand-performance-bars,.demand-booked-body{padding-right:12px;padding-left:12px}
