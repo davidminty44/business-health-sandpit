@@ -401,11 +401,11 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .ai-inline-ask{padding:12px 14px 13px;border-top:1px solid #c4e9f2;background:#fff}
 .ai-inline-ask[hidden]{display:none}
 .ai-card-insight,.ai-kpi-insight{display:none}
-.ai-analysis-active .ai-card-insight{min-height:44px;display:grid;padding:8px 12px;border-bottom:1px solid #c4e9f2;border-left:3px solid #009ec7;background:#f1f8fa;grid-template-columns:auto auto minmax(0,1fr);align-items:center;gap:7px}
+.ai-analysis-active .ai-card-insight{min-height:44px;display:grid;padding:8px 12px;border-bottom:1px solid #c4e9f2;border-left:3px solid #009ec7;background:#f1f8fa;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px}
 .ai-analysis-active .ai-kpi-insight{margin:9px -10px -12px;display:grid;padding:8px 10px 9px;border-top:1px solid #99d8e9;background:rgba(255,255,255,.72);grid-template-columns:auto auto;align-items:center;gap:6px}
 .ai-analysis-active .ai-priority-card{border-color:#99d8e9;box-shadow:0 2px 6px rgba(0,158,199,.14)}
-.ai-insight-status{padding:2px 6px;border:1px solid #99d8e9;border-radius:9px;background:#fff;color:#006f8b;font-size:10px;font-weight:500;line-height:14px;white-space:nowrap}
 .ai-card-insight p,.ai-kpi-insight p{margin:0;color:#424242;font-size:12px;line-height:18px}
+.ai-card-insight p strong,.ai-kpi-insight p strong{color:#212121;font-weight:500}
 .ai-kpi-insight p{grid-column:1/-1}
 .ai-question-suggestions{display:flex;flex-wrap:wrap;gap:6px}
 .ai-question-suggestions button{padding:5px 8px;border:1px solid #d2d3d4;border-radius:12px;background:#fff;color:#526069;font-size:11px;line-height:16px;cursor:pointer}
@@ -706,8 +706,8 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .health-view-context>span{white-space:normal}
   .ai-question-suggestions{display:grid;grid-template-columns:1fr}
   .ai-question-suggestions button{text-align:left}
-  .ai-analysis-active .ai-card-insight{grid-template-columns:auto auto;justify-content:start}
-  .ai-card-insight p{grid-column:1/-1}
+  .ai-analysis-active .ai-card-insight{grid-template-columns:1fr;justify-items:start}
+  .ai-card-insight p{grid-column:1}
   .ai-analysis-active .ai-kpi-insight{grid-template-columns:1fr;justify-items:start}
   .ai-kpi-insight p{grid-column:1}
   .demand-cash-flow-grid{gap:8px}
