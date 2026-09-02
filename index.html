@@ -47,6 +47,7 @@
       <button class="health-view-tab" id="winningWorkTab" type="button" role="tab" aria-selected="false" aria-controls="winningWorkPanel" tabindex="-1">Scenario 2 - Need to get more work</button>
     </div>
     <span class="health-view-divider" aria-hidden="true"></span>
+    <button class="health-view-tab health-view-action ai-analysis-trigger" id="aiAnalysisTrigger" type="button" aria-haspopup="dialog" aria-controls="aiAnalysisPanel" aria-expanded="false"><i class="fa fa-lightbulb-o" aria-hidden="true"></i><span>AI analysis</span></button>
     <label class="health-view-tab health-view-action health-view-check"><input id="calculationToggle" type="checkbox"><span id="calculationToggleLabel">Calculations</span></label>
     <button class="health-view-tab health-view-action" id="emailPreviewShortcut" type="button" aria-haspopup="dialog" aria-controls="emailPreviewModal">Email</button>
   </div>
@@ -484,6 +485,40 @@
     </main>
   </div>
   <div class="sr-only" id="calculationAnnouncement" aria-live="polite" aria-atomic="true"></div>
+  <div class="ai-analysis-backdrop" id="aiAnalysisBackdrop" hidden></div>
+  <aside class="ai-analysis-panel" id="aiAnalysisPanel" role="dialog" aria-modal="false" aria-labelledby="aiAnalysisTitle" hidden>
+    <header class="ai-analysis-header">
+      <div><span class="ai-analysis-eyebrow"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>AI Business Analysis</span><h2 id="aiAnalysisTitle">Where to focus</h2><p>Based on today’s Scenario 1 numbers</p></div>
+      <button class="ai-analysis-close" id="aiAnalysisClose" type="button" aria-label="Close AI Business Analysis"><i class="fa fa-times" aria-hidden="true"></i></button>
+    </header>
+    <div class="ai-analysis-body">
+      <section class="ai-verdict" aria-labelledby="aiVerdictTitle">
+        <h3 id="aiVerdictTitle">Cash is tighter, but the quickest fixes are already in your hands.</h3>
+        <p>Net cash is <strong>-$7,300</strong>. With <strong>$47,820 overdue</strong> and <strong>$38,900 of finished work ready to invoice</strong>, collecting and billing should come before chasing more work.</p>
+      </section>
+      <div class="ai-priorities-heading"><h3>Your priorities</h3><span>Highest impact first</span></div>
+      <ol class="ai-priority-list">
+        <li><span class="ai-priority-rank">1</span><div><h4>Chase the oldest overdue invoices</h4><p><strong>$27,630</strong> is tied up in the three oldest invoices. INV-2841 is 68 days overdue, while INV-2867 has never been chased.</p><small><strong>Why now:</strong> it’s the largest block of money you’ve already earned.</small><button class="ai-source-link" type="button" data-ai-target=".demand-chasing">Review invoices to chase <i class="fa fa-angle-right" aria-hidden="true"></i></button></div></li>
+        <li><span class="ai-priority-rank">2</span><div><h4>Invoice the work you’ve finished</h4><p><strong>$38,900</strong> of completed work hasn’t been billed yet. The three oldest jobs shown are worth $23,450.</p><small><strong>Why now:</strong> money can’t come in until the invoices go out.</small><button class="ai-source-link" type="button" data-ai-target=".demand-ready">Review jobs ready to invoice <i class="fa fa-angle-right" aria-hidden="true"></i></button></div></li>
+        <li><span class="ai-priority-rank">3</span><div><h4>Keep an eye on the cash outlook</h4><p>Your balance is forecast to reach <strong>$12,600</strong> in 8 weeks, down $18,800 from today.</p><small><strong>Why now:</strong> this shows whether chasing and invoicing are closing the gap.</small><button class="ai-source-link" type="button" data-ai-target=".demand-outlook-figure">View cash outlook <i class="fa fa-angle-right" aria-hidden="true"></i></button></div></li>
+      </ol>
+      <section class="ai-ask" aria-labelledby="aiAskTitle">
+        <h3 id="aiAskTitle">Ask about these numbers</h3>
+        <div class="ai-question-suggestions" aria-label="Suggested questions">
+          <button type="button" data-ai-question="Why did money out go up this month?">Why did money out go up?</button>
+          <button type="button" data-ai-question="Which overdue invoice should I chase first?">Which invoice should I chase first?</button>
+          <button type="button" data-ai-question="What’s the fastest way to improve net cash?">How can I improve cash fastest?</button>
+        </div>
+        <form class="ai-question-form" id="aiQuestionForm">
+          <label class="sr-only" for="aiQuestionInput">Ask about your business numbers</label>
+          <input class="form-control" id="aiQuestionInput" type="text" autocomplete="off" placeholder="Ask about your numbers…">
+          <button class="btn btn-primary" type="submit" aria-label="Ask question"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </form>
+        <article class="ai-answer" id="aiAnswer" aria-live="polite" hidden><span>Based on this report</span><h4 id="aiAnswerQuestion"></h4><p id="aiAnswerText"></p><small id="aiAnswerSource"></small></article>
+      </section>
+    </div>
+    <footer class="ai-analysis-footer"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Based on figures in this report as at 1 Sep 2026. Suggestions, not instructions — you know your customers best.</span></footer>
+  </aside>
   <footer class="product-footer" id="productFooter"><span class="wordmark" aria-label="Tradify">TRADIFY</span></footer>
 
   <div class="modal-backdrop" id="modalBackdrop" hidden></div>
