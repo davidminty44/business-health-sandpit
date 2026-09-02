@@ -384,9 +384,10 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .health-view-divider{width:1px;margin:4px 2px;background:#526069}
 .health-view-tabs [hidden]{display:none}
 .tradify-ai-icon{width:13px;height:13px;background:currentColor;display:inline-block;flex:0 0 13px;-webkit-mask:url("tradify-ai-icon.svg") center/contain no-repeat;mask:url("tradify-ai-icon.svg") center/contain no-repeat}
-.ai-analysis-trigger{border-radius:4px;display:flex;align-items:center;justify-content:center;gap:5px;color:#99d8e9}
+.ai-analysis-trigger{border-radius:4px;background:#009ec7;color:#fff;display:flex;align-items:center;justify-content:center;gap:5px}
+.ai-analysis-trigger:hover{background:#0aa8d1;color:#fff}
 .ai-analysis-trigger .tradify-ai-icon{width:16px;height:16px;flex-basis:16px}
-.ai-analysis-trigger[aria-pressed="true"]{background:#fff;color:#263238}
+.ai-analysis-trigger[aria-pressed="true"]{background:#006f8b;color:#fff}
 .health-view-panel{min-width:0;display:flex;flex-direction:column;gap:15px}
 .ai-inline-analysis{border:1px solid #99d8e9;border-radius:5px;background:linear-gradient(135deg,#e5f5f9 0,#fff 72%);box-shadow:0 2px 5px rgba(0,158,199,.12);overflow:hidden}
 .ai-inline-analysis[hidden]{display:none}
@@ -596,9 +597,13 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-priority header{padding-bottom:16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .email-priority h5{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-priority-value{display:block;margin-top:4px;color:#263238;font-size:22px;font-weight:700;line-height:28px}
-.email-priority-split{margin:0 0 22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
-.email-priority-split>div{min-width:0}
+.email-priority-split{margin:0 0 22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.email-priority-split>div{min-width:0;padding:14px 16px;border-radius:9px}
 .email-priority-split dd strong{display:block;color:#263238;font-size:17px;line-height:22px}
+.email-status-negative{background:#fdecea}
+.email-status-negative dt,.email-status-negative dd strong{color:#c8322b}
+.email-status-positive{background:#e9f5ef}
+.email-status-positive dt,.email-status-positive dd strong{color:#12805c}
 .email-priority>p{margin:0 0 20px;color:#263238;font-size:14px;line-height:22px}
 .email-primary-action{min-height:40px;padding:8px 22px;border-radius:4px;background:#000;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:400;line-height:24px;text-align:center;text-decoration:none}
 .email-primary-action:hover{background:#263238}
