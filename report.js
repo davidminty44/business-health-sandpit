@@ -41,11 +41,6 @@
     'jul-2026':'Cash is positive. Keep collection moving.',
     'jun-2026':'Cash is positive, but there’s little room for delays.'
   };
-  const report2Priorities={
-    'aug-2026':{cash:'Collect overdue invoices and bill finished work.',profit:'Review the low-margin Kererū Café job.',work:'Follow up quotes that have gone quiet.'},
-    'jul-2026':{cash:'Keep overdue work moving to protect cash.',profit:'Repeat what worked on profitable jobs.',work:'Get five open quotes to a decision.'},
-    'jun-2026':{cash:'Chase overdue invoices before cash gets tight.',profit:'Control material costs and quote variations.',work:'Follow up quotes and reply to new enquiries.'}
-  };
   const reportActions={
     'aug-2026':{
       cash:[
@@ -249,7 +244,6 @@
     outlookDelta.classList.toggle('positive',month.outlookChange>0);
     focusKeys.forEach(key=>{
       const focus=month.focus[key];
-      document.querySelector(`[data-report2-priority="${key}"]`).textContent=report2Priorities[month.slug][key];
       const section=document.querySelector(`[data-report2-section="${key}"]`);
       const actions=reportActions[month.slug][key];
       section.querySelector('[data-report2-headline]').textContent=focus.headline;
@@ -498,12 +492,6 @@
     resetReport2Chat();
     renderSnapshot();
   });
-  document.querySelectorAll('[data-report2-open]').forEach(button=>button.addEventListener('click',()=>{
-    const section=document.querySelector(`[data-report2-section="${button.dataset.report2Open}"]`);
-    section.open=true;
-    section.scrollIntoView({behavior:'smooth',block:'start'});
-    section.querySelector('summary').focus({preventScroll:true});
-  }));
   document.querySelectorAll('[data-report2-ask]').forEach(button=>button.addEventListener('click',()=>{
     activeFocus=button.dataset.report2Ask;
     setReport2ChatOpen(true,true);
