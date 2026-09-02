@@ -404,7 +404,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .ai-inline-ask[hidden]{display:none}
 .ai-card-insight{display:none}
 .ai-analysis-active .ai-card-insight{min-height:44px;display:grid;padding:8px 12px;border-bottom:1px solid #c4e9f2;border-left:3px solid #009ec7;background:#f1f8fa;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px}
-.ai-analysis-active .ai-priority-card{border-color:#99d8e9;box-shadow:0 2px 6px rgba(0,158,199,.14)}
 .ai-card-insight p{margin:0;color:#424242;font-size:12px;line-height:18px}
 .ai-card-insight p strong{color:#212121;font-weight:500}
 .ai-question-suggestions{display:flex;flex-wrap:wrap;gap:6px}
