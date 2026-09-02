@@ -520,7 +520,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .fresh-quote-figure{border-color:#bfe5d3;background:#f5fbf8}
 .quiet-quotes-card .demand-card-total strong{color:#9a6a12}
 .quiet-quotes-card .demand-owed-copy>strong,.enquiry-card .demand-ready-row strong{color:#009ec7;font-weight:400}
-.enquiry-card .demand-card-total strong{color:#006f8b}
+.enquiry-card .demand-card-total .demand-card-count{color:#424242;font-size:14px;font-weight:300;line-height:20px}
 .enquiry-card .demand-ready-row>b{color:#009ec7;font-size:12px;white-space:nowrap}
 .pipeline-body{padding:16px}
 .pipeline-total{margin-bottom:13px;display:flex;align-items:baseline;gap:8px}
@@ -598,7 +598,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-attention-section{padding-top:36px}
 .email-attention-section>h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-priority{margin-top:28px}
-.email-priority+.email-priority{margin-top:48px}
+.email-priority+.email-priority{margin-top:40px;padding-top:40px;border-top:1px solid #d8d8d8}
 .email-priority header{padding-bottom:16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .email-priority h5{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-priority-value{display:block;margin-top:4px;color:#263238;font-size:22px;font-weight:700;line-height:28px}
@@ -780,7 +780,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .email-masthead h3{width:100%;max-width:none}
   .email-masthead-icon{display:none}
   .email-snapshot,.email-priority-split{grid-template-columns:1fr;gap:16px}
-  .email-priority+.email-priority{margin-top:40px}
+  .email-priority+.email-priority{margin-top:32px;padding-top:32px}
 }
 @media(max-width:370px){.report-selector-label{display:none}}
 @media(max-width:360px){.cash-trend-hit{width:26px}}
