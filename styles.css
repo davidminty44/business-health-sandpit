@@ -391,22 +391,23 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .health-view-panel{min-width:0;display:flex;flex-direction:column;gap:15px}
 .ai-inline-analysis{border:1px solid #99d8e9;border-radius:5px;background:linear-gradient(135deg,#e5f5f9 0,#fff 72%);box-shadow:0 2px 5px rgba(0,158,199,.12);overflow:hidden}
 .ai-inline-analysis[hidden]{display:none}
-.ai-inline-summary{min-height:52px;padding:9px 11px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
-.ai-provenance-badge{width:max-content;padding:4px 8px;border-radius:4px;background:#009ec7;color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
+.ai-inline-summary{min-height:52px;padding:9px 11px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px}
+.ai-provenance-badge{width:max-content;padding:4px 8px;border-radius:4px;background:#009ec7;color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;vertical-align:middle;white-space:nowrap}
 .ai-provenance-badge .tradify-ai-icon{width:12px;height:12px;flex-basis:12px}
 .ai-summary-copy{min-width:0;display:flex;flex-direction:column;gap:4px}
 .ai-summary-copy p{margin:0;color:#424242;font-size:13px;line-height:19px}
 .ai-summary-copy p strong{color:#212121;font-weight:500}
+.ai-summary-copy p .ai-provenance-badge,.ai-card-insight p .ai-provenance-badge{margin-left:5px}
 .ai-ask-toggle{min-height:42px;padding:8px 16px;border:2px solid #99d8e9;border-radius:4px;background:#fff;color:#006f8b;display:flex;align-items:center;justify-content:center;gap:12px;font-size:16px;font-weight:400;line-height:22px;white-space:nowrap;cursor:pointer}
 .ai-ask-toggle .fa{width:16px;height:16px;font-size:16px;line-height:16px}
 .ai-ask-toggle:hover,.ai-ask-toggle[aria-expanded="true"]{border-color:#009ec7;background:#f1f8fa}
 .ai-inline-ask{padding:12px 14px 13px;border-top:1px solid #c4e9f2;background:#fff}
 .ai-inline-ask[hidden]{display:none}
 .ai-card-insight{display:none}
-.ai-analysis-active .ai-card-insight{min-height:44px;display:grid;padding:8px 12px;border-bottom:1px solid #c4e9f2;border-left:3px solid #009ec7;background:#f1f8fa;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px}
+.ai-analysis-active .ai-card-insight{min-height:44px;padding:8px 12px;border-bottom:1px solid #c4e9f2;border-left:3px solid #009ec7;background:#f1f8fa;display:block}
 .ai-kpi-badge{display:none}
 .ai-analysis-active .demand-outlook-figure .outlook-change{display:none}
-.ai-analysis-active .demand-outlook-figure .ai-kpi-badge{margin-top:6px;padding:2px 5px;display:inline-flex;font-size:9px;line-height:12px}
+.ai-analysis-active .demand-outlook-figure .ai-kpi-badge{padding:2px 5px;display:inline-flex;font-size:9px;line-height:12px}
 .ai-card-insight p{margin:0;color:#424242;font-size:12px;line-height:18px}
 .ai-card-insight p strong{color:#212121;font-weight:500}
 .ai-question-suggestions{display:flex;flex-wrap:wrap;gap:6px}
@@ -434,10 +435,11 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .demand-card{min-width:0;border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
 .demand-cash-flow-grid{width:100%;min-width:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .demand-outlook-figure{border-color:#99d8e9;background:#e5f5f9;box-shadow:inset 3px 0 0 #009ec7}
-.demand-outlook-figure>strong{color:#006f8b}
 .demand-outlook-figure .kpi-label{align-items:center;flex-wrap:wrap}
+.demand-outlook-value{margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.demand-outlook-value>strong{color:#006f8b;font-size:30px;font-weight:400;line-height:36px}
 .demand-forecast-badge{padding:1px 5px;border:1px solid #99d8e9;border-radius:3px;background:#fff;color:#006f8b;font-size:10px;font-style:normal;font-weight:400;line-height:14px;white-space:nowrap}
-.demand-outlook-figure .outlook-change{margin-top:6px}
+.demand-outlook-figure .outlook-change{margin-top:0}
 .demand-card-head>div{display:flex;align-items:center;gap:7px}
 .demand-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;align-items:start}
 .demand-column{min-width:0;display:flex;flex-direction:column;gap:15px}
@@ -587,10 +589,11 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-preview-content{padding:40px}
 .email-preview-content strong{font-weight:700}
 .email-greeting{margin:0;color:#263238;font-size:17px;line-height:22px}
-.email-ai-commentary{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:9px}
-.email-ai-brand{padding:3px 6px;border-radius:3px;background:#009ec7;color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
+.email-ai-commentary{display:block}
+.email-ai-brand{padding:3px 6px;border-radius:3px;background:#009ec7;color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;vertical-align:middle;white-space:nowrap}
 .email-ai-brand .tradify-ai-icon{width:11px;height:11px;flex-basis:11px}
 .email-ai-commentary p{margin:0;color:#526069;font-size:14px;line-height:20px}
+.email-ai-commentary p .email-ai-brand{margin-left:5px}
 .email-greeting+.email-ai-commentary{margin-top:8px}
 .email-snapshot{margin:28px 0 0;padding:14px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .email-snapshot>div{min-width:0}
@@ -656,10 +659,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .health-view-tablist{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
   .health-view-tab{min-width:0;padding-right:6px;padding-left:6px;line-height:15px;text-align:center;white-space:normal}
   .health-view-divider{display:none}
-  .ai-inline-summary{grid-template-columns:minmax(0,1fr) auto}
-  .ai-inline-summary>.ai-provenance-badge{grid-column:1;grid-row:1}
-  .ai-inline-summary>.ai-summary-copy{grid-column:1/-1;grid-row:2}
-  .ai-inline-summary>.ai-ask-toggle{grid-column:2;grid-row:1}
   .sidebar{top:0;width:200px;transform:translateX(-102%);transition:transform .2s ease-out}
   .sidebar.open{transform:translateX(0)}
   .sidebar nav a{height:40px;padding:10px 20px;font-size:14px;line-height:20px}
@@ -709,11 +708,9 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .demand-content{padding:30px 12px 12px;gap:12px}
   .health-view-context{padding:11px 13px;align-items:flex-start;flex-direction:column;gap:4px}
   .health-view-context>span{white-space:normal}
-  .ai-inline-summary>.ai-ask-toggle{grid-column:1/-1;grid-row:3;justify-self:start;margin-top:2px}
+  .ai-inline-summary>.ai-ask-toggle{grid-column:1/-1;grid-row:2;justify-self:start;margin-top:2px}
   .ai-question-suggestions{display:grid;grid-template-columns:1fr}
   .ai-question-suggestions button{text-align:left}
-  .ai-analysis-active .ai-card-insight{grid-template-columns:1fr;justify-items:start}
-  .ai-card-insight p{grid-column:1}
   .demand-cash-flow-grid{gap:8px}
   .demand-cash-flow-grid .kpi-delta{align-items:flex-start}
   .demand-cash-flow-grid .kpi-delta .fa{margin-top:2px}
@@ -753,7 +750,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .period-link{flex:0 0 auto}
   .actuals-summary{grid-template-columns:1fr 1fr;gap:8px}
   .actual-figure{min-height:118px;padding:12px 10px}
-  .actual-figure>strong,.net-figure>strong{font-size:24px;line-height:30px}
+  .actual-figure>strong,.net-figure>strong,.demand-outlook-value>strong{font-size:24px;line-height:30px}
   .net-figure{min-height:118px;padding-left:12px}
   .kpi-label{min-height:22px;font-size:12px;line-height:18px}
   .kpi-delta{font-size:12px;line-height:18px}
@@ -790,7 +787,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 }
 @media(max-width:480px){
   .email-masthead h3{width:100%;max-width:none}
-  .email-ai-commentary{grid-template-columns:1fr;gap:5px}
   .email-ai-brand{width:max-content}
   .email-masthead-icon{display:none}
   .email-snapshot,.email-priority-split{grid-template-columns:1fr;gap:16px}
