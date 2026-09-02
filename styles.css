@@ -578,16 +578,11 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .modal-footer{padding:12px 22px;border-top:1px solid #e0e0e0;background:#fafafa;display:flex;justify-content:flex-end;gap:8px}
 .email-preview-modal .modal-dialog{width:680px;max-width:calc(100% - 28px);margin:32px auto}
 .email-preview-body{padding:24px;background:#eef0f3;font-family:Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400}
-.email-metadata{max-width:600px;margin:0 auto 16px;padding:12px 16px;border:1px solid #d8d8d8;border-radius:4px;background:#fff}
-.email-metadata div{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;padding:3px 0;font-size:14px;line-height:22px}
-.email-metadata dt{color:#757575;font-weight:400}
-.email-metadata dd{min-width:0;margin:0;color:#263238;overflow-wrap:anywhere}
 .email-preview-card{max-width:600px;margin:0 auto;background:#fff;color:#263238;overflow:hidden}
 .email-masthead{min-height:137px;padding:24px 40px;background:#0085ff;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .email-masthead h3{width:451px;max-width:calc(100% - 78px);margin:0;font-size:25px;font-weight:400;line-height:29px;letter-spacing:-.3px}
 .email-masthead-icon{position:relative;width:54px;height:60px;color:#fff;display:grid;place-items:center;flex:0 0 54px}
 .email-masthead-icon .fa-money{width:auto;height:auto;font-size:42px;line-height:60px}
-.email-masthead-icon-badge{position:absolute;top:-1px;right:-3px;width:auto;height:auto;border-radius:50%;background:#0085ff;color:#fd8b00;font-size:19px;line-height:1}
 .email-preview-content{padding:40px}
 .email-preview-content strong{font-weight:700}
 .email-greeting{margin:0 0 14px;color:#263238;font-size:17px;line-height:22px}
@@ -604,12 +599,12 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-attention-section{padding-top:40px}
 .email-attention-section>h4,.email-worth h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-attention-section>p{margin:4px 0 0;color:#526069;font-size:15px;line-height:24px}
-.email-priority{margin-top:32px;padding-top:32px;border-top:1px solid #d8d8d8}
-.email-priority header{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.email-priority{margin-top:24px;padding:0 24px 24px;border:1px solid #d8d8d8;background:#fff}
+.email-priority header{margin:0 -24px;padding:18px 24px;border-bottom:1px solid #d8d8d8;background:#f2f2f2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .email-priority h5{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-priority header span{color:#263238;font-size:15px;line-height:24px;text-align:right}
-.email-priority-value{display:block;margin-top:8px;color:#263238;font-size:22px;font-weight:700;line-height:28px}
-.email-priority-split{margin:20px 0;padding:18px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.email-priority-value{display:block;margin-top:6px;color:#263238;font-size:22px;font-weight:700;line-height:28px}
+.email-priority-split{margin:0 0 20px;padding:18px 0;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .email-priority-split>div{min-width:0;padding:0 18px;border-right:1px solid #d8d8d8}
 .email-priority-split>div:first-child{padding-left:0}
 .email-priority-split>div:last-child{padding-right:0;border-right:0}
@@ -795,13 +790,13 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .email-preview-footer{padding:24px}
 }
 @media(max-width:480px){
-  .email-metadata div{grid-template-columns:45px minmax(0,1fr);font-size:12px;line-height:18px}
   .email-masthead-icon{display:none}
   .email-snapshot,.email-priority-split{grid-template-columns:1fr}
   .email-snapshot>div,.email-priority-split>div{padding:12px 0;border-right:0;border-bottom:1px solid #d8d8d8}
   .email-snapshot>div:first-child,.email-priority-split>div:first-child{padding-top:0}
   .email-snapshot>div:last-child,.email-priority-split>div:last-child{padding-bottom:0;border-bottom:0}
-  .email-priority header{align-items:flex-start;flex-direction:column;gap:2px}
+  .email-priority{padding:0 18px 18px}
+  .email-priority header{margin:0 -18px;padding:16px 18px;align-items:flex-start;flex-direction:column;gap:2px}
   .email-priority header span{text-align:left}
 }
 @media(max-width:370px){.report-selector-label{display:none}}
