@@ -305,26 +305,23 @@
                 <section class="ai-inline-analysis" id="aiInlineAnalysis" aria-labelledby="aiInlineTitle" hidden>
                   <header class="ai-analysis-header">
                     <div class="ai-analysis-identity"><span class="ai-provenance-badge"><span class="tradify-ai-icon" aria-hidden="true"></span><span>Summary by <strong>Business Analysis</strong></span></span><span>Based on figures as at 1 Sep 2026</span></div>
-                    <button class="ai-ask-toggle" id="aiAskToggle" type="button" aria-expanded="false" aria-controls="aiAskPanel">Ask a Question <i class="fa fa-angle-down" aria-hidden="true"></i></button>
                   </header>
-                  <div class="ai-analysis-body">
-                    <section class="ai-position">
-                      <span class="ai-section-label">Where you’re at</span>
-                      <h2 id="aiInlineTitle">Cash needs attention</h2>
-                      <p>Net cash is down <strong>$7,300</strong> this month because money in fell to $24,600 while money out rose to $31,900.</p>
-                      <p class="ai-positive-context"><i class="fa fa-check-circle" aria-hidden="true"></i><span>Jobs are still profitable at a 35% gross margin, with $264,500 booked ahead.</span></p>
+                  <div class="ai-analysis-content">
+                    <section class="ai-overall-summary">
+                      <h2 id="aiInlineTitle">Cash is tighter, but the quickest fixes are already in your hands.</h2>
+                      <p>Net cash is <strong>-$7,300</strong>. With <strong>$47,820 overdue</strong> and <strong>$38,900 of finished work ready to invoice</strong>, collecting and billing should come before chasing more work.</p>
                     </section>
-                    <section class="ai-focus" aria-labelledby="aiFocusTitle">
-                      <span class="ai-section-label" id="aiFocusTitle">Focus next</span>
+                    <section class="ai-priorities" aria-labelledby="aiPrioritiesTitle">
+                      <span class="ai-section-label" id="aiPrioritiesTitle">Priorities</span>
                       <div class="ai-priority-list">
-                        <button class="ai-priority-link" type="button" data-ai-target=".demand-chasing"><span class="ai-priority-number">1</span><span><strong>Chase overdue invoices first</strong><small>The three oldest total $27,630. Start with INV-2841 — $12,400 and 68 days overdue.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                        <button class="ai-priority-link" type="button" data-ai-target=".demand-ready"><span class="ai-priority-number">2</span><span><strong>Invoice finished jobs next</strong><small>$38,900 is ready to invoice. $23,450 is from three jobs finished over a week ago.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                        <button class="ai-priority-link" type="button" data-ai-target=".demand-chasing"><span class="ai-priority-number">1</span><span><strong>Chase overdue invoices</strong><small>$47,820 is sitting unpaid past its due date.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                        <button class="ai-priority-link" type="button" data-ai-target=".demand-ready"><span class="ai-priority-number">2</span><span><strong>Invoice finished jobs</strong><small>$38,900 of completed work hasn’t been billed yet.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                        <button class="ai-priority-link" type="button" data-ai-target=".demand-outlook-figure"><span class="ai-priority-number">3</span><span><strong>Watch your cash position</strong><small>Your balance is forecast to reach $12,600 in 8 weeks.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
                       </div>
                     </section>
                   </div>
-                  <footer class="ai-analysis-footer">Suggestions, not instructions.</footer>
+                  <footer class="ai-analysis-footer"><span>Suggestions, not instructions.</span><button class="ai-ask-toggle" id="aiAskToggle" type="button" aria-expanded="false" aria-controls="aiAskPanel">Ask about these numbers <i class="fa fa-angle-down" aria-hidden="true"></i></button></footer>
                   <div class="ai-inline-ask" id="aiAskPanel" hidden>
-                    <strong class="ai-ask-title">Ask about your numbers</strong>
                     <div class="ai-question-suggestions" aria-label="Suggested questions">
                       <button type="button" data-ai-question="Why did money out go up this month?">Why is money out up?</button>
                       <button type="button" data-ai-question="Which overdue invoice should I chase first?">Which invoice first?</button>
@@ -489,26 +486,6 @@
                     <div class="demand-outlook-value"><strong>$12,600</strong></div>
                     <span class="outlook-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
                   </article>
-                </section>
-
-                <section class="ai-inline-analysis hybrid-ai-analysis" aria-labelledby="hybridAiTitle">
-                  <header class="ai-analysis-header">
-                    <div class="ai-analysis-identity"><span class="ai-provenance-badge"><span class="tradify-ai-icon" aria-hidden="true"></span><span>Summary by <strong>Business Analysis</strong></span></span><span>Based on figures as at 1 Sep 2026</span></div>
-                  </header>
-                  <div class="ai-analysis-body">
-                    <section class="ai-position">
-                      <span class="ai-section-label">Where you’re at</span>
-                      <h2 id="hybridAiTitle">Cash needs attention, but work is moving</h2>
-                      <p>Net cash is down <strong>$7,300</strong>, while 3 quiet quotes and 3 unquoted enquiries give you work to act on.</p>
-                      <p class="ai-positive-context"><i class="fa fa-check-circle" aria-hidden="true"></i><span>Jobs are profitable at a 35% gross margin, with $264,500 booked ahead.</span></p>
-                    </section>
-                    <section class="ai-focus ai-position">
-                      <span class="ai-section-label">Focus next</span>
-                      <h2>Convert work at both ends</h2>
-                      <p>Follow up $18,900 in quiet quotes, then chase $47,820 overdue and invoice $38,900 of finished work.</p>
-                    </section>
-                  </div>
-                  <footer class="ai-analysis-footer">Suggestions, not instructions.</footer>
                 </section>
 
                 <div class="hybrid-row" aria-label="Quoting">

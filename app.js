@@ -648,7 +648,8 @@ const showAiAnswer=question=>{
 };
 
 const focusAiTarget=selector=>{
-  const target=document.querySelector(`#gettingPaidPanel ${selector}`);
+  const activePanel=healthViewPanels.find(panel=>!panel.hidden);
+  const target=activePanel?.querySelector(selector);
   if(!target)return;
   window.clearTimeout(aiHighlightTimer);
   target.tabIndex=-1;
@@ -754,6 +755,11 @@ document.querySelectorAll('.period-link').forEach(button=>{
   });
 });
 
+const placeAiAnalysis=panel=>{
+  const cashSummary=panel.querySelector('.demand-cash-flow-grid');
+  if(cashSummary)cashSummary.insertAdjacentElement('afterend',aiInlineAnalysis);
+};
+
 const activateHealthView=(tab,updateUrl=true)=>{
   closeCalculationPopover(false);
   healthViewTabs.forEach(item=>{
@@ -763,10 +769,12 @@ const activateHealthView=(tab,updateUrl=true)=>{
     item.tabIndex=active?0:-1;
   });
   healthViewPanels.forEach(panel=>{panel.hidden=panel.id!==tab.getAttribute('aria-controls')});
-  const supportsAiAnalysis=tab.id==='gettingPaidTab';
+  const activePanel=healthViewPanels.find(panel=>!panel.hidden);
+  const supportsAiAnalysis=tab.id==='gettingPaidTab'||tab.id==='hybridTab';
+  if(supportsAiAnalysis&&activePanel)placeAiAnalysis(activePanel);
   aiAnalysisTrigger.hidden=!supportsAiAnalysis;
   document.body.classList.toggle('ai-analysis-unavailable',!supportsAiAnalysis);
-  if(!supportsAiAnalysis)setAiAnalysisVisibility(false);
+  if(tab.id==='hybridTab')setAiAnalysisVisibility(true);else if(!supportsAiAnalysis)setAiAnalysisVisibility(false);
   if(updateUrl){
     const url=new URL(window.location.href);
     if(tab.id==='winningWorkTab')url.searchParams.set('area','winning');
