@@ -610,6 +610,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-snapshot dd span,.email-priority-split dd span{display:block;margin-top:2px;color:#526069;font-size:13px;line-height:18px}
 .email-attention-section{padding-top:36px}
 .email-attention-section>h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
+.email-attention-summary{margin:5px 0 0;color:#526069;font-size:14px;line-height:20px}
 .email-priority{margin-top:28px}
 .email-priority+.email-priority{margin-top:40px;padding-top:40px;border-top:1px solid #d8d8d8}
 .email-priority header{padding-bottom:16px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
