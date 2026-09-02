@@ -37,6 +37,11 @@
     'jul-2026':'Cash finished positive and margin held up. The pages that follow show what still needs collecting, where profit came from, and which quotes need a decision.',
     'jun-2026':'Cash stayed just above break-even. The pages that follow explain the collection risk, rising material costs, and how to protect the next month of work.'
   };
+  const report2Priorities={
+    'aug-2026':{cash:'Collect overdue invoices and bill finished work.',profit:'Review the low-margin Kererū Café job.',work:'Follow up quotes that have gone quiet.'},
+    'jul-2026':{cash:'Keep overdue work moving to protect cash.',profit:'Repeat what worked on profitable jobs.',work:'Get five open quotes to a decision.'},
+    'jun-2026':{cash:'Chase overdue invoices before cash gets tight.',profit:'Control material costs and quote variations.',work:'Follow up quotes and reply to new enquiries.'}
+  };
   const chatSuggestions={
     report:[['What changed most in this report?','What changed most?'],['What should I do first?','What should I do first?'],['Which job needs attention?','Which job needs attention?'],['Which work should I follow up?','Which work should I follow up?']],
     cash:[['What should I collect first?','What should I collect first?'],['Which invoice should I chase first?','Which invoice first?'],['How can I improve cash fastest?','How can I improve cash?']],
@@ -62,7 +67,6 @@
   const pagePanels=Array.from(document.querySelectorAll('[data-report-panel]'));
   const variantTabs=Array.from(document.querySelectorAll('[data-report-variant]'));
   const variantPanels=Array.from(document.querySelectorAll('[data-report-variant-panel]'));
-  const report2ArchiveTitle=document.querySelector('#report2ArchiveTitle');
   const report2ArchiveSelect=document.querySelector('#report2ArchiveSelect');
   const report2Title=document.querySelector('#report2Title');
   const report2GeneratedMeta=document.querySelector('#report2GeneratedMeta');
@@ -137,10 +141,9 @@
 
   const renderReport2=()=>{
     const month=reportMonths[monthIndex];
-    report2ArchiveTitle.textContent=`${month.label} briefing`;
     report2ArchiveSelect.value=month.slug;
     report2Title.textContent=`${month.label} briefing`;
-    report2GeneratedMeta.textContent=`Prepared ${month.asAt} · Sent to Office team`;
+    report2GeneratedMeta.textContent='Sent to Office team';
     report2Period.textContent=`Compared with ${month.previous} and ${month.year}`;
     report2HealthTitle.classList.toggle('healthy',month.healthy);
     report2HealthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
@@ -162,7 +165,7 @@
     document.querySelector('[data-report2-outlook]').textContent=`${month.outlookChange<0?'Down':'Up'} ${money(Math.abs(month.outlookChange))} over 8 weeks`;
     focusKeys.forEach(key=>{
       const focus=month.focus[key];
-      document.querySelector(`[data-report2-priority="${key}"]`).textContent=focus.headline;
+      document.querySelector(`[data-report2-priority="${key}"]`).textContent=report2Priorities[month.slug][key];
       const section=document.querySelector(`[data-report2-section="${key}"]`);
       section.querySelector('[data-report2-headline]').textContent=focus.headline;
       section.querySelector('[data-report2-body]').textContent=focus.body;
@@ -170,7 +173,7 @@
       section.querySelector('[data-report2-actions]').innerHTML=focus.actions.map(action=>`<li>${action}</li>`).join('');
     });
     document.querySelector('.report2-note span').textContent=`Based on Tradify and connected accounting data up to ${month.asAt}. This briefing won't update after that.`;
-    report2ChatToggle.querySelector('small').textContent=`Grounded in ${month.label}`;
+    report2ChatToggle.querySelector('small').textContent=`Based on ${month.label}`;
   };
 
   const renderSnapshot=()=>{
@@ -343,16 +346,15 @@
     if(focus)variantTabs.find(tab=>tab.dataset.reportVariant===variant).focus();
   };
 
-  const report2Media=window.matchMedia('(max-width:1180px)');
   const setReport2ChatOpen=(open,focus=false)=>{
     report2Companion.classList.toggle('open',open);
     report2ChatToggle.setAttribute('aria-expanded',String(open));
-    report2ChatToggle.querySelector('.fa-angle-up,.fa-angle-down').className=`fa fa-angle-${open?'down':'up'}`;
+    report2ChatToggle.querySelector('.fa-angle-up,.fa-angle-down').className=`fa fa-angle-${open?'up':'down'}`;
     if(open&&focus)report2ChatInput.focus();
   };
 
   const resetReport2Chat=()=>{
-    report2ChatThread.innerHTML='<article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>Ask me to explain a number, expand on a chapter, or tell you what to do next.</p></div></article>';
+    report2ChatThread.innerHTML='<article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>I can explain a number, priority or next step.</p></div></article>';
   };
 
   const appendReport2Message=(role,text,source)=>{
@@ -439,12 +441,9 @@
     setReport2ChatOpen(true,true);
     appendReport2Message('assistant',`I’m looking at “${reportMonths[monthIndex].focus[activeFocus].headline}”. What would you like to know?`);
   }));
-  report2ChatToggle.addEventListener('click',()=>{
-    if(report2Media.matches)setReport2ChatOpen(!report2Companion.classList.contains('open'),true);else report2ChatInput.focus();
-  });
+  report2ChatToggle.addEventListener('click',()=>setReport2ChatOpen(!report2Companion.classList.contains('open'),true));
   document.querySelectorAll('[data-report2-question]').forEach(button=>button.addEventListener('click',()=>askReport2Question(button.dataset.report2Question)));
   report2ChatForm.addEventListener('submit',event=>{event.preventDefault();askReport2Question(report2ChatInput.value)});
-  report2Media.addEventListener('change',event=>setReport2ChatOpen(!event.matches));
   pageTabs.forEach((tab,index)=>{
     tab.addEventListener('click',()=>activatePage(tab.dataset.reportPage,false));
     tab.addEventListener('keydown',event=>{
@@ -482,6 +481,6 @@
   });
   renderSnapshot();
   activatePage(activePage,false);
-  setReport2ChatOpen(!report2Media.matches);
+  setReport2ChatOpen(false);
   activateVariant(activeVariant,false);
 })();

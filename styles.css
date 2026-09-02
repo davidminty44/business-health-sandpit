@@ -763,25 +763,34 @@ body.report-chat-open{overflow:hidden}
 .report2-archive-actions{display:grid;grid-template-columns:auto 170px;align-items:center;gap:8px}
 .report2-archive-actions label{color:#526069;font-size:11px;font-weight:500;white-space:nowrap}
 .report2-archive-actions .form-control{height:36px;cursor:pointer}
-.report2-layout{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:14px}
+.report2-layout{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:14px}
 .report2-briefing{min-width:0;border:1px solid #d2d3d4;border-radius:3px;background:#fff;box-shadow:0 4px 14px rgba(38,50,56,.09);overflow:hidden}
-.report2-masthead{position:relative;padding:23px 24px 18px;border-top:5px solid #009ec7;border-bottom:1px solid #e0e0e0}
+.report2-masthead{position:relative;padding:23px 24px 20px;border-top:5px solid #009ec7;border-bottom:1px solid #e0e0e0}
 .report2-masthead h2{margin:11px 0 3px;color:#212121;font-size:25px;font-weight:400;line-height:31px}
 .report2-masthead p{margin:0;color:#526069;font-size:12px;font-weight:500;line-height:18px}
-.report2-scorecard,.report2-priorities{padding:20px 24px;border-bottom:1px solid #e0e0e0}
+.report2-health-summary{margin-top:16px;padding-top:14px;border-top:1px solid #e0e0e0}
+.report2-health-summary>span{color:#757575;font-size:10px;font-weight:500;line-height:15px;text-transform:uppercase}
+.report2-health-summary h3{margin:2px 0 0;color:#a5383c;display:flex;align-items:center;gap:6px;font-size:20px;font-weight:500;line-height:26px}
+.report2-health-summary h3.healthy{color:#318561}
+.report2-health-summary h3 .fa{width:auto;font-size:14px}
+.report2-scorecard,.report2-priorities{padding:18px 24px 20px;border-bottom:1px solid #e0e0e0}
 .report2-section-heading{margin-bottom:12px}
 .report2-section-heading>span{color:#757575;font-size:10px;font-weight:500;line-height:15px;text-transform:uppercase}
 .report2-section-heading h3{margin:2px 0 0;color:#263238;font-size:17px;font-weight:500;line-height:23px}
 .report2-section-heading h3 .fa{width:auto;margin-right:5px;color:#a5383c;display:inline-block;font-size:13px}
 .report2-section-heading h3.healthy,.report2-section-heading h3.healthy .fa{color:#318561}
-.report2-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.report2-metric{min-width:0;min-height:100px;padding:11px;border:1px solid #e0e0e0;border-top:3px solid #97a3aa;border-radius:3px;display:flex;flex-direction:column}
-.report2-metric.money-in{border-top-color:#46be8a}.report2-metric.money-out,.report2-metric.net.negative{border-top-color:#eb5055}.report2-metric.net.negative{background:#fdedee}
+.report2-metrics{display:grid;grid-template-columns:minmax(150px,1.15fr) repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(82px,auto));gap:8px}
+.report2-metric{min-width:0;padding:11px;border:1px solid #e0e0e0;border-top:3px solid #97a3aa;border-radius:3px;display:flex;flex-direction:column}
+.report2-metric.money-in{border-top-color:#46be8a}.report2-metric.money-out,.report2-metric.net.negative{border-top-color:#eb5055}
+.report2-metric.net{grid-row:1/span 2;border-color:#bbf6c4;border-top-color:#46be8a;background:#def6eb}
+.report2-metric.net.negative{border-color:#f7b9bb;border-top-color:#eb5055;background:#fdedee}
+.report2-metric.outlook{grid-column:2/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:14px}
+.report2-metric.outlook>span,.report2-metric.outlook>strong{grid-column:1}.report2-metric.outlook>small{grid-column:2;grid-row:1/span 2}
 .report2-metric>span{color:#526069;font-size:11px;line-height:16px}
 .report2-metric>strong{margin:3px 0;color:#263238;font-size:22px;font-weight:400;line-height:27px}
-.report2-metric.money-in>strong{color:#318561}.report2-metric.money-out>strong,.report2-metric.net.negative>strong{color:#a5383c}
-.report2-metric>small{margin-top:auto;color:#757575;font-size:9px;line-height:14px}
-.report2-metric>small+small{margin-top:2px}
+.report2-metric.net>strong{color:#318561;font-size:30px;line-height:36px}.report2-metric.money-in>strong{color:#318561}.report2-metric.money-out>strong,.report2-metric.net.negative>strong{color:#a5383c}
+.report2-metric>small{margin-top:auto;color:#757575;font-size:10px;line-height:15px}
+.report2-metric>small+small{margin-top:2px}.report2-metric.outlook>small{margin-top:0;white-space:nowrap}
 .report2-priorities ol{margin:0;padding:0;border:1px solid #e0e0e0;border-radius:4px;list-style:none;overflow:hidden}
 .report2-priorities li{border-bottom:1px solid #e0e0e0}.report2-priorities li:last-child{border-bottom:0}
 .report2-priorities button{width:100%;min-height:62px;padding:9px 12px;border:0;background:#fff;color:#263238;display:grid;grid-template-columns:24px minmax(0,1fr) 14px;align-items:center;gap:10px;text-align:left;cursor:pointer}
@@ -809,7 +818,10 @@ body.report-chat-open{overflow:hidden}
 .report2-chapter-body>.report-ask-link{margin-top:12px}
 .report2-note{padding:12px 24px;border-top:1px solid #e0e0e0;background:#fafafa;color:#757575;display:flex;align-items:flex-start;gap:6px;font-size:10px;line-height:15px}
 .report2-note .fa{margin-top:1px;color:#97a3aa}
-.report2-companion{position:sticky;top:20px;border:1px solid #d2d3d4;border-radius:4px;background:#fff;box-shadow:0 3px 12px rgba(38,50,56,.1);overflow:hidden}
+.report2-companion{position:sticky;top:20px;width:240px;border:1px solid #d2d3d4;border-radius:4px;background:#fff;box-shadow:0 3px 12px rgba(38,50,56,.1);overflow:hidden}
+.report2-companion.open{width:300px}
+.report2-companion:not(.open) .report2-chat-body{display:none}
+.report2-companion:not(.open) .report2-chat-toggle{border-bottom:0}
 .report2-chat-toggle{width:100%;padding:13px;border:0;border-bottom:1px solid #e0e0e0;background:#fff;color:#263238;display:grid;grid-template-columns:36px minmax(0,1fr) 14px;align-items:center;gap:9px;text-align:left;cursor:pointer}
 .report2-chat-toggle>span:nth-child(2){min-width:0;display:flex;flex-direction:column}
 .report2-chat-toggle strong{font-size:13px;font-weight:500;line-height:19px}.report2-chat-toggle small{color:#757575;font-size:10px;line-height:15px}
@@ -827,9 +839,7 @@ body.report-chat-open{overflow:hidden}
 @media(max-width:1180px){
   .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .report2-layout{grid-template-columns:1fr}
-  .report2-companion{position:sticky;z-index:50;top:auto;bottom:8px}
-  .report2-companion:not(.open) .report2-chat-body{display:none}
-  .report2-companion:not(.open) .report2-chat-toggle{border-bottom:0}
+  .report2-companion,.report2-companion.open{position:sticky;z-index:50;top:auto;bottom:8px;width:100%}
 }
 @media(max-width:1050px){
   .reports-list{width:210px;flex-basis:210px}
@@ -892,7 +902,10 @@ body.report-chat-open{overflow:hidden}
   .report2-masthead{padding:20px 16px 17px}
   .report2-masthead h2{font-size:22px;line-height:28px}
   .report2-scorecard,.report2-priorities,.report2-chapters{padding-right:16px;padding-left:16px}
-  .report2-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .report2-metrics{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
+  .report2-metric.net{grid-row:auto;grid-column:1/-1}
+  .report2-metric.outlook{grid-column:1/-1}
+  .report2-metric.outlook>small{white-space:normal}
   .report2-chapter-grid{grid-template-columns:1fr;gap:16px}
   .monthly-report-controls{padding:14px;gap:12px}
   .monthly-period-picker{align-items:flex-start;flex-direction:column}
