@@ -10,6 +10,7 @@ const emailPreviewModal=document.querySelector('#emailPreviewModal');
 const modalBackdrop=document.querySelector('#modalBackdrop');
 const emailPreviewButton=document.querySelector('#emailPreviewButton');
 const emailPreviewShortcut=document.querySelector('#emailPreviewShortcut');
+const reportEmailPreviewShortcut=document.querySelector('#reportEmailPreviewShortcut');
 const modalClose=document.querySelector('#modalClose');
 const emailPreviewClose=document.querySelector('#emailPreviewClose');
 const closeEmailPreview=document.querySelector('#closeEmailPreview');
@@ -844,6 +845,7 @@ document.querySelector('#reportSelector').addEventListener('change',event=>{
 
 emailPreviewButton.addEventListener('click',openEmailPreviewModal);
 emailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
+reportEmailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
 modalClose.addEventListener('click',closeModal);
 cancelSchedule.addEventListener('click',closeModal);
 emailPreviewClose.addEventListener('click',returnToScheduleModal);

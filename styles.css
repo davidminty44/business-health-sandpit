@@ -754,6 +754,7 @@ body.report-chat-open{overflow:hidden}
 .report-version-toggle button{min-height:28px;padding:3px 18px;border:0;border-radius:3px;background:transparent;color:#c4cdd2;font-size:11px;font-weight:400;line-height:18px;cursor:pointer}
 .report-version-toggle button:hover{background:#405058;color:#fff}
 .report-version-toggle button.active{background:#fff;color:#263238;font-weight:500}
+.report-version-divider{width:1px;margin:4px 2px;background:#526069}
 [data-report-variant-panel][hidden]{display:none}
 .report-two{padding:20px 15px 16px;color:#263238}
 .report2-archive{padding:15px 17px;border:1px solid #d2d3d4;border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px}
