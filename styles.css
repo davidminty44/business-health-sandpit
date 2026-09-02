@@ -583,7 +583,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-greeting{margin:0;color:#263238;font-size:17px;line-height:22px}
 .email-greeting span{display:block}
 .email-greeting span+span{margin-top:6px}
-.email-snapshot{margin:28px 0 0;padding:28px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.email-snapshot{margin:28px 0 0;padding:14px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .email-snapshot>div{min-width:0}
 .email-snapshot dt,.email-priority-split dt{color:#526069;font-size:15px;font-weight:400;line-height:24px}
 .email-snapshot dd,.email-priority-split dd{margin:2px 0 0}
