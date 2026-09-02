@@ -392,7 +392,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .ai-inline-analysis{border:1px solid #99d8e9;border-radius:5px;background:linear-gradient(135deg,#e5f5f9 0,#fff 72%);box-shadow:0 2px 5px rgba(0,158,199,.12);overflow:hidden}
 .ai-inline-analysis[hidden]{display:none}
 .ai-inline-summary{min-height:52px;padding:9px 11px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
-.ai-provenance-badge{width:max-content;padding:4px 8px;border-radius:4px;background:linear-gradient(135deg,#005f77,#006f8b);color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
+.ai-provenance-badge{width:max-content;padding:4px 8px;border-radius:4px;background:#009ec7;color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
 .ai-provenance-badge .tradify-ai-icon{width:12px;height:12px;flex-basis:12px}
 .ai-summary-copy{min-width:0;display:flex;flex-direction:column;gap:4px}
 .ai-summary-copy p{margin:0;color:#424242;font-size:13px;line-height:19px}
@@ -589,7 +589,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-preview-content strong{font-weight:700}
 .email-greeting{margin:0;color:#263238;font-size:17px;line-height:22px}
 .email-ai-commentary{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:9px}
-.email-ai-brand{padding:3px 6px;border-radius:3px;background:#e5f5f9;color:#006f8b;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
+.email-ai-brand{padding:3px 6px;border-radius:3px;background:#009ec7;color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
 .email-ai-brand .tradify-ai-icon{width:11px;height:11px;flex-basis:11px}
 .email-ai-commentary p{margin:0;color:#526069;font-size:14px;line-height:20px}
 .email-greeting+.email-ai-commentary{margin-top:8px}
