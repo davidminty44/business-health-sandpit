@@ -49,7 +49,7 @@ main{width:100%;min-height:100vh;padding:20px 20px 32px;background:#eee}
 .new-badge{padding:3px 7px;border-radius:9px;background:#46be8a;color:#fff;font-size:11px;font-weight:400;line-height:14px;letter-spacing:0;text-transform:uppercase}
 .report-selector,.report-selector-label{display:none}
 .reports-view{min-width:0;flex:1;padding:0 30px 24px}
-.report-header{min-height:0;margin:0 -30px;padding:8px 30px 0;border-bottom:0;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.report-header{min-height:0;margin:0 -30px;padding:20px 30px 0;border-bottom:0;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 h1,h2,h3,p{margin-top:0}
 h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .report-subtitle{margin-bottom:0;color:#757575;font-size:14px;line-height:22px}
@@ -682,7 +682,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .report-selector-label{display:block;flex:0 0 auto;color:#555;font-size:14px;font-weight:400;line-height:22px}
   .report-selector{display:block;min-width:0;flex:1}
   .reports-view{width:100%;max-width:100%;padding:0 16px 18px;overflow:hidden}
-  .report-header{margin:0 -16px;padding:8px 16px 0;display:block}
+  .report-header{margin:0 -16px;padding:20px 16px 0;display:block}
   .report-actions{margin-top:14px}
   .period-panel{margin:0 -16px;padding:0 16px}
   .period-strip{padding-top:5px;display:block}
