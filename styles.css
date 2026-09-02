@@ -618,8 +618,8 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .toast{position:fixed;z-index:200;right:22px;bottom:22px;max-width:420px;min-height:42px;padding:11px 15px;border-radius:4px;background:#263238;color:#fff;box-shadow:0 3px 12px rgba(38,50,56,.25);display:flex;align-items:center;gap:8px;font-size:14px;line-height:22px}
 .toast .fa{color:#009ec7}
 body.modal-open,body.calculation-sheet-open{overflow:hidden}
-body[data-concept="report"] .health-view-tabs{display:none}
-.report-concept{margin:0 -30px -24px;background:#f3f7f9;color:#263238}
+body[data-concept="report"] .health-view-tabs,body[data-concept="report"] .report-header{display:none}
+.report-concept{margin:0 -30px -24px;background:#fff;color:#263238}
 .report-concept[hidden],.report-analysis-page[hidden]{display:none}
 .monthly-report{padding:20px 15px 16px;display:flex;flex-direction:column;gap:15px}
 .monthly-report-controls,.report-health,.report-analysis-card,.report-chat-card{border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray}
@@ -777,7 +777,8 @@ body.report-chat-open{overflow:hidden}
 .report2-archive-actions{display:grid;grid-template-columns:auto 170px;align-items:center;gap:8px}
 .report2-archive-actions label{color:#526069;font-size:11px;font-weight:500;white-space:nowrap}
 .report2-archive-actions .form-control{height:36px;cursor:pointer}
-.report2-layout{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:14px}
+.report2-inline-archive{position:absolute;top:20px;right:24px}
+.report2-layout{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:14px}
 .report2-briefing{min-width:0;border:1px solid #d2d3d4;border-radius:3px;background:#fff;box-shadow:0 4px 14px rgba(38,50,56,.09);overflow:hidden}
 .report2-masthead{position:relative;padding:23px 24px 20px;border-top:5px solid #009ec7;border-bottom:1px solid #e0e0e0}
 .report2-masthead h2{margin:11px 0 3px;color:#212121;font-size:25px;font-weight:400;line-height:31px}
@@ -905,6 +906,7 @@ body.report-chat-open{overflow:hidden}
   .report2-archive{padding:14px;align-items:flex-start;flex-direction:column}
   .report2-archive-actions{width:100%;grid-template-columns:1fr}
   .report2-archive-actions .form-control{width:100%}
+  .report2-inline-archive{position:static;margin-top:10px}
   .report2-masthead{padding:20px 16px 17px}
   .report2-masthead h2{font-size:22px;line-height:28px}
   .report2-scorecard,.report2-priorities{padding-right:16px;padding-left:16px}

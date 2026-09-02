@@ -127,7 +127,6 @@
   const variantPanels=Array.from(document.querySelectorAll('[data-report-variant-panel]'));
   const report2ArchiveSelect=document.querySelector('#report2ArchiveSelect');
   const report2Title=document.querySelector('#report2Title');
-  const report2GeneratedMeta=document.querySelector('#report2GeneratedMeta');
   const report2Period=document.querySelector('#report2Period');
   const report2HealthTitle=document.querySelector('#report2HealthTitle');
   const report2ChatToggle=document.querySelector('#report2ChatToggle');
@@ -219,7 +218,6 @@
     const month=reportMonths[monthIndex];
     report2ArchiveSelect.value=month.slug;
     report2Title.textContent=`${month.label} briefing`;
-    report2GeneratedMeta.textContent='Sent to Office team';
     report2Period.textContent=`Compared with ${month.previous} and ${month.year}`;
     report2HealthTitle.classList.toggle('healthy',month.healthy);
     report2HealthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
