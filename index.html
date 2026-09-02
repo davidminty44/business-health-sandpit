@@ -296,19 +296,34 @@
                   </article>
                   <article class="actual-figure demand-outlook-figure" data-calc-target="cash-outlook">
                     <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Cash flow outlook" aria-expanded="false" aria-controls="calculationPopover" data-calc="cash-outlook"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                    <strong>$12,600</strong>
+                    <div class="demand-outlook-value"><strong>$12,600</strong><span class="ai-provenance-badge ai-kpi-badge"><span class="tradify-ai-icon" aria-hidden="true"></span>Analysis</span></div>
                     <span class="outlook-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
-                    <span class="ai-provenance-badge ai-kpi-badge"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
                   </article>
                 </section>
 
                 <section class="ai-inline-analysis" id="aiInlineAnalysis" aria-labelledby="aiInlineTitle" hidden>
-                  <div class="ai-inline-summary">
-                    <span class="ai-provenance-badge"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
-                    <div class="ai-summary-copy" id="aiInlineTitle"><p><strong>Financial status:</strong> Cash is tight this month, but jobs are making a 35% gross margin and $264,500 is booked ahead.</p><p><strong>Focus next:</strong> Turn work already done into cash — chase overdue invoices first, then invoice completed jobs.</p></div>
+                  <header class="ai-analysis-header">
+                    <div class="ai-analysis-identity"><span class="ai-provenance-badge"><span class="tradify-ai-icon" aria-hidden="true"></span>Analysis</span><span>Based on figures as at 1 Sep 2026</span></div>
                     <button class="ai-ask-toggle" id="aiAskToggle" type="button" aria-expanded="false" aria-controls="aiAskPanel">Ask a Question <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                  </header>
+                  <div class="ai-analysis-body">
+                    <section class="ai-position">
+                      <span class="ai-section-label">Where you’re at</span>
+                      <h2 id="aiInlineTitle">Cash needs attention</h2>
+                      <p>Net cash is down <strong>$7,300</strong> this month because money in fell to $24,600 while money out rose to $31,900.</p>
+                      <p class="ai-positive-context"><i class="fa fa-check-circle" aria-hidden="true"></i><span>Jobs are still profitable at a 35% gross margin, with $264,500 booked ahead.</span></p>
+                    </section>
+                    <section class="ai-focus" aria-labelledby="aiFocusTitle">
+                      <span class="ai-section-label" id="aiFocusTitle">Focus next</span>
+                      <div class="ai-priority-list">
+                        <button class="ai-priority-link" type="button" data-ai-target=".demand-chasing"><span class="ai-priority-number">1</span><span><strong>Chase overdue invoices first</strong><small>The three oldest total $27,630. Start with INV-2841 — $12,400 and 68 days overdue.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                        <button class="ai-priority-link" type="button" data-ai-target=".demand-ready"><span class="ai-priority-number">2</span><span><strong>Invoice finished jobs next</strong><small>$38,900 is ready to invoice. $23,450 is from three jobs finished over a week ago.</small></span><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                      </div>
+                    </section>
                   </div>
+                  <footer class="ai-analysis-footer">Suggestions, not instructions.</footer>
                   <div class="ai-inline-ask" id="aiAskPanel" hidden>
+                    <strong class="ai-ask-title">Ask about your numbers</strong>
                     <div class="ai-question-suggestions" aria-label="Suggested questions">
                       <button type="button" data-ai-question="Why did money out go up this month?">Why is money out up?</button>
                       <button type="button" data-ai-question="Which overdue invoice should I chase first?">Which invoice first?</button>
@@ -320,7 +335,6 @@
                       <button class="btn btn-primary" type="submit" aria-label="Ask question"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                     </form>
                     <article class="ai-answer" id="aiAnswer" aria-live="polite" hidden><span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><h4 id="aiAnswerQuestion"></h4><p id="aiAnswerText"></p><button class="ai-answer-source" id="aiAnswerSourceAction" type="button"><span id="aiAnswerSource"></span><i class="fa fa-angle-right" aria-hidden="true"></i></button></article>
-                    <p class="ai-inline-trust">Based on this report’s figures as at 1 Sep 2026. Suggestions, not instructions.</p>
                   </div>
                 </section>
 
@@ -328,7 +342,6 @@
                   <div class="demand-column">
                     <section class="demand-card demand-chasing ai-priority-card" data-calc-target="overdue-invoices" aria-labelledby="demandChasingTitle">
                       <header class="demand-card-head"><div><h2 id="demandChasingTitle">Invoices to chase</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Invoices to chase" aria-expanded="false" aria-controls="calculationPopover" data-calc="overdue-invoices"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$47,820 total</strong></span></header>
-                      <div class="ai-card-insight"><span class="ai-provenance-badge"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><p><strong>Priority 1:</strong> The three oldest invoices total $27,630 — start with INV-2841, 68 days overdue.</p></div>
                       <div class="demand-owed-list">
                         <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2841."><span class="demand-owed-copy"><strong>INV&#8209;2841 - Kingsford Property Group</strong><span><span>68 days overdue</span></span></span><strong class="demand-amount">$12,400</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
                         <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2867."><span class="demand-owed-copy"><strong>INV&#8209;2867 - Bellhaven Constructions</strong><span><span>61 days overdue</span></span></span><strong class="demand-amount">$6,280</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
@@ -360,7 +373,6 @@
                   <div class="demand-column">
                     <section class="demand-card demand-ready ai-priority-card" data-calc-target="ready-to-invoice" aria-labelledby="demandReadyTitle">
                       <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Ready to invoice" aria-expanded="false" aria-controls="calculationPopover" data-calc="ready-to-invoice"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$38,900 total</strong></span></header>
-                      <div class="ai-card-insight"><span class="ai-provenance-badge"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><p><strong>Priority 2:</strong> $38,900 of finished work isn’t invoiced yet — the oldest three jobs total $23,450.</p></div>
                       <div class="demand-ready-list">
                         <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2237."><span><strong>JB2237 - Kingsford Property Group</strong><small>Finished 11 days ago</small></span><b>$9,800</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
                         <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2240."><span><strong>JB2240 - Waverley Aquatic Centre</strong><small>Finished 8 days ago</small></span><b>$7,450</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
@@ -582,7 +594,7 @@
             </header>
             <div class="email-preview-content">
               <p class="email-greeting">Good morning, Dave.</p>
-              <div class="email-ai-commentary"><span class="email-ai-brand"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><p>Cash improved this week, with more money coming in than going out.</p></div>
+              <div class="email-ai-commentary"><p>Cash improved this week, with more money coming in than going out.</p></div>
               <dl class="email-snapshot" aria-label="Weekly cash snapshot">
                 <div><dt>Money in</dt><dd><strong>$18,400</strong><span>7 payments</span></dd></div>
                 <div><dt>Money out</dt><dd><strong>$12,100</strong><span>Bills &amp; wages</span></dd></div>
@@ -596,7 +608,7 @@
                     <div class="email-status-negative"><dt>Overdue</dt><dd><strong>$12,480</strong><span>6 invoices, oldest 41 days</span></dd></div>
                     <div class="email-status-positive"><dt>Ready to invoice</dt><dd><strong>$9,200</strong><span>4 completed jobs</span></dd></div>
                   </dl>
-                  <div class="email-ai-commentary"><span class="email-ai-brand"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><p>This is work you've already finished — collecting and invoicing it moves your cash position faster than any new job could.</p></div>
+                  <div class="email-ai-commentary"><p>This is work you've already finished — collecting and invoicing it moves your cash position faster than any new job could.</p></div>
                   <a class="email-primary-action" href="https://davidminty44.github.io/business-health-sandpit/?concept=demand">Review &amp; chase</a>
                 </section>
                 <section class="email-priority" aria-labelledby="emailWinWorkTitle">
@@ -605,7 +617,7 @@
                     <div class="email-status-negative"><dt>Gone quiet</dt><dd><strong>$18,900</strong><span>3 quotes, no reply</span></dd></div>
                     <div class="email-status-positive"><dt>Still fresh</dt><dd><strong>$15,600</strong><span>5 quotes sent this week</span></dd></div>
                   </dl>
-                  <div class="email-ai-commentary"><span class="email-ai-brand"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span><p>The quiet quotes are ageing fastest — following up now gives them the best chance of turning into work.</p></div>
+                  <div class="email-ai-commentary"><p>The quiet quotes are ageing fastest — following up now gives them the best chance of turning into work.</p></div>
                   <a class="email-primary-action" href="https://davidminty44.github.io/business-health-sandpit/?concept=demand&amp;area=winning">Follow up 3 quiet quotes</a>
                 </section>
               </section>

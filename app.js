@@ -41,6 +41,7 @@ const aiAnswerQuestion=document.querySelector('#aiAnswerQuestion');
 const aiAnswerText=document.querySelector('#aiAnswerText');
 const aiAnswerSource=document.querySelector('#aiAnswerSource');
 const aiAnswerSourceAction=document.querySelector('#aiAnswerSourceAction');
+const aiPriorityLinks=Array.from(document.querySelectorAll('.ai-priority-link'));
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
@@ -625,8 +626,8 @@ const getAiAnswer=question=>{
   if(normalised.includes('money out'))return {text:'Money out is $31,900, up $4,300 from July. This report does not break down the categories — check your accounting software for what changed.',source:'Money out · $31,900',target:'.money-out-figure'};
   if(normalised.includes('invoice')&&(normalised.includes('first')||normalised.includes('chase')))return {text:'Start with INV-2841 — it is the largest at $12,400 and is already 68 days overdue.',source:'Invoices to chase · INV-2841',target:'.demand-chasing'};
   if(normalised.includes('margin')||normalised.includes('profit'))return {text:'Margin is 35.0%, down 3.2 points — worth watching, but not urgent. The bigger issue is cash going out before finished and overdue work is collected.',source:'Profitability · 35.0% gross margin',target:'.demand-performance'};
-  if(normalised.includes('fast')||normalised.includes('improve')||normalised.includes('cash'))return {text:'Invoice the $38,900 of finished work, then chase the $27,630 in the three oldest overdue invoices. Both are money you have already earned.',source:'Ready to invoice · $38,900',target:'.demand-ready'};
-  return {text:'Cash timing needs the most attention. Start with the $38,900 ready to invoice and the three oldest overdue invoices worth $27,630.',source:'Net cash · -$7,300',target:'.net-figure'};
+  if(normalised.includes('fast')||normalised.includes('improve')||normalised.includes('cash'))return {text:'Chase the three oldest overdue invoices worth $27,630, then invoice the $38,900 of finished work. Both are money you have already earned.',source:'Invoices to chase · $27,630',target:'.demand-chasing'};
+  return {text:'Cash timing needs the most attention. Chase the three oldest overdue invoices worth $27,630, then invoice the $38,900 of finished work.',source:'Net cash · -$7,300',target:'.net-figure'};
 };
 
 const showAiAnswer=question=>{
@@ -639,8 +640,8 @@ const showAiAnswer=question=>{
   aiAnswer.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
 };
 
-const focusAiAnswerSource=()=>{
-  const target=document.querySelector(`#gettingPaidPanel ${aiAnswerSourceAction.dataset.aiTarget}`);
+const focusAiTarget=selector=>{
+  const target=document.querySelector(`#gettingPaidPanel ${selector}`);
   if(!target)return;
   window.clearTimeout(aiHighlightTimer);
   target.tabIndex=-1;
@@ -650,9 +651,15 @@ const focusAiAnswerSource=()=>{
   aiHighlightTimer=window.setTimeout(()=>target.classList.remove('ai-source-highlight'),1600);
 };
 
+const focusAiAnswerSource=()=>{
+  setAiAskVisibility(false);
+  focusAiTarget(aiAnswerSourceAction.dataset.aiTarget);
+};
+
 aiAnalysisTrigger.addEventListener('click',()=>setAiAnalysisVisibility(aiInlineAnalysis.hidden));
 aiAnswerSourceAction.addEventListener('click',focusAiAnswerSource);
 aiAskToggle.addEventListener('click',()=>setAiAskVisibility(aiAskPanel.hidden,true));
+aiPriorityLinks.forEach(link=>link.addEventListener('click',()=>focusAiTarget(link.dataset.aiTarget)));
 document.querySelectorAll('[data-ai-question]').forEach(button=>button.addEventListener('click',()=>showAiAnswer(button.dataset.aiQuestion)));
 aiQuestionForm.addEventListener('submit',event=>{
   event.preventDefault();
@@ -660,6 +667,10 @@ aiQuestionForm.addEventListener('submit',event=>{
   if(!question){aiQuestionInput.focus();return}
   showAiAnswer(question);
   aiQuestionInput.value='';
+});
+document.addEventListener('click',event=>{
+  if(aiAskPanel.hidden||aiAskPanel.contains(event.target)||aiAskToggle.contains(event.target))return;
+  setAiAskVisibility(false);
 });
 
 calculationToggle.addEventListener('change',()=>{
