@@ -576,10 +576,12 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-worth li small{font-weight:400}
 .email-full-report{padding-top:40px;text-align:left}
 .email-full-report p{margin:24px 0 0;color:#263238;font-size:15px;line-height:24px}
-.email-preview-footer{padding:8px 40px 72px;background:#fff;color:#526069}
-.email-preview-footer p{margin:0 0 8px;font-size:14px;line-height:20px}
-.email-preview-footer a{color:#0085ff}
-.email-preview-footer .email-marketing{margin:36px 0 0;color:#263238;font-size:17px;line-height:22px}
+.email-preview-footer{padding:30px 40px 36px;background:#e8ddc3;color:#263238}
+.email-footer-mark{display:block;width:40px;height:48px;margin-bottom:24px;color:#000;font-family:"Arial Black",Arial,sans-serif;font-size:48px;font-weight:900;line-height:48px;letter-spacing:-4px}
+.email-preview-footer p{max-width:520px;margin:0 0 18px;font-size:14px;line-height:16px}
+.email-preview-footer a{color:#0085ff;text-decoration:none}
+.email-preview-footer a:hover{text-decoration:underline}
+.email-preview-footer .email-footer-legal{margin:28px 0 0;font-size:12px;line-height:16px}
 .email-preview-caption{max-width:600px;margin:14px auto 0;color:#97a3aa;font-size:12px;line-height:18px;text-align:center}
 .toast{position:fixed;z-index:200;right:22px;bottom:22px;max-width:420px;min-height:42px;padding:11px 15px;border-radius:4px;background:#263238;color:#fff;box-shadow:0 3px 12px rgba(38,50,56,.25);display:flex;align-items:center;gap:8px;font-size:14px;line-height:22px}
 .toast .fa{color:#009ec7}
