@@ -545,7 +545,11 @@
           </div>
 
           <div class="concept-panel report-concept" id="reportConcept" hidden>
-            <div class="monthly-report">
+            <div class="report-version-toggle" role="tablist" aria-label="Report concept">
+              <button class="active" id="reportVersionOne" type="button" role="tab" aria-selected="true" data-report-variant="1">Report 1</button>
+              <button id="reportVersionTwo" type="button" role="tab" aria-selected="false" data-report-variant="2" tabindex="-1">Report 2</button>
+            </div>
+            <div class="monthly-report" data-report-variant-panel="1">
               <header class="report-archive-bar">
                 <div class="report-archive-copy">
                   <span>Business Analysis archive</span>
@@ -699,6 +703,73 @@
                   </form>
                 </article>
               </aside>
+            </div>
+
+            <div class="report-two" data-report-variant-panel="2" hidden>
+              <header class="report2-archive">
+                <div><span>Monthly briefings</span><h2 id="report2ArchiveTitle">August 2026 briefing</h2><p>A short written summary of the business, prepared once a month.</p></div>
+                <nav class="report2-months" aria-label="Choose a briefing">
+                  <button class="active negative" type="button" data-report2-snapshot="aug-2026"><strong>Aug 2026</strong><span><i></i>Needs attention</span></button>
+                  <button class="positive" type="button" data-report2-snapshot="jul-2026"><strong>Jul 2026</strong><span><i></i>Steady</span></button>
+                  <button class="positive" type="button" data-report2-snapshot="jun-2026"><strong>Jun 2026</strong><span><i></i>Steady</span></button>
+                </nav>
+              </header>
+
+              <div class="report2-layout">
+                <main class="report2-briefing">
+                  <header class="report2-masthead">
+                    <span class="report-document-brand"><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis briefing</span>
+                    <span class="report-generated-meta" id="report2GeneratedMeta">Prepared 1 Sep 2026 · Sent to Office team</span>
+                    <h2 id="report2Title">August 2026 briefing</h2>
+                    <p id="report2Period">Compared with July 2026 and August 2025</p>
+                  </header>
+
+                  <section class="report2-scorecard" aria-labelledby="report2HealthTitle">
+                    <div class="report2-section-heading"><span>Business health</span><h3 id="report2HealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span data-report2-health>Needs attention this month</span></h3></div>
+                    <div class="report2-metrics">
+                      <article class="report2-metric money-in"><span>Money in</span><strong data-report2-value="moneyIn">$24,600</strong><small data-report2-delta="moneyIn">Down $8,400 vs Jul 2026</small><small data-report2-delta-year="moneyIn">Down $3,500 vs Aug 2025</small></article>
+                      <article class="report2-metric money-out"><span>Money out</span><strong data-report2-value="moneyOut">$31,900</strong><small data-report2-delta="moneyOut">Up $4,300 vs Jul 2026</small><small data-report2-delta-year="moneyOut">Up $2,500 vs Aug 2025</small></article>
+                      <article class="report2-metric net negative"><span>Net cash</span><strong data-report2-value="netCash">-$7,300</strong><small data-report2-delta="netCash">Down $12,700 vs Jul 2026</small><small data-report2-delta-year="netCash">Down $6,000 vs Aug 2025</small></article>
+                      <article class="report2-metric outlook"><span>8-week outlook</span><strong data-report2-value="outlook">$12,600</strong><small data-report2-outlook>Down $18,800 over 8 weeks</small></article>
+                    </div>
+                  </section>
+
+                  <section class="report2-priorities" aria-labelledby="report2PrioritiesTitle">
+                    <div class="report2-section-heading"><span>Business Analysis</span><h3 id="report2PrioritiesTitle">Three things to focus on</h3></div>
+                    <ol>
+                      <li><button type="button" data-report2-open="cash"><span>1</span><span><strong data-report2-priority="cash">Cash is tight. Chasing finished work fixes it fastest.</strong><small>Getting paid</small></span><i class="fa fa-angle-down" aria-hidden="true"></i></button></li>
+                      <li><button type="button" data-report2-open="profit"><span>2</span><span><strong data-report2-priority="profit">Profit margin is 19% this month — one job is dragging it down.</strong><small>Where profit slipped</small></span><i class="fa fa-angle-down" aria-hidden="true"></i></button></li>
+                      <li><button type="button" data-report2-open="work"><span>3</span><span><strong data-report2-priority="work">Quote win rate is 56% — keep the pipeline moving.</strong><small>What's coming next</small></span><i class="fa fa-angle-down" aria-hidden="true"></i></button></li>
+                    </ol>
+                  </section>
+
+                  <div class="report2-chapters">
+                    <details class="report2-chapter" id="report2Cash" data-report2-section="cash" open>
+                      <summary><span class="report2-chapter-number">1</span><span><small>Getting paid</small><strong data-report2-headline>Cash is tight. Chasing finished work fixes it fastest.</strong></span><span class="report2-action-count">3 actions</span><i class="fa fa-angle-down" aria-hidden="true"></i></summary>
+                      <div class="report2-chapter-body"><p data-report2-body></p><div class="report2-chapter-grid"><section><h4>Why this matters</h4><div class="report-evidence-list" data-report2-evidence></div></section><section><h4>What to do next</h4><ol class="report-action-list" data-report2-actions></ol></section></div><button class="report-ask-link" type="button" data-report2-ask="cash"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about getting paid</button></div>
+                    </details>
+                    <details class="report2-chapter" id="report2Profit" data-report2-section="profit">
+                      <summary><span class="report2-chapter-number">2</span><span><small>Where profit slipped</small><strong data-report2-headline>Profit margin is 19% this month — one job is dragging it down.</strong></span><span class="report2-action-count">3 actions</span><i class="fa fa-angle-down" aria-hidden="true"></i></summary>
+                      <div class="report2-chapter-body"><p data-report2-body></p><div class="report2-chapter-grid"><section><h4>Why this changed</h4><div class="report-evidence-list" data-report2-evidence></div></section><section><h4>What to do next</h4><ol class="report-action-list" data-report2-actions></ol></section></div><button class="report-ask-link" type="button" data-report2-ask="profit"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about profit</button></div>
+                    </details>
+                    <details class="report2-chapter" id="report2Work" data-report2-section="work">
+                      <summary><span class="report2-chapter-number">3</span><span><small>What's coming next</small><strong data-report2-headline>Quote win rate is 56% — keep the pipeline moving.</strong></span><span class="report2-action-count">3 actions</span><i class="fa fa-angle-down" aria-hidden="true"></i></summary>
+                      <div class="report2-chapter-body"><p data-report2-body></p><div class="report2-chapter-grid"><section><h4>Why this matters</h4><div class="report-evidence-list" data-report2-evidence></div></section><section><h4>What to do next</h4><ol class="report-action-list" data-report2-actions></ol></section></div><button class="report-ask-link" type="button" data-report2-ask="work"><span class="tradify-ai-icon" aria-hidden="true"></span>Ask about future work</button></div>
+                    </details>
+                  </div>
+
+                  <footer class="report2-note"><i class="fa fa-lock" aria-hidden="true"></i><span>Based on Tradify and connected accounting data up to 1 Sep 2026. This briefing won't update after that.</span></footer>
+                </main>
+
+                <aside class="report2-companion" aria-labelledby="report2ChatTitle">
+                  <button class="report2-chat-toggle" id="report2ChatToggle" type="button" aria-expanded="true" aria-controls="report2ChatBody"><span class="report-chat-icon"><span class="tradify-ai-icon" aria-hidden="true"></span></span><span><strong id="report2ChatTitle">Ask about this briefing</strong><small>Grounded in August 2026</small></span><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+                  <div class="report2-chat-body" id="report2ChatBody">
+                    <div class="report2-chat-thread" id="report2ChatThread" aria-live="polite"><article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>Ask me to explain a number, expand on a chapter, or tell you what to do next.</p></div></article></div>
+                    <div class="report2-chat-suggestions"><button type="button" data-report2-question="Expand on cash collection">Expand on cash</button><button type="button" data-report2-question="What's the top recommendation?">Top recommendation?</button><button type="button" data-report2-question="Why did profit drop?">Why did profit drop?</button></div>
+                    <form class="report2-chat-form" id="report2ChatForm"><label class="sr-only" for="report2ChatInput">Ask about this briefing</label><input class="form-control" id="report2ChatInput" type="text" autocomplete="off" placeholder="Ask about this briefing…"><button class="btn btn-primary" type="submit" aria-label="Send question"><i class="fa fa-arrow-right" aria-hidden="true"></i></button></form>
+                  </div>
+                </aside>
+              </div>
             </div>
           </div>
 
