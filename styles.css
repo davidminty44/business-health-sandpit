@@ -403,11 +403,14 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .ai-inline-ask[hidden]{display:none}
 .ai-card-insight,.ai-kpi-insight{display:none}
 .ai-analysis-active .ai-card-insight{min-height:44px;display:grid;padding:8px 12px;border-bottom:1px solid #c4e9f2;border-left:3px solid #009ec7;background:#f1f8fa;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px}
-.ai-analysis-active .ai-kpi-insight{margin:9px -10px -12px;display:grid;padding:8px 10px 9px;border-top:1px solid #99d8e9;background:rgba(255,255,255,.72);grid-template-columns:auto auto;align-items:center;gap:6px}
+.ai-analysis-active .demand-outlook-figure .outlook-change{display:none}
+.ai-analysis-active .ai-kpi-insight{min-width:0;margin-top:6px;display:flex;align-items:center;gap:6px;overflow:hidden}
 .ai-analysis-active .ai-priority-card{border-color:#99d8e9;box-shadow:0 2px 6px rgba(0,158,199,.14)}
 .ai-card-insight p,.ai-kpi-insight p{margin:0;color:#424242;font-size:12px;line-height:18px}
 .ai-card-insight p strong,.ai-kpi-insight p strong{color:#212121;font-weight:500}
-.ai-kpi-insight p{grid-column:1/-1}
+.ai-kpi-insight .ai-provenance-badge{padding:2px 5px;font-size:9px;line-height:12px}
+.ai-kpi-insight .tradify-ai-icon{width:10px;height:10px;flex-basis:10px}
+.ai-kpi-insight p{min-width:0;overflow:hidden;font-size:11px;line-height:16px;text-overflow:ellipsis;white-space:nowrap}
 .ai-question-suggestions{display:flex;flex-wrap:wrap;gap:6px}
 .ai-question-suggestions button{padding:5px 8px;border:1px solid #d2d3d4;border-radius:12px;background:#fff;color:#526069;font-size:11px;line-height:16px;cursor:pointer}
 .ai-question-suggestions button:hover{border-color:#009ec7;color:#006f8b}
@@ -713,8 +716,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .ai-question-suggestions button{text-align:left}
   .ai-analysis-active .ai-card-insight{grid-template-columns:1fr;justify-items:start}
   .ai-card-insight p{grid-column:1}
-  .ai-analysis-active .ai-kpi-insight{grid-template-columns:1fr;justify-items:start}
-  .ai-kpi-insight p{grid-column:1}
   .demand-cash-flow-grid{gap:8px}
   .demand-cash-flow-grid .kpi-delta{align-items:flex-start}
   .demand-cash-flow-grid .kpi-delta .fa{margin-top:2px}
