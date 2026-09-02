@@ -43,11 +43,12 @@ const aiAnswerSource=document.querySelector('#aiAnswerSource');
 const aiAnswerSourceAction=document.querySelector('#aiAnswerSourceAction');
 const requestedConcept=new URLSearchParams(window.location.search).get('concept');
 const activeConcept=requestedConcept==='report'?'report':'demand';
-const activeConceptPanel=document.querySelector('#demandConcept');
+const demandConceptPanel=document.querySelector('#demandConcept');
+const reportConceptPanel=document.querySelector('#reportConcept');
 document.body.dataset.concept=activeConcept;
 if(activeConcept==='report'){
-  activeConceptPanel.id='reportConcept';
-  activeConceptPanel.classList.add('report-concept');
+  demandConceptPanel.hidden=true;
+  reportConceptPanel.hidden=false;
 }
 const calculationMetadata={
   'money-in':{
