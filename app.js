@@ -489,9 +489,7 @@ const setCalculationVisibility=(visible,persist=false,announce=false)=>{
     closeCalculationPopover(false);
   }
   document.body.classList.toggle('calculations-visible',visible);
-  calculationToggle.setAttribute('aria-pressed',String(visible));
-  calculationToggle.setAttribute('aria-label',visible?'Hide calculations':'Show calculations');
-  calculationToggle.classList.toggle('active',visible);
+  calculationToggle.checked=visible;
   if(persist){
     try{
       window.localStorage.setItem(calculationStorageKey,String(visible));
@@ -593,8 +591,8 @@ const returnToScheduleModal=()=>{
   window.requestAnimationFrame(()=>emailPreviewButton.focus());
 };
 
-calculationToggle.addEventListener('click',()=>{
-  const visible=!document.body.classList.contains('calculations-visible');
+calculationToggle.addEventListener('change',()=>{
+  const visible=calculationToggle.checked;
   setCalculationVisibility(visible,true,true);
   if(visible){
     let keySeen=false;
