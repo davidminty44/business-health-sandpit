@@ -47,7 +47,7 @@
       <button class="health-view-tab" id="winningWorkTab" type="button" role="tab" aria-selected="false" aria-controls="winningWorkPanel" tabindex="-1">Scenario 2 - Need to get more work</button>
     </div>
     <span class="health-view-divider" aria-hidden="true"></span>
-    <button class="health-view-tab health-view-action ai-analysis-trigger" id="aiAnalysisTrigger" type="button" aria-controls="aiInlineAnalysis" aria-pressed="false"><i class="fa fa-magic" aria-hidden="true"></i><span>Tradify AI</span></button>
+    <button class="health-view-tab health-view-action ai-analysis-trigger" id="aiAnalysisTrigger" type="button" aria-controls="aiInlineAnalysis" aria-pressed="false"><i class="fa fa-star" aria-hidden="true"></i><span>Business Analysis</span></button>
     <label class="health-view-tab health-view-action health-view-check"><input id="calculationToggle" type="checkbox"><span id="calculationToggleLabel">Calculations</span></label>
     <button class="health-view-tab health-view-action" id="emailPreviewShortcut" type="button" aria-haspopup="dialog" aria-controls="emailPreviewModal">Email</button>
   </div>
@@ -298,15 +298,15 @@
                     <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Cash flow outlook" aria-expanded="false" aria-controls="calculationPopover" data-calc="cash-outlook"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
                     <strong>$12,600</strong>
                     <span class="outlook-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
-                    <div class="ai-kpi-insight"><span class="ai-provenance-badge"><i class="fa fa-magic" aria-hidden="true"></i>Tradify AI</span><span class="ai-insight-status">Watch</span><p>Chasing and invoicing should narrow this.</p></div>
+                    <div class="ai-kpi-insight"><span class="ai-provenance-badge"><i class="fa fa-star" aria-hidden="true"></i>Business Analysis</span><span class="ai-insight-status">Watch</span><p>Chasing and invoicing should narrow this.</p></div>
                   </article>
                 </section>
 
                 <section class="ai-inline-analysis" id="aiInlineAnalysis" aria-labelledby="aiInlineTitle" hidden>
                   <div class="ai-inline-summary">
-                    <span class="ai-provenance-badge"><i class="fa fa-magic" aria-hidden="true"></i>Tradify AI</span>
+                    <span class="ai-provenance-badge"><i class="fa fa-star" aria-hidden="true"></i>Business Analysis</span>
                     <p id="aiInlineTitle"><strong>Where to focus:</strong> Net cash is -$7,300. Start with the two priorities marked below.</p>
-                    <button class="ai-ask-toggle" id="aiAskToggle" type="button" aria-expanded="false" aria-controls="aiAskPanel">Ask Tradify AI <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                    <button class="ai-ask-toggle" id="aiAskToggle" type="button" aria-expanded="false" aria-controls="aiAskPanel">Ask a question <i class="fa fa-angle-down" aria-hidden="true"></i></button>
                   </div>
                   <div class="ai-inline-ask" id="aiAskPanel" hidden>
                     <div class="ai-question-suggestions" aria-label="Suggested questions">
@@ -315,11 +315,11 @@
                       <button type="button" data-ai-question="What’s the fastest way to improve net cash?">Fastest way to fix cash?</button>
                     </div>
                     <form class="ai-question-form" id="aiQuestionForm">
-                      <label class="sr-only" for="aiQuestionInput">Ask Tradify AI about your business numbers</label>
-                      <input class="form-control" id="aiQuestionInput" type="text" autocomplete="off" placeholder="Ask Tradify AI…">
-                      <button class="btn btn-primary" type="submit" aria-label="Ask Tradify AI"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                      <label class="sr-only" for="aiQuestionInput">Ask about your business numbers</label>
+                      <input class="form-control" id="aiQuestionInput" type="text" autocomplete="off" placeholder="Ask about your numbers…">
+                      <button class="btn btn-primary" type="submit" aria-label="Ask question"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                     </form>
-                    <article class="ai-answer" id="aiAnswer" aria-live="polite" hidden><span><i class="fa fa-magic" aria-hidden="true"></i>Tradify AI</span><h4 id="aiAnswerQuestion"></h4><p id="aiAnswerText"></p><button class="ai-answer-source" id="aiAnswerSourceAction" type="button"><span id="aiAnswerSource"></span><i class="fa fa-angle-right" aria-hidden="true"></i></button></article>
+                    <article class="ai-answer" id="aiAnswer" aria-live="polite" hidden><span><i class="fa fa-star" aria-hidden="true"></i>Business Analysis</span><h4 id="aiAnswerQuestion"></h4><p id="aiAnswerText"></p><button class="ai-answer-source" id="aiAnswerSourceAction" type="button"><span id="aiAnswerSource"></span><i class="fa fa-angle-right" aria-hidden="true"></i></button></article>
                     <p class="ai-inline-trust">Based on this report’s figures as at 1 Sep 2026. Suggestions, not instructions.</p>
                   </div>
                 </section>
@@ -328,7 +328,7 @@
                   <div class="demand-column">
                     <section class="demand-card demand-chasing ai-priority-card" data-calc-target="overdue-invoices" aria-labelledby="demandChasingTitle">
                       <header class="demand-card-head"><div><h2 id="demandChasingTitle">Invoices to chase</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Invoices to chase" aria-expanded="false" aria-controls="calculationPopover" data-calc="overdue-invoices"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$47,820 total</strong></span></header>
-                      <div class="ai-card-insight"><span class="ai-provenance-badge"><i class="fa fa-magic" aria-hidden="true"></i>Tradify AI</span><span class="ai-insight-status">Priority 1</span><p>The three oldest invoices total $27,630 — start with INV-2841, 68 days overdue.</p></div>
+                      <div class="ai-card-insight"><span class="ai-provenance-badge"><i class="fa fa-star" aria-hidden="true"></i>Business Analysis</span><span class="ai-insight-status">Priority 1</span><p>The three oldest invoices total $27,630 — start with INV-2841, 68 days overdue.</p></div>
                       <div class="demand-owed-list">
                         <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2841."><span class="demand-owed-copy"><strong>INV&#8209;2841 - Kingsford Property Group</strong><span><span>68 days overdue</span></span></span><strong class="demand-amount">$12,400</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
                         <button class="demand-owed-row analyst-link" type="button" data-demand-owed data-toast="In product, this opens invoice INV-2867."><span class="demand-owed-copy"><strong>INV&#8209;2867 - Bellhaven Constructions</strong><span><span>61 days overdue</span></span></span><strong class="demand-amount">$6,280</strong><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
@@ -360,7 +360,7 @@
                   <div class="demand-column">
                     <section class="demand-card demand-ready ai-priority-card" data-calc-target="ready-to-invoice" aria-labelledby="demandReadyTitle">
                       <header class="demand-card-head"><div><h2 id="demandReadyTitle">Ready to invoice</h2><button class="calc-trigger" type="button" aria-label="Show calculation details for Ready to invoice" aria-expanded="false" aria-controls="calculationPopover" data-calc="ready-to-invoice"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div><span class="demand-card-total"><strong>$38,900 total</strong></span></header>
-                      <div class="ai-card-insight"><span class="ai-provenance-badge"><i class="fa fa-magic" aria-hidden="true"></i>Tradify AI</span><span class="ai-insight-status">Priority 2</span><p>$38,900 of finished work isn’t invoiced yet — the oldest three jobs total $23,450.</p></div>
+                      <div class="ai-card-insight"><span class="ai-provenance-badge"><i class="fa fa-star" aria-hidden="true"></i>Business Analysis</span><span class="ai-insight-status">Priority 2</span><p>$38,900 of finished work isn’t invoiced yet — the oldest three jobs total $23,450.</p></div>
                       <div class="demand-ready-list">
                         <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2237."><span><strong>JB2237 - Kingsford Property Group</strong><small>Finished 11 days ago</small></span><b>$9,800</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>
                         <button class="demand-ready-row analyst-link" type="button" data-toast="In product, this opens JB2240."><span><strong>JB2240 - Waverley Aquatic Centre</strong><small>Finished 8 days ago</small></span><b>$7,450</b><i class="fa fa-angle-right demand-row-arrow" aria-hidden="true"></i></button>

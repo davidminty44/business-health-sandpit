@@ -700,6 +700,8 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .ai-question-suggestions button{text-align:left}
   .ai-analysis-active .ai-card-insight{grid-template-columns:auto auto;justify-content:start}
   .ai-card-insight p{grid-column:1/-1}
+  .ai-analysis-active .ai-kpi-insight{grid-template-columns:1fr;justify-items:start}
+  .ai-kpi-insight p{grid-column:1}
   .demand-cash-flow-grid{gap:8px}
   .demand-cash-flow-grid .kpi-delta{align-items:flex-start}
   .demand-cash-flow-grid .kpi-delta .fa{margin-top:2px}
