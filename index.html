@@ -549,8 +549,8 @@
 
           <div class="concept-panel report-concept" id="reportConcept" hidden>
             <div class="report-version-toggle" role="tablist" aria-label="Report concept">
-              <button class="active" id="reportVersionOne" type="button" role="tab" aria-selected="true" data-report-variant="1">Report 1</button>
-              <button id="reportVersionTwo" type="button" role="tab" aria-selected="false" data-report-variant="2" tabindex="-1">Report 2</button>
+              <a class="active" id="reportVersionOne" role="tab" aria-selected="true" data-report-variant="1" href="?concept=report&amp;snapshot=aug-2026&amp;variant=1">Report 1</a>
+              <a id="reportVersionTwo" role="tab" aria-selected="false" data-report-variant="2" href="?concept=report&amp;snapshot=aug-2026&amp;variant=2" tabindex="-1">Report 2</a>
               <span class="report-version-divider" aria-hidden="true"></span>
               <button id="reportEmailPreviewShortcut" type="button" aria-haspopup="dialog" aria-controls="emailPreviewModal">Email</button>
             </div>
@@ -947,6 +947,6 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden><i class="fa fa-info-circle" aria-hidden="true"></i><span id="toastMessage"></span></div>
   <script src="app.js"></script>
-  <script src="report.js?v=b3e19ad"></script>
+  <script src="report.js?v=tabs-1"></script>
 </body>
 </html>

@@ -485,7 +485,7 @@
   });
   document.querySelector('#reportDownload').addEventListener('click',()=>reportToast(`${reportMonths[monthIndex].label} Business Analysis PDF would download here.`));
   variantTabs.forEach((tab,index)=>{
-    tab.addEventListener('click',()=>activateVariant(tab.dataset.reportVariant));
+    tab.addEventListener('click',event=>{event.preventDefault();activateVariant(tab.dataset.reportVariant)});
     tab.addEventListener('keydown',event=>{
       if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
       event.preventDefault();
