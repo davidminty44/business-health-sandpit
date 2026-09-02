@@ -599,12 +599,12 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-attention-section{padding-top:40px}
 .email-attention-section>h4,.email-worth h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-attention-section>p{margin:4px 0 0;color:#526069;font-size:15px;line-height:24px}
-.email-priority{margin-top:24px;padding:0 24px 24px;border:1px solid #d8d8d8;background:#fff}
-.email-priority header{margin:0 -24px;padding:18px 24px;border-bottom:1px solid #d8d8d8;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.email-priority{margin-top:24px;padding:24px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8}
+.email-priority header{padding:0 0 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .email-priority h5{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-priority header span{color:#263238;font-size:15px;line-height:24px;text-align:right}
 .email-priority-value{display:block;margin-top:6px;color:#263238;font-size:22px;font-weight:700;line-height:28px}
-.email-priority-split{margin:0 0 20px;padding:18px 0;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.email-priority-split{margin:0 0 20px;padding:18px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .email-priority-split>div{min-width:0;padding:0 18px;border-right:1px solid #d8d8d8}
 .email-priority-split>div:first-child{padding-left:0}
 .email-priority-split>div:last-child{padding-right:0;border-right:0}
@@ -795,8 +795,8 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .email-snapshot>div,.email-priority-split>div{padding:12px 0;border-right:0;border-bottom:1px solid #d8d8d8}
   .email-snapshot>div:first-child,.email-priority-split>div:first-child{padding-top:0}
   .email-snapshot>div:last-child,.email-priority-split>div:last-child{padding-bottom:0;border-bottom:0}
-  .email-priority{padding:0 18px 18px}
-  .email-priority header{margin:0 -18px;padding:16px 18px;align-items:flex-start;flex-direction:column;gap:2px}
+  .email-priority{padding:20px 0}
+  .email-priority header{padding:0 0 16px;align-items:flex-start;flex-direction:column;gap:2px}
   .email-priority header span{text-align:left}
 }
 @media(max-width:370px){.report-selector-label{display:none}}
