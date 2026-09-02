@@ -49,7 +49,7 @@ main{width:100%;min-height:100vh;padding:20px 20px 32px;background:#eee}
 .new-badge{padding:3px 7px;border-radius:9px;background:#46be8a;color:#fff;font-size:11px;font-weight:400;line-height:14px;letter-spacing:0;text-transform:uppercase}
 .report-selector,.report-selector-label{display:none}
 .reports-view{min-width:0;flex:1;padding:0 30px 24px}
-.report-header{min-height:88px;margin:0 -30px;padding:20px 30px 18px;border-bottom:1px solid #e3e6ea;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.report-header{min-height:0;margin:0 -30px;padding:8px 30px 0;border-bottom:0;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 h1,h2,h3,p{margin-top:0}
 h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .report-subtitle{margin-bottom:0;color:#757575;font-size:14px;line-height:22px}
@@ -372,7 +372,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .combined-outlook-body>p{margin:0 0 3px;color:#757575;font-size:9px;line-height:14px}
 .demand-concept{margin:0 -30px -24px;background:#fff;color:#263238}
 .demand-concept[hidden],.demand-owed-row[hidden]{display:none}
-.demand-content{width:100%;min-width:0;max-width:none;margin:0;padding:15px;display:flex;flex-direction:column;gap:15px}
+.demand-content{width:100%;min-width:0;max-width:none;margin:0;padding:5px 15px 15px;display:flex;flex-direction:column;gap:15px}
 .health-view-tabs{position:fixed;z-index:80;top:0;left:50%;width:auto;padding:3px;border:1px solid #526069;border-top:0;border-radius:0 0 5px 5px;background:#263238;box-shadow:0 2px 6px rgba(38,50,56,.24);display:flex;align-items:stretch;gap:2px;transform:translateX(-50%)}
 .health-view-tablist{display:flex;gap:2px}
 .health-view-tab{min-height:28px;padding:3px 12px;border:0;border-radius:3px;background:transparent;color:#c4cdd2;font-size:11px;font-weight:400;line-height:18px;white-space:nowrap;cursor:pointer}
@@ -635,7 +635,8 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   #dashboardConcept>.report-section{padding:18px 16px;border-radius:7px}
   #dashboardConcept>.period-panel{margin:0 -12px;padding:0 16px}
   .demand-concept,.combined-concept{margin:0 -16px -18px}
-  .demand-content,.combined-content{padding:12px}
+  .demand-content{padding:5px 12px 12px}
+  .combined-content{padding:12px}
   .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .combined-content{gap:18px}
   .demand-card{border-radius:7px}
@@ -644,7 +645,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .report-selector-label{display:block;flex:0 0 auto;color:#555;font-size:14px;font-weight:400;line-height:22px}
   .report-selector{display:block;min-width:0;flex:1}
   .reports-view{width:100%;max-width:100%;padding:0 16px 18px;overflow:hidden}
-  .report-header{margin:0 -16px;padding:18px 16px 16px;display:block}
+  .report-header{margin:0 -16px;padding:8px 16px 0;display:block}
   .report-actions{margin-top:14px}
   .period-panel{margin:0 -16px;padding:0 16px}
   .period-strip{padding-top:5px;display:block}
@@ -660,7 +661,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 }
 @media(max-width:560px){
   .report-subtitle{max-width:330px}
-  .demand-content{padding:12px;gap:12px}
+  .demand-content{padding:5px 12px 12px;gap:12px}
   .health-view-context{padding:11px 13px;align-items:flex-start;flex-direction:column;gap:4px}
   .health-view-context>span{white-space:normal}
   .demand-cash-flow-grid{gap:8px}
