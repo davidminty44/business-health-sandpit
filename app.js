@@ -122,7 +122,7 @@ const calculationMetadata={
   'enquiries-to-quote':{
     title:'Enquiries to quote calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Open enquiries that do not yet have a draft or sent quote.',
-    calculation:'Four open enquiries have no quote attached. The three oldest are shown.',
+    calculation:'Three open enquiries have no quote attached. All three are shown.',
     source:'Tradify enquiry status and linked quote records.',
     note:'An enquiry may not need a quote, so review its status before creating one.'
   },
@@ -801,7 +801,6 @@ modalClose.addEventListener('click',closeModal);
 cancelSchedule.addEventListener('click',closeModal);
 emailPreviewClose.addEventListener('click',returnToScheduleModal);
 closeEmailPreview.addEventListener('click',returnToScheduleModal);
-document.querySelector('#openFullReport').addEventListener('click',()=>{closeModal();window.setTimeout(()=>document.querySelector('#reportTitle').focus(),0)});
 modalBackdrop.addEventListener('click',closeModal);
 document.querySelectorAll('.modal').forEach(modal=>{
   modal.addEventListener('click',event=>{
