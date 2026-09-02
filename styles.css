@@ -383,15 +383,16 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .health-view-tab:focus-visible{outline:2px solid #fff;outline-offset:-2px}
 .health-view-divider{width:1px;margin:4px 2px;background:#526069}
 .health-view-tabs [hidden]{display:none}
+.tradify-ai-icon{width:13px;height:13px;background:currentColor;display:inline-block;flex:0 0 13px;-webkit-mask:url("tradify-ai-icon.svg") center/contain no-repeat;mask:url("tradify-ai-icon.svg") center/contain no-repeat}
 .ai-analysis-trigger{border-radius:4px;display:flex;align-items:center;justify-content:center;gap:5px;color:#99d8e9}
-.ai-analysis-trigger .fa{width:13px;height:13px;font-size:13px;line-height:13px}
+.ai-analysis-trigger .tradify-ai-icon{width:16px;height:16px;flex-basis:16px}
 .ai-analysis-trigger[aria-pressed="true"]{background:#fff;color:#263238}
 .health-view-panel{min-width:0;display:flex;flex-direction:column;gap:15px}
 .ai-inline-analysis{border:1px solid #99d8e9;border-radius:5px;background:linear-gradient(135deg,#e5f5f9 0,#fff 72%);box-shadow:0 2px 5px rgba(0,158,199,.12);overflow:hidden}
 .ai-inline-analysis[hidden]{display:none}
 .ai-inline-summary{min-height:52px;padding:9px 11px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
 .ai-provenance-badge{width:max-content;padding:4px 8px;border-radius:4px;background:linear-gradient(135deg,#005f77,#006f8b);color:#fff;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:.2px;white-space:nowrap}
-.ai-provenance-badge .fa{width:12px;height:12px;font-size:11px;line-height:12px}
+.ai-provenance-badge .tradify-ai-icon{width:12px;height:12px;flex-basis:12px}
 .ai-inline-summary p{margin:0;color:#424242;font-size:13px;line-height:19px}
 .ai-inline-summary p strong{color:#212121;font-weight:500}
 .ai-ask-toggle{padding:6px 9px;border:1px solid #99d8e9;border-radius:3px;background:#fff;color:#006f8b;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;line-height:18px;white-space:nowrap;cursor:pointer}
@@ -414,7 +415,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .ai-answer{margin-top:10px;padding:10px 12px;border:1px solid #c4e9f2;border-radius:4px;background:#f1f8fa}
 .ai-answer[hidden]{display:none}
 .ai-answer>span{color:#006f8b;display:flex;align-items:center;gap:5px;font-size:10px;font-weight:500;line-height:15px}
-.ai-answer>span .fa{font-size:11px}
 .ai-answer h4{margin:4px 0 3px;color:#212121;font-size:13px;font-weight:500;line-height:19px}
 .ai-answer p{margin:0;color:#424242;font-size:13px;line-height:20px}
 .ai-answer-source{margin-top:7px;padding:0;border:0;background:transparent;color:#009ec7;display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;line-height:16px;cursor:pointer}
