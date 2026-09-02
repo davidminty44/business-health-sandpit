@@ -162,7 +162,10 @@
     const report2Net=document.querySelector('.report2-metric.net');
     report2Net.classList.toggle('negative',month.netCash<0);
     document.querySelector('[data-report2-value="outlook"]').textContent=money(month.outlook);
-    document.querySelector('[data-report2-outlook]').textContent=`${month.outlookChange<0?'Down':'Up'} ${money(Math.abs(month.outlookChange))} over 8 weeks`;
+    const outlookDelta=document.querySelector('[data-report2-outlook]');
+    outlookDelta.textContent=`${month.outlookChange<0?'Down':'Up'} ${money(Math.abs(month.outlookChange))} over 8 weeks`;
+    outlookDelta.classList.toggle('negative',month.outlookChange<0);
+    outlookDelta.classList.toggle('positive',month.outlookChange>0);
     focusKeys.forEach(key=>{
       const focus=month.focus[key];
       document.querySelector(`[data-report2-priority="${key}"]`).textContent=report2Priorities[month.slug][key];
