@@ -357,26 +357,25 @@
               </section>
 
               <section class="health-view-panel" id="winningWorkPanel" role="tabpanel" aria-labelledby="winningWorkTab" tabindex="0" hidden>
-                <section class="demand-cash-flow-grid win-work-kpis" aria-label="Winning work summary">
-                  <article class="actual-figure win-rate-figure" data-calc-target="quote-win-rate">
-                    <span class="kpi-label"><span>Quote win rate</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Quote win rate" aria-expanded="false" aria-controls="calculationPopover" data-calc="quote-win-rate"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                    <strong>56%</strong>
-                    <span class="kpi-delta positive"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up 8 points</span>
+                <section class="demand-cash-flow-grid" aria-label="Cash flow summary">
+                  <article class="actual-figure money-in-figure" data-calc-target="money-in">
+                    <span class="kpi-label"><span>Money in</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money in" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-in"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$24,600</strong>
+                    <span class="kpi-delta negative"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $8,400 from last month</span>
                   </article>
-                  <article class="actual-figure" data-calc-target="open-quotes">
-                    <span class="kpi-label"><span>Open quotes</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Open quotes" aria-expanded="false" aria-controls="calculationPopover" data-calc="open-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                    <strong>$34,500</strong>
-                    <span class="kpi-delta">8 awaiting a decision</span>
+                  <article class="actual-figure money-out-figure" data-calc-target="money-out">
+                    <span class="kpi-label"><span>Money out</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Money out" aria-expanded="false" aria-controls="calculationPopover" data-calc="money-out"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$31,900</strong>
+                    <span class="kpi-delta negative"><i class="fa fa-arrow-up" aria-hidden="true"></i>Up $4,300 from last month</span>
                   </article>
-                  <article class="actual-figure quiet-quote-figure" data-calc-target="quiet-quotes">
-                    <span class="kpi-label"><span>Gone quiet</span><em class="demand-forecast-badge">14+ days</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Quotes gone quiet" aria-expanded="false" aria-controls="calculationPopover" data-calc="quiet-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                    <strong>$18,900</strong>
-                    <span class="kpi-delta negative"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>3 need follow-up</span>
+                  <article class="actual-figure net-figure negative" data-calc-target="net-cash">
+                    <span class="kpi-label"><span>Net cash</span><button class="calc-trigger" type="button" aria-label="Show calculation details for Net cash" aria-expanded="false" aria-controls="calculationPopover" data-calc="net-cash"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>-$7,300</strong>
                   </article>
-                  <article class="actual-figure fresh-quote-figure" data-calc-target="fresh-quotes">
-                    <span class="kpi-label"><span>New quotes</span><button class="calc-trigger" type="button" aria-label="Show calculation details for New quotes" aria-expanded="false" aria-controls="calculationPopover" data-calc="fresh-quotes"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
-                    <strong>$15,600</strong>
-                    <span class="kpi-delta positive"><i class="fa fa-arrow-up" aria-hidden="true"></i>5 sent this week</span>
+                  <article class="actual-figure demand-outlook-figure" data-calc-target="cash-outlook">
+                    <span class="kpi-label"><span>Cash flow outlook</span><em class="demand-forecast-badge">Next 8 weeks</em><button class="calc-trigger" type="button" aria-label="Show calculation details for Cash flow outlook" aria-expanded="false" aria-controls="calculationPopover" data-calc="cash-outlook"><i class="fa fa-info-circle" aria-hidden="true"></i></button></span>
+                    <strong>$12,600</strong>
+                    <span class="outlook-change"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down $18,800 over 8 weeks</span>
                   </article>
                 </section>
 
