@@ -25,22 +25,22 @@ const calculationToggle=document.querySelector('#calculationToggle');
 const calculationAnnouncement=document.querySelector('#calculationAnnouncement');
 const calculationTriggers=Array.from(document.querySelectorAll('.calc-trigger'));
 const calculationMedia=window.matchMedia('(max-width:800px)');
-const aiAnalysisMedia=window.matchMedia('(max-width:1050px)');
 const calculationStorageKey='tradify.reports.businessHealth.showCalculations';
 const calculationKeyStorageKey='tradify.reports.businessHealth.calculationKeySeen';
 const demandFlows=Array.from(document.querySelectorAll('[data-demand-flow]'));
 const healthViewTabs=Array.from(document.querySelectorAll('.health-view-tab[role="tab"]'));
 const healthViewPanels=Array.from(document.querySelectorAll('.health-view-panel'));
 const aiAnalysisTrigger=document.querySelector('#aiAnalysisTrigger');
-const aiAnalysisPanel=document.querySelector('#aiAnalysisPanel');
-const aiAnalysisBackdrop=document.querySelector('#aiAnalysisBackdrop');
-const aiAnalysisClose=document.querySelector('#aiAnalysisClose');
+const aiInlineAnalysis=document.querySelector('#aiInlineAnalysis');
+const aiAskToggle=document.querySelector('#aiAskToggle');
+const aiAskPanel=document.querySelector('#aiAskPanel');
 const aiQuestionForm=document.querySelector('#aiQuestionForm');
 const aiQuestionInput=document.querySelector('#aiQuestionInput');
 const aiAnswer=document.querySelector('#aiAnswer');
 const aiAnswerQuestion=document.querySelector('#aiAnswerQuestion');
 const aiAnswerText=document.querySelector('#aiAnswerText');
 const aiAnswerSource=document.querySelector('#aiAnswerSource');
+const aiAnswerSourceAction=document.querySelector('#aiAnswerSourceAction');
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
@@ -80,8 +80,8 @@ const calculationMetadata={
   'overdue-invoices':{
     title:'Invoices to chase calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Outstanding customer invoice balances whose due date is before the report date.',
-    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. Total: $12,400 + $6,280 + $8,950 + $5,950 + $5,140 + $4,600 + $3,850 + $650 = $47,820 across 8 invoices. The 3 oldest invoices shown total $27,630; the other 5 total $20,190. Days overdue = report date − invoice due date. Reminders sent = recorded reminder events for that invoice.',
-    source:'Tradify customer invoices: customer total, due date, status, applied credits, recorded payments and reminder events.',
+    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. Total: $12,400 + $6,280 + $8,950 + $5,950 + $5,140 + $4,600 + $3,850 + $650 = $47,820 across 8 invoices. The 3 oldest invoices shown total $27,630; the other 5 total $20,190. Days overdue = report date − invoice due date.',
+    source:'Tradify customer invoices: customer total, due date, status, applied credits and recorded payments.',
     note:'Draft, cancelled and fully paid invoices are excluded. Payments not yet recorded in Tradify will still appear outstanding.'
   },
   'ready-to-invoice':{
@@ -109,7 +109,7 @@ const calculationMetadata={
     title:'Quotes to follow up calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Open quotes sent at least 14 days ago with no recorded customer decision.',
     calculation:'$9,200 + $6,100 + $3,600 = $18,900 across 3 quotes quiet for 14 days or more.',
-    source:'Tradify quote sent dates, current statuses and recorded reminder activity.',
+    source:'Tradify quote sent dates and current statuses.',
     note:'Fourteen days is a prototype follow-up threshold. A customer may have replied outside Tradify.'
   },
   'fresh-quotes':{
@@ -212,7 +212,6 @@ let emailPreviewOpenedDirectly=false;
 let activeCalculationTrigger=null;
 let calculationCloseButton=null;
 let calculationSheetOwnsInert=false;
-let lastAiFocusedElement=null;
 let aiHighlightTimer=null;
 let toastTimer=null;
 
@@ -581,7 +580,7 @@ const openEmailPreviewModal=()=>{
 };
 
 const openEmailPreviewShortcut=()=>{
-  closeAiAnalysis(false);
+  setAiAnalysisVisibility(false);
   emailPreviewOpenedDirectly=true;
   openModal(emailPreviewModal,emailPreviewClose);
 };
@@ -598,38 +597,36 @@ const returnToScheduleModal=()=>{
   window.requestAnimationFrame(()=>emailPreviewButton.focus());
 };
 
-const syncAiAnalysisMode=()=>{
-  const mobile=aiAnalysisMedia.matches;
-  aiAnalysisPanel.setAttribute('aria-modal',String(mobile));
-  aiAnalysisBackdrop.hidden=!mobile||aiAnalysisPanel.hidden;
+const setAiAskVisibility=(visible,focus=false)=>{
+  aiAskPanel.hidden=!visible;
+  aiAskToggle.setAttribute('aria-expanded',String(visible));
+  const icon=aiAskToggle.querySelector('.fa');
+  icon.classList.toggle('fa-angle-down',!visible);
+  icon.classList.toggle('fa-angle-up',visible);
+  if(visible&&focus)window.requestAnimationFrame(()=>aiQuestionInput.focus());
 };
 
-const openAiAnalysis=()=>{
+const setAiAnalysisVisibility=visible=>{
   closeCalculationPopover(false);
-  lastAiFocusedElement=document.activeElement;
-  aiAnalysisPanel.hidden=false;
-  aiAnalysisTrigger.setAttribute('aria-expanded','true');
-  document.body.classList.add('ai-analysis-open');
-  syncAiAnalysisMode();
-  window.requestAnimationFrame(()=>aiAnalysisClose.focus());
-};
-
-const closeAiAnalysis=(returnFocus=true)=>{
-  if(aiAnalysisPanel.hidden)return;
-  aiAnalysisPanel.hidden=true;
-  aiAnalysisBackdrop.hidden=true;
-  aiAnalysisTrigger.setAttribute('aria-expanded','false');
-  document.body.classList.remove('ai-analysis-open');
-  if(returnFocus&&lastAiFocusedElement&&document.contains(lastAiFocusedElement))lastAiFocusedElement.focus();
+  aiInlineAnalysis.hidden=!visible;
+  aiAnalysisTrigger.setAttribute('aria-pressed',String(visible));
+  aiAnalysisTrigger.classList.toggle('active',visible);
+  document.body.classList.toggle('ai-analysis-active',visible);
+  if(!visible){
+    setAiAskVisibility(false);
+    aiAnswer.hidden=true;
+  }else{
+    window.requestAnimationFrame(()=>aiInlineAnalysis.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'}));
+  }
 };
 
 const getAiAnswer=question=>{
   const normalised=question.toLowerCase();
-  if(normalised.includes('money out'))return {text:'Money out rose to $31,900, up $4,300 from July. That combines supplier payments, payroll and expenses. This report does not show the category breakdown, so check your accounting software for what changed.',source:'Uses: Money out and its month-on-month change'};
-  if(normalised.includes('invoice')&&(normalised.includes('first')||normalised.includes('chase')))return {text:'Start with INV-2841. It is the largest of the oldest invoices at $12,400 and is already 68 days overdue. Three reminders have not worked, so a phone call is more useful than another automatic reminder.',source:'Uses: Invoices to chase'};
-  if(normalised.includes('margin')||normalised.includes('profit'))return {text:'Gross margin is 35.0%, down 3.2 points. It is worth watching, but it is not the most urgent issue today. The clearer problem is timing: cash is going out before overdue and finished work is collected.',source:'Uses: Profitability, Net cash and Ready to invoice'};
-  if(normalised.includes('fast')||normalised.includes('improve')||normalised.includes('cash'))return {text:'Invoice the $38,900 of finished work, then personally follow up the three oldest overdue invoices worth $27,630. Those are the two quickest levers because the work is already done.',source:'Uses: Ready to invoice and Invoices to chase'};
-  return {text:'The clearest issue is cash timing. Money in is down, money out is up, and $86,720 is either overdue or ready to invoice. Start with the ranked priorities above, then check whether the 8-week outlook improves.',source:'Uses: Money in, Money out, Invoices to chase and Ready to invoice'};
+  if(normalised.includes('money out'))return {text:'Money out is $31,900, up $4,300 from July. This report does not break down the categories — check your accounting software for what changed.',source:'Money out · $31,900',target:'.money-out-figure'};
+  if(normalised.includes('invoice')&&(normalised.includes('first')||normalised.includes('chase')))return {text:'Start with INV-2841 — it is the largest at $12,400 and is already 68 days overdue.',source:'Invoices to chase · INV-2841',target:'.demand-chasing'};
+  if(normalised.includes('margin')||normalised.includes('profit'))return {text:'Margin is 35.0%, down 3.2 points — worth watching, but not urgent. The bigger issue is cash going out before finished and overdue work is collected.',source:'Profitability · 35.0% gross margin',target:'.demand-performance'};
+  if(normalised.includes('fast')||normalised.includes('improve')||normalised.includes('cash'))return {text:'Invoice the $38,900 of finished work, then chase the $27,630 in the three oldest overdue invoices. Both are money you have already earned.',source:'Ready to invoice · $38,900',target:'.demand-ready'};
+  return {text:'Cash timing needs the most attention. Start with the $38,900 ready to invoice and the three oldest overdue invoices worth $27,630.',source:'Net cash · -$7,300',target:'.net-figure'};
 };
 
 const showAiAnswer=question=>{
@@ -637,14 +634,25 @@ const showAiAnswer=question=>{
   aiAnswerQuestion.textContent=question;
   aiAnswerText.textContent=answer.text;
   aiAnswerSource.textContent=answer.source;
+  aiAnswerSourceAction.dataset.aiTarget=answer.target;
   aiAnswer.hidden=false;
   aiAnswer.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
 };
 
-aiAnalysisTrigger.addEventListener('click',openAiAnalysis);
-aiAnalysisClose.addEventListener('click',()=>closeAiAnalysis(true));
-aiAnalysisBackdrop.addEventListener('click',()=>closeAiAnalysis(true));
-aiAnalysisMedia.addEventListener('change',syncAiAnalysisMode);
+const focusAiAnswerSource=()=>{
+  const target=document.querySelector(`#gettingPaidPanel ${aiAnswerSourceAction.dataset.aiTarget}`);
+  if(!target)return;
+  window.clearTimeout(aiHighlightTimer);
+  target.tabIndex=-1;
+  target.classList.add('ai-source-highlight');
+  target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});
+  target.focus({preventScroll:true});
+  aiHighlightTimer=window.setTimeout(()=>target.classList.remove('ai-source-highlight'),1600);
+};
+
+aiAnalysisTrigger.addEventListener('click',()=>setAiAnalysisVisibility(aiInlineAnalysis.hidden));
+aiAnswerSourceAction.addEventListener('click',focusAiAnswerSource);
+aiAskToggle.addEventListener('click',()=>setAiAskVisibility(aiAskPanel.hidden,true));
 document.querySelectorAll('[data-ai-question]').forEach(button=>button.addEventListener('click',()=>showAiAnswer(button.dataset.aiQuestion)));
 aiQuestionForm.addEventListener('submit',event=>{
   event.preventDefault();
@@ -653,20 +661,6 @@ aiQuestionForm.addEventListener('submit',event=>{
   showAiAnswer(question);
   aiQuestionInput.value='';
 });
-document.querySelectorAll('[data-ai-target]').forEach(button=>button.addEventListener('click',()=>{
-  const target=document.querySelector(`#gettingPaidPanel ${button.dataset.aiTarget}`);
-  if(!target)return;
-  const sheet=aiAnalysisMedia.matches;
-  if(sheet)closeAiAnalysis(false);
-  window.clearTimeout(aiHighlightTimer);
-  target.tabIndex=-1;
-  target.classList.add('ai-source-highlight');
-  window.setTimeout(()=>{
-    target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});
-    if(sheet)target.focus({preventScroll:true});
-  },sheet?80:0);
-  aiHighlightTimer=window.setTimeout(()=>target.classList.remove('ai-source-highlight'),1600);
-}));
 
 calculationToggle.addEventListener('change',()=>{
   const visible=calculationToggle.checked;
@@ -754,7 +748,7 @@ const activateHealthView=(tab,updateUrl=true)=>{
   const supportsAiAnalysis=tab.id==='gettingPaidTab';
   aiAnalysisTrigger.hidden=!supportsAiAnalysis;
   document.body.classList.toggle('ai-analysis-unavailable',!supportsAiAnalysis);
-  if(!supportsAiAnalysis)closeAiAnalysis(false);
+  if(!supportsAiAnalysis)setAiAnalysisVisibility(false);
   if(updateUrl){
     const url=new URL(window.location.href);
     if(tab.id==='winningWorkTab')url.searchParams.set('area','winning');else url.searchParams.delete('area');
@@ -853,17 +847,10 @@ document.addEventListener('keydown',event=>{
     }
     return;
   }
-  if(!aiAnalysisPanel.hidden&&event.key==='Escape'){
+  if(!aiAskPanel.hidden&&event.key==='Escape'){
     event.preventDefault();
-    closeAiAnalysis(true);
-    return;
-  }
-  if(!aiAnalysisPanel.hidden&&aiAnalysisMedia.matches&&event.key==='Tab'){
-    const focusable=Array.from(aiAnalysisPanel.querySelectorAll('button,input')).filter(element=>!element.disabled&&element.offsetParent!==null);
-    const first=focusable[0];
-    const last=focusable[focusable.length-1];
-    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
-    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+    setAiAskVisibility(false);
+    aiAskToggle.focus();
     return;
   }
   if(activeCalculationTrigger&&event.key==='Escape'){
