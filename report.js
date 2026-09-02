@@ -115,8 +115,6 @@
   const shortMonth=label=>{const parts=label.split(' ');return `${parts[0].slice(0,3)} ${parts[1]}`};
   const renderEvidenceItems=evidence=>evidence.map(item=>`<li class="report-evidence-row"><i class="fa ${item[0]}" aria-hidden="true"></i><span><strong>${item[1]}</strong><small>${item[2]}</small></span></li>`).join('');
   const renderActionItems=actions=>actions.map(action=>`<li><button class="report-action-row" type="button" data-report-destination="${action.target}"><span class="report-action-copy"><strong>${action.title}</strong><small>${action.detail}</small></span><span class="report-action-cta">${action.cta}<i class="fa fa-angle-right" aria-hidden="true"></i></span></button></li>`).join('');
-  const renderEvidenceItems=evidence=>evidence.map(item=>`<li class="report-evidence-row"><i class="fa ${item[0]}" aria-hidden="true"></i><span><strong>${item[1]}</strong><small>${item[2]}</small></span></li>`).join('');
-  const renderActionItems=actions=>actions.map(action=>`<li><button class="report-action-row" type="button" data-report-destination="${action.target}"><span class="report-action-copy"><strong>${action.title}</strong><small>${action.detail}</small></span><span class="report-action-cta">${action.cta}<i class="fa fa-angle-right" aria-hidden="true"></i></span></button></li>`).join('');
   const reportPanel=document.querySelector('#reportConcept');
   const archiveSelect=document.querySelector('#reportArchiveSelect');
   const snapshotTitle=document.querySelector('#reportSnapshotTitle');
