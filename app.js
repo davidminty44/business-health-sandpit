@@ -80,8 +80,8 @@ const calculationMetadata={
   'overdue-invoices':{
     title:'Invoices to chase calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
     definition:'Outstanding customer invoice balances whose due date is before the report date.',
-    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. Total: $12,400 + $6,280 + $8,950 + $5,950 + $5,140 + $4,600 + $3,850 + $650 = $47,820 across 8 invoices. The 3 oldest invoices shown total $27,630; the other 5 total $20,190. Days overdue = report date − invoice due date. Reminders sent = recorded reminder events for that invoice.',
-    source:'Tradify customer invoices: customer total, due date, status, applied credits, recorded payments and reminder events.',
+    calculation:'Outstanding balance = invoice total − applied credits − recorded payments. Total: $12,400 + $6,280 + $8,950 + $5,950 + $5,140 + $4,600 + $3,850 + $650 = $47,820 across 8 invoices. The 3 oldest invoices shown total $27,630; the other 5 total $20,190. Days overdue = report date − invoice due date.',
+    source:'Tradify customer invoices: customer total, due date, status, applied credits and recorded payments.',
     note:'Draft, cancelled and fully paid invoices are excluded. Payments not yet recorded in Tradify will still appear outstanding.'
   },
   'ready-to-invoice':{
@@ -109,7 +109,7 @@ const calculationMetadata={
     title:'Quotes to follow up calculation',category:'Assumption',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Open quotes sent at least 14 days ago with no recorded customer decision.',
     calculation:'$9,200 + $6,100 + $3,600 = $18,900 across 3 quotes quiet for 14 days or more.',
-    source:'Tradify quote sent dates, current statuses and recorded reminder activity.',
+    source:'Tradify quote sent dates and current statuses.',
     note:'Fourteen days is a prototype follow-up threshold. A customer may have replied outside Tradify.'
   },
   'fresh-quotes':{
@@ -623,7 +623,7 @@ const setAiAnalysisVisibility=visible=>{
 const getAiAnswer=question=>{
   const normalised=question.toLowerCase();
   if(normalised.includes('money out'))return {text:'Money out is $31,900, up $4,300 from July. This report does not break down the categories — check your accounting software for what changed.',source:'Money out · $31,900',target:'.money-out-figure'};
-  if(normalised.includes('invoice')&&(normalised.includes('first')||normalised.includes('chase')))return {text:'INV-2841 — $12,400, 68 days overdue, with 3 reminders already sent. A call will do more than a fourth reminder.',source:'Invoices to chase · INV-2841',target:'.demand-chasing'};
+  if(normalised.includes('invoice')&&(normalised.includes('first')||normalised.includes('chase')))return {text:'Start with INV-2841 — it is the largest at $12,400 and is already 68 days overdue.',source:'Invoices to chase · INV-2841',target:'.demand-chasing'};
   if(normalised.includes('margin')||normalised.includes('profit'))return {text:'Margin is 35.0%, down 3.2 points — worth watching, but not urgent. The bigger issue is cash going out before finished and overdue work is collected.',source:'Profitability · 35.0% gross margin',target:'.demand-performance'};
   if(normalised.includes('fast')||normalised.includes('improve')||normalised.includes('cash'))return {text:'Invoice the $38,900 of finished work, then chase the $27,630 in the three oldest overdue invoices. Both are money you have already earned.',source:'Ready to invoice · $38,900',target:'.demand-ready'};
   return {text:'Cash timing needs the most attention. Start with the $38,900 ready to invoice and the three oldest overdue invoices worth $27,630.',source:'Net cash · -$7,300',target:'.net-figure'};
