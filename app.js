@@ -807,7 +807,6 @@ modalClose.addEventListener('click',closeModal);
 cancelSchedule.addEventListener('click',closeModal);
 emailPreviewClose.addEventListener('click',returnToScheduleModal);
 closeEmailPreview.addEventListener('click',returnToScheduleModal);
-document.querySelector('#openFullReport').addEventListener('click',()=>{closeModal();window.setTimeout(()=>document.querySelector('#reportTitle').focus(),0)});
 modalBackdrop.addEventListener('click',closeModal);
 document.querySelectorAll('.modal').forEach(modal=>{
   modal.addEventListener('click',event=>{
