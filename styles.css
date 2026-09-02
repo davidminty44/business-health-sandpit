@@ -532,10 +532,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .modal-footer{padding:12px 22px;border-top:1px solid #e0e0e0;background:#fafafa;display:flex;justify-content:flex-end;gap:8px}
 .email-preview-modal .modal-dialog{width:680px;max-width:calc(100% - 28px);margin:32px auto}
 .email-preview-body{padding:24px;background:#eef0f3;font-family:Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400}
-.email-metadata{max-width:600px;margin:0 auto 16px;padding:12px 16px;border:1px solid #d8d8d8;border-radius:4px;background:#fff}
-.email-metadata div{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;padding:3px 0;font-size:14px;line-height:22px}
-.email-metadata dt{color:#757575;font-weight:400}
-.email-metadata dd{min-width:0;margin:0;color:#263238;overflow-wrap:anywhere}
 .email-preview-card{max-width:600px;margin:0 auto;background:#fff;color:#263238;overflow:hidden}
 .email-masthead{min-height:137px;padding:24px 40px;background:#0085ff;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .email-masthead h3{width:451px;max-width:calc(100% - 78px);margin:0;font-size:25px;font-weight:400;line-height:29px;letter-spacing:-.3px}
@@ -738,7 +734,6 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
   .email-preview-footer{padding:24px}
 }
 @media(max-width:480px){
-  .email-metadata div{grid-template-columns:45px minmax(0,1fr);font-size:12px;line-height:18px}
   .email-masthead-icon{display:none}
   .email-snapshot,.email-priority-split{grid-template-columns:1fr}
   .email-snapshot>div,.email-priority-split>div{padding:12px 0;border-right:0;border-bottom:1px solid #d8d8d8}

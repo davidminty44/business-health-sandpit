@@ -21,7 +21,6 @@ const toastMessage=document.querySelector('#toastMessage');
 const appliedPeriod=document.querySelector('#appliedPeriod');
 const recipientField=document.querySelector('#recipientField');
 const recipientError=document.querySelector('#recipientError');
-const emailPreviewRecipients=document.querySelector('#emailPreviewRecipients');
 const calculationToggle=document.querySelector('#calculationToggle');
 const calculationAnnouncement=document.querySelector('#calculationAnnouncement');
 const calculationTriggers=Array.from(document.querySelectorAll('.calc-trigger'));
@@ -554,10 +553,6 @@ const closeModal=()=>{
   }
 };
 
-const renderEmailPreview=recipients=>{
-  emailPreviewRecipients.textContent=recipients.join(', ');
-};
-
 const openEmailPreviewModal=()=>{
   if(!draftRecipients.length){
     renderRecipients();
@@ -565,7 +560,6 @@ const openEmailPreviewModal=()=>{
     return;
   }
   emailPreviewOpenedDirectly=false;
-  renderEmailPreview(draftRecipients);
   scheduleModal.hidden=true;
   activeModal=emailPreviewModal;
   emailPreviewModal.hidden=false;
@@ -575,7 +569,6 @@ const openEmailPreviewModal=()=>{
 
 const openEmailPreviewShortcut=()=>{
   emailPreviewOpenedDirectly=true;
-  renderEmailPreview(savedRecipients);
   openModal(emailPreviewModal,emailPreviewClose);
 };
 
