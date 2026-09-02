@@ -41,6 +41,14 @@ const aiAnswerQuestion=document.querySelector('#aiAnswerQuestion');
 const aiAnswerText=document.querySelector('#aiAnswerText');
 const aiAnswerSource=document.querySelector('#aiAnswerSource');
 const aiAnswerSourceAction=document.querySelector('#aiAnswerSourceAction');
+const requestedConcept=new URLSearchParams(window.location.search).get('concept');
+const activeConcept=requestedConcept==='report'?'report':'demand';
+const activeConceptPanel=document.querySelector('#demandConcept');
+document.body.dataset.concept=activeConcept;
+if(activeConcept==='report'){
+  activeConceptPanel.id='reportConcept';
+  activeConceptPanel.classList.add('report-concept');
+}
 const calculationMetadata={
   'money-in':{
     title:'Money in calculation',category:'Tradify data',categoryType:'tradify',icon:'fa-database',
