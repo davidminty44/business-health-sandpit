@@ -812,7 +812,7 @@ healthViewTabs.forEach((tab,index)=>{
     healthViewTabs[targetIndex].focus();
   });
 });
-[['#reportOneShortcut','1'],['#reportTwoShortcut','2']].forEach(([selector,variant])=>{
+[['#reportTwoShortcut','2']].forEach(([selector,variant])=>{
   document.querySelector(selector).addEventListener('click',()=>{
     const url=new URL(window.location.href);
     url.searchParams.set('concept','report');

@@ -48,7 +48,6 @@
       <button class="health-view-tab" id="hybridTab" type="button" role="tab" aria-selected="false" aria-controls="hybridPanel" tabindex="-1">Hybrid</button>
     </div>
     <span class="health-view-divider" aria-hidden="true"></span>
-    <button class="health-view-tab health-view-action report-view-shortcut" id="reportOneShortcut" type="button">Report 1</button>
     <button class="health-view-tab health-view-action report-view-shortcut" id="reportTwoShortcut" type="button">Report 2</button>
     <span class="health-view-divider" aria-hidden="true"></span>
     <button class="health-view-tab health-view-action ai-analysis-trigger" id="aiAnalysisTrigger" type="button" aria-controls="aiInlineAnalysis" aria-pressed="false"><span class="tradify-ai-icon" aria-hidden="true"></span><span>Business Analysis</span></button>
@@ -557,12 +556,11 @@
 
           <div class="concept-panel report-concept" id="reportConcept" hidden>
             <div class="report-version-toggle" role="tablist" aria-label="Report concept">
-              <a class="active" id="reportVersionOne" role="tab" aria-selected="true" data-report-variant="1" href="?concept=report&amp;snapshot=aug-2026&amp;variant=1">Report 1</a>
-              <a id="reportVersionTwo" role="tab" aria-selected="false" data-report-variant="2" href="?concept=report&amp;snapshot=aug-2026&amp;variant=2" tabindex="-1">Report 2</a>
+              <a class="active" id="reportVersionTwo" role="tab" aria-selected="true" data-report-variant="2" href="?concept=report&amp;snapshot=aug-2026&amp;variant=2">Report 2</a>
               <span class="report-version-divider" aria-hidden="true"></span>
               <button id="reportEmailPreviewShortcut" type="button" aria-haspopup="dialog" aria-controls="emailPreviewModal">Email</button>
             </div>
-            <div class="monthly-report" data-report-variant-panel="1">
+            <div class="monthly-report" data-report-variant-panel="1" hidden>
               <header class="report-archive-bar">
                 <div class="report-archive-copy">
                   <span>Business Analysis</span>
@@ -700,7 +698,7 @@
               </aside>
             </div>
 
-            <div class="report-two" data-report-variant-panel="2" hidden>
+            <div class="report-two" data-report-variant-panel="2">
               <div class="report2-layout">
                 <main class="report2-briefing">
                   <header class="report2-masthead">
