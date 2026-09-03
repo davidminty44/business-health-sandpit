@@ -832,7 +832,7 @@ body.report-chat-open{overflow:hidden}
 .report2-chapter summary>.fa{color:#97a3aa;transition:transform .15s ease-out}
 .report2-chapter[open] summary>.fa{transform:rotate(180deg)}
 .report2-chapter-body{padding:0 12px 14px;border-top:1px solid #e0e0e0;background:#fafafa}
-.report2-chapter-body>p{margin:13px 0;color:#526069;font-size:13px;line-height:20px}
+.report2-chapter-body>.report-ai-summary{margin:12px 0 16px}
 .report2-chapter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .report2-chapter-grid h4{margin:0 0 8px;color:#424242;font-size:13px;font-weight:500;line-height:19px}
 .report2-chapter-body>.report-ask-link{margin-top:12px}
