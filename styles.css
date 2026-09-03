@@ -809,16 +809,15 @@ body.report-chat-open{overflow:hidden}
 .report2-metric.net{grid-row:1/span 2;border-color:#bbf6c4;background:#def6eb;box-shadow:inset 4px 0 0 #46be8a}
 .report2-metric.net.negative{border-color:#f7b9bb;background:#fdedee;box-shadow:inset 4px 0 0 #eb5055}
 .report2-metric.outlook{grid-column:2/-1;display:flex;align-items:stretch;flex-direction:column}
-.report2-metric>span{color:#526069;font-size:12px;line-height:18px}
-.report2-metric>strong{margin:3px 0;color:#424242;font-size:30px;font-weight:400;line-height:36px}
+.report2-metric>span{color:#424242;font-size:12px;line-height:18px}
+.report2-metric>strong{margin:3px 0;color:#212121;font-size:30px;font-weight:400;line-height:36px}
 .report2-metric.net>strong,.report2-metric.money-in>strong{color:#318561}.report2-metric.money-out>strong,.report2-metric.net.negative>strong{color:#a5383c}
 .report2-metric>small{margin-top:auto;color:#757575;display:flex;align-items:center;gap:4px;font-size:11px;line-height:16px}
 .report2-metric>small .fa{width:11px;height:11px;flex:0 0 11px;color:inherit;font-size:9px;line-height:11px}
-.report2-metric>small,.report2-submetrics .report-submetric-trend,.report2-pipeline-card .pipeline-comparisons>span{color:#757575!important}
 .report2-metric>small+small{margin-top:2px}.report2-metric.outlook>small{margin-top:0;white-space:nowrap}
 .report2-pipeline-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .report2-pipeline-card{box-shadow:none}
-.report2-pipeline-card .demand-card-head h4{margin:0;color:#424242;font-size:14px;font-weight:500;line-height:20px}
+.report2-pipeline-card .demand-card-head h4{margin:0;color:#212121;font-size:16px;font-weight:400;line-height:20px}
 .report2-pipeline-card .demand-card-head>span{color:#757575;font-size:11px;line-height:16px}
 .report2-pipeline-card .pipeline-body{padding:14px}
 .report2-pipeline-card .pipeline-total strong{font-size:26px;line-height:32px}
@@ -839,7 +838,7 @@ body.report-chat-open{overflow:hidden}
 .report2-chapter-body{padding:0 12px 14px;border-top:1px solid #e0e0e0;background:#fafafa}
 .report2-chapter-body>.report-ai-summary{margin:12px 0 16px}
 .report2-chapter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.report2-chapter-grid h4{margin:0 0 8px;color:#424242;font-size:13px;font-weight:500;line-height:19px}
+.report2-chapter-grid h4{margin:0 0 8px;color:#424242;font-size:14px;font-weight:500;line-height:20px}
 .report2-chapter-body>.report-ask-link{margin-top:12px}
 .report2-note{padding:12px 24px;border-top:1px solid #e0e0e0;background:#fafafa;color:#757575;display:flex;align-items:flex-start;gap:6px;font-size:11px;line-height:16px}
 .report2-note .fa{margin-top:1px;color:#97a3aa}
