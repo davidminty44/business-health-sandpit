@@ -791,12 +791,12 @@ body.report-chat-open{overflow:hidden}
 .report2-health-summary.report-ai-summary{margin-top:16px;padding:14px 16px;grid-column:1/-1;grid-row:3}
 .report2-health-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .report2-health-summary .report-ai-summary-label{margin:0}
-.report2-health-status{display:flex;align-items:center;gap:8px}
+.report2-health-status{padding-left:16px;border-left:1px solid #cfe3e8;display:flex;align-items:center;gap:8px}
 .report2-health-status>span{color:#757575;font-size:11px;font-weight:500;line-height:16px;text-transform:uppercase}
-.report2-health-summary h3{margin:0;padding:3px 9px;border-radius:12px;background:#fdedee;color:#a5383c;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;line-height:18px}
+.report2-health-summary h3{margin:0;padding:4px 10px;border-radius:14px;background:#fdedee;color:#a5383c;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:600;line-height:20px;white-space:nowrap}
 .report2-health-summary h3.healthy{background:#eaf6ef;color:#318561}
-.report2-health-summary h3 .fa{width:auto;font-size:11px}
-.report2-health-summary>p{margin-top:10px;font-size:14px;line-height:21px}
+.report2-health-summary h3 .fa{width:auto;font-size:12px}
+.report2-health-summary>p{margin-top:10px;font-size:13px;line-height:20px}
 .report2-scorecard,.report2-pipelines,.report2-priorities{padding:20px 24px 28px}
 .report2-section-heading{margin-bottom:16px}
 .report2-section-heading>span{color:#757575;font-size:11px;font-weight:500;line-height:16px;text-transform:uppercase}
@@ -994,7 +994,7 @@ body.report-chat-open{overflow:hidden}
 @media(max-width:560px){
   .report-subtitle{max-width:330px}
   .report2-health-topline{align-items:flex-start;flex-direction:column;gap:9px}
-  .report2-health-status{width:100%;justify-content:space-between}
+  .report2-health-status{width:100%;padding:9px 0 0;border-top:1px solid #cfe3e8;border-left:0;justify-content:space-between}
   .report-metrics,.report2-metrics{grid-template-columns:1fr}
   .report2-metrics{gap:10px}
   .report2-chapter summary{grid-template-columns:28px minmax(0,1fr) 16px}
@@ -1107,7 +1107,7 @@ body.report-chat-open{overflow:hidden}
   .email-snapshot>div:nth-child(n+2){padding-top:16px;border-top:1px solid #e8e8e8}
   .email-roundup-list li{grid-template-columns:1fr;gap:3px}
 }
-@media(max-width:370px){.report-selector-label{display:none}}
+@media(max-width:370px){.report-selector-label{display:none}.report2-health-status{align-items:flex-start;flex-direction:column;gap:5px}}
 @media(max-width:360px){.cash-trend-hit{width:26px}}
 @media(max-width:340px){#demandMarginDelta{align-items:flex-start;flex-direction:column;gap:0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
