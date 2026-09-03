@@ -7,7 +7,7 @@
   <title>Business Analysis | Tradify Reports</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="styles.css?v=edge-2">
+  <link rel="stylesheet" href="styles.css?v=summary-box-1">
 </head>
 <body>
   <aside class="sidebar" id="sidebar" aria-label="Main navigation" aria-hidden="true" inert>
@@ -595,7 +595,7 @@
                     <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention this month</span></h2>
                   </div>
                 </div>
-                <div class="report-ai-summary"><span class="tradify-ai-icon" aria-hidden="true"></span><p data-report-ai-summary>Cash is tight and margin has dropped to 19% — invoicing finished work is the fastest fix.</p></div>
+                <div class="report-ai-summary"><div class="report-ai-summary-label"><span class="tradify-ai-icon" aria-hidden="true"></span><strong>Business Analysis</strong></div><p data-report-ai-summary>Cash tightened and margin slipped to 19% — invoice finished work and chase stalled quotes.</p></div>
                 <div class="report-metrics" aria-label="Monthly headline metrics">
                   <article class="actual-figure money-in-figure">
                     <span class="kpi-label">Money in</span>
@@ -715,7 +715,7 @@
                     </div>
                     <h2 id="report2Title">August 2026 briefing</h2>
                     <p id="report2Period">Compared with July 2026 and August 2025</p>
-                    <div class="report2-health-summary"><span>Business health</span><h3 id="report2HealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span data-report2-health>Needs attention this month</span></h3><div class="report-ai-summary"><span class="tradify-ai-icon" aria-hidden="true"></span><p data-report-ai-summary>Cash is tight and margin has dropped to 19% — invoicing finished work is the fastest fix.</p></div></div>
+                    <div class="report2-health-summary"><span>Business health</span><h3 id="report2HealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span data-report2-health>Needs attention this month</span></h3><div class="report-ai-summary"><div class="report-ai-summary-label"><span class="tradify-ai-icon" aria-hidden="true"></span><strong>Business Analysis</strong></div><p data-report-ai-summary>Cash tightened and margin slipped to 19% — invoice finished work and chase stalled quotes.</p></div></div>
                   </header>
 
                   <section class="report2-scorecard" aria-labelledby="report2MetricsTitle">
@@ -962,6 +962,6 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden><i class="fa fa-info-circle" aria-hidden="true"></i><span id="toastMessage"></span></div>
   <script src="app.js"></script>
-  <script src="report.js?v=summary-1"></script>
+  <script src="report.js?v=summary-box-1"></script>
 </body>
 </html>

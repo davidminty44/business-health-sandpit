@@ -32,9 +32,9 @@
   ];
   const focusKeys=['cash','profit','work'];
   const reportAiSummaries={
-    'aug-2026':'Cash is tight and margin fell to 19% — invoice finished work first.',
-    'jul-2026':'Cash and margin improved, but $39,200 in overdue invoices still needs following up.',
-    'jun-2026':'Cash stayed positive and margin held at 24%, but material costs need watching.'
+    'aug-2026':'Cash tightened and margin slipped to 19% — invoice finished work and chase stalled quotes.',
+    'jul-2026':'Cash and margin improved in July, but overdue invoices and quiet quotes still need following up.',
+    'jun-2026':'Cash held steady and margin stayed at 24%, though material costs and quiet quotes need watching.'
   };
   const reportPipelines={
     'aug-2026':{
