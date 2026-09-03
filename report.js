@@ -36,6 +36,26 @@
     'jul-2026':'Cash and margin improved in July, but overdue invoices and quiet quotes still need following up.',
     'jun-2026':'Cash held steady and margin stayed at 24%, though material costs and quiet quotes need watching.'
   };
+  const emailRoundups={
+    'aug-2026':{
+      headline:'Cash tightened and profit margin slipped to 19% this month — the full report has the detail.',
+      cash:'Money in slowed while money out rose. Finished work waiting to be invoiced is the fastest way back.',
+      profit:"Margin dipped this month. One job's costs pulled the average down.",
+      work:"You're still winning more than half your quotes, but a few have gone quiet."
+    },
+    'jul-2026':{
+      headline:'Cash and profit margin both improved this month, with a little tidying up still to do.',
+      cash:'Net cash improved, though some invoices are still waiting on payment.',
+      profit:'Margin recovered on the back of strong labour recovery.',
+      work:'The pipeline held steady, but some quotes are waiting on a decision.'
+    },
+    'jun-2026':{
+      headline:'Cash held steady and margin stayed at 24%, with material costs worth keeping an eye on.',
+      cash:'Cash stayed positive, with little room for late payments.',
+      profit:'Margin held steady, though material costs are worth watching.',
+      work:'Win rate stayed above half, though fewer new enquiries came in.'
+    }
+  };
   const reportPipelines={
     'aug-2026':{
       quote:{total:34500,monthChange:-7300,yearChange:3300,outcomes:{accepted:[9,42700],declined:[7,30900],awaiting:[8,34500]}},
@@ -253,6 +273,33 @@
     });
   };
 
+  const renderEmailPreview=month=>{
+    const roundup=emailRoundups[month.slug];
+    const previousMonth=shortMonth(month.previous);
+    const marginChange=month.grossMargin-month.marginPrevious;
+    const marginDelta={
+      className:marginChange===0?'':marginChange>0?'positive':'negative',
+      text:marginChange===0?`No change vs ${previousMonth}`:`${marginChange>0?'Up':'Down'} ${Math.abs(marginChange)} points vs ${previousMonth}`
+    };
+    const metrics={
+      moneyIn:{value:money(month.moneyIn),delta:deltaCopy('moneyIn',month.moneyIn,month.moneyInMonth,previousMonth)},
+      moneyOut:{value:money(month.moneyOut),delta:deltaCopy('moneyOut',month.moneyOut,month.moneyOutMonth,previousMonth)},
+      netCash:{value:money(month.netCash),delta:deltaCopy('netCash',month.netCash,month.netCashMonth,previousMonth)},
+      grossMargin:{value:`${month.grossMargin}%`,delta:marginDelta}
+    };
+    document.querySelector('#emailReportMonth').textContent=month.label;
+    document.querySelector('#emailRoundupHeadline').textContent=roundup.headline;
+    Object.entries(metrics).forEach(([key,metric])=>{
+      const element=document.querySelector(`[data-email-metric="${key}"]`);
+      element.classList.remove('email-status-positive','email-status-negative');
+      if(metric.delta.className)element.classList.add(`email-status-${metric.delta.className}`);
+      element.querySelector('strong').textContent=metric.value;
+      element.querySelector('dd span').textContent=metric.delta.text;
+    });
+    focusKeys.forEach(key=>{document.querySelector(`[data-email-roundup="${key}"]`).textContent=roundup[key]});
+    document.querySelector('#emailFullReportLink').setAttribute('href',`?concept=report&variant=2&snapshot=${month.slug}`);
+  };
+
   const renderReport2=()=>{
     const month=reportMonths[monthIndex];
     report2ArchiveSelect.value=month.slug;
@@ -319,6 +366,7 @@
     reportPanel.querySelector('.report-note').innerHTML=`<i class="fa fa-lock" aria-hidden="true"></i>This report uses Tradify and connected accounting data recorded up to ${month.asAt}. It won't change after that.`;
     renderFocus();
     renderReport2();
+    renderEmailPreview(month);
     setUrl();
   };
 

@@ -584,32 +584,27 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-masthead-icon{width:54px;height:60px;color:#fff;display:grid;place-items:center;flex:0 0 54px}
 .email-masthead-badge{display:flex;align-items:center;justify-content:center;gap:6px}
 .email-masthead-badge .tradify-ai-icon{width:17px;height:17px;flex-basis:17px}
-.email-masthead-badge .fa-money{width:auto;height:auto;font-size:24px;line-height:1}
+.email-masthead-badge .fa-line-chart{width:auto;height:auto;font-size:24px;line-height:1}
 .email-preview-content{padding:40px}
 .email-preview-content strong{font-weight:700}
 .email-greeting{margin:0;color:#263238;font-size:17px;line-height:22px}
 .email-ai-commentary p{margin:0;color:#526069;font-size:14px;line-height:20px}
 .email-greeting+.email-ai-commentary{margin-top:8px}
-.email-snapshot{margin:28px 0 0;padding:14px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.email-snapshot{margin:28px 0 0;padding:16px 0;border-top:1px solid #d8d8d8;border-bottom:1px solid #d8d8d8;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 32px}
 .email-snapshot>div{min-width:0}
-.email-snapshot dt,.email-priority-split dt{color:#526069;font-size:15px;font-weight:400;line-height:24px}
-.email-snapshot dd,.email-priority-split dd{margin:2px 0 0}
+.email-snapshot>div:nth-child(n+3){padding-top:16px;border-top:1px solid #e8e8e8}
+.email-snapshot dt{color:#526069;font-size:15px;font-weight:400;line-height:24px}
+.email-snapshot dd{margin:2px 0 0}
 .email-snapshot dd strong{display:block;font-size:17px;line-height:22px}
-.email-snapshot dd span,.email-priority-split dd span{display:block;margin-top:2px;color:#526069;font-size:13px;line-height:18px}
-.email-attention-section{padding-top:36px}
-.email-attention-section>h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
-.email-attention-summary{margin:5px 0 0;color:#526069;font-size:14px;line-height:20px}
-.email-priority{margin-top:28px}
-.email-priority+.email-priority{margin-top:40px;padding-top:40px;border-top:1px solid #d8d8d8}
-.email-priority header{padding-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.email-priority h5{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
-.email-priority-value{display:block;margin-top:4px;color:#263238;font-size:22px;font-weight:700;line-height:28px}
-.email-priority-split{margin:0 0 22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
-.email-priority-split>div{min-width:0}
-.email-priority-split dd strong{display:block;color:#263238;font-size:17px;line-height:22px}
+.email-snapshot dd span{display:block;margin-top:2px;color:#526069;font-size:13px;line-height:18px}
 .email-status-negative dt,.email-status-negative dd strong{color:#c8322b}
 .email-status-positive dt,.email-status-positive dd strong{color:#12805c}
-.email-priority>.email-ai-commentary{margin:0;padding:0 0 20px}
+.email-attention-section{padding-top:32px}
+.email-attention-section>h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
+.email-roundup-list{margin:18px 0 0;padding:0;display:grid;gap:16px;list-style:none}
+.email-roundup-list li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;color:#526069;font-size:14px;line-height:20px}
+.email-roundup-list strong{color:#263238}
+.email-report-pointer{margin:28px 0 14px;color:#526069;font-size:14px;line-height:20px}
 .email-primary-action{min-height:40px;padding:8px 22px;border-radius:4px;background:#000;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:400;line-height:24px;text-align:center;text-decoration:none}
 .email-primary-action:hover{background:#263238}
 .email-preview-footer{padding:30px 40px 36px;background:#e8ddc3;color:#263238}
@@ -1104,8 +1099,9 @@ body.report-chat-open{overflow:hidden}
 @media(max-width:480px){
   .email-masthead h3{width:100%;max-width:none}
   .email-masthead-icon{display:none}
-  .email-snapshot,.email-priority-split{grid-template-columns:1fr;gap:16px}
-  .email-priority+.email-priority{margin-top:32px;padding-top:32px}
+  .email-snapshot{grid-template-columns:1fr;gap:16px}
+  .email-snapshot>div:nth-child(n+2){padding-top:16px;border-top:1px solid #e8e8e8}
+  .email-roundup-list li{grid-template-columns:1fr;gap:3px}
 }
 @media(max-width:370px){.report-selector-label{display:none}}
 @media(max-width:360px){.cash-trend-hit{width:26px}}
