@@ -792,7 +792,6 @@ body.report-chat-open{overflow:hidden}
 .report2-health-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .report2-health-summary .report-ai-summary-label{margin:0}
 .report2-health-status{padding-left:16px;border-left:1px solid #cfe3e8;display:flex;align-items:center;gap:8px}
-.report2-health-status>span{color:#757575;font-size:11px;font-weight:500;line-height:16px;text-transform:uppercase}
 .report2-health-summary h3{margin:0;padding:4px 10px;border-radius:14px;background:#fdedee;color:#a5383c;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:600;line-height:20px;white-space:nowrap}
 .report2-health-summary h3.healthy{background:#eaf6ef;color:#318561}
 .report2-health-summary h3 .fa{width:auto;font-size:12px}
