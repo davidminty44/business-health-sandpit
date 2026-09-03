@@ -251,7 +251,7 @@
       section.querySelector('.report2-action-count').textContent=`${actions.length} actions`;
     });
     document.querySelector('.report2-note span').textContent=`Based on Tradify and connected accounting data up to ${month.asAt}. This briefing won't update after that.`;
-    report2ChatToggle.querySelector('small').textContent=`Based on ${month.label}`;
+    report2ChatToggle.querySelector('small').textContent=`Business Analysis AI · ${month.label}`;
   };
 
   const renderSnapshot=()=>{
@@ -417,7 +417,7 @@
   };
 
   const resetReport2Chat=()=>{
-    report2ChatThread.innerHTML='<article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Business Analysis</strong><p>I can explain a number, priority or next step.</p></div></article>';
+    report2ChatThread.innerHTML='<article class="report-chat-message assistant"><span class="tradify-ai-icon" aria-hidden="true"></span><div><strong>Sam</strong><p>I’m Sam, your Business Analysis AI. Ask me about a number, priority or next step.</p></div></article>';
   };
 
   const appendReport2Message=(role,text,source)=>{
@@ -432,7 +432,7 @@
     const bubble=document.createElement('div');
     if(role==='assistant'){
       const name=document.createElement('strong');
-      name.textContent='Business Analysis';
+      name.textContent='Sam';
       bubble.append(name);
     }
     const copy=document.createElement('p');
