@@ -173,6 +173,8 @@
   let activeFocus='cash';
   let lastChatTrigger=null;
   let report2NumberAnimationFrame;
+  let report2ScrollAnimationFrame;
+  let report2ScrollDelay;
   let toastTimer;
 
   const reportToast=message=>{
@@ -571,32 +573,48 @@
     setUrl();
   };
 
-  const scrollChapterIntoView=chapter=>{
+  const cancelChapterScroll=()=>{
+    window.clearTimeout(report2ScrollDelay);
+    window.cancelAnimationFrame(report2ScrollAnimationFrame);
+  };
+  const scrollChapterIntoView=(chapter,endHeight)=>{
     const summary=chapter.querySelector('summary');
     const topOffset=window.matchMedia('(max-width:800px)').matches?96:24;
-    const summaryRect=summary.getBoundingClientRect();
-    const chapterRect=chapter.getBoundingClientRect();
-    if(summaryRect.top>=topOffset&&chapterRect.bottom<=window.innerHeight-16)return;
-    const top=Math.max(0,window.scrollY+summaryRect.top-topOffset);
-    window.scrollTo({top,behavior:reducedMotion.matches?'auto':'smooth'});
+    const start=()=>{
+      const summaryRect=summary.getBoundingClientRect();
+      if(summaryRect.top>=topOffset&&summaryRect.top+endHeight<=window.innerHeight-16)return;
+      if(reducedMotion.matches){window.scrollTo(0,Math.max(0,window.scrollY+summaryRect.top-topOffset));return}
+      const startY=window.scrollY;
+      const started=performance.now();
+      const frame=now=>{
+        const progress=Math.min(1,(now-started)/320);
+        const eased=1-Math.pow(1-progress,3);
+        const target=Math.max(0,window.scrollY+summary.getBoundingClientRect().top-topOffset);
+        window.scrollTo(0,startY+(target-startY)*eased);
+        if(progress<1)report2ScrollAnimationFrame=window.requestAnimationFrame(frame);
+      };
+      report2ScrollAnimationFrame=window.requestAnimationFrame(frame);
+    };
+    if(reducedMotion.matches)start();else report2ScrollDelay=window.setTimeout(start,100);
   };
 
   const setChapterOpen=(chapter,open)=>{
     if(chapter.open===open||chapter.dataset.animating)return;
+    cancelChapterScroll();
     const startHeight=chapter.offsetHeight;
     const summary=chapter.querySelector('summary');
     if(open)chapter.open=true;else chapter.classList.add('closing');
     const endHeight=open?summary.offsetHeight+chapter.querySelector('.report2-chapter-body').offsetHeight:summary.offsetHeight;
-    if(reducedMotion.matches){chapter.open=open;chapter.classList.remove('closing');if(open)scrollChapterIntoView(chapter);return}
+    if(reducedMotion.matches){chapter.open=open;chapter.classList.remove('closing');if(open)scrollChapterIntoView(chapter,endHeight);return}
     chapter.dataset.animating='true';
     chapter.style.overflow='hidden';
     const animation=chapter.animate({height:[`${startHeight}px`,`${endHeight}px`]}, {duration:240,easing:'cubic-bezier(.4,0,.2,1)'});
+    if(open)scrollChapterIntoView(chapter,endHeight);
     animation.addEventListener('finish',()=>{
       chapter.open=open;
       chapter.classList.remove('closing');
       chapter.style.overflow='';
       delete chapter.dataset.animating;
-      if(open)window.requestAnimationFrame(()=>scrollChapterIntoView(chapter));
     });
   };
 
@@ -669,7 +687,7 @@
   document.querySelector('#reportDownload').addEventListener('click',()=>reportToast(`${reportMonths[monthIndex].label} Business Analysis PDF would download here.`));
   report2Chapters.forEach(chapter=>chapter.querySelector('summary').addEventListener('click',event=>{
     event.preventDefault();
-    if(chapter.dataset.animating)return;
+    if(report2Chapters.some(item=>item.dataset.animating))return;
     const opening=!chapter.open;
     if(opening)report2Chapters.filter(other=>other!==chapter&&other.open).forEach(other=>setChapterOpen(other,false));
     setChapterOpen(chapter,opening);
