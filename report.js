@@ -4,21 +4,21 @@
 
   const reportMonths=[
     {
-      slug:'aug-2026',label:'August 2026',short:'Aug 2026',previous:'July 2026',year:'August 2025',status:'Needs attention',healthy:false,asAt:'1 Sep 2026',
+      slug:'aug-2026',label:'August 2026',short:'Aug 2026',previous:'July 2026',year:'August 2025',status:'Steady',healthy:true,asAt:'1 Sep 2026',
+      moneyIn:33000,moneyInMonth:29100,moneyInYear:30200,moneyOut:27600,moneyOutMonth:28100,moneyOutYear:26500,netCash:5400,netCashMonth:1000,netCashYear:3700,outlook:31400,outlookChange:-3200,invoicesToChase:39200,invoicesCount:7,readyToInvoice:27600,readyJobs:8,bookedAhead:242800,grossProfit:12000,grossMargin:26,marginPrevious:24,
+      focus:{
+        cash:{headline:'Cash is positive, but collection still matters.',body:'Net cash was $5,400 in August. Keeping overdue work moving will protect the cash already in the business.',evidence:[['fa-money','Money in · $33,000','11 customer payments received'],['fa-file-text-o','7 overdue invoices · $39,200','Oldest invoice is 52 days overdue'],['fa-briefcase','8 completed jobs · $27,600','Ready to turn into invoices.']],actions:['Follow up the two invoices over 45 days overdue.','Invoice the three highest-value completed jobs today.','Check next month’s payroll and supplier payments against expected receipts.']},
+        profit:{headline:'Profit margin is 26% in August.',body:'Gross profit was $12,000 on $46,100 revenue. Two fixed-price jobs performed above plan and labour recovery was healthy.',evidence:[['fa-line-chart','Gross margin · 26%','Gross profit · $12,000'],['fa-briefcase','JB2198 · Ashbury School','36% margin · completed on plan'],['fa-wrench','Labour recovery · 91%','Timesheets were complete']],actions:['Reuse the Ashbury School estimate for similar work.','Check the two jobs below 20% margin before final invoicing.','Keep timesheets up to date so labour recovery stays visible.']},
+        work:{headline:'The pipeline is steady, but five quotes need a decision.',body:'Open quote value held at $41,800. More than half has been waiting for a customer response for two weeks.',evidence:[['fa-calculator','10 open quotes · $41,800','$23,400 waiting 14+ days'],['fa-check-circle','Quote win rate · 48%','9 accepted · 10 declined'],['fa-inbox','4 enquiries need a quote','Two arrived in the last 48 hours.']],actions:['Follow up the five quiet quotes before sending new estimates.','Quote the two newest enquiries today.','Record decline reasons to improve the next round of pricing.']}
+      }
+    },
+    {
+      slug:'jul-2026',label:'July 2026',short:'Jul 2026',previous:'June 2026',year:'July 2025',status:'Needs attention',healthy:false,asAt:'1 Aug 2026',
       moneyIn:24600,moneyInMonth:33000,moneyInYear:28100,moneyOut:31900,moneyOutMonth:27600,moneyOutYear:29400,netCash:-7300,netCashMonth:5400,netCashYear:-1300,outlook:12600,outlookChange:-18800,invoicesToChase:47820,invoicesCount:8,readyToInvoice:38900,readyJobs:11,bookedAhead:264500,grossProfit:8100,grossMargin:19,marginPrevious:26,
       focus:{
         cash:{headline:'Cash is tight. Chasing finished work fixes it fastest.',body:"Net cash is -$7,300 this month, and money in is down while money out is up. The fastest way back isn't new sales — it's collecting work you've already done.",evidence:[['fa-file-text-o','8 overdue invoices · $47,820','$27,630 is tied up in the 3 oldest invoices.'],['fa-clock-o','INV-2841 · $12,400','Largest invoice · 68 days overdue'],['fa-briefcase','11 completed jobs · $38,900','Finished work that has not been invoiced.']],actions:['Chase INV-2841 first — it is the biggest and the oldest.','Follow up the other two invoices over 60 days overdue.','Invoice JB2237, JB2240 and JB2234 — $23,450 ready to send today.']},
         profit:{headline:'Profit margin is 19% this month — one job is dragging it down.',body:'Revenue was $42,800 and job costs were $34,700, leaving $8,100 gross profit. The lowest-margin job needs a closer look.',evidence:[['fa-briefcase','JB2208 · Bellhaven Rest Home','33% margin · $2,060 gross profit'],['fa-briefcase','JB2216 · Whitmore Family','38% margin · $837 gross profit'],['fa-exclamation-circle','JB2231 · Kererū Café','13% margin · well below the other jobs']],actions:["Check Kererū Café's costs against the original quote to see what ran over.","Use Bellhaven Rest Home's 33% margin when pricing similar work.",'Review labour and material costs on jobs under 20% before invoicing.']},
         work:{headline:'Quote win rate is 56% — keep the pipeline moving.',body:"You're winning more than half of decided quotes, but $18,900 of open quotes have gone quiet for 14 days or more.",evidence:[['fa-calculator','8 open quotes · $34,500','$15,600 fresh · $18,900 waiting 14+ days'],['fa-check-circle','9 accepted · $42,700','Compared with 7 declined · $30,900'],['fa-inbox','3 enquiries need a quote','ENQ0025 arrived yesterday.']],actions:['Follow up the 3 quiet quotes, starting with QT01042 for $9,200.','Quote ENQ0025 while the enquiry is still fresh.','Review why 7 quotes were declined and look for a pattern.']}
-      }
-    },
-    {
-      slug:'jul-2026',label:'July 2026',short:'Jul 2026',previous:'June 2026',year:'July 2025',status:'Steady',healthy:true,asAt:'1 Aug 2026',
-      moneyIn:33000,moneyInMonth:29100,moneyInYear:30200,moneyOut:27600,moneyOutMonth:28100,moneyOutYear:26500,netCash:5400,netCashMonth:1000,netCashYear:3700,outlook:31400,outlookChange:-3200,invoicesToChase:39200,invoicesCount:7,readyToInvoice:27600,readyJobs:8,bookedAhead:242800,grossProfit:12000,grossMargin:26,marginPrevious:24,
-      focus:{
-        cash:{headline:'Cash is positive, but collection still matters.',body:'Net cash was $5,400 in July. Keeping overdue work moving will protect the cash already in the business.',evidence:[['fa-money','Money in · $33,000','11 customer payments received'],['fa-file-text-o','7 overdue invoices · $39,200','Oldest invoice is 52 days overdue'],['fa-briefcase','8 completed jobs · $27,600','Ready to turn into invoices.']],actions:['Follow up the two invoices over 45 days overdue.','Invoice the three highest-value completed jobs today.','Check next month’s payroll and supplier payments against expected receipts.']},
-        profit:{headline:'Profit margin is 26% in July.',body:'Gross profit was $12,000 on $46,100 revenue. Two fixed-price jobs performed above plan and labour recovery was healthy.',evidence:[['fa-line-chart','Gross margin · 26%','Gross profit · $12,000'],['fa-briefcase','JB2198 · Ashbury School','36% margin · completed on plan'],['fa-wrench','Labour recovery · 91%','Timesheets were complete']],actions:['Reuse the Ashbury School estimate for similar work.','Check the two jobs below 20% margin before final invoicing.','Keep timesheets up to date so labour recovery stays visible.']},
-        work:{headline:'The pipeline is steady, but five quotes need a decision.',body:'Open quote value held at $41,800. More than half has been waiting for a customer response for two weeks.',evidence:[['fa-calculator','10 open quotes · $41,800','$23,400 waiting 14+ days'],['fa-check-circle','Quote win rate · 48%','9 accepted · 10 declined'],['fa-inbox','4 enquiries need a quote','Two arrived in the last 48 hours.']],actions:['Follow up the five quiet quotes before sending new estimates.','Quote the two newest enquiries today.','Record decline reasons to improve the next round of pricing.']}
       }
     },
     {
@@ -33,22 +33,22 @@
   ];
   const focusKeys=['cash','profit','work'];
   const reportAiSummaries={
-    'aug-2026':"Net cash fell to -$7,300 and margin dropped to 19% as one job's costs pulled down profit. Invoice the $38,900 of finished work sitting unbilled and chase the three oldest overdue invoices, worth $27,630, to rebuild cash fastest.",
-    'jul-2026':'Net cash improved to $5,400 and margin rose to 26% on strong labour recovery. Invoice the $27,600 of finished work waiting to be billed, and follow up the five quotes worth $23,400 that have stalled for two weeks.',
+    'aug-2026':'Net cash improved to $5,400 and margin rose to 26% on strong labour recovery. Invoice the $27,600 of finished work waiting to be billed, and follow up the five quotes worth $23,400 that have stalled for two weeks.',
+    'jul-2026':"Net cash fell to -$7,300 and margin dropped to 19% as one job's costs pulled down profit. Invoice the $38,900 of finished work sitting unbilled and chase the three oldest overdue invoices, worth $27,630, to rebuild cash fastest.",
     'jun-2026':"Net cash stayed positive at $1,000, with margin holding at 24% while three jobs lost margin to unquoted material changes. Add variations before material scope changes, and chase the two invoices overdue more than 30 days to protect next month's cash."
   };
   const emailRoundups={
     'aug-2026':{
-      headline:'Cash tightened and profit margin slipped to 19% this month, the full report has the detail.',
-      cash:'fell as money in slowed and money out rose. Finished work waiting to be invoiced is the fastest way back.',
-      profit:"slipped to 19%, with one job's costs pulling down the average.",
-      work:'are converting well, but a few have gone quiet.'
-    },
-    'jul-2026':{
       headline:'Cash and profit margin both improved this month, with a little tidying up still to do.',
       cash:'improved, though some invoices are still waiting on payment.',
       profit:'recovered, thanks to strong labour recovery.',
       work:'held steady, but a few are still waiting on a decision.'
+    },
+    'jul-2026':{
+      headline:'Cash tightened and profit margin slipped to 19% this month, the full report has the detail.',
+      cash:'fell as money in slowed and money out rose. Finished work waiting to be invoiced is the fastest way back.',
+      profit:"slipped to 19%, with one job's costs pulling down the average.",
+      work:'are converting well, but a few have gone quiet.'
     },
     'jun-2026':{
       headline:'Cash held steady and margin stayed at 24%, with material costs worth keeping an eye on.',
@@ -59,12 +59,12 @@
   };
   const reportPipelines={
     'aug-2026':{
-      quote:{total:34500,monthChange:-7300,yearChange:3300,outcomes:{accepted:[9,42700],declined:[7,30900],awaiting:[8,34500]}},
-      invoice:{total:47820,monthChange:8620,yearChange:5720,outcomes:{ready:[11,38900],paid:[12,24600],overdue:[8,47820]}}
-    },
-    'jul-2026':{
       quote:{total:41800,monthChange:12200,yearChange:6400,outcomes:{accepted:[9,39600],declined:[10,36200],awaiting:[10,41800]}},
       invoice:{total:39200,monthChange:7500,yearChange:2800,outcomes:{ready:[8,27600],paid:[11,33000],overdue:[7,39200]}}
+    },
+    'jul-2026':{
+      quote:{total:34500,monthChange:-7300,yearChange:3300,outcomes:{accepted:[9,42700],declined:[7,30900],awaiting:[8,34500]}},
+      invoice:{total:47820,monthChange:8620,yearChange:5720,outcomes:{ready:[11,38900],paid:[12,24600],overdue:[8,47820]}}
     },
     'jun-2026':{
       quote:{total:29600,monthChange:-3500,yearChange:1800,outcomes:{accepted:[8,37900],declined:[7,28400],awaiting:[7,29600]}},
@@ -73,6 +73,27 @@
   };
   const reportActions={
     'aug-2026':{
+      cash:[
+        {title:'Chase INV-2814 — Everton Retail Fitouts',detail:'$8,600 · 52 days overdue',cta:'Open invoice',target:'invoice INV-2814'},
+        {title:'Chase INV-2822 — Pinehurst Dental',detail:'$4,250 · 47 days overdue',cta:'Open invoice',target:'invoice INV-2822'},
+        {title:'Invoice the 3 highest-value completed jobs',detail:'JB2198 Ashbury School, JB2201 Northline Logistics and JB2204 Pinehurst Dental',cta:'View 3 jobs',target:'Ready to Invoice filtered to JB2198, JB2201 and JB2204'},
+        {title:'Check September cash commitments',detail:'Compare expected receipts with payroll and supplier payments',cta:'Open outlook',target:'Cash Flow Outlook for September 2026'}
+      ],
+      profit:[
+        {title:"Reuse QT01014 — Ashbury School's accepted estimate",detail:'Pricing from JB2198 · 36% margin',cta:'Open quote',target:'quote QT01014'},
+        {title:'Check JB2186 — Fenwick Holiday Park',detail:'15% margin · review before invoicing',cta:'Open job',target:'job JB2186'},
+        {title:'Check JB2192 — Dalton Family',detail:'17% margin · review before invoicing',cta:'Open job',target:'job JB2192'},
+        {title:'Keep timesheets up to date',detail:'Protect the current 91% labour recovery',cta:'Open timesheets',target:'Timesheets for August 2026'}
+      ],
+      work:[
+        {title:'Follow up QT01038 — Hendricks home rewire',detail:'$6,100 · waiting 14+ days',cta:'Open quote',target:'quote QT01038'},
+        {title:'Follow up QT01029 — Marlow unit block wiring',detail:'$3,600 · waiting 14+ days',cta:'Open quote',target:'quote QT01029'},
+        {title:'Follow up the other 3 quiet quotes',detail:'Open quotes waiting 14+ days',cta:'View 3 quotes',target:'Quotes filtered to open for 14+ days'},
+        {title:'Quote the 2 newest enquiries',detail:'Both arrived in the last 48 hours',cta:'View enquiries',target:'Enquiries filtered to newest unquoted'},
+        {title:'Record reasons for the 10 declined quotes',detail:'Use the pattern to improve the next round of pricing',cta:'View quotes',target:'Quotes filtered to declined in August 2026'}
+      ]
+    },
+    'jul-2026':{
       cash:[
         {title:'Chase INV-2841 — Kingsford Property Group',detail:'$12,400 · 68 days overdue',cta:'Open invoice',target:'invoice INV-2841'},
         {title:'Chase INV-2867 — Bellhaven Constructions',detail:'$6,280 · 61 days overdue',cta:'Open invoice',target:'invoice INV-2867'},
@@ -89,27 +110,6 @@
         {title:'Follow up QT01042 — Riverside Café fit-out',detail:'$9,200 · waiting 14+ days',cta:'Open quote',target:'quote QT01042'},
         {title:'Quote ENQ0025 — Alan Whitfield',detail:'Switchboard upgrade · received yesterday',cta:'Open enquiry',target:'enquiry ENQ0025'},
         {title:'Review the 7 declined quotes',detail:'Look for a pattern before pricing the next job',cta:'View quotes',target:'Quotes filtered to declined'}
-      ]
-    },
-    'jul-2026':{
-      cash:[
-        {title:'Chase INV-2814 — Everton Retail Fitouts',detail:'$8,600 · 52 days overdue',cta:'Open invoice',target:'invoice INV-2814'},
-        {title:'Chase INV-2822 — Pinehurst Dental',detail:'$4,250 · 47 days overdue',cta:'Open invoice',target:'invoice INV-2822'},
-        {title:'Invoice the 3 highest-value completed jobs',detail:'JB2198 Ashbury School, JB2201 Northline Logistics and JB2204 Pinehurst Dental',cta:'View 3 jobs',target:'Ready to Invoice filtered to JB2198, JB2201 and JB2204'},
-        {title:'Check August cash commitments',detail:'Compare expected receipts with payroll and supplier payments',cta:'Open outlook',target:'Cash Flow Outlook for August 2026'}
-      ],
-      profit:[
-        {title:"Reuse QT01014 — Ashbury School's accepted estimate",detail:'Pricing from JB2198 · 36% margin',cta:'Open quote',target:'quote QT01014'},
-        {title:'Check JB2186 — Fenwick Holiday Park',detail:'15% margin · review before invoicing',cta:'Open job',target:'job JB2186'},
-        {title:'Check JB2192 — Dalton Family',detail:'17% margin · review before invoicing',cta:'Open job',target:'job JB2192'},
-        {title:'Keep timesheets up to date',detail:'Protect the current 91% labour recovery',cta:'Open timesheets',target:'Timesheets for July 2026'}
-      ],
-      work:[
-        {title:'Follow up QT01038 — Hendricks home rewire',detail:'$6,100 · waiting 14+ days',cta:'Open quote',target:'quote QT01038'},
-        {title:'Follow up QT01029 — Marlow unit block wiring',detail:'$3,600 · waiting 14+ days',cta:'Open quote',target:'quote QT01029'},
-        {title:'Follow up the other 3 quiet quotes',detail:'Open quotes waiting 14+ days',cta:'View 3 quotes',target:'Quotes filtered to open for 14+ days'},
-        {title:'Quote the 2 newest enquiries',detail:'Both arrived in the last 48 hours',cta:'View enquiries',target:'Enquiries filtered to newest unquoted'},
-        {title:'Record reasons for the 10 declined quotes',detail:'Use the pattern to improve the next round of pricing',cta:'View quotes',target:'Quotes filtered to declined in July 2026'}
       ]
     },
     'jun-2026':{
