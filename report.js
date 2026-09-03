@@ -31,15 +31,10 @@
     }
   ];
   const focusKeys=['cash','profit','work'];
-  const summaryBodies={
-    'aug-2026':'Getting paid comes first. Below: what’s holding up cash, which job cut into profit, and which quotes need a follow-up.',
-    'jul-2026':'Cash finished positive and margin held up. Below: what still needs collecting, where profit came from, and which quotes need a decision.',
-    'jun-2026':'Cash stayed just above break-even. Below: the collection risk, rising material costs, and how to protect the next month of work.'
-  };
-  const summaryHeadlines={
-    'aug-2026':'Cash needs attention first.',
-    'jul-2026':'Cash is positive. Keep collection moving.',
-    'jun-2026':'Cash is positive, but there’s little room for delays.'
+  const reportAiSummaries={
+    'aug-2026':'Cash is tight and margin fell to 19% — invoice finished work first.',
+    'jul-2026':'Cash and margin improved, but $39,200 in overdue invoices still needs following up.',
+    'jun-2026':'Cash stayed positive and margin held at 24%, but material costs need watching.'
   };
   const reportActions={
     'aug-2026':{
@@ -208,10 +203,17 @@
       invoices:`${month.invoicesCount} invoices overdue`,
       ready:`${month.readyJobs} jobs completed`,
       booked:'Committed, next 3 months',
-      profit:`${money(month.grossProfit)} gross profit · ${marginChange===0?'no change':`${marginChange>0?'up':'down'} ${Math.abs(marginChange)} pts`} vs ${previousMonth}`
+      profit:`${money(month.grossProfit)} gross profit`
     };
     Object.entries(values).forEach(([key,value])=>reportPanel.querySelectorAll(`[data-report-submetric-value="${key}"]`).forEach(element=>{element.textContent=value}));
     Object.entries(details).forEach(([key,value])=>reportPanel.querySelectorAll(`[data-report-submetric-detail="${key}"]`).forEach(element=>{element.textContent=value}));
+    reportPanel.querySelectorAll('[data-report-submetric-trend="profit"]').forEach(element=>{
+      element.classList.remove('positive','negative');
+      if(marginChange>0)element.classList.add('positive');else if(marginChange<0)element.classList.add('negative');
+      const icon=marginChange===0?'fa-minus':`fa-arrow-${marginChange>0?'up':'down'}`;
+      const text=marginChange===0?'No change':`${marginChange>0?'Up':'Down'} ${Math.abs(marginChange)} pts`;
+      element.innerHTML=`<i class="fa ${icon}" aria-hidden="true"></i>${text} vs ${previousMonth}`;
+    });
   };
 
   const renderReport2=()=>{
@@ -259,11 +261,10 @@
     snapshotTitle.textContent=month.label;
     generatedMeta.textContent=`Fixed snapshot · Generated ${month.asAt} · Emailed to Office team`;
     periodSummary.textContent=`Compared with ${month.previous} and ${month.year}`;
-    healthStatus.textContent=month.status;
+    healthStatus.textContent=`${month.status} this month`;
     healthTitle.classList.toggle('healthy',month.healthy);
     healthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
-    reportPanel.querySelector('[data-report-summary-headline]').textContent=summaryHeadlines[month.slug];
-    reportPanel.querySelector('[data-report-summary-body]').textContent=summaryBodies[month.slug];
+    reportPanel.querySelectorAll('[data-report-ai-summary]').forEach(element=>{element.textContent=reportAiSummaries[month.slug]});
     chatContext.textContent=`Based on the ${month.label} report`;
     renderMetric('moneyIn');
     renderMetric('moneyOut');

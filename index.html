@@ -7,7 +7,7 @@
   <title>Business Analysis | Tradify Reports</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="styles.css?v=tradify-1">
+  <link rel="stylesheet" href="styles.css?v=summary-1">
 </head>
 <body>
   <aside class="sidebar" id="sidebar" aria-label="Main navigation" aria-hidden="true" inert>
@@ -591,10 +591,11 @@
                 </header>
                 <div class="report-health-heading">
                   <div>
-                    <span>Executive summary</span>
-                    <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention</span></h2>
+                    <span>Business health</span>
+                    <h2 id="reportHealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span id="reportHealthStatus">Needs attention this month</span></h2>
                   </div>
                 </div>
+                <div class="report-ai-summary"><span class="tradify-ai-icon" aria-hidden="true"></span><p data-report-ai-summary>Cash is tight and margin has dropped to 19% — invoicing finished work is the fastest fix.</p></div>
                 <div class="report-metrics" aria-label="Monthly headline metrics">
                   <article class="actual-figure money-in-figure">
                     <span class="kpi-label">Money in</span>
@@ -626,14 +627,9 @@
                     <article class="report-submetric"><span>Invoices to chase</span><strong data-report-submetric-value="invoices">$47,820</strong><small data-report-submetric-detail="invoices">8 invoices overdue</small></article>
                     <article class="report-submetric"><span>Ready to invoice</span><strong data-report-submetric-value="ready">$38,900</strong><small data-report-submetric-detail="ready">11 jobs completed</small></article>
                     <article class="report-submetric"><span>Booked ahead</span><strong data-report-submetric-value="booked">$264,500</strong><small data-report-submetric-detail="booked">Committed, next 3 months</small></article>
-                    <article class="report-submetric"><span>Profitability</span><strong data-report-submetric-value="profit">19% gross margin</strong><small data-report-submetric-detail="profit">$8,100 gross profit · down 7 pts vs Jul</small></article>
+                    <article class="report-submetric"><span>Profitability</span><strong data-report-submetric-value="profit">19% gross margin</strong><small data-report-submetric-detail="profit">$8,100 gross profit</small><small class="report-submetric-trend negative" data-report-submetric-trend="profit"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down 7 pts vs Jul</small></article>
                   </div>
                 </section>
-                <article class="report-executive-summary">
-                  <span><span class="tradify-ai-icon" aria-hidden="true"></span>Business Analysis</span>
-                  <h3 data-report-summary-headline>Cash needs attention first.</h3>
-                  <p data-report-summary-body>Getting paid comes first. Below: what’s holding up cash, which job cut into profit, and which quotes need a follow-up.</p>
-                </article>
               </section>
 
               <section class="report-analysis-page" id="reportCashSection" data-report-section="cash">
@@ -718,7 +714,7 @@
                     </div>
                     <h2 id="report2Title">August 2026 briefing</h2>
                     <p id="report2Period">Compared with July 2026 and August 2025</p>
-                    <div class="report2-health-summary"><span>Business health</span><h3 id="report2HealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span data-report2-health>Needs attention this month</span></h3></div>
+                    <div class="report2-health-summary"><span>Business health</span><h3 id="report2HealthTitle"><i class="fa fa-exclamation-circle" aria-hidden="true"></i><span data-report2-health>Needs attention this month</span></h3><div class="report-ai-summary"><span class="tradify-ai-icon" aria-hidden="true"></span><p data-report-ai-summary>Cash is tight and margin has dropped to 19% — invoicing finished work is the fastest fix.</p></div></div>
                   </header>
 
                   <section class="report2-scorecard" aria-labelledby="report2MetricsTitle">
@@ -735,7 +731,7 @@
                         <article class="report-submetric"><span>Invoices to chase</span><strong data-report-submetric-value="invoices">$47,820</strong><small data-report-submetric-detail="invoices">8 invoices overdue</small></article>
                         <article class="report-submetric"><span>Ready to invoice</span><strong data-report-submetric-value="ready">$38,900</strong><small data-report-submetric-detail="ready">11 jobs completed</small></article>
                         <article class="report-submetric"><span>Booked ahead</span><strong data-report-submetric-value="booked">$264,500</strong><small data-report-submetric-detail="booked">Committed, next 3 months</small></article>
-                        <article class="report-submetric"><span>Profitability</span><strong data-report-submetric-value="profit">19% gross margin</strong><small data-report-submetric-detail="profit">$8,100 gross profit · down 7 pts vs Jul</small></article>
+                        <article class="report-submetric"><span>Profitability</span><strong data-report-submetric-value="profit">19% gross margin</strong><small data-report-submetric-detail="profit">$8,100 gross profit</small><small class="report-submetric-trend negative" data-report-submetric-trend="profit"><i class="fa fa-arrow-down" aria-hidden="true"></i>Down 7 pts vs Jul</small></article>
                       </div>
                     </section>
                   </section>
@@ -943,6 +939,6 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden><i class="fa fa-info-circle" aria-hidden="true"></i><span id="toastMessage"></span></div>
   <script src="app.js"></script>
-  <script src="report.js?v=chapters-1"></script>
+  <script src="report.js?v=summary-1"></script>
 </body>
 </html>
