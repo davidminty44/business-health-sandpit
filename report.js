@@ -157,6 +157,7 @@
   const report2ArchiveSelect=document.querySelector('#report2ArchiveSelect');
   const report2Title=document.querySelector('#report2Title');
   const report2Period=document.querySelector('#report2Period');
+  const report2HealthStatus=document.querySelector('.report2-health-status');
   const report2HealthTitle=document.querySelector('#report2HealthTitle');
   const report2ChatToggle=document.querySelector('#report2ChatToggle');
   const report2ChatThread=document.querySelector('#report2ChatThread');
@@ -199,10 +200,13 @@
     return {className:good?'positive':'negative',icon:`fa-arrow-${increased?'up':'down'}`,text:`${increased?'Up':'Down'} ${money(Math.abs(difference))} vs ${label}`};
   };
 
-  const renderDelta=(element,copy)=>{
+  const renderDelta=(element,copy,hideDirection=false)=>{
     element.classList.remove('positive','negative');
     if(copy.className)element.classList.add(copy.className);
-    element.innerHTML=`<i class="fa ${copy.icon}" aria-hidden="true"></i>${copy.text}`;
+    const direction=copy.text.match(/^(Up|Down) /);
+    const text=hideDirection&&direction?copy.text.slice(direction[0].length):copy.text;
+    const accessibleDirection=hideDirection&&direction?`<span class="sr-only">${direction[1]==='Up'?'Increased':'Decreased'} </span>`:'';
+    element.innerHTML=`<i class="fa ${copy.icon}" aria-hidden="true"></i>${accessibleDirection}${text}`;
   };
 
   const renderMetric=key=>{
@@ -242,11 +246,12 @@
     Object.entries(values).forEach(([key,value])=>reportPanel.querySelectorAll(`[data-report-submetric-value="${key}"]`).forEach(element=>{element.textContent=value}));
     Object.entries(details).forEach(([key,value])=>reportPanel.querySelectorAll(`[data-report-submetric-detail="${key}"]`).forEach(element=>{element.textContent=value}));
     reportPanel.querySelectorAll('[data-report-submetric-trend="profit"]').forEach(element=>{
-      element.classList.remove('positive','negative');
-      if(marginChange>0)element.classList.add('positive');else if(marginChange<0)element.classList.add('negative');
-      const icon=marginChange===0?'fa-minus':`fa-arrow-${marginChange>0?'up':'down'}`;
-      const text=marginChange===0?'No change':`${marginChange>0?'Up':'Down'} ${Math.abs(marginChange)} pts`;
-      element.innerHTML=`<i class="fa ${icon}" aria-hidden="true"></i>${text} vs ${previousMonth}`;
+      const neutral=marginChange===0;
+      renderDelta(element,{
+        className:neutral?'':marginChange>0?'positive':'negative',
+        icon:neutral?'fa-minus':`fa-arrow-${marginChange>0?'up':'down'}`,
+        text:neutral?`No change vs ${previousMonth}`:`${marginChange>0?'Up':'Down'} ${Math.abs(marginChange)} pts vs ${previousMonth}`
+      },Boolean(element.closest('.report-two')));
     });
   };
 
@@ -259,11 +264,12 @@
       ['month','year'].forEach(period=>{
         const change=pipeline[`${period}Change`];
         const element=card.querySelector(`[data-pipeline-change="${period}"]`);
-        element.classList.remove('positive','negative');
-        if(type==='invoice'&&change!==0)element.classList.add(change>0?'negative':'positive');
-        const direction=change===0?'No change':`${change>0?'Up':'Down'} ${money(Math.abs(change))}`;
-        const icon=change===0?'fa-minus':`fa-arrow-${change>0?'up':'down'}`;
-        element.innerHTML=`<i class="fa ${icon}" aria-hidden="true"></i>${direction} vs last ${period}`;
+        const neutral=change===0;
+        renderDelta(element,{
+          className:type==='invoice'&&!neutral?change>0?'negative':'positive':'',
+          icon:neutral?'fa-minus':`fa-arrow-${change>0?'up':'down'}`,
+          text:neutral?`No change vs last ${period}`:`${change>0?'Up':'Down'} ${money(Math.abs(change))} vs last ${period}`
+        },true);
       });
       Object.entries(pipeline.outcomes).forEach(([outcome,[count,value]])=>{
         const tile=card.querySelector(`[data-pipeline-outcome="${outcome}"]`);
@@ -306,6 +312,7 @@
     report2ArchiveSelect.value=month.slug;
     report2Title.textContent=`${month.label} Business Analysis Report`;
     report2Period.textContent=`Compared with ${month.previous} and ${month.year}`;
+    report2HealthStatus.classList.toggle('healthy',month.healthy);
     report2HealthTitle.classList.toggle('healthy',month.healthy);
     report2HealthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
     report2HealthTitle.querySelector('[data-report2-health]').textContent=`${month.status} this month`;
@@ -315,8 +322,8 @@
       const yearCopy=deltaCopy(key,month[key],month[`${key}Year`],shortMonth(month.year));
       const monthDelta=document.querySelector(`[data-report2-delta="${key}"]`);
       const yearDelta=document.querySelector(`[data-report2-delta-year="${key}"]`);
-      renderDelta(monthDelta,monthCopy);
-      renderDelta(yearDelta,yearCopy);
+      renderDelta(monthDelta,monthCopy,true);
+      renderDelta(yearDelta,yearCopy,true);
     });
     const report2Net=document.querySelector('.report2-metric.net');
     report2Net.classList.toggle('negative',month.netCash<0);
@@ -327,7 +334,7 @@
       className:outlookNeutral?'':month.outlookChange>0?'positive':'negative',
       icon:outlookNeutral?'fa-minus':`fa-arrow-${month.outlookChange>0?'up':'down'}`,
       text:outlookNeutral?'No change over 8 weeks':`${month.outlookChange>0?'Up':'Down'} ${money(Math.abs(month.outlookChange))} over 8 weeks`
-    });
+    },true);
     renderReport2Pipelines(month);
     focusKeys.forEach(key=>{
       const focus=month.focus[key];
