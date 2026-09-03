@@ -862,7 +862,7 @@ body.report-chat-open{overflow:hidden}
   .report2-masthead>p{grid-column:1;grid-row:2}
   .report2-inline-archive{grid-column:1;grid-row:3;margin:10px 0 0}
   .report2-health-status{grid-column:1;grid-row:4}
-  .report2-health-summary{grid-column:1;grid-row:5}
+  .report2-health-summary.report-ai-summary{grid-column:1;grid-row:5}
 }
 @media(max-width:1280px){
   .actuals-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
