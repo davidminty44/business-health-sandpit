@@ -614,7 +614,6 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-preview-footer a{color:#0085ff;text-decoration:none}
 .email-preview-footer a:hover{text-decoration:underline}
 .email-preview-footer .email-footer-legal{margin:28px 0 0;font-size:12px;line-height:16px}
-.email-preview-caption{max-width:600px;margin:14px auto 0;color:#97a3aa;font-size:12px;line-height:18px;text-align:center}
 body[data-concept="email"]{background:#eef0f3}
 body[data-concept="email"] .sidebar,body[data-concept="email"] .nav-scrim,body[data-concept="email"] .health-view-tabs,body[data-concept="email"] .app-shell,body[data-concept="email"] .product-footer{display:none}
 body[data-concept="email"] .email-preview-modal{position:static;min-height:100vh;display:block;overflow:visible}
