@@ -1,5 +1,6 @@
 (()=>{
-  if(document.body.dataset.concept!=='report')return;
+  const isEmailRoute=document.body.dataset.concept==='email';
+  if(!['report','email'].includes(document.body.dataset.concept))return;
 
   const reportMonths=[
     {
@@ -182,9 +183,9 @@
 
   const setUrl=()=>{
     const url=new URL(window.location.href);
-    url.searchParams.set('concept','report');
+    url.searchParams.set('concept',isEmailRoute?'email':'report');
     url.searchParams.set('snapshot',reportMonths[monthIndex].slug);
-    url.searchParams.set('variant',activeVariant);
+    if(isEmailRoute)url.searchParams.delete('variant');else url.searchParams.set('variant',activeVariant);
     url.searchParams.delete('page');
     url.searchParams.delete('month');
     url.searchParams.delete('compare');
@@ -308,6 +309,7 @@
       delta.classList.remove('positive','negative','email-status-positive','email-status-negative');
     });
     focusKeys.forEach(key=>{document.querySelector(`[data-email-roundup="${key}"]`).textContent=roundup[key]});
+    document.querySelector('#reportEmailPreviewShortcut').setAttribute('href',`?concept=email&snapshot=${month.slug}`);
     document.querySelector('#emailFullReportLink').setAttribute('href',`?concept=report&variant=2&snapshot=${month.slug}`);
   };
 

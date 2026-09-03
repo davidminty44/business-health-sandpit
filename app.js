@@ -10,7 +10,6 @@ const emailPreviewModal=document.querySelector('#emailPreviewModal');
 const modalBackdrop=document.querySelector('#modalBackdrop');
 const emailPreviewButton=document.querySelector('#emailPreviewButton');
 const emailPreviewShortcut=document.querySelector('#emailPreviewShortcut');
-const reportEmailPreviewShortcut=document.querySelector('#reportEmailPreviewShortcut');
 const modalClose=document.querySelector('#modalClose');
 const emailPreviewClose=document.querySelector('#emailPreviewClose');
 const closeEmailPreview=document.querySelector('#closeEmailPreview');
@@ -43,13 +42,20 @@ const aiAnswerText=document.querySelector('#aiAnswerText');
 const aiAnswerSource=document.querySelector('#aiAnswerSource');
 const aiAnswerSourceAction=document.querySelector('#aiAnswerSourceAction');
 const requestedConcept=new URLSearchParams(window.location.search).get('concept');
-const activeConcept=requestedConcept==='report'?'report':'demand';
+const activeConcept=['report','email'].includes(requestedConcept)?requestedConcept:'demand';
 const demandConceptPanel=document.querySelector('#demandConcept');
 const reportConceptPanel=document.querySelector('#reportConcept');
 document.body.dataset.concept=activeConcept;
 if(activeConcept==='report'){
   demandConceptPanel.hidden=true;
   reportConceptPanel.hidden=false;
+}else if(activeConcept==='email'){
+  demandConceptPanel.hidden=true;
+  reportConceptPanel.hidden=true;
+  emailPreviewModal.hidden=false;
+  emailPreviewModal.setAttribute('role','main');
+  emailPreviewModal.removeAttribute('aria-modal');
+  document.title='Monthly Business Analysis Email | Tradify';
 }
 const calculationMetadata={
   'money-in':{
@@ -852,7 +858,6 @@ document.querySelector('#reportSelector').addEventListener('change',event=>{
 
 emailPreviewButton.addEventListener('click',openEmailPreviewModal);
 emailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
-reportEmailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
 modalClose.addEventListener('click',closeModal);
 cancelSchedule.addEventListener('click',closeModal);
 emailPreviewClose.addEventListener('click',returnToScheduleModal);
