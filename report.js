@@ -39,21 +39,21 @@
   const emailRoundups={
     'aug-2026':{
       headline:'Cash tightened and profit margin slipped to 19% this month — the full report has the detail.',
-      cash:'Money in slowed while money out rose. Finished work waiting to be invoiced is the fastest way back.',
-      profit:"Margin dipped this month. One job's costs pulled the average down.",
-      work:"You're still winning more than half your quotes, but a few have gone quiet."
+      cash:'fell as money in slowed and money out rose. Finished work waiting to be invoiced is the fastest way back.',
+      profit:"slipped to 19%, with one job's costs pulling down the average.",
+      work:'are converting well, but a few have gone quiet.'
     },
     'jul-2026':{
       headline:'Cash and profit margin both improved this month, with a little tidying up still to do.',
-      cash:'Net cash improved, though some invoices are still waiting on payment.',
-      profit:'Margin recovered on the back of strong labour recovery.',
-      work:'The pipeline held steady, but some quotes are waiting on a decision.'
+      cash:'improved, though some invoices are still waiting on payment.',
+      profit:'recovered, thanks to strong labour recovery.',
+      work:'held steady, but a few are still waiting on a decision.'
     },
     'jun-2026':{
       headline:'Cash held steady and margin stayed at 24%, with material costs worth keeping an eye on.',
-      cash:'Cash stayed positive, with little room for late payments.',
-      profit:'Margin held steady, though material costs are worth watching.',
-      work:'Win rate stayed above half, though fewer new enquiries came in.'
+      cash:'stayed positive, with little room for late payments.',
+      profit:'held steady, though material costs are worth watching.',
+      work:'converted at a healthy rate, though fewer new enquiries came in.'
     }
   };
   const reportPipelines={
