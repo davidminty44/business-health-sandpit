@@ -204,7 +204,7 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .outlook-summary{margin:2px 0 3px;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .cash-outlook-card .outlook-total{margin:0}
 .outlook-change{color:#757575;display:flex;align-items:center;gap:4px;font-size:12px;font-weight:300;line-height:18px;white-space:nowrap}
-.outlook-change .fa{color:#757575;font-size:10px}
+.outlook-change .fa{color:inherit;font-size:10px}
 .outlook-chart{position:relative;width:100%;height:150px}
 .forecast-plot{width:100%;height:100%;display:block;overflow:visible}
 .forecast-reference{stroke:#b8c2c7;stroke-width:1;stroke-dasharray:2 4;vector-effect:non-scaling-stroke}
@@ -728,7 +728,7 @@ body[data-concept="report"] .health-view-tabs,body[data-concept="report"] .repor
 .report-health.report-document-page>.report-health-heading{margin:0;padding:18px 26px 0}
 .report-health.report-document-page>.report-metrics{margin:15px 26px 0}
 .report-metrics .actual-figure{min-height:145px}
-.report-year-delta{margin-top:3px;color:#757575!important}
+.report-year-delta{margin-top:3px}
 .report-submetrics{margin:15px 26px 0}
 .report-submetrics h3,.report-submetrics h4{margin:0 0 8px;color:#526069;font-size:11px;font-weight:500;line-height:17px;text-transform:uppercase}
 .report-submetric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
