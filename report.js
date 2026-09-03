@@ -314,18 +314,19 @@
       const yearCopy=deltaCopy(key,month[key],month[`${key}Year`],shortMonth(month.year));
       const monthDelta=document.querySelector(`[data-report2-delta="${key}"]`);
       const yearDelta=document.querySelector(`[data-report2-delta-year="${key}"]`);
-      monthDelta.textContent=monthCopy.text;
-      yearDelta.textContent=yearCopy.text;
-      monthDelta.className=monthCopy.className;
-      yearDelta.className=yearCopy.className;
+      renderDelta(monthDelta,monthCopy);
+      renderDelta(yearDelta,yearCopy);
     });
     const report2Net=document.querySelector('.report2-metric.net');
     report2Net.classList.toggle('negative',month.netCash<0);
     document.querySelector('[data-report2-value="outlook"]').textContent=money(month.outlook);
     const outlookDelta=document.querySelector('[data-report2-outlook]');
-    outlookDelta.textContent=`${month.outlookChange<0?'Down':'Up'} ${money(Math.abs(month.outlookChange))} over 8 weeks`;
-    outlookDelta.classList.toggle('negative',month.outlookChange<0);
-    outlookDelta.classList.toggle('positive',month.outlookChange>0);
+    const outlookNeutral=month.outlookChange===0;
+    renderDelta(outlookDelta,{
+      className:outlookNeutral?'':month.outlookChange>0?'positive':'negative',
+      icon:outlookNeutral?'fa-minus':`fa-arrow-${month.outlookChange>0?'up':'down'}`,
+      text:outlookNeutral?'No change over 8 weeks':`${month.outlookChange>0?'Up':'Down'} ${money(Math.abs(month.outlookChange))} over 8 weeks`
+    });
     renderReport2Pipelines(month);
     focusKeys.forEach(key=>{
       const focus=month.focus[key];
