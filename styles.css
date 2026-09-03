@@ -782,14 +782,13 @@ body.report-chat-open{overflow:hidden}
 .report2-archive-actions{display:grid;grid-template-columns:auto 170px;align-items:center;gap:8px}
 .report2-archive-actions label{color:#526069;font-size:11px;font-weight:500;white-space:nowrap}
 .report2-archive-actions .form-control{height:36px;cursor:pointer}
-.report2-inline-archive{position:static;grid-column:2;grid-row:1/4;align-self:center}
+.report2-inline-archive{position:static;grid-column:2;grid-row:1/3;align-self:center}
 .report2-layout{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:14px}
 .report2-briefing{min-width:0;padding:0;border:1px solid #e3e6ea;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
 .report2-masthead{position:relative;padding:24px 24px 20px;border-top:4px solid #009ec7;border-bottom:1px solid #e0e0e0;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px}
-.report2-masthead>.report-document-brand{grid-column:1;grid-row:1}
-.report2-masthead h2{margin:11px 0 3px;color:#424242;font-size:25px;font-weight:400;line-height:31px;grid-column:1;grid-row:2}
-.report2-masthead>p{margin:0;color:#526069;font-size:12px;font-weight:500;line-height:18px;grid-column:1;grid-row:3}
-.report2-health-summary{margin-top:16px;padding-top:14px;border-top:1px solid #e0e0e0;grid-column:1/-1;grid-row:4}
+.report2-masthead h2{margin:0 0 3px;color:#424242;font-size:25px;font-weight:400;line-height:31px;grid-column:1;grid-row:1}
+.report2-masthead>p{margin:0;color:#526069;font-size:12px;font-weight:500;line-height:18px;grid-column:1;grid-row:2}
+.report2-health-summary{margin-top:16px;padding-top:14px;border-top:1px solid #e0e0e0;grid-column:1/-1;grid-row:3}
 .report2-health-summary>span{color:#757575;font-size:11px;font-weight:500;line-height:16px;text-transform:uppercase}
 .report2-health-summary h3{margin:2px 0 0;color:#a5383c;display:flex;align-items:center;gap:6px;font-size:18px;font-weight:500;line-height:24px}
 .report2-health-summary h3.healthy{color:#318561}
@@ -855,11 +854,10 @@ body.report-chat-open{overflow:hidden}
 .report2-chat-form .form-control,.report2-chat-form .btn{height:36px}.report2-chat-form .btn{min-width:36px;padding:6px}
 @media(max-width:1350px){
   .report2-masthead{grid-template-columns:1fr}
-  .report2-masthead>.report-document-brand{grid-column:1;grid-row:1}
-  .report2-masthead h2{grid-column:1;grid-row:2}
-  .report2-masthead>p{grid-column:1;grid-row:3}
-  .report2-inline-archive{grid-column:1;grid-row:4;margin:10px 0 14px}
-  .report2-health-summary{grid-column:1;grid-row:5}
+  .report2-masthead h2{grid-column:1;grid-row:1}
+  .report2-masthead>p{grid-column:1;grid-row:2}
+  .report2-inline-archive{grid-column:1;grid-row:3;margin:10px 0 14px}
+  .report2-health-summary{grid-column:1;grid-row:4}
 }
 @media(max-width:1280px){
   .actuals-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
