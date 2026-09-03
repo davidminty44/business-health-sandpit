@@ -35,9 +35,9 @@ main{width:100%;min-height:100vh;padding:20px 20px 32px;background:#eee}
 .breadcrumb a:hover{color:#009ec7}
 .breadcrumb .fa-home{width:16px;height:16px;font-size:16px;line-height:16px}
 .breadcrumb>.fa-angle-right{width:auto;height:auto;color:#3d4951;font-size:16px;line-height:16px}
-.reports-workspace{min-height:calc(100vh - 102px);display:flex;align-items:flex-start;gap:16px}
+.reports-workspace{--report-side-width-transfer:48px;min-height:calc(100vh - 102px);display:flex;align-items:flex-start;gap:16px}
 .reports-list,.reports-view{border:1px solid #e3e6ea;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray}
-.reports-list{position:sticky;top:20px;width:25%;max-width:320px;flex:0 0 25%;overflow:hidden}
+.reports-list{position:sticky;top:20px;width:calc(25% - var(--report-side-width-transfer));max-width:calc(320px - var(--report-side-width-transfer));flex:0 0 calc(25% - var(--report-side-width-transfer));overflow:hidden}
 .report-nav{padding:20px 0}
 .report-nav-item{width:100%;min-height:46px;padding:8px 20px;border:0;background:#fff;color:#7a858f;display:flex;align-items:center;gap:4px;text-align:left;cursor:pointer}
 .report-nav-item:hover{background:#f3f7f9;color:#009ec7}
@@ -843,8 +843,8 @@ body.report-chat-open{overflow:hidden}
 .report2-chapter-body>.report-ask-link{margin-top:12px}
 .report2-note{padding:12px 24px;border-top:1px solid #e0e0e0;background:#fafafa;color:#757575;display:flex;align-items:flex-start;gap:6px;font-size:11px;line-height:16px}
 .report2-note .fa{margin-top:1px;color:#97a3aa}
-.report2-companion{position:sticky;top:20px;width:240px;border:1px solid #e3e6ea;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
-.report2-companion.open{width:300px}
+.report2-companion{position:sticky;top:20px;width:calc(240px + var(--report-side-width-transfer));border:1px solid #e3e6ea;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;overflow:hidden}
+.report2-companion.open{width:calc(300px + var(--report-side-width-transfer))}
 .report2-companion:not(.open) .report2-chat-body{display:none}
 .report2-companion:not(.open) .report2-chat-toggle{border-bottom:0}
 .report2-chat-toggle{width:100%;padding:13px;border:0;border-bottom:1px solid #e0e0e0;background:#fff;color:#263238;display:grid;grid-template-columns:36px minmax(0,1fr) 14px;align-items:center;gap:9px;text-align:left;cursor:pointer}
@@ -868,8 +868,6 @@ body.report-chat-open{overflow:hidden}
 }
 @media(max-width:1280px){
   .actuals-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-@media(max-width:1180px){
   .demand-cash-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .report2-layout{grid-template-columns:1fr}
   .report2-companion,.report2-companion.open{position:sticky;z-index:50;top:auto;bottom:8px;width:100%}
