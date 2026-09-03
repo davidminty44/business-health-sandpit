@@ -790,8 +790,7 @@ body.report-chat-open{overflow:hidden}
 .report2-title-row{grid-column:1;grid-row:1;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .report2-masthead h2{min-width:0;margin:0;color:#424242;font-size:25px;font-weight:400;line-height:31px}
 .report2-masthead>p{margin:0;color:#526069;font-size:12px;font-weight:500;line-height:18px;grid-column:1;grid-row:2}
-.report2-health-status{padding:3px 10px 3px 8px;border:1px solid #f7b9bb;border-left:3px solid #eb5055;border-radius:12px;background:#fff;display:inline-flex;align-items:center;flex:0 0 auto}
-.report2-health-status.healthy{border-color:#bbf6c4;border-left-color:#46be8a}
+.report2-health-status{display:inline-flex;align-items:center;flex:0 0 auto}
 .report2-health-status h3{margin:0;color:#a5383c;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;line-height:16px;letter-spacing:.2px;text-transform:uppercase}
 .report2-health-status.healthy h3{color:#318561}
 .report2-health-status h3 .fa{width:auto;font-size:10px}
