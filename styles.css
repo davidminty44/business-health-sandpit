@@ -788,14 +788,14 @@ body.report-chat-open{overflow:hidden}
 .report2-masthead{position:relative;padding:24px 24px 20px;border-top:4px solid #009ec7;border-bottom:1px solid #e0e0e0;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px}
 .report2-masthead h2{margin:0 0 3px;color:#424242;font-size:25px;font-weight:400;line-height:31px;grid-column:1;grid-row:1}
 .report2-masthead>p{margin:0;color:#526069;font-size:12px;font-weight:500;line-height:18px;grid-column:1;grid-row:2}
-.report2-health-summary.report-ai-summary{margin-top:16px;padding:14px 16px;grid-column:1/-1;grid-row:3}
-.report2-health-topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.report2-health-summary .report-ai-summary-label{margin:0}
-.report2-health-status{padding-left:16px;border-left:1px solid #cfe3e8;display:flex;align-items:center;gap:8px}
-.report2-health-summary h3{margin:0;padding:0;border-radius:0;background:transparent;color:#a5383c;display:flex;align-items:center;gap:5px;font-size:16px;font-weight:500;line-height:22px;white-space:nowrap}
-.report2-health-summary h3.healthy{background:transparent;color:#318561}
-.report2-health-summary h3 .fa{width:auto;font-size:12px}
-.report2-health-summary>p{margin-top:5px;font-size:13px;line-height:20px}
+.report2-health-status{margin-top:16px;padding:10px 14px;border-left:3px solid #eb5055;border-radius:3px;background:#fdedee;grid-column:1/-1;grid-row:3;display:flex;align-items:center}
+.report2-health-status.healthy{border-left-color:#46be8a;background:#def6eb}
+.report2-health-status h3{margin:0;color:#a5383c;display:flex;align-items:center;gap:6px;font-size:16px;font-weight:500;line-height:22px}
+.report2-health-status.healthy h3{color:#318561}
+.report2-health-status h3 .fa{width:auto;font-size:12px}
+.report2-health-summary.report-ai-summary{margin-top:10px;padding:14px 16px;grid-column:1/-1;grid-row:4}
+.report2-health-summary .report-ai-summary-label{margin:0 0 5px}
+.report2-health-summary>p{font-size:13px;line-height:20px}
 .report2-scorecard,.report2-pipelines,.report2-priorities{padding:20px 24px 28px}
 .report2-priorities{padding-bottom:48px}
 .report2-section-heading{margin-bottom:16px}
@@ -860,8 +860,9 @@ body.report-chat-open{overflow:hidden}
   .report2-masthead{grid-template-columns:1fr}
   .report2-masthead h2{grid-column:1;grid-row:1}
   .report2-masthead>p{grid-column:1;grid-row:2}
-  .report2-inline-archive{grid-column:1;grid-row:3;margin:10px 0 14px}
-  .report2-health-summary{grid-column:1;grid-row:4}
+  .report2-inline-archive{grid-column:1;grid-row:3;margin:10px 0 0}
+  .report2-health-status{grid-column:1;grid-row:4}
+  .report2-health-summary{grid-column:1;grid-row:5}
 }
 @media(max-width:1280px){
   .actuals-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -994,8 +995,6 @@ body.report-chat-open{overflow:hidden}
 }
 @media(max-width:560px){
   .report-subtitle{max-width:330px}
-  .report2-health-topline{align-items:flex-start;flex-direction:column;gap:9px}
-  .report2-health-status{width:100%;padding:9px 0 0;border-top:1px solid #cfe3e8;border-left:0;justify-content:space-between}
   .report-metrics,.report2-metrics{grid-template-columns:1fr}
   .report2-metrics{gap:10px}
   .report2-chapter summary{grid-template-columns:28px minmax(0,1fr) 16px}
@@ -1107,7 +1106,7 @@ body.report-chat-open{overflow:hidden}
   .email-snapshot{grid-template-columns:1fr;gap:16px}
   .email-snapshot>div:nth-child(n+2){padding-top:16px;border-top:1px solid #e8e8e8}
 }
-@media(max-width:370px){.report-selector-label{display:none}.report2-health-status{align-items:flex-start;flex-direction:column;gap:5px}}
+@media(max-width:370px){.report-selector-label{display:none}}
 @media(max-width:360px){.cash-trend-hit{width:26px}}
 @media(max-width:340px){#demandMarginDelta{align-items:flex-start;flex-direction:column;gap:0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
