@@ -7,7 +7,7 @@
   <title>Business Analysis | Tradify Reports</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="styles.css?v=report-status-panel-1">
+  <link rel="stylesheet" href="styles.css?v=email-metric-colours-1">
 </head>
 <body>
   <aside class="sidebar" id="sidebar" aria-label="Main navigation" aria-hidden="true" inert>
@@ -916,10 +916,10 @@
               <p class="email-greeting">Good morning, Dave.</p>
               <div class="email-ai-commentary"><p id="emailRoundupHeadline">Cash and profit margin both improved this month, with a little tidying up still to do.</p></div>
               <dl class="email-snapshot" aria-label="Monthly Business Analysis snapshot">
-                <div data-email-metric="moneyIn"><dt>Money in</dt><dd><strong>$33,000</strong><span>Up $3,900 vs Jun 2026</span></dd></div>
-                <div class="email-status-negative" data-email-metric="moneyOut"><dt>Money out</dt><dd><strong>$27,600</strong><span>Down $500 vs Jun 2026</span></dd></div>
-                <div data-email-metric="netCash"><dt>Net cash</dt><dd><strong>$5,400</strong><span>Up $4,400 vs Jun 2026</span></dd></div>
-                <div data-email-metric="grossMargin"><dt>Profit margin</dt><dd><strong>26%</strong><span>Up 2 points vs Jun 2026</span></dd></div>
+                <div class="email-status-positive" data-email-metric="moneyIn"><dt>Money in</dt><dd><strong>$33,000</strong><span class="email-status-positive">Up $3,900 vs Jun 2026</span></dd></div>
+                <div class="email-status-negative" data-email-metric="moneyOut"><dt>Money out</dt><dd><strong>$27,600</strong><span class="email-status-positive">Down $500 vs Jun 2026</span></dd></div>
+                <div class="email-status-positive" data-email-metric="netCash"><dt>Net cash</dt><dd><strong>$5,400</strong><span class="email-status-positive">Up $4,400 vs Jun 2026</span></dd></div>
+                <div class="email-status-positive" data-email-metric="grossMargin"><dt>Profit margin</dt><dd><strong>26%</strong><span class="email-status-positive">Up 2 points vs Jun 2026</span></dd></div>
               </dl>
               <section class="email-attention-section" aria-labelledby="emailRoundupTitle">
                 <h4 id="emailRoundupTitle">This month at a glance</h4>
@@ -948,6 +948,6 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden><i class="fa fa-info-circle" aria-hidden="true"></i><span id="toastMessage"></span></div>
   <script src="app.js"></script>
-  <script src="report.js?v=report-status-panel-1"></script>
+  <script src="report.js?v=email-metric-colours-1"></script>
 </body>
 </html>

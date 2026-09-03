@@ -293,15 +293,19 @@
       netCash:{value:money(month.netCash),delta:deltaCopy('netCash',month.netCash,month.netCashMonth,previousMonth)},
       grossMargin:{value:`${month.grossMargin}%`,delta:marginDelta}
     };
+    const metricStatuses={moneyIn:'positive',moneyOut:'negative',netCash:month.netCash<0?'negative':'positive',grossMargin:marginDelta.className};
     document.querySelector('#emailReportTitle').textContent=`${month.label} Business Analysis Report`;
     document.querySelector('#emailRoundupHeadline').textContent=roundup.headline;
     Object.entries(metrics).forEach(([key,metric])=>{
       const element=document.querySelector(`[data-email-metric="${key}"]`);
-      const statusClass=key==='moneyOut'?'negative':metric.delta.className;
+      const statusClass=metricStatuses[key];
+      const delta=element.querySelector('dd span');
       element.classList.remove('email-status-positive','email-status-negative');
+      delta.classList.remove('email-status-positive','email-status-negative');
       if(statusClass)element.classList.add(`email-status-${statusClass}`);
+      if(metric.delta.className)delta.classList.add(`email-status-${metric.delta.className}`);
       element.querySelector('strong').textContent=metric.value;
-      element.querySelector('dd span').textContent=metric.delta.text;
+      delta.textContent=metric.delta.text;
     });
     focusKeys.forEach(key=>{document.querySelector(`[data-email-roundup="${key}"]`).textContent=roundup[key]});
     document.querySelector('#emailFullReportLink').setAttribute('href',`?concept=report&variant=2&snapshot=${month.slug}`);

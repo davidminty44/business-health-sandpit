@@ -597,8 +597,8 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .email-snapshot dd{margin:2px 0 0}
 .email-snapshot dd strong{display:block;font-size:17px;line-height:22px}
 .email-snapshot dd span{display:block;margin-top:2px;color:#526069;font-size:13px;line-height:18px}
-.email-status-negative dt,.email-status-negative dd strong{color:#c8322b}
-.email-status-positive dt,.email-status-positive dd strong{color:#12805c}
+.email-status-negative dd strong,.email-snapshot dd span.email-status-negative{color:#c8322b}
+.email-status-positive dd strong,.email-snapshot dd span.email-status-positive{color:#12805c}
 .email-attention-section{padding-top:32px}
 .email-attention-section>h4{margin:0;color:#263238;font-size:17px;font-weight:700;line-height:22px}
 .email-roundup-list{margin:18px 0 0;padding:0;display:grid;gap:14px;list-style:none}
