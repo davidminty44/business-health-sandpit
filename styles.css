@@ -805,8 +805,7 @@ body.report-chat-open{overflow:hidden}
 .report2-metric.money-in{box-shadow:inset 3px 0 0 #46be8a}.report2-metric.money-out{box-shadow:inset 3px 0 0 #eb5055}
 .report2-metric.net{grid-row:1/span 2;border-color:#bbf6c4;background:#def6eb;box-shadow:inset 4px 0 0 #46be8a}
 .report2-metric.net.negative{border-color:#f7b9bb;background:#fdedee;box-shadow:inset 4px 0 0 #eb5055}
-.report2-metric.outlook{grid-column:2/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:14px}
-.report2-metric.outlook>span,.report2-metric.outlook>strong{grid-column:1}.report2-metric.outlook>small{grid-column:2;grid-row:1/span 2}
+.report2-metric.outlook{grid-column:2/-1;display:flex;align-items:stretch;flex-direction:column}
 .report2-metric>span{color:#526069;font-size:12px;line-height:18px}
 .report2-metric>strong{margin:3px 0;color:#424242;font-size:30px;font-weight:400;line-height:36px}
 .report2-metric.net>strong,.report2-metric.money-in>strong{color:#318561}.report2-metric.money-out>strong,.report2-metric.net.negative>strong{color:#a5383c}
