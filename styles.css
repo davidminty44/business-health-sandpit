@@ -795,6 +795,7 @@ body.report-chat-open{overflow:hidden}
 .report2-health-status h3{margin:0;color:#a5383c;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;line-height:16px;letter-spacing:.2px;text-transform:uppercase}
 .report2-health-status.healthy h3{color:#318561}
 .report2-health-status h3 .fa{width:auto;font-size:10px}
+.report2-scorecard>.report2-health-status{margin:0 0 16px}
 .report2-health-summary.report-ai-summary{margin-top:14px;padding:14px 16px;grid-column:1/-1;grid-row:3}
 .report2-health-summary .report-ai-summary-label{margin:0 0 5px}
 .report2-health-summary>p{font-size:13px;line-height:20px}
