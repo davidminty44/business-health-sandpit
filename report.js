@@ -287,7 +287,7 @@
       netCash:{value:money(month.netCash),delta:deltaCopy('netCash',month.netCash,month.netCashMonth,previousMonth)},
       grossMargin:{value:`${month.grossMargin}%`,delta:marginDelta}
     };
-    document.querySelector('#emailReportMonth').textContent=month.label;
+    document.querySelector('#emailReportTitle').textContent=`${month.label} Business Analysis Report`;
     document.querySelector('#emailRoundupHeadline').textContent=roundup.headline;
     Object.entries(metrics).forEach(([key,metric])=>{
       const element=document.querySelector(`[data-email-metric="${key}"]`);
@@ -303,7 +303,7 @@
   const renderReport2=()=>{
     const month=reportMonths[monthIndex];
     report2ArchiveSelect.value=month.slug;
-    report2Title.textContent=`${month.label} briefing`;
+    report2Title.textContent=`${month.label} Business Analysis Report`;
     report2Period.textContent=`Compared with ${month.previous} and ${month.year}`;
     report2HealthTitle.classList.toggle('healthy',month.healthy);
     report2HealthTitle.querySelector('.fa').className=`fa ${month.healthy?'fa-check-circle':'fa-exclamation-circle'}`;
@@ -549,11 +549,11 @@
     appendReport2Message('user',clean);
     report2ChatInput.value='';
     report2ChatInput.disabled=true;
-    const checking=appendReport2Message('assistant','Checking this briefing…');
+    const checking=appendReport2Message('assistant','Checking this report…');
     window.setTimeout(()=>{
       checking.remove();
       const answer=answerFor(clean);
-      appendReport2Message('assistant',answer.text.replaceAll('report','briefing'),answer.source);
+      appendReport2Message('assistant',answer.text,answer.source);
       report2ChatInput.disabled=false;
       report2ChatInput.focus();
     },450);
