@@ -9,7 +9,6 @@ const scheduleModal=document.querySelector('#scheduleModal');
 const emailPreviewModal=document.querySelector('#emailPreviewModal');
 const modalBackdrop=document.querySelector('#modalBackdrop');
 const emailPreviewButton=document.querySelector('#emailPreviewButton');
-const emailPreviewShortcut=document.querySelector('#emailPreviewShortcut');
 const modalClose=document.querySelector('#modalClose');
 const emailPreviewClose=document.querySelector('#emailPreviewClose');
 const closeEmailPreview=document.querySelector('#closeEmailPreview');
@@ -238,7 +237,6 @@ let scheduled=false;
 let savedSchedule={frequency:'Weekly',day:'Monday',period:'Last 7 days'};
 let activeModal=null;
 let lastFocusedElement=null;
-let emailPreviewOpenedDirectly=false;
 let activeCalculationTrigger=null;
 let calculationCloseButton=null;
 let calculationSheetOwnsInert=false;
@@ -601,7 +599,6 @@ const openEmailPreviewModal=()=>{
     recipientField.focus();
     return;
   }
-  emailPreviewOpenedDirectly=false;
   scheduleModal.hidden=true;
   activeModal=emailPreviewModal;
   emailPreviewModal.hidden=false;
@@ -609,18 +606,7 @@ const openEmailPreviewModal=()=>{
   window.requestAnimationFrame(()=>emailPreviewClose.focus());
 };
 
-const openEmailPreviewShortcut=()=>{
-  setAiAnalysisVisibility(false);
-  emailPreviewOpenedDirectly=true;
-  openModal(emailPreviewModal,emailPreviewClose);
-};
-
 const returnToScheduleModal=()=>{
-  if(emailPreviewOpenedDirectly){
-    emailPreviewOpenedDirectly=false;
-    closeModal();
-    return;
-  }
   emailPreviewModal.hidden=true;
   scheduleModal.hidden=false;
   activeModal=scheduleModal;
@@ -818,17 +804,6 @@ healthViewTabs.forEach((tab,index)=>{
     healthViewTabs[targetIndex].focus();
   });
 });
-[['#reportTwoShortcut','2']].forEach(([selector,variant])=>{
-  document.querySelector(selector).addEventListener('click',()=>{
-    const url=new URL(window.location.href);
-    url.searchParams.set('concept','report');
-    url.searchParams.set('variant',variant);
-    url.searchParams.delete('area');
-    url.searchParams.delete('page');
-    url.searchParams.delete('snapshot');
-    window.location.assign(url);
-  });
-});
 const requestedHealthArea=new URLSearchParams(window.location.search).get('area');
 const requestedHealthTab=requestedHealthArea==='winning'?document.querySelector('#winningWorkTab'):requestedHealthArea==='hybrid'?document.querySelector('#hybridTab'):null;
 if(requestedHealthTab)activateHealthView(requestedHealthTab,false);
@@ -857,7 +832,6 @@ document.querySelector('#reportSelector').addEventListener('change',event=>{
 });
 
 emailPreviewButton.addEventListener('click',openEmailPreviewModal);
-emailPreviewShortcut.addEventListener('click',openEmailPreviewShortcut);
 modalClose.addEventListener('click',closeModal);
 cancelSchedule.addEventListener('click',closeModal);
 emailPreviewClose.addEventListener('click',returnToScheduleModal);
