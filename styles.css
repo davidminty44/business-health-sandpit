@@ -740,7 +740,7 @@ body[data-concept="report"] .reports-view{border-color:transparent;background:tr
 .report2-submetrics{margin:24px 0 0}
 .report2-submetrics .report-submetric-grid{gap:12px}
 .report-ai-summary{margin-top:12px;padding:12px 16px;border-left:3px solid #009ec7;border-radius:3px;background:#f1f8fa;color:#424242}
-.report-ai-summary-label{margin-bottom:4px;color:#006f8b;display:flex;align-items:center;gap:7px;font-size:11px;line-height:16px;text-transform:uppercase}
+.report-ai-summary-label{margin-bottom:4px;color:#009ec7;display:flex;align-items:center;gap:7px;font-size:11px;line-height:16px;text-transform:none}
 .report-ai-summary-label strong{font-weight:500}
 .report-ai-summary .tradify-ai-icon{width:14px;height:14px;flex:0 0 14px;color:#009ec7}
 .report-ai-summary p{margin:0;font-size:13px;font-weight:300;line-height:20px}
