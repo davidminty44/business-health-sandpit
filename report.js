@@ -172,6 +172,7 @@
   let activeVariant='2';
   let activeFocus='cash';
   let lastChatTrigger=null;
+  let report2NumberAnimationFrame;
   let toastTimer;
 
   const reportToast=message=>{
@@ -353,6 +354,69 @@
       section.querySelector('.report2-action-count').textContent=`${actions.length} actions`;
     });
     document.querySelector('.report2-note span').textContent=`Based on Tradify and connected accounting data up to ${month.asAt}. This report won't update after that.`;
+  };
+
+  const report2MotionTimeline=(refresh=false)=>{
+    const timeline=[];
+    const add=(elements,start,step=0)=>Array.from(elements).filter(Boolean).forEach((element,index)=>timeline.push({element,delay:start+index*step}));
+    if(refresh){
+      add(document.querySelectorAll('.report2-metric'),0,55);
+      add(document.querySelectorAll('.report2-submetrics .report-submetric'),100,55);
+      add(document.querySelectorAll('.report2-pipeline-card'),200,70);
+      return timeline;
+    }
+    add([document.querySelector('.report2-title-row'),report2Period],0);
+    add([document.querySelector('.report2-health-summary')],90);
+    add(document.querySelectorAll('.report2-metric'),160,70);
+    add(document.querySelectorAll('.report2-submetrics .report-submetric'),320,70);
+    add(document.querySelectorAll('.report2-pipeline-card'),480,80);
+    add(report2Chapters,640,70);
+    return timeline;
+  };
+
+  const report2NumberElements=()=>Array.from(document.querySelectorAll('.report-two [data-report2-value],.report-two [data-report-submetric-value],.report-two [data-pipeline-total],.report-two [data-pipeline-count],.report-two [data-pipeline-value]'));
+  const numberFromText=text=>Number(text.replace(/[^0-9.-]/g,''));
+  const formatAnimatedNumber=(value,template)=>{
+    const rounded=Math.round(value);
+    if(template.includes('$'))return money(rounded);
+    if(template.includes('%'))return `${rounded}%${template.slice(template.indexOf('%')+1)}`;
+    return rounded.toLocaleString('en-AU');
+  };
+  const captureReport2Numbers=()=>new Map(report2NumberElements().map(element=>[element,numberFromText(element.textContent)]));
+  const animateReport2Numbers=(previousValues,timeline,duration)=>{
+    if(isEmailRoute||reducedMotion.matches)return;
+    window.cancelAnimationFrame(report2NumberAnimationFrame);
+    const items=report2NumberElements().map(element=>{
+      const template=element.textContent;
+      const target=numberFromText(template);
+      const tile=timeline.find(entry=>entry.element.contains(element));
+      const from=previousValues?.get(element)??(element.hasAttribute('data-report2-value')?target*.65:0);
+      return {element,template,target,from,delay:tile?.delay??0};
+    });
+    items.forEach(item=>{
+      item.element.textContent=formatAnimatedNumber(item.from,item.template);
+      if(item.element.matches('[data-report2-value="netCash"]'))item.element.closest('.report2-metric').classList.toggle('negative',item.from<0);
+    });
+    const started=performance.now();
+    const total=Math.max(...items.map(item=>item.delay+duration));
+    const frame=now=>{
+      const elapsed=now-started;
+      items.forEach(item=>{
+        const progress=Math.min(1,Math.max(0,(elapsed-item.delay)/duration));
+        const eased=1-(1-progress)*(1-progress);
+        const value=item.from+(item.target-item.from)*eased;
+        item.element.textContent=formatAnimatedNumber(value,item.template);
+        if(item.element.matches('[data-report2-value="netCash"]'))item.element.closest('.report2-metric').classList.toggle('negative',value<0);
+      });
+      if(elapsed<total)report2NumberAnimationFrame=window.requestAnimationFrame(frame);
+    };
+    report2NumberAnimationFrame=window.requestAnimationFrame(frame);
+  };
+  const animateReport2Entrance=()=>{
+    if(isEmailRoute||reducedMotion.matches)return;
+    const timeline=report2MotionTimeline();
+    timeline.forEach(({element,delay})=>element.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:420,delay,easing:'cubic-bezier(.33,1,.68,1)',fill:'backwards'}));
+    animateReport2Numbers(null,timeline,650);
   };
 
   const renderSnapshot=()=>{
@@ -600,9 +664,11 @@
     setChapterOpen(chapter,opening);
   }));
   report2ArchiveSelect.addEventListener('change',()=>{
+    const previousValues=captureReport2Numbers();
     monthIndex=reportMonths.findIndex(month=>month.slug===report2ArchiveSelect.value);
     resetReport2Chat();
     renderSnapshot();
+    animateReport2Numbers(previousValues,report2MotionTimeline(true),500);
   });
   document.querySelectorAll('[data-report2-ask]').forEach(button=>button.addEventListener('click',()=>{
     activeFocus=button.dataset.report2Ask;
@@ -638,4 +704,5 @@
   renderSnapshot();
   setReport2ChatOpen(false);
   activateVariant();
+  animateReport2Entrance();
 })();
