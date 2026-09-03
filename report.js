@@ -251,7 +251,6 @@
       section.querySelector('.report2-action-count').textContent=`${actions.length} actions`;
     });
     document.querySelector('.report2-note span').textContent=`Based on Tradify and connected accounting data up to ${month.asAt}. This briefing won't update after that.`;
-    report2ChatToggle.querySelector('small').textContent=`AI assistant · ${month.label}`;
   };
 
   const renderSnapshot=()=>{
