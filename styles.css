@@ -625,7 +625,7 @@ body.modal-open,body.calculation-sheet-open{overflow:hidden}
 body[data-concept="report"] .health-view-tabs,body[data-concept="report"] .report-header{display:none}
 .report-concept{margin:0 -30px -24px;background:#fff;color:#263238}
 .report-concept[hidden],.report-analysis-page[hidden]{display:none}
-.monthly-report{padding:20px 15px 16px;display:flex;flex-direction:column;gap:15px}
+.monthly-report{padding:20px 8px 16px;display:flex;flex-direction:column;gap:15px}
 .monthly-report-controls,.report-health,.report-analysis-card,.report-chat-card{border:1px solid #e0e0e0;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray}
 .monthly-report-controls{padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 24px}
 .monthly-report-intro>span,.report-health-heading>div>span{color:#757575;font-size:11px;font-weight:500;line-height:16px;text-transform:uppercase}
@@ -775,7 +775,7 @@ body.report-chat-open{overflow:hidden}
 .report-version-toggle button.active,.report-version-toggle a.active{background:#fff;color:#263238;font-weight:500}
 .report-version-divider{width:1px;margin:4px 2px;background:#526069}
 [data-report-variant-panel][hidden]{display:none}
-.report-two{padding:20px 15px 16px;color:#263238}
+.report-two{padding:20px 8px 16px;color:#263238}
 .report2-archive{padding:16px;border:1px solid #e3e6ea;border-radius:5px;background:#fff;box-shadow:0 2px 1px -2px gray;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .report2-archive>div>span{color:#757575;font-size:11px;font-weight:500;line-height:16px;text-transform:uppercase}
 .report2-archive h2{margin:1px 0;color:#424242;font-size:18px;font-weight:500;line-height:24px}
@@ -909,10 +909,10 @@ body.report-chat-open{overflow:hidden}
   .demand-concept,.combined-concept,.report-concept{margin:0 -16px -18px}
   .demand-content{padding:30px 12px 12px}
   .combined-content{padding:12px}
-  .monthly-report{padding:12px;gap:12px}
+  .monthly-report{padding:12px 8px;gap:12px}
   .report-version-toggle{left:50px;right:8px;justify-content:center;transform:none}
   .report-version-toggle button,.report-version-toggle a{flex:1}
-  .report-two{padding:12px}
+  .report-two{padding:12px 8px}
   .report2-archive{padding:14px;align-items:flex-start;flex-direction:column}
   .report2-archive-actions{width:100%;grid-template-columns:1fr}
   .report2-archive-actions .form-control{width:100%}
