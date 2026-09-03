@@ -32,9 +32,9 @@
   ];
   const focusKeys=['cash','profit','work'];
   const reportAiSummaries={
-    'aug-2026':'Cash tightened and margin slipped to 19% — invoice finished work and chase stalled quotes.',
-    'jul-2026':'Cash and margin improved in July, but overdue invoices and quiet quotes still need following up.',
-    'jun-2026':'Cash held steady and margin stayed at 24%, though material costs and quiet quotes need watching.'
+    'aug-2026':"Net cash fell to -$7,300 and margin dropped to 19% as one job's costs pulled down profit. Invoice the $38,900 of finished work sitting unbilled and chase the three oldest overdue invoices, worth $27,630, to rebuild cash fastest.",
+    'jul-2026':'Net cash improved to $5,400 and margin rose to 26% on strong labour recovery. Invoice the $27,600 of finished work waiting to be billed, and follow up the five quotes worth $23,400 that have stalled for two weeks.',
+    'jun-2026':"Net cash stayed positive at $1,000, with margin holding at 24% while three jobs lost margin to unquoted material changes. Add variations before material scope changes, and chase the two invoices overdue more than 30 days to protect next month's cash."
   };
   const emailRoundups={
     'aug-2026':{
