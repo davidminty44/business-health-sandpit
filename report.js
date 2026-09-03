@@ -285,6 +285,7 @@
     const marginChange=month.grossMargin-month.marginPrevious;
     const marginDelta={
       className:marginChange===0?'':marginChange>0?'positive':'negative',
+      icon:marginChange===0?'fa-minus':`fa-arrow-${marginChange>0?'up':'down'}`,
       text:marginChange===0?`No change vs ${previousMonth}`:`${marginChange>0?'Up':'Down'} ${Math.abs(marginChange)} points vs ${previousMonth}`
     };
     const metrics={
@@ -301,11 +302,10 @@
       const statusClass=metricStatuses[key];
       const delta=element.querySelector('dd span');
       element.classList.remove('email-status-positive','email-status-negative');
-      delta.classList.remove('email-status-positive','email-status-negative');
       if(statusClass)element.classList.add(`email-status-${statusClass}`);
-      if(metric.delta.className)delta.classList.add(`email-status-${metric.delta.className}`);
       element.querySelector('strong').textContent=metric.value;
-      delta.textContent=metric.delta.text;
+      renderDelta(delta,metric.delta,true);
+      delta.classList.remove('positive','negative','email-status-positive','email-status-negative');
     });
     focusKeys.forEach(key=>{document.querySelector(`[data-email-roundup="${key}"]`).textContent=roundup[key]});
     document.querySelector('#emailFullReportLink').setAttribute('href',`?concept=report&variant=2&snapshot=${month.slug}`);
