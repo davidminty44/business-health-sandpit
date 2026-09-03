@@ -138,10 +138,10 @@ const calculationMetadata={
   },
   'quote-pipeline':{
     title:'Quote pipeline calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
-    definition:'Current open quote value alongside quote decisions made in the last 30 days.',
-    calculation:'Open: 8 quotes worth $34,500, split into $15,600 fresh and $18,900 quiet. Decisions in the last 30 days: 9 accepted worth $42,700 and 7 declined worth $30,900.',
-    source:'Tradify quote values, sent dates and current statuses.',
-    note:'Open and decided figures are different populations and should not be added together.'
+    definition:'The ex-tax value of open, unexpired quotes awaiting a customer decision.',
+    calculation:'Awaiting response: 8 quotes worth $34,500. Last month: $41,800, so the value awaiting decision is down $7,300. The same month last year: $31,200, so it is up $3,300. Decisions in the last 30 days: 9 accepted worth $42,700 and 7 declined worth $30,900.',
+    source:'Current Tradify quote values and statuses, compared with prior snapshot totals.',
+    note:'Accepted, declined and awaiting response are separate quote outcomes and should not be added together.'
   },
   'booked-ahead':{
     title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
