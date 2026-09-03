@@ -290,7 +290,7 @@
       section.querySelector('[data-report2-actions]').innerHTML=renderActionItems(actions);
       section.querySelector('.report2-action-count').textContent=`${actions.length} actions`;
     });
-    document.querySelector('.report2-note span').textContent=`Based on Tradify and connected accounting data up to ${month.asAt}. This briefing won't update after that.`;
+    document.querySelector('.report2-note span').textContent=`Based on Tradify and connected accounting data up to ${month.asAt}. This report won't update after that.`;
   };
 
   const renderSnapshot=()=>{
