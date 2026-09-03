@@ -571,13 +571,23 @@
     setUrl();
   };
 
+  const scrollChapterIntoView=chapter=>{
+    const summary=chapter.querySelector('summary');
+    const topOffset=window.matchMedia('(max-width:800px)').matches?96:24;
+    const summaryRect=summary.getBoundingClientRect();
+    const chapterRect=chapter.getBoundingClientRect();
+    if(summaryRect.top>=topOffset&&chapterRect.bottom<=window.innerHeight-16)return;
+    const top=Math.max(0,window.scrollY+summaryRect.top-topOffset);
+    window.scrollTo({top,behavior:reducedMotion.matches?'auto':'smooth'});
+  };
+
   const setChapterOpen=(chapter,open)=>{
     if(chapter.open===open||chapter.dataset.animating)return;
     const startHeight=chapter.offsetHeight;
     const summary=chapter.querySelector('summary');
     if(open)chapter.open=true;else chapter.classList.add('closing');
     const endHeight=open?summary.offsetHeight+chapter.querySelector('.report2-chapter-body').offsetHeight:summary.offsetHeight;
-    if(reducedMotion.matches){chapter.open=open;chapter.classList.remove('closing');return}
+    if(reducedMotion.matches){chapter.open=open;chapter.classList.remove('closing');if(open)scrollChapterIntoView(chapter);return}
     chapter.dataset.animating='true';
     chapter.style.overflow='hidden';
     const animation=chapter.animate({height:[`${startHeight}px`,`${endHeight}px`]}, {duration:240,easing:'cubic-bezier(.4,0,.2,1)'});
@@ -586,6 +596,7 @@
       chapter.classList.remove('closing');
       chapter.style.overflow='';
       delete chapter.dataset.animating;
+      if(open)window.requestAnimationFrame(()=>scrollChapterIntoView(chapter));
     });
   };
 
