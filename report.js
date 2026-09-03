@@ -416,7 +416,7 @@
     if(isEmailRoute||reducedMotion.matches)return;
     const timeline=report2MotionTimeline();
     timeline.forEach(({element,delay})=>element.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:420,delay,easing:'cubic-bezier(.33,1,.68,1)',fill:'backwards'}));
-    animateReport2Numbers(null,timeline,650);
+    animateReport2Numbers(null,timeline,845);
   };
 
   const renderSnapshot=()=>{
@@ -679,7 +679,7 @@
     monthIndex=reportMonths.findIndex(month=>month.slug===report2ArchiveSelect.value);
     resetReport2Chat();
     renderSnapshot();
-    animateReport2Numbers(previousValues,report2MotionTimeline(true),500);
+    animateReport2Numbers(previousValues,report2MotionTimeline(true),650);
   });
   document.querySelectorAll('[data-report2-ask]').forEach(button=>button.addEventListener('click',()=>{
     activeFocus=button.dataset.report2Ask;
