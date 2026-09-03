@@ -291,8 +291,9 @@
     document.querySelector('#emailRoundupHeadline').textContent=roundup.headline;
     Object.entries(metrics).forEach(([key,metric])=>{
       const element=document.querySelector(`[data-email-metric="${key}"]`);
+      const statusClass=key==='moneyOut'?'negative':metric.delta.className;
       element.classList.remove('email-status-positive','email-status-negative');
-      if(metric.delta.className)element.classList.add(`email-status-${metric.delta.className}`);
+      if(statusClass)element.classList.add(`email-status-${statusClass}`);
       element.querySelector('strong').textContent=metric.value;
       element.querySelector('dd span').textContent=metric.delta.text;
     });
