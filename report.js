@@ -39,7 +39,7 @@
   };
   const emailRoundups={
     'aug-2026':{
-      headline:'Cash tightened and profit margin slipped to 19% this month — the full report has the detail.',
+      headline:'Cash tightened and profit margin slipped to 19% this month, the full report has the detail.',
       cash:'fell as money in slowed and money out rose. Finished work waiting to be invoiced is the fastest way back.',
       profit:"slipped to 19%, with one job's costs pulling down the average.",
       work:'are converting well, but a few have gone quiet.'
