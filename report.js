@@ -36,6 +36,20 @@
     'jul-2026':'Cash and margin improved, but $39,200 in overdue invoices still needs following up.',
     'jun-2026':'Cash stayed positive and margin held at 24%, but material costs need watching.'
   };
+  const reportPipelines={
+    'aug-2026':{
+      quote:{total:34500,monthChange:-7300,yearChange:3300,outcomes:{accepted:[9,42700],declined:[7,30900],awaiting:[8,34500]}},
+      invoice:{total:47820,monthChange:8620,yearChange:5720,outcomes:{ready:[11,38900],paid:[12,24600],overdue:[8,47820]}}
+    },
+    'jul-2026':{
+      quote:{total:41800,monthChange:12200,yearChange:6400,outcomes:{accepted:[9,39600],declined:[10,36200],awaiting:[10,41800]}},
+      invoice:{total:39200,monthChange:7500,yearChange:2800,outcomes:{ready:[8,27600],paid:[11,33000],overdue:[7,39200]}}
+    },
+    'jun-2026':{
+      quote:{total:29600,monthChange:-3500,yearChange:1800,outcomes:{accepted:[8,37900],declined:[7,28400],awaiting:[7,29600]}},
+      invoice:{total:31700,monthChange:2600,yearChange:1200,outcomes:{ready:[7,24900],paid:[10,29100],overdue:[6,31700]}}
+    }
+  };
   const reportActions={
     'aug-2026':{
       cash:[
@@ -216,6 +230,29 @@
     });
   };
 
+  const renderReport2Pipelines=month=>{
+    const pipelines=reportPipelines[month.slug];
+    document.querySelectorAll('[data-report2-pipeline]').forEach(card=>{
+      const type=card.dataset.report2Pipeline;
+      const pipeline=pipelines[type];
+      card.querySelector('[data-pipeline-total]').textContent=money(pipeline.total);
+      ['month','year'].forEach(period=>{
+        const change=pipeline[`${period}Change`];
+        const element=card.querySelector(`[data-pipeline-change="${period}"]`);
+        element.classList.remove('positive','negative');
+        if(type==='invoice'&&change!==0)element.classList.add(change>0?'negative':'positive');
+        const direction=change===0?'No change':`${change>0?'Up':'Down'} ${money(Math.abs(change))}`;
+        const icon=change===0?'fa-minus':`fa-arrow-${change>0?'up':'down'}`;
+        element.innerHTML=`<i class="fa ${icon}" aria-hidden="true"></i>${direction} vs last ${period}`;
+      });
+      Object.entries(pipeline.outcomes).forEach(([outcome,[count,value]])=>{
+        const tile=card.querySelector(`[data-pipeline-outcome="${outcome}"]`);
+        tile.querySelector('[data-pipeline-count]').textContent=count;
+        tile.querySelector('[data-pipeline-value]').textContent=money(value);
+      });
+    });
+  };
+
   const renderReport2=()=>{
     const month=reportMonths[monthIndex];
     report2ArchiveSelect.value=month.slug;
@@ -242,6 +279,7 @@
     outlookDelta.textContent=`${month.outlookChange<0?'Down':'Up'} ${money(Math.abs(month.outlookChange))} over 8 weeks`;
     outlookDelta.classList.toggle('negative',month.outlookChange<0);
     outlookDelta.classList.toggle('positive',month.outlookChange>0);
+    renderReport2Pipelines(month);
     focusKeys.forEach(key=>{
       const focus=month.focus[key];
       const section=document.querySelector(`[data-report2-section="${key}"]`);
