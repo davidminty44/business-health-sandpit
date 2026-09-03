@@ -532,6 +532,13 @@ h1{margin:0;color:#424242;font-size:18px;font-weight:400;line-height:22px}
 .pipeline-outcomes strong{margin:2px 0;color:#263238;font-size:20px;font-weight:400;line-height:24px}
 .pipeline-outcomes .accepted strong{color:#318561}
 .pipeline-outcomes .declined strong{color:#a5383c}
+.invoice-pipeline-card .pipeline-total strong{color:#a5383c}
+.pipeline-outcomes>div.ready{border-top-color:#e6a23c}
+.pipeline-outcomes>div.paid{border-top-color:#46be8a}
+.pipeline-outcomes>div.overdue{border-top-color:#eb5055}
+.pipeline-outcomes .ready strong{color:#9a6a12}
+.pipeline-outcomes .paid strong{color:#318561}
+.pipeline-outcomes .overdue strong{color:#a5383c}
 .modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(38,50,56,.58)}
 .modal{position:fixed;inset:0;z-index:105;overflow-x:hidden;overflow-y:auto}
 .modal[hidden],.modal-backdrop[hidden],.toast[hidden]{display:none}

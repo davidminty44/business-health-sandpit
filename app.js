@@ -143,6 +143,13 @@ const calculationMetadata={
     source:'Current Tradify quote values and statuses, compared with prior snapshot totals.',
     note:'Accepted, declined and awaiting response are separate quote outcomes and should not be added together.'
   },
+  'invoice-pipeline':{
+    title:'Invoice pipeline calculation',category:'Calculated',categoryType:'calculated',icon:'fa-superscript',
+    definition:'The current outstanding balance of customer invoices whose due date has passed.',
+    calculation:'Overdue: 8 invoices worth $47,820. Last month: $39,200, so the overdue amount is up $8,620. The same month last year: $42,100, so it is up $5,720. Other pipeline outcomes: 11 completed jobs ready to invoice worth $38,900 and 12 paid invoices worth $24,600 in the last 30 days.',
+    source:'Tradify customer invoices, recorded payments, due dates and completed jobs ready for invoicing.',
+    note:'Ready to invoice, paid and overdue are separate populations and should not be added together.'
+  },
   'booked-ahead':{
     title:'Booked ahead calculation',category:'Quoted estimate',categoryType:'assumption',icon:'fa-exclamation-circle',
     definition:'Committed work value, estimated delivery cost and potential gross profit from scheduled jobs and accepted quotes.',
