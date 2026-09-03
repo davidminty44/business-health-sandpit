@@ -573,6 +573,8 @@
     setUrl();
   };
 
+  const resetReport2Chapters=()=>report2Chapters.forEach((chapter,index)=>{chapter.open=reportMonths[monthIndex].slug!=='jul-2026'&&index===0});
+
   const cancelChapterScroll=()=>{
     window.clearTimeout(report2ScrollDelay);
     window.cancelAnimationFrame(report2ScrollAnimationFrame);
@@ -696,6 +698,7 @@
     const previousValues=captureReport2Numbers();
     monthIndex=reportMonths.findIndex(month=>month.slug===report2ArchiveSelect.value);
     resetReport2Chat();
+    resetReport2Chapters();
     renderSnapshot();
     animateReport2Numbers(previousValues,report2MotionTimeline(true),650);
   });
@@ -730,6 +733,7 @@
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
     }
   });
+  resetReport2Chapters();
   renderSnapshot();
   setReport2ChatOpen(false);
   activateVariant();
