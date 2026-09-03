@@ -166,7 +166,7 @@
   const query=new URLSearchParams(window.location.search);
   const requestedSnapshot=query.get('snapshot')||query.get('month');
   let monthIndex=Math.max(0,reportMonths.findIndex(month=>month.slug===requestedSnapshot));
-  let activeVariant=query.get('variant')==='1'?'1':'2';
+  let activeVariant='2';
   let activeFocus='cash';
   let lastChatTrigger=null;
   let toastTimer;
