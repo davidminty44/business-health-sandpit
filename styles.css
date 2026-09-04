@@ -839,7 +839,7 @@ body.report-chat-open{overflow:hidden}
 .report2-chapter summary small{color:#757575;font-size:11px;line-height:16px}
 .report2-chapter summary strong{color:#424242;font-size:13px;font-weight:500;line-height:19px}
 .report2-action-count{color:#757575;font-size:11px;white-space:nowrap}
-.report2-chapter summary>.fa{color:#97a3aa;transition:transform .15s ease-out}
+.report2-chapter summary>.fa{color:#97a3aa;transition:transform .195s ease-out}
 .report2-chapter[open] summary>.fa{transform:rotate(180deg)}
 .report2-chapter.closing summary>.fa{transform:rotate(0)}
 .report2-chapter-body{padding:0 12px 14px;border-top:1px solid #e0e0e0;background:#fafafa}

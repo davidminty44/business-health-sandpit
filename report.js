@@ -160,12 +160,15 @@
   const report2HealthStatus=document.querySelector('.report2-health-status');
   const report2HealthTitle=document.querySelector('#report2HealthTitle');
   const report2ChatToggle=document.querySelector('#report2ChatToggle');
+  const report2ChatBody=document.querySelector('#report2ChatBody');
   const report2ChatThread=document.querySelector('#report2ChatThread');
   const report2ChatForm=document.querySelector('#report2ChatForm');
   const report2ChatInput=document.querySelector('#report2ChatInput');
   const report2Companion=document.querySelector('.report2-companion');
   const report2Chapters=Array.from(document.querySelectorAll('.report2-chapter'));
   const reducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)');
+  const disclosureDuration=312;
+  const disclosureEasing='cubic-bezier(.4,0,.2,1)';
   const query=new URLSearchParams(window.location.search);
   const requestedSnapshot=query.get('snapshot')||query.get('month');
   let monthIndex=Math.max(0,reportMonths.findIndex(month=>month.slug===requestedSnapshot));
@@ -589,7 +592,7 @@
       const startY=window.scrollY;
       const started=performance.now();
       const frame=now=>{
-        const progress=Math.min(1,(now-started)/320);
+        const progress=Math.min(1,(now-started)/416);
         const eased=1-Math.pow(1-progress,3);
         const target=Math.max(0,window.scrollY+summary.getBoundingClientRect().top-topOffset);
         window.scrollTo(0,startY+(target-startY)*eased);
@@ -597,7 +600,7 @@
       };
       report2ScrollAnimationFrame=window.requestAnimationFrame(frame);
     };
-    if(reducedMotion.matches)start();else report2ScrollDelay=window.setTimeout(start,100);
+    if(reducedMotion.matches)start();else report2ScrollDelay=window.setTimeout(start,130);
   };
 
   const setChapterOpen=(chapter,open)=>{
@@ -610,7 +613,7 @@
     if(reducedMotion.matches){chapter.open=open;chapter.classList.remove('closing');if(open)scrollChapterIntoView(chapter,endHeight);return}
     chapter.dataset.animating='true';
     chapter.style.overflow='hidden';
-    const animation=chapter.animate({height:[`${startHeight}px`,`${endHeight}px`]}, {duration:240,easing:'cubic-bezier(.4,0,.2,1)'});
+    const animation=chapter.animate({height:[`${startHeight}px`,`${endHeight}px`]}, {duration:disclosureDuration,easing:disclosureEasing});
     if(open)scrollChapterIntoView(chapter,endHeight);
     animation.addEventListener('finish',()=>{
       chapter.open=open;
@@ -621,10 +624,24 @@
   };
 
   const setReport2ChatOpen=(open,focus=false)=>{
-    report2Companion.classList.toggle('open',open);
+    const currentlyOpen=report2Companion.classList.contains('open');
+    if(currentlyOpen===open){if(open&&focus)report2ChatInput.focus();return}
+    if(report2ChatBody.dataset.animating)return;
     report2ChatToggle.setAttribute('aria-expanded',String(open));
     report2ChatToggle.querySelector('.fa-angle-up,.fa-angle-down').className=`fa fa-angle-${open?'up':'down'}`;
-    if(open&&focus)report2ChatInput.focus();
+    if(reducedMotion.matches){report2Companion.classList.toggle('open',open);if(open&&focus)report2ChatInput.focus();return}
+    const startHeight=currentlyOpen?report2ChatBody.offsetHeight:0;
+    if(open)report2Companion.classList.add('open');
+    report2ChatBody.dataset.animating='true';
+    report2ChatBody.style.overflow='hidden';
+    const endHeight=open?report2ChatBody.scrollHeight:0;
+    const animation=report2ChatBody.animate({height:[`${startHeight}px`,`${endHeight}px`]}, {duration:disclosureDuration,easing:disclosureEasing});
+    animation.addEventListener('finish',()=>{
+      if(!open)report2Companion.classList.remove('open');
+      report2ChatBody.style.overflow='';
+      delete report2ChatBody.dataset.animating;
+      if(open&&focus)report2ChatInput.focus();
+    });
   };
 
   const resetReport2Chat=()=>{
