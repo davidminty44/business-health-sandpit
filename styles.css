@@ -626,6 +626,7 @@ body[data-concept="email"] .email-preview-modal .email-preview-body{padding:0;ba
 body.modal-open,body.calculation-sheet-open{overflow:hidden}
 body[data-concept="report"] .health-view-tabs,body[data-concept="report"] .report-header{display:none}
 body[data-concept="report"] .reports-view{border-color:transparent;background:transparent;box-shadow:none}
+@media(min-width:801px){body[data-concept="report"] .reports-list{margin-top:20px}}
 .report-concept{margin:0 -30px -24px;background:transparent;color:#263238}
 .report-concept[hidden],.report-analysis-page[hidden]{display:none}
 .monthly-report{padding:20px 8px 16px;display:flex;flex-direction:column;gap:15px}
